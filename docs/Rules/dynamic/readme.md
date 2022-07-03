@@ -1,1 +1,1 @@
-dynamic ruleset
+Überblick über die Regeln, die durch eine dynamische Analyse untersucht werden. Alle Regeln die hier Dokumentiert wurden, wurden bereits implementiert.
