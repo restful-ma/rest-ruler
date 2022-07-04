@@ -6,8 +6,9 @@
 **Um die Genauigkeit des Tools zu messen, wird ein Benchmark mit mehr als 2k REST API Definitionen verwendet.**
 
 ### Forschungsfragen
+**RQ1:** Ist das Tool in der Lage, die Einhaltung der **statischen** Regeln von Massé [2] zuverlässig zu erkennen?
 
-**RQ1:** Ist das Tool in der Lage, die Einhaltung der Regeln von Massé [2] zuverlässig zu erkennen?
+**RQ2:** Ist das Tool in der Lage, die Einhaltung der **dynamischen** Regeln von Massé [2] zuverlässig zu erkennen?
 
 ## Methoden
 ### Schritt 1 (Regeln analysieren)
@@ -23,19 +24,27 @@
     * Wenn alles erkannt wurde und Softwarequalität passt --> Code in master pushen
 
 #### Anforderungen an den CLI (Kann sich beim Entwickeln nochmal ändern)
-* Reading of a json/yaml file by specifying a path
-* Detection of rule violations
-* Report about rule violations with indication in which line of code it can be found and how critical it is
-* Report at the end about the software quality (rule violations are attributed/subordinated to quality properties)
-* Output file (rule violations + improvement suggestions + software quality report)
+* Einlesen einer json/yaml Datei durch das angeben eines Pfades
+* Erkennen von Regelverstößen
+* Report über die Regelverstöße mit Angabe in welcher Zeile Code er zu finden ist und wie kritisch er ist
+* Report am Ende über die Softwarequalität (Regelverstöße sind auf Softwarequalität zurückzuführen)
+* Output file (Regelverstöße + Verbesserungsvorschläge + Softwarequalität Report)
 
 #### Warum wir ein neues Tool entwickeln
-Existierende Tools sind zu **statisch**, schwer zu ergänzen (software quality att.; dynamische Regeln; evaluation der bisher impl. Regeln) --> Eigene Implementierung flexibler und vermutlich besserer Weg für Anforderungen
+Existierende Tools sind zu **statisch**, schwer zu ergänzen (software quality att.; dynamische Regeln; evaluation der bisher impl. Regeln) --> Eigene Implementierung flexibler und vermutlich besserer/schnellere Weg für Anforderungen
 
 ### Schritt 3 (Evaluierung)
-* 2.353 APIs von Apis.guru [3] minen --> 1. Wie viele APIs kann das Tool problemlos untersuchen 2. Was für statische rule violations werden erzeugt (Script automatisiert) 3. Vergleich mit anderen CLIs
-* Dynamische Untersuchung von einzelnen APIs (Manuell). Ähnlich wie bei der vom Soda-Team durchgeführten Studie[4] 
-* Gold Standard untersucht precision --> Sammlung von in Schritt 2 erzeugten fehlerhaften openAPI Dateien, wobei alle violations erkannt werden
+* 2.353 APIs von Apis.guru [3] minen und diese **statisch analysieren** (**RQ1**)(**automatisiert**) --> 
+
+    1. Wie viele APIs kann das Tool problemlos untersuchen
+        * Probleme beim Parsen wie auch bei der Analyse --> Wird ein Fehler geworfen?
+    2. Was für statische Regelverstöße werden gefunden
+    3. Vergleich mit anderen CLIs
+        * Vergleich von Problemen beim Parsen wie auch bei der Analyse (1.)
+        * Vergleich von Erkennung von selben Regeln (2.) --> Werden die selben Regeln an der selben Stelle von beiden CLIs erkannt?
+* **Gold Standard** untersucht Genauigkeit --> Sammlung von in Schritt 2 erzeugten fehlerhaften openAPI Dateien, wobei alle Verstöße erkannt werden sollten (**RQ1; RQ2**)
+* **Dynamische Analyse** von einzelnen APIs (**manuell**). Ähnlich wie bei der von der Studie von Palma et al. [4] (**RQ2**)
+    * Was für dynamische Regelverstöße werden gefunden
 
 # Roadmap
 Datum | Meilenstein
@@ -48,13 +57,13 @@ Datum | Meilenstein
 
 
 # Fragen
-
+* Muss der gold standard (files) von dritten validiert werden?
 
 # Quellen
-[1] https://link.springer.com/chapter/10.1007/978-3-030-87568-8_10
+[1] Kotstein, S., Bogner, J. (2021). Which RESTful API Design Rules Are Important and How Do They Improve Software Quality? A Delphi Study with Industry Experts. In: Barzen, J. (eds) Service-Oriented Computing. SummerSOC 2021. Communications in Computer and Information Science, vol 1429. Springer, Cham. https://doi.org/10.1007/978-3-030-87568-8_10
 
 [2] https://www.oreilly.com/library/view/rest-api-design/9781449317904/
 
 [3] https://apis.guru/
 
-[4] http://sofa.uqam.ca/soda/
+[4] Palma, F., Gonzalez-Huerta, J., Moha, N., Guéhéneuc, Y., & Tremblay, G. (2015). Are RESTful APIs Well-Designed? Detection of their Linguistic (Anti)Patterns. ICSOC. https://doi.org/10.1007/978-3-662-48616-0_11
