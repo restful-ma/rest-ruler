@@ -1,65 +1,65 @@
-# Studien Design
-## Ziel
-**Das Tool sollte in der Lage sein, Verstöße anhand von REST API-Regeln zu erkennen.** Diese Regeln stammen von Masse und wurden durch die Forschung von Bogner und Kotstein validiert. 
-**Durch die Erkennung von Regelverstößen soll das Tool Entwicklern helfen, bessere REST API Definitionen zu schreiben.** Bei der Implementierung der Regeln für die Erkennung sollten die Regeln mit hoher Wichtigkeit eine höhere Priorität erhalten und später die Regeln mit mittlerer Wichtigkeit implementiert werden. Die Priorität dieser Regeln, wurde durch die Forschung von Bogner und Kotstein bereits festgelegt [1].
-**Das Tool wird zwischen dynamischer und statischer Analyse unterscheiden.** Um eine dynamische Analyse durchzuführen, wird das Tool die Eingaben des Benutzers nutzen, um dynamische die API aufrufe durchzuführen.
-**Um die Genauigkeit des Tools zu messen, wird ein Benchmark mit mehr als 2k REST API Definitionen verwendet.**
+# Study Design
+## Goal
+The goal of this project is to provide a tool-based approach to automatically identify design rule violations in REST APIs. This approach is intended to support developers in detecting and fixing rule violations in their REST API definitions.
 
-### Forschungsfragen
-**RQ1:** Ist das Tool in der Lage, die Einhaltung der **statischen** Regeln von Massé [2] zuverlässig zu erkennen?
+### Research Questions
+**RQ1:** What is a feasible tool-supported approach to automatically identify design rule violations in REST APIs?
+* Static and dynamic analysis
+* Relating software quality attributes to the rule violations
+* Extensibility of rules in the CLI
 
-**RQ2:** Ist das Tool in der Lage, die Einhaltung der **dynamischen** Regeln von Massé [2] zuverlässig zu erkennen?
+**RQ2:** How reliably is the tool prototype able to identify violations of the implemented rules?
+- Using static rules
+- Using dynamic rules
 
-## Methoden
-### Schritt 1 (Regeln analysieren)
-* Regeln analysieren und kategorisieren (static/dynamic, notes und Ideen zum Impl.)
-* Konzept aufstellen für die Analyse (md Datei auf GitHub)
+## Methodology
+### Step 1 (Rule Analysis)
+* Analyze and categorize rules (static/dynamic, notes and ideas for implementation)
+* Create concept for analysis (md file on GitHub)
 
-### Schritt 2 (Regeln implementieren)
-* Konzept für Regel erstellen (md Datei auf GitHub erstellen)
-* Implementieren einer Regel
-    * Zu jeder implementierten Regel werden von dem Entwickler Unit Tests geschrieben
-    * Implementierter Code wird von zweitem Entwickler überprüft (PR)
-    * Von zweitem und drittem Entwickler wird eine fehlerhafte openAPI Datei bereitgestellt (Gold Standard)
-    * Wenn alles erkannt wurde und Softwarequalität passt --> Code in master pushen
+### Step 2 (Rule Implementation) 
+* Create Architeture for CLI
+* Iterative steps:
+    * Create/add OpenAPI definition file that contains (multiple) rule violation to be developed (for gold standard)
+        * File is reviewed by a third parties
+    * Create concept for rule and a possible implementation (md file on GitHub)
+    * Implementation of a rule
+        * Developer of rule creates unit tests
+        * Second and third developer checks code via PR
+* After the implementation, the gold standard is used to test and improve the CLI
 
-#### Anforderungen an den CLI (Kann sich beim Entwickeln nochmal ändern)
-* Einlesen einer json/yaml Datei durch das angeben eines Pfades
-* Erkennen von Regelverstößen
-* Report über die Regelverstöße mit Angabe in welcher Zeile Code er zu finden ist und wie kritisch er ist
-* Report am Ende über die Softwarequalität (Regelverstöße sind auf Softwarequalität zurückzuführen)
-* Output file (Regelverstöße + Verbesserungsvorschläge + Softwarequalität Report)
+#### CLI Requirements (May change during development)
+* Reading a OpenAPI json/yaml file by specifying a path
+* Detection of rule violations
+* Report about rule violations with indication in which line of code it can be found and how critical it is
+* Report at the end about the software quality (rule violations are attributed/subordinated to quality properties)
+* Output file (rule violations + improvement suggestions + software quality report)
 
-#### Warum wir ein neues Tool entwickeln
-Existierende Tools sind zu **statisch**, schwer zu ergänzen (software quality att.; dynamische Regeln; evaluation der bisher impl. Regeln) --> Eigene Implementierung flexibler und vermutlich besserer/schnellere Weg für Anforderungen
+#### Reasons for developing a new tool
+Existing tools are too **static**, difficult to extend (software quality attributes; dynamic rules; evaluation of previously impl. rules) --> Custom implementation more flexible and most likely better/faster way to address requirements
 
-### Schritt 3 (Evaluierung)
-* 2.353 APIs von Apis.guru [3] minen und diese **statisch analysieren** (**RQ1**)(**automatisiert**) --> 
+### Step 3 (Evaluation RQ2)
+* **Static analysis** of mined APIs from apis.guru [3] (automated):
+    1. How many APIs can the tool examine without any problems
+        * Problems with parsing as well as problems in analysis --> Is an error thrown?
+    2. What static rule violations are found
+    3. Comparison with other CLIs
+        * Problems in parsing as well as problems in analysis (1.)
+        * Recognition of same rules (2.) --> Are the same rules recognized at the same place by both CLIs?
+* **Dynamic analysis** of individual APIs (manual). Similar to the approach used by the study of Palma et al [4].
+    * What dynamic rule violations are found?
+* **Gold Standard** examines recall and precision --> collection of rule violations in openAPI file from step 2 is the gold standard.
 
-    1. Wie viele APIs kann das Tool problemlos untersuchen
-        * Probleme beim Parsen wie auch bei der Analyse --> Wird ein Fehler geworfen?
-    2. Was für statische Regelverstöße werden gefunden
-    3. Vergleich mit anderen CLIs
-        * Vergleich von Problemen beim Parsen wie auch bei der Analyse (1.)
-        * Vergleich von Erkennung von selben Regeln (2.) --> Werden die selben Regeln an der selben Stelle von beiden CLIs erkannt?
-* **Gold Standard** untersucht Genauigkeit --> Sammlung von in Schritt 2 erzeugten fehlerhaften openAPI Dateien, wobei alle Verstöße erkannt werden sollten (**RQ1; RQ2**)
-* **Dynamische Analyse** von einzelnen APIs (**manuell**). Ähnlich wie bei der von der Studie von Palma et al. [4] (**RQ2**)
-    * Was für dynamische Regelverstöße werden gefunden
 
 # Roadmap
-Datum | Meilenstein
+Date | Milestone
 ------------- | -------------
-06\. Juli    | Regeln analysieren (Schritt 1)
-31\. August  | Regeln implementiert (Schritt 2)
-15\. Oktober  | Evaluierung (Schritt 3)
-30\. November | Paper schreiben
+06\. July    | Rule analysis (Step 1)
+31\. August  | Rule implementation (Step 2)
+15\. October  | Evaluation (Step 3)
+30\. November | Writing Paper
 
-
-
-# Fragen
-* Muss der gold standard (files) von dritten validiert werden?
-
-# Quellen
+# Sources
 [1] Kotstein, S., Bogner, J. (2021). Which RESTful API Design Rules Are Important and How Do They Improve Software Quality? A Delphi Study with Industry Experts. In: Barzen, J. (eds) Service-Oriented Computing. SummerSOC 2021. Communications in Computer and Information Science, vol 1429. Springer, Cham. https://doi.org/10.1007/978-3-030-87568-8_10
 
 [2] https://www.oreilly.com/library/view/rest-api-design/9781449317904/
