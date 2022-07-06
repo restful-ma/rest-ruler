@@ -20,8 +20,8 @@ The goal of this project is to provide a tool-based approach to automatically id
 ### Step 2 (Rule Implementation) 
 * Create Architeture for CLI
 * Iterative steps:
-    * Create/add OpenAPI definition file that contains (multiple) rule violation to be developed (for gold standard)
-        * File is reviewed by a third parties
+    * Create OpenAPI definition that contains (multiple) rule violation to be developed (for gold standard) --> Single file
+        * File is reviewed by third parties
     * Create concept for rule and a possible implementation (md file on GitHub)
     * Implementation of a rule
         * Developer of rule creates unit tests
