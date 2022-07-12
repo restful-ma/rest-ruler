@@ -1,4 +1,4 @@
-# Rule
+# 401 ("Unauthorized") must be used when there is a problem with the client's credentials
 ## Category
 HTTP
 ## Importance, severity, difficulty
