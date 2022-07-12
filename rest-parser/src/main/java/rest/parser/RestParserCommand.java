@@ -14,7 +14,7 @@ public class RestParserCommand implements Runnable {
     boolean verbose;
 
     public static void main(String[] args) throws Exception {
-        SwaggerParseResult result = new OpenAPIParser().readLocation("https://petstore3.swagger.io/api/v3/openapi.json", null, null);
+        SwaggerParseResult result = new OpenAPIParser().readLocation("C:/Users/manue/Documents/Studium/Master/2.Semester/Projektarbeit/Projektarbeit-Master/docs/studiendesign/evaluation/gold-standard/static-OpenAPI.yaml", null, null);
         System.out.println("Hi!" + result.getOpenAPI().getComponents().getSecuritySchemes());
         PicocliRunner.run(RestParserCommand.class, args);
     }
