@@ -1,4 +1,4 @@
-Rule;Category;Importance;Implementable;Implemented;static/dynamic
+Rule;Category;Importance;Implementable;Implemented;static/dynamic;
 A trailing forward slash (/) should not be included in URIs;URIs;medium;no;no;
 File extensions should not be included in URIs;URIs;medium;no;no;
 A plural noun should be used for store names;URIs;medium;no;no;
