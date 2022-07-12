@@ -18,7 +18,8 @@ dependencies {
     implementation("jakarta.annotation:jakarta.annotation-api")
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
-
+    implementation("io.swagger.parser.v3:swagger-parser-v3:2.1.1")
+    implementation 'io.swagger.parser.v3:swagger-parser:2.1.1'
     testImplementation("io.micronaut:micronaut-http-client")
 
 }
