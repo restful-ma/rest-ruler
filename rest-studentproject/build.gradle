@@ -4,7 +4,7 @@ plugins {
 }
 
 version = "0.1"
-group = "rest.parser"
+group = "rest.studentproject"
 
 repositories {
     mavenCentral()
@@ -26,7 +26,7 @@ dependencies {
 
 
 application {
-    mainClass.set("rest.parser.RestParserCommand")
+    mainClass.set("rest.studentproject.RestParserCommand")
 }
 java {
     sourceCompatibility = JavaVersion.toVersion("11")
@@ -37,7 +37,7 @@ micronaut {
     testRuntime("junit5")
     processing {
         incremental(true)
-        annotations("rest.parser.*")
+        annotations("rest.studentproject.*")
     }
 }
 

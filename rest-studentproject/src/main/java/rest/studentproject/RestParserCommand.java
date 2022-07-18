@@ -1,8 +1,6 @@
-package rest.parser;
+package rest.studentproject;
 
 import io.micronaut.configuration.picocli.PicocliRunner;
-import io.swagger.parser.OpenAPIParser;
-import io.swagger.v3.parser.core.models.SwaggerParseResult;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
@@ -15,6 +13,7 @@ public class RestParserCommand implements Runnable {
 
     public static void main(String[] args) throws Exception {
         PicocliRunner.run(RestParserCommand.class, args);
+
     }
 
     public void run() {
