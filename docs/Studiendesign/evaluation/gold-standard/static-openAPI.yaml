@@ -17,6 +17,138 @@ schemes:
 - "https"
 paths:
   # Define all paths here          
+  /users/{userId}:
+    get:
+      summary: Returns a user by ID.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The ID of the user to return.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: A user object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 4
+                  name:
+                    type: string
+                    example: Jessica Smith
+        '400':
+          description: The specified user ID is invalid (not a number).
+        '404':
+          description: A user with the specified ID was not found.
+        default:
+          description: Unexpected error
+  # RULE 19: using other characters instead of forward slash '/'
+  .users.{userId}.permissions:
+    get:
+      summary: Returns a user permission for ID.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The perimssion of the user to return.
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        '200':
+          description: A users permissions.
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: The specified user ID is invalid (not a number).
+        '404':
+          description: A user with the specified ID was not found.
+        default:
+          description: Unexpected error
+
+  \users\{userId}\permissions:
+    get:
+      summary: Returns a user permission for ID.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The perimssion of the user to return.
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        '200':
+          description: A users permissions.
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: The specified user ID is invalid (not a number).
+        '404':
+          description: A user with the specified ID was not found.
+        default:
+          description: Unexpected error
+  -users-{userId}-permissions:
+    get:
+      summary: Returns a user permission for ID.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The perimssion of the user to return.
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        '200':
+          description: A users permissions.
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: The specified user ID is invalid (not a number).
+        '404':
+          description: A user with the specified ID was not found.
+        default:
+          description: Unexpected error
+  \#users\#{userId}\#permissions:
+    get:
+      summary: Returns a user permission for ID.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The perimssion of the user to return.
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        '200':
+          description: A users permissions.
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: The specified user ID is invalid (not a number).
+        '404':
+          description: A user with the specified ID was not found.
+        default:
+          description: Unexpected error
+  
 components:
   # Define all components here
   securitySchemes:
