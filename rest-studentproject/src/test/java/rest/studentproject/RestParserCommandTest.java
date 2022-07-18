@@ -1,4 +1,4 @@
-package rest.parser;
+package rest.studentproject;
 
 import io.micronaut.configuration.picocli.PicocliRunner;
 import io.micronaut.context.ApplicationContext;

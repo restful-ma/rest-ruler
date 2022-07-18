@@ -1,5 +1,5 @@
 applicationType: cli
-defaultPackage: rest.parser
+defaultPackage: rest.studentproject
 testFramework: junit
 sourceLanguage: java
 buildTool: gradle
