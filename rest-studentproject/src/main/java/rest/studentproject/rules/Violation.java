@@ -7,6 +7,13 @@ public class Violation {
     private String keyViolation;
     private String errorMessage;
 
+    public Violation(int lineViolation, String improvementSuggestion, String keyViolation, String errorMessage) {
+        this.lineViolation = lineViolation;
+        this.improvementSuggestion = improvementSuggestion;
+        this.keyViolation = keyViolation;
+        this.errorMessage = errorMessage;
+    }
+
     public int getLineViolation() {
         return lineViolation;
     }

@@ -4,6 +4,7 @@ import io.swagger.parser.OpenAPIParser;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.parser.core.models.SwaggerParseResult;
 import rest.studentproject.report.Report;
+import rest.studentproject.rules.LowercaseRule;
 import rest.studentproject.rules.UnderscoreRule;
 
 public class RestAnalyzer {
@@ -18,8 +19,11 @@ public class RestAnalyzer {
 //        LOCMapper locMapper = new LOCMapper(url, openAPI);
 
         // Iterates over all active rules
-        UnderscoreRule underscoreRule = new UnderscoreRule(true);
-        underscoreRule.checkViolation(openAPI);
+        // UnderscoreRule underscoreRule = new UnderscoreRule(true);
+        // underscoreRule.checkViolation(openAPI);
+        LowercaseRule lowercaseRule = new LowercaseRule(true);
+        lowercaseRule.checkViolation(openAPI);
+
 
 
         // finalReport.generateReport(reportList);
