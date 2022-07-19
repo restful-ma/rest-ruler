@@ -3,43 +3,47 @@ package rest.studentproject.rules;
 import io.swagger.v3.oas.models.OpenAPI;
 import rest.studentproject.report.Report;
 
+import java.util.List;
+
 public class LowercaseRule implements IRestRule {
 
     @Override
-    public String title() {
+    public String getTitle() {
         return null;
     }
 
     @Override
-    public String description() {
+    public RuleCategory getCategory() {
         return null;
     }
 
     @Override
-    public RuleCategory category() {
-
-        return RuleCategory.URIS;
-    }
-
-    @Override
-    public RuleSeverity severityType() {
+    public RuleSeverity getSeverityType() {
         return null;
     }
 
     @Override
-    public RuleType ruleType() {
+    public RuleType getRuleType() {
         return null;
     }
 
     @Override
-    public boolean isActive() {
+    public List<RuleSoftwareQualityAttribute> getRuleSoftwareQualityAttribute() {
+        return null;
+    }
+
+    @Override
+    public boolean getIsActive() {
         return false;
     }
 
     @Override
-    public Report checkViolation(OpenAPI openAPI) {
-        Report report = new Report();
-        report.descriptionReport = "";
-        return report;
+    public void setIsActive(boolean isActive) {
+
+    }
+
+    @Override
+    public List<Violation> checkViolation(OpenAPI openAPI) {
+        return null;
     }
 }
