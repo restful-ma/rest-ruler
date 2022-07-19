@@ -10,9 +10,9 @@ import java.util.List;
 public class KeyMapper {
     public OpenAPI openAPI = null;
     public Paths paths = null;
-    public List<Server> serverURLs = new ArrayList<Server>();
+    public List<Server> serverURLs = new ArrayList<>();
 
-    public KeyMapper(OpenAPI openAPI){
+    public KeyMapper(OpenAPI openAPI) {
         this.openAPI = openAPI;
     }
 
