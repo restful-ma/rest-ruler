@@ -91,9 +91,11 @@ public class LowercaseRule implements IRestRule {
 
         // Get the paths from the OpenAPI object
         Set<String> paths = openAPI.getPaths().keySet();
-
+        
+        if(paths.isEmpty()) return null;
         // Loop through the paths
         for (String path: paths) {
+            if(path.trim().equals("")) continue;
             // Get the path without the curly braces
             String pathWithoutParameters = path.replaceAll(start + ".*" + end, "");
             // Get the path in lowercase
