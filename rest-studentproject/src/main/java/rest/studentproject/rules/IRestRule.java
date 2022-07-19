@@ -1,15 +1,17 @@
 package rest.studentproject.rules;
 
 import io.swagger.v3.oas.models.OpenAPI;
-import rest.studentproject.report.Report;
+
+import java.util.List;
 
 public interface IRestRule {
 
-    public String title();
-    public String description();
-    public RuleCategory category();
-    public RuleSeverity severityType();
-    public RuleType ruleType();
-    public boolean isActive();
-    public Report checkViolation(OpenAPI openAPI);
+    public String getTitle();
+    public RuleCategory getCategory();
+    public RuleSeverity getSeverityType();
+    public RuleType getRuleType();
+    public List<RuleSoftwareQualityAttribute> getRuleSoftwareQualityAttribute();
+    public boolean getIsActive();
+    public void setIsActive(boolean isActive);
+    public List<Violation> checkViolation(OpenAPI openAPI);
 }
