@@ -1,10 +1,6 @@
 package rest.studentproject.rules;
 
 import io.swagger.v3.oas.models.OpenAPI;
-import rest.studentproject.rules.attributes.RuleCategory;
-import rest.studentproject.rules.attributes.RuleSeverity;
-import rest.studentproject.rules.attributes.RuleSoftwareQualityAttribute;
-import rest.studentproject.rules.attributes.RuleType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,27 +78,33 @@ public class LowercaseRule implements IRestRule {
     }
 
     /**
-     *
+     * Rule to check if the URI path contains only lowercase letters. If not, the rule is violated. 
+     * @param openAPI
      */
     @Override
     public List<Violation> checkViolation(OpenAPI openAPI) {
         List<Violation> violations = new ArrayList<>();
+
+        // Define the regex to match the curly braces
         String start = "\\{";
         String end = "\\}";
+
+        // Get the paths from the OpenAPI object
         Set<String> paths = openAPI.getPaths().keySet();
 
+        // Loop through the paths
         for (String path: paths) {
-            String updatedUrl = path.replaceAll(start + ".*" + end, "");
-            String updateUrlLowerCase = updatedUrl.toLowerCase();
-
-            if(!updateUrlLowerCase.equals(updatedUrl)){
+            // Get the path without the curly braces
+            String pathWithoutParameters = path.replaceAll(start + ".*" + end, "");
+            // Get the path in lowercase
+            String pathWithoutParametersLowerCase = pathWithoutParameters.toLowerCase();
+            // Check if the path contains only lowercase letters
+            if(!pathWithoutParametersLowerCase.equals(pathWithoutParameters)){
                 violations.add(new Violation(0, "", "", "Error at:" + path));
             }
                 
         }
         
-
         return violations;
-
     }
 }
