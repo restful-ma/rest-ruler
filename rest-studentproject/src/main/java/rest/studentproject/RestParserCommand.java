@@ -17,16 +17,14 @@ public class RestParserCommand implements Runnable {
         PicocliRunner.run(RestParserCommand.class, args);
         RestAnalyzer restAnalyzer = new RestAnalyzer();
         Report report = new Report();
-        report = restAnalyzer.runAnalyse("https://petstore3.swagger.io/api/v3/openapi.json");
-        System.out.println(report.getDescription());
-
-
+        System.out.println(restAnalyzer.runAnalyse("https://api.apis.guru/v2/specs/aiception.com/1.0.0/swagger.json"));
+//        System.out.println(report.getDescription());
 
     }
 
     public void run() {
         // business logic here
-        
+
         if (verbose) {
             System.out.println("TODO");
         }
