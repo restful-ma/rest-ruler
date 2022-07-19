@@ -9,21 +9,16 @@ import rest.studentproject.rules.UnderscoreRule;
 public class RestAnalyzer {
 
 
-    public Report runAnalyse(String url){
-        // List<Report> reportList = new ArrayList<>();
+    public Report runAnalyse(String url) {
         Report finalReport = new Report();
         SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation(url, null, null);
         OpenAPI openAPI = swaggerParseResult.getOpenAPI();
 
-//        LOCMapper locMapper = new LOCMapper(url, openAPI);
 
         // Iterates over all active rules
         UnderscoreRule underscoreRule = new UnderscoreRule(true);
+        // TODO: Handle returned violation list
         underscoreRule.checkViolation(openAPI);
-
-
-        // finalReport.generateReport(reportList);
-
 
         return finalReport;
     }
