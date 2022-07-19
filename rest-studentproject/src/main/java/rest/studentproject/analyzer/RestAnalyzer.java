@@ -18,7 +18,7 @@ public class RestAnalyzer {
 //        LOCMapper locMapper = new LOCMapper(url, openAPI);
 
         // Iterates over all active rules
-        UnderscoreRule underscoreRule = new UnderscoreRule();
+        UnderscoreRule underscoreRule = new UnderscoreRule(true);
         underscoreRule.checkViolation(openAPI);
 
 
