@@ -1,54 +1,119 @@
-package ruleSet;
+package rest.studentproject.rules;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import io.swagger.v3.oas.models.OpenAPI;
+
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
  * RULE: Forward slash separator (/) must be used to indicate a hierarchical relationship
  */
-public class SeparatorChecker {
+public class SeparatorChecker implements IRestRule {
+
+    String title;
+    boolean isActive;
+    RuleCategory ruleCategory;
+    RuleSeverity ruleSeverity;
+    RuleType ruleType;
+    List<RuleSoftwareQualityAttribute> qualityAttributes;
+
+    private final static String ERROR_MESSAGE = "A forward slash '/' has to be used as a separator";
     private static char[] separators = { '-', '.', ':', ';', ',', '\\','#', '/'};
     //TODO:
-    //check expected pattern
-    //check for other possible separators such as '-', '.', ':', ';', ',', '\', '#'
-    //and count their appearances
-    // at a threshhold: generate antipattern
     //http://regexr.com/?37i6s
+
+    public SeparatorChecker(){
+        title = "Forward slash separator (/) must be used to indicate a hierarchical relationship";
+        isActive = true;
+        ruleCategory = RuleCategory.URIS;
+        ruleSeverity = RuleSeverity.CRITICAL;
+        ruleType = RuleType.STATIC;
+        qualityAttributes = new ArrayList<>();
+        qualityAttributes.add(RuleSoftwareQualityAttribute.MAINTAINABILITY);
+    }
+    @Override
+    public String getTitle() {
+        return this.title;
+    }
+
+    @Override
+    public RuleCategory getCategory() {
+        return this.ruleCategory;
+    }
+
+    @Override
+    public RuleSeverity getSeverityType() {
+        return this.ruleSeverity;
+    }
+
+    @Override
+    public RuleType getRuleType() {
+        return this.ruleType;
+    }
+
+    @Override
+    public List<RuleSoftwareQualityAttribute> getRuleSoftwareQualityAttribute() {
+        return this.qualityAttributes;
+    }
+
+    @Override
+    public boolean getIsActive() {
+        return this.isActive;
+    }
+
+    @Override
+    public void setIsActive(boolean isActive) {
+            this.isActive = isActive;
+    }
+
+    @Override
+    public List<Violation> checkViolation(OpenAPI openAPI) {
+        //TODO: Open API
+        Set<String> paths = openAPI.getPaths().keySet();
+        return checkSeparator(paths);
+    }
 
     /**
      * checks a given path for potential rule violations
-     * @param urlList
+     * @param pathList
      * @return
      */
-    public static boolean checkSeparator(List<String> urlList){
+    public List<Violation> checkSeparator(Set<String> pathList){
+
+        List<Violation> violationList = new ArrayList<>();
         //expected Pattern
         Pattern expectedPattern = Pattern.compile("^(\\/((\\{\\d+\\})|[-a-zA-Z0-9@:%_\\+.~#?&=]+))+$");
 
-        for (String url: urlList) {
+        for (String path: pathList) {
 
-            Matcher matcher = expectedPattern.matcher(url);
+            Matcher matcher = expectedPattern.matcher(path);
             if (matcher.find()){
                 //check....
             }else {
                 //check if a different character is used as a separator
-                Map<Character, Long> appearances = countPossibleSeparators(url);
+                Map<Character, Long> appearances = countPossibleSeparators(path);
                 long ForwardSlashAppearances = appearances.get('/');
 
                 for (char c: appearances.keySet()) {
                     if (appearances.get(c) >= ForwardSlashAppearances && c != '/'){
-                        boolean isSeparator = checkForSeparator(c, url);
+                        boolean isSeparator = checkForSeparator(c, path);
                         if (isSeparator){
                             //TODO: creat violation object
+                            Violation violation = new Violation();
+                            violation.setKeyViolation(path);
+                            //TODO: violation.setLineViolation();
+                            violation.setImprovementSuggestion("replace '" + c + "' with a forward slash '/' to indicate a hierarchical relationship");
+                            violation.setErrorMessage(ERROR_MESSAGE);
+
+                            violationList.add(violation);
                         }
                     }
                 }
                 //return false;
             }
         }
-        return false;
+        return violationList;
     }
 
     /**
@@ -94,4 +159,5 @@ public class SeparatorChecker {
         }
         return appearances;
     }
+
 }
