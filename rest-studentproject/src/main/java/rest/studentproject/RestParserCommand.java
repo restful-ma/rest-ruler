@@ -4,17 +4,22 @@ import io.micronaut.configuration.picocli.PicocliRunner;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import rest.studentproject.analyzer.RestAnalyzer;
+import rest.studentproject.report.Report;
 
-@Command(name = "rest-parser", description = "...", mixinStandardHelpOptions = true)
+@Command(name = "rest-parser", description = "...",
+        mixinStandardHelpOptions = true)
 public class RestParserCommand implements Runnable {
 
     @Option(names = {"-v", "--verbose"}, description = "...")
     boolean verbose;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         PicocliRunner.run(RestParserCommand.class, args);
         RestAnalyzer restAnalyzer = new RestAnalyzer();
-        restAnalyzer.runAnalyse("https://api.apis.guru/v2/specs/aiception.com/1.0.0/swagger.json");
+        Report report = new Report();
+        String url = "https://api.apis.guru/v2/specs/adyen.com/NotificationConfigurationService/6/openapi.json";
+        System.out.println(restAnalyzer.runAnalyse(url));
+//        System.out.println(report.getDescription());
 
     }
 
@@ -22,7 +27,7 @@ public class RestParserCommand implements Runnable {
         // business logic here
 
         if (verbose) {
-            // TODO: implement
+            System.out.println("TODO");
         }
     }
 }
