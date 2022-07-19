@@ -1,6 +1,6 @@
 package rest.studentproject.rules;
 
-import io.swagger.v3.parser.core.models.SwaggerParseResult;
+import io.swagger.v3.oas.models.OpenAPI;
 import rest.studentproject.report.Report;
 
 public class LowercaseRule implements IRestRule {
@@ -16,17 +16,18 @@ public class LowercaseRule implements IRestRule {
     }
 
     @Override
-    public String category() {
+    public RuleCategory category() {
+
+        return RuleCategory.URIS;
+    }
+
+    @Override
+    public RuleSeverity severityType() {
         return null;
     }
 
     @Override
-    public String severityType() {
-        return null;
-    }
-
-    @Override
-    public String ruleType() {
+    public RuleType ruleType() {
         return null;
     }
 
@@ -36,7 +37,7 @@ public class LowercaseRule implements IRestRule {
     }
 
     @Override
-    public Report checkViolation(SwaggerParseResult swaggerParseResult) {
+    public Report checkViolation(OpenAPI openAPI) {
         Report report = new Report();
         report.descriptionReport = "";
         return report;
