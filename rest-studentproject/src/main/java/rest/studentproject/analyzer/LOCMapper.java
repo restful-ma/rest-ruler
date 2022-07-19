@@ -8,9 +8,9 @@ import java.util.Map;
 
 public class LOCMapper {
     public Map<String, Integer> keyLOCMap;
+    public List<String> openAPIKeys;
     private String path = "";
     private OpenAPI openAPI = null;
-    public List<String> openAPIKeys;
 
     public LOCMapper(String path, OpenAPI openAPI) {
         this.path = path;
