@@ -1,15 +1,15 @@
 package rest.studentproject.rules;
 
-import io.swagger.v3.parser.core.models.SwaggerParseResult;
+import io.swagger.v3.oas.models.OpenAPI;
 import rest.studentproject.report.Report;
 
 public interface IRestRule {
 
     public String title();
     public String description();
-    public String category();
-    public String severityType();
-    public String ruleType();
+    public RuleCategory category();
+    public RuleSeverity severityType();
+    public RuleType ruleType();
     public boolean isActive();
-    public Report checkViolation(SwaggerParseResult swaggerParseResult);
+    public Report checkViolation(OpenAPI openAPI);
 }
