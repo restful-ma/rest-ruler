@@ -17,7 +17,8 @@ public class RestParserCommand implements Runnable {
         PicocliRunner.run(RestParserCommand.class, args);
         RestAnalyzer restAnalyzer = new RestAnalyzer();
         Report report = new Report();
-        System.out.println(restAnalyzer.runAnalyse("https://api.apis.guru/v2/specs/aiception.com/1.0.0/swagger.json"));
+        String url = "https://api.apis.guru/v2/specs/adyen.com/NotificationConfigurationService/6/openapi.json";
+        System.out.println(restAnalyzer.runAnalyse(url));
 //        System.out.println(report.getDescription());
 
     }

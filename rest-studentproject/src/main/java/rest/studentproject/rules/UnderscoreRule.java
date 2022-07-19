@@ -69,7 +69,7 @@ public class UnderscoreRule implements IRestRule {
     private void checkUnderscore(String path, List<Violation> violationList) {
         String pathWithoutVariable = path.replaceAll("\\{" + ".*" + "\\}", "");
         if (pathWithoutVariable.contains("_")) {
-            Violation violation = new Violation();
+            Violation violation = new Violation(0, "", path, "");
             violation.setKeyViolation(path);
             violation.setLineViolation(0);
             violation.setErrorMessage("");
