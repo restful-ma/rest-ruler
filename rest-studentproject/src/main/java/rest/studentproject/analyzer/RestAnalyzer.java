@@ -8,13 +8,16 @@ import rest.studentproject.rules.SeparatorChecker;
 import rest.studentproject.rules.UnderscoreRule;
 import rest.studentproject.rules.Violation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RestAnalyzer {
 
 
-    public Report runAnalyse(String url) {
-        Report finalReport = new Report();
+    public void runAnalyse(String url) {
+        Report report = Report.getInstance();
+        List<Violation> violations = new ArrayList<>();
+
         SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation(url, null, null);
         OpenAPI openAPI = swaggerParseResult.getOpenAPI();
 
@@ -22,15 +25,14 @@ public class RestAnalyzer {
         // Iterates over all active rules
         UnderscoreRule underscoreRule = new UnderscoreRule(true);
         // TODO: Handle returned violation list
-        underscoreRule.checkViolation(openAPI);
+        List<Violation> underscoreViolations = underscoreRule.checkViolation(openAPI);
+        violations.addAll(underscoreViolations);
 
         SeparatorChecker separatorChecker = new SeparatorChecker();
-        List<Violation> violations = separatorChecker.checkViolation(openAPI);
+        List<Violation> separatorViolations = separatorChecker.checkViolation(openAPI);
+        violations.addAll(separatorViolations);
 
-        for (Violation v: violations) {
-            System.out.println(v.getErrorMessage());
-        }
+        report.generateReport(violations);
 
-        return finalReport;
     }
 }

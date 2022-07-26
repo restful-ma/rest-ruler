@@ -1,19 +1,28 @@
 package rest.studentproject.rules;
 
+import java.util.Comparator;
+
 public class Violation {
     private int lineViolation;
     private String improvementSuggestion;
 
+    //location name of the violation in API file
     private String keyViolation;
     private String errorMessage;
 
-    public Violation(int lineViolation, String improvementSuggestion, String keyViolation, String errorMessage) {
+    private IRestRule rule;
+
+    public Violation(IRestRule rule, int lineViolation, String improvementSuggestion, String keyViolation, String errorMessage) {
+        this.rule = rule;
         this.lineViolation = lineViolation;
         this.improvementSuggestion = improvementSuggestion;
         this.keyViolation = keyViolation;
         this.errorMessage = errorMessage;
     }
 
+    public IRestRule getRule() {
+        return rule;
+    }
     public int getLineViolation() {
         return lineViolation;
     }
@@ -44,6 +53,10 @@ public class Violation {
 
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
+    }
+
+    public static Comparator<Violation> getComparator(){
+        return Comparator.comparing(Violation::getKeyViolation).thenComparing(v -> v.getRule().getTitle()).thenComparing(v -> v.getRule().getRuleType());
     }
 
 }

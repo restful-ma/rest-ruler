@@ -89,7 +89,7 @@ public class UnderscoreRule implements IRestRule {
     private void checkUnderscore(String path) {
         String pathWithoutVariable = path.replaceAll("\\{" + ".*" + "\\}", "");
         if (!pathWithoutVariable.contains("_")) return;
-        this.violationList.add(new Violation(0, "", path, ""));
+        this.violationList.add(new Violation(this,0, "", path, ""));
 
     }
 }
