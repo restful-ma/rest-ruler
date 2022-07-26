@@ -2,10 +2,11 @@ package rest.studentproject.rules;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.servers.Server;
-import rest.studentproject.rules.attributes.RuleCategory;
-import rest.studentproject.rules.attributes.RuleSeverity;
-import rest.studentproject.rules.attributes.RuleSoftwareQualityAttribute;
-import rest.studentproject.rules.attributes.RuleType;
+import rest.studentproject.analyzer.LOCMapper;
+import rest.studentproject.rules.constants.RuleCategory;
+import rest.studentproject.rules.constants.RuleSeverity;
+import rest.studentproject.rules.constants.RuleSoftwareQualityAttribute;
+import rest.studentproject.rules.constants.RuleType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +16,13 @@ import java.util.Set;
  * Implementation of the rule: Underscores (_) should not be used in URI.
  */
 public class UnderscoreRule implements IRestRule {
-    private boolean isActive;
     private final List<Violation> violationList = new ArrayList<>();
+    private boolean isActive;
+    private LOCMapper locMapper;
 
-    public UnderscoreRule(boolean isActive) {
+    public UnderscoreRule(boolean isActive, LOCMapper locMapper) {
         setIsActive(isActive);
+        this.locMapper = locMapper;
     }
 
     @Override
@@ -69,6 +72,7 @@ public class UnderscoreRule implements IRestRule {
         Set<String> paths = openAPI.getPaths().keySet();
         List<Server> servers = openAPI.getServers();
 
+
         for (String path : paths) {
             if (path.trim().isEmpty()) continue;
             checkUnderscore(path);
@@ -78,18 +82,18 @@ public class UnderscoreRule implements IRestRule {
             if (server.getUrl().trim().isEmpty()) continue;
             checkUnderscore(server.getUrl());
         }
-        return this.violationList.size() == 0 ? null : this.violationList;
+        return this.violationList.isEmpty() ? null : this.violationList;
     }
 
     /**
-     * This method checks if the given path contains an underscore. If there is a parameter within the path, it will be deleted.
+     * Checks if the given path contains an underscore. If there is a parameter within the path, it will be deleted.
      *
      * @param path the path to check if it contains an underscore.
      */
     private void checkUnderscore(String path) {
         String pathWithoutVariable = path.replaceAll("\\{" + ".*" + "\\}", "");
         if (!pathWithoutVariable.contains("_")) return;
-        this.violationList.add(new Violation(0, "", path, ""));
+        this.violationList.add(new Violation(this.locMapper.getLOCOfPath(path), "", path, ""));
 
     }
 }
