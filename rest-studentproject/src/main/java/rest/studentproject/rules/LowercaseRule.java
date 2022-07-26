@@ -8,11 +8,11 @@ import java.util.Set;
 
 public class LowercaseRule implements IRestRule {
 
-    private String title = "Lowercase letters should be preferred in URI paths";
-    private RuleCategory ruleCategory = RuleCategory.URIS;
-    private RuleSeverity ruleSeverity = RuleSeverity.ERROR;
-    private RuleType ruleType = RuleType.STATIC;
-    private List<RuleSoftwareQualityAttribute> lstRuleSoftwareQualityAttribute = List.of(RuleSoftwareQualityAttribute.COMPATIBILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
+    private static final String title = "Lowercase letters should be preferred in URI paths";
+    private static final RuleCategory ruleCategory = RuleCategory.URIS;
+    private static final RuleSeverity ruleSeverity = RuleSeverity.ERROR;
+    private static final RuleType ruleType = RuleType.STATIC;
+    private static final List<RuleSoftwareQualityAttribute> lstRuleSoftwareQualityAttribute = List.of(RuleSoftwareQualityAttribute.COMPATIBILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
     private boolean isActive;
 
     public LowercaseRule(boolean isActive) {
@@ -25,7 +25,7 @@ public class LowercaseRule implements IRestRule {
      */
     @Override
     public String getTitle() {
-        return this.title;
+        return title;
     }
 
     /**
@@ -33,7 +33,7 @@ public class LowercaseRule implements IRestRule {
      */
     @Override
     public RuleCategory getCategory() {
-        return this.ruleCategory;
+        return LowercaseRule.ruleCategory;
 
     }
 
@@ -42,7 +42,7 @@ public class LowercaseRule implements IRestRule {
      */
     @Override
     public RuleSeverity getSeverityType() {
-        return this.ruleSeverity;
+        return ruleSeverity;
     }
 
     /**
@@ -50,7 +50,7 @@ public class LowercaseRule implements IRestRule {
      */
     @Override
     public RuleType getRuleType() {
-        return this.ruleType;
+        return LowercaseRule.ruleType;
     }
 
     /**
