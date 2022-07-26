@@ -35,7 +35,7 @@ class LowercaseRuleTest {
         OpenAPI openAPI = swaggerParseResult.getOpenAPI();
         List<Violation> violationToTest = lowercaseRule.checkViolation(openAPI);
         assertEquals(6, violationToTest.size(),
-                "Detection of violations should work.");
+                "Detection of violations should work and detect 6 violations.");
     }
 
     @Test
@@ -54,7 +54,7 @@ class LowercaseRuleTest {
         SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation("bin/test/rest/studentproject/rules/lowercaseTests/lowercaseInvalidEmptyPaths.json", null, null);
         OpenAPI openAPI = swaggerParseResult.getOpenAPI();
         List<Violation> violationToTest = lowercaseRule.checkViolation(openAPI);
-        assertEquals(null, violationToTest,
+        assertEquals(0, violationToTest.size(),
                 "Detection of violations should work and return an empty list.");
     }
 
@@ -65,6 +65,16 @@ class LowercaseRuleTest {
         OpenAPI openAPI = swaggerParseResult.getOpenAPI();
         List<Violation> violationToTest = lowercaseRule.checkViolation(openAPI);
         assertEquals(2, violationToTest.size(),
+                "Detection of violations should work and detect only 2 violations given 3 paths-uri.");
+    }
+
+    @Test
+    @DisplayName("Detection of uppercase letters should be successful in detecting 0 violations.")
+    void checkViolationOnValidFile() {
+        SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation("bin/test/rest/studentproject/rules/lowercaseTests/lowercaseValidFile.json", null, null);
+        OpenAPI openAPI = swaggerParseResult.getOpenAPI();
+        List<Violation> violationToTest = lowercaseRule.checkViolation(openAPI);
+        assertEquals(0, violationToTest.size(),
                 "Detection of violations should work and return an empty list.");
     }
 }
