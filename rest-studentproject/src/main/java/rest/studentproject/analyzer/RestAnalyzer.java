@@ -24,7 +24,6 @@ public class RestAnalyzer {
         // TODO: Handle returned violation list
         underscoreRule.checkViolation(openAPI);
 
-
         SeparatorChecker separatorChecker = new SeparatorChecker();
         List<Violation> violations = separatorChecker.checkViolation(openAPI);
 

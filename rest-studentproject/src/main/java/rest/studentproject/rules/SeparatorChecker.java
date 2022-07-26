@@ -1,6 +1,7 @@
 package rest.studentproject.rules;
 
 import io.swagger.v3.oas.models.OpenAPI;
+
 import rest.studentproject.rules.attributes.RuleCategory;
 import rest.studentproject.rules.attributes.RuleSeverity;
 import rest.studentproject.rules.attributes.RuleSoftwareQualityAttribute;
@@ -23,11 +24,11 @@ public class SeparatorChecker implements IRestRule {
     List<RuleSoftwareQualityAttribute> qualityAttributes;
 
     private final static String ERROR_MESSAGE = "A forward slash '/' has to be used as a separator";
-    private static char[] separators = { '-', '.', ':', ';', ',', '\\','#', '/'};
+    private static char[] separators = {'-', '.', ':', ';', ',', '\\', '#', '/'};
     //TODO:
     //http://regexr.com/?37i6s
 
-    public SeparatorChecker(){
+    public SeparatorChecker() {
         title = "Forward slash separator (/) must be used to indicate a hierarchical relationship";
         isActive = true;
         ruleCategory = RuleCategory.URIS;
@@ -36,6 +37,7 @@ public class SeparatorChecker implements IRestRule {
         qualityAttributes = new ArrayList<>();
         qualityAttributes.add(RuleSoftwareQualityAttribute.MAINTAINABILITY);
     }
+
     @Override
     public String getTitle() {
         return this.title;
@@ -68,7 +70,7 @@ public class SeparatorChecker implements IRestRule {
 
     @Override
     public void setIsActive(boolean isActive) {
-            this.isActive = isActive;
+        this.isActive = isActive;
     }
 
     @Override
@@ -80,32 +82,34 @@ public class SeparatorChecker implements IRestRule {
 
     /**
      * checks a given path for potential rule violations
+     *
      * @param pathList
      * @return
      */
-    public List<Violation> checkSeparator(Set<String> pathList){
+    public List<Violation> checkSeparator(Set<String> pathList) {
 
         List<Violation> violationList = new ArrayList<>();
         //expected Pattern
         Pattern expectedPattern = Pattern.compile("^(\\/((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@:%_\\+.~#?&=]+))+$");
 
-        for (String path: pathList) {
+        for (String path : pathList) {
 
             Matcher matcher = expectedPattern.matcher(path);
-            if (matcher.find()){
+            if (matcher.find()) {
                 //check....
-            }else {
+            } else {
                 //check if a different character is used as a separator
                 Map<Character, Long> appearances = countPossibleSeparators(path);
                 long ForwardSlashAppearances = appearances.get('/');
 
-                for (char c: appearances.keySet()) {
-                    if (appearances.get(c) >= ForwardSlashAppearances && c != '/'){
+                for (char c : appearances.keySet()) {
+                    if (appearances.get(c) >= ForwardSlashAppearances && c != '/') {
                         boolean isSeparator = checkForSeparator(c, path);
-                        if (isSeparator){
+                        if (isSeparator) {
                             String suggestion = "replace '" + c + "' with a forward slash '/' to indicate a hierarchical relationship";
                             //TODO: lineViolation placeholder
-                            violationList.add(new Violation(0,suggestion,path,ERROR_MESSAGE));
+                            violationList.add(new Violation(0, suggestion, path, ERROR_MESSAGE));
+
                         }
                     }
                 }
@@ -117,16 +121,17 @@ public class SeparatorChecker implements IRestRule {
 
     /**
      * checks a String for possible separators
+     *
      * @param separator separator candidate
-     * @param path path under test
+     * @param path      path under test
      * @return true or fals deoending on if it is a separator
      */
-    private static boolean checkForSeparator(char separator, String path){
+    private static boolean checkForSeparator(char separator, String path) {
 
         Pattern pattern;
 
         //escape regex operation characters
-        switch (separator){
+        switch (separator) {
             case '.':
                 pattern = Pattern.compile("^(" + "\\." + "((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@:%_\\+.~#?&=]+))+$");
                 break;
@@ -144,17 +149,18 @@ public class SeparatorChecker implements IRestRule {
 
     /**
      * counts all appearances of possible separator characters
+     *
      * @param url
      * @return
      */
-    private static Map<Character, Long> countPossibleSeparators(String url){
+    private static Map<Character, Long> countPossibleSeparators(String url) {
 
         HashMap<Character, Long> appearances = new HashMap<>();
         //count appearance
-        for (int i=0; i< separators.length; i++) {
+        for (int i = 0; i < separators.length; i++) {
             char separator = separators[i];
             long num = url.chars().filter(ch -> ch == separator).count();
-            appearances.put(separator,num);
+            appearances.put(separator, num);
         }
         return appearances;
     }
