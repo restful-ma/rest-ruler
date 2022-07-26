@@ -108,7 +108,7 @@ public class SeparatorChecker implements IRestRule {
                         if (isSeparator) {
                             String suggestion = "replace '" + c + "' with a forward slash '/' to indicate a hierarchical relationship";
                             //TODO: lineViolation placeholder
-                            violationList.add(new Violation(0, suggestion, path, ERROR_MESSAGE));
+                            violationList.add(new Violation(this,0, suggestion, path, ERROR_MESSAGE));
 
                         }
                     }
