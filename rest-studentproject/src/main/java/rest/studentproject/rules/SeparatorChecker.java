@@ -87,7 +87,7 @@ public class SeparatorChecker implements IRestRule {
 
         List<Violation> violationList = new ArrayList<>();
         //expected Pattern
-        Pattern expectedPattern = Pattern.compile("^(\\/((\\{\\d+\\})|[-a-zA-Z0-9@:%_\\+.~#?&=]+))+$");
+        Pattern expectedPattern = Pattern.compile("^(\\/((\\{[^{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@:%_\\+.~#?&=]+))+$");
 
         for (String path: pathList) {
 
@@ -128,13 +128,13 @@ public class SeparatorChecker implements IRestRule {
         //escape regex operation characters
         switch (separator){
             case '.':
-                pattern = Pattern.compile("^(" + "\\." + "((\\{\\d+\\})|[-a-zA-Z0-9@:%_\\+.~#?&=]+))+$");
+                pattern = Pattern.compile("^(" + "\\." + "((\\{[^{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@:%_\\+.~#?&=]+))+$");
                 break;
             case '\\':
-                pattern = Pattern.compile("^(" + "\\\\" + "((\\{\\d+\\})|[-a-zA-Z0-9@:%_\\+.~#?&=]+))+$");
+                pattern = Pattern.compile("^(" + "\\\\" + "((\\{[^{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@:%_\\+.~#?&=]+))+$");
                 break;
             default:
-                pattern = Pattern.compile("^(" + separator + "((\\{\\d+\\})|[-a-zA-Z0-9@:%_\\+.~#?&=]+))+$");
+                pattern = Pattern.compile("^(" + separator + "((\\{[^{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@:%_\\+.~#?&=]+))+$");
         }
 
         Matcher matcher = pattern.matcher(path);
