@@ -1,4 +1,4 @@
-package rest.studentproject.rules.attributes;
+package rest.studentproject.rules.constants;
 
 public enum RuleSeverity {
     WARNING, ERROR, CRITICAL
