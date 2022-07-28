@@ -5,9 +5,11 @@ import net.steppschuh.markdowngenerator.text.heading.Heading;
 import rest.studentproject.rules.IRestRule;
 import rest.studentproject.rules.Violation;
 
-import java.io.FileWriter;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -18,6 +20,8 @@ import java.util.List;
 public class Report {
 
     private static Report instance;
+
+    private static final String OUTPUT_DIR = "out";
 
     public static Report getInstance() {
         if (instance != null) {
@@ -65,21 +69,27 @@ public class Report {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd-HH:mm:ss");
             LocalDateTime now = LocalDateTime.now();
 
+
+            //create directory
+            Path path = Path.of(OUTPUT_DIR);
+            if (!Files.isDirectory(path)){
+                path = Files.createDirectory(path);
+            }
+
             //write file
             String filename = "Report_" + now + ".md";
-            FileWriter fileWriter = new FileWriter(filename);
-            PrintWriter printWriter = new PrintWriter(fileWriter);
+            Path file = Files.createFile(path.resolve(filename));
+            BufferedWriter bw = Files.newBufferedWriter(file);
+            PrintWriter printWriter = new PrintWriter(bw);
             printWriter.print(sb);
 
+            //notification
+            System.out.println("Your report can be found here: " + path.toAbsolutePath());
+
             printWriter.close();
-            fileWriter.close();
+            bw.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public String getDescription() {
-
-        return "";
     }
 }
