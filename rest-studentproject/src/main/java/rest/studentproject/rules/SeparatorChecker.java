@@ -23,14 +23,14 @@ public class SeparatorChecker implements IRestRule {
     RuleType ruleType;
     List<RuleSoftwareQualityAttribute> qualityAttributes;
 
-    private final static String ERROR_MESSAGE = "A forward slash '/' has to be used as a separator";
-    private static char[] separators = {'-', '.', ':', ';', ',', '\\', '#', '/'};
-    //TODO:
-    //http://regexr.com/?37i6s
+    private static final String PATH_PATTERN = "((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@:%_\\+.~#?&=]+))+$";
 
-    public SeparatorChecker() {
+    private final String ERROR_MESSAGE = "A forward slash '/' has to be used as a separator";
+    private static char[] separators = {'.', ':', ';', ',', '\\', '#', '/', '-'};
+
+    public SeparatorChecker(boolean isActive) {
         title = "Forward slash separator (/) must be used to indicate a hierarchical relationship";
-        isActive = true;
+        this.isActive = isActive;
         ruleCategory = RuleCategory.URIS;
         ruleSeverity = RuleSeverity.CRITICAL;
         ruleType = RuleType.STATIC;
@@ -89,20 +89,18 @@ public class SeparatorChecker implements IRestRule {
 
         List<Violation> violationList = new ArrayList<>();
         //expected Pattern
-        Pattern expectedPattern = Pattern.compile("^(\\/((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@:%_\\+.~#?&=]+))+$");
+        Pattern expectedPattern = Pattern.compile("^(\\/" + PATH_PATTERN);
 
         for (String path : pathList) {
 
             Matcher matcher = expectedPattern.matcher(path);
-            if (matcher.find()) {
-                //check....
-            } else {
+            if (!matcher.find()) {
                 //check if a different character is used as a separator
                 Map<Character, Long> appearances = countPossibleSeparators(path);
-                long ForwardSlashAppearances = appearances.get('/');
+                long forwardSlashAppearances = appearances.get('/');
 
                 for (char c : appearances.keySet()) {
-                    if (appearances.get(c) >= ForwardSlashAppearances && c != '/') {
+                    if (appearances.get(c) >= forwardSlashAppearances && c != '/') {
                         boolean isSeparator = checkForSeparator(c, path);
                         if (isSeparator) {
                             String suggestion = "replace '" + c + "' with a forward slash '/' to indicate a hierarchical relationship";
@@ -112,7 +110,6 @@ public class SeparatorChecker implements IRestRule {
                         }
                     }
                 }
-                //return false;
             }
         }
         return violationList;
@@ -132,13 +129,13 @@ public class SeparatorChecker implements IRestRule {
         //escape regex operation characters
         switch (separator) {
             case '.':
-                pattern = Pattern.compile("^(" + "\\." + "((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@:%_\\+.~#?&=]+))+$");
+                pattern = Pattern.compile("^(\\." + PATH_PATTERN);
                 break;
             case '\\':
-                pattern = Pattern.compile("^(" + "\\\\" + "((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@:%_\\+.~#?&=]+))+$");
+                pattern = Pattern.compile("^(\\\\" + PATH_PATTERN);
                 break;
             default:
-                pattern = Pattern.compile("^(" + separator + "((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@:%_\\+.~#?&=]+))+$");
+                pattern = Pattern.compile("^(" + separator + PATH_PATTERN);
         }
 
         Matcher matcher = pattern.matcher(path);
