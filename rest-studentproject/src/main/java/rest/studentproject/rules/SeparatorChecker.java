@@ -75,7 +75,6 @@ public class SeparatorChecker implements IRestRule {
 
     @Override
     public List<Violation> checkViolation(OpenAPI openAPI) {
-        //TODO: Open API
         Set<String> paths = openAPI.getPaths().keySet();
         return checkSeparator(paths);
     }
@@ -107,7 +106,7 @@ public class SeparatorChecker implements IRestRule {
                         boolean isSeparator = checkForSeparator(c, path);
                         if (isSeparator) {
                             String suggestion = "replace '" + c + "' with a forward slash '/' to indicate a hierarchical relationship";
-                            //TODO: lineViolation placeholder
+                            //lineViolation placeholder set as 0
                             violationList.add(new Violation(0, suggestion, path, ERROR_MESSAGE));
 
                         }
