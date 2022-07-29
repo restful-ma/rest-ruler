@@ -16,11 +16,12 @@ The forward slash (/) character is used in the path portion of the URI to indica
 This is a rule that is examined statically. 
 ### What is checked:
 * "/" is used as a separator
-* if other symbols are used as the separator instead of "/"
-* path variable names do not contain the separator
+* if other symbols are used as the separator instead of '/' such as '.', ',', ';', ':', '\', '#', '-'
+* path variable names (surrounded in curly brakets '{}') do not contain the separator
 
 ### What is not checked:
-* path variables do not contain the separator "/"
+* path variable values do not contain the separator "/" to runtime
+* if words left and right of the separator are hierachically related e.g. building/skyscrapers
 
 ## Source
 [1] https://www.oreilly.com/library/view/rest-api-design/9781449317904/

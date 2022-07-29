@@ -16,40 +16,7 @@ tags:
 schemes:
 - "https"
 paths:
-  # Define all paths here          
-  /users/{userId}:
-    get:
-      summary: Returns a user by ID.
-      parameters:
-        - name: userId
-          in: path
-          required: true
-          description: The ID of the user to return.
-          schema:
-            type: integer
-            format: int64
-            minimum: 1
-      responses:
-        '200':
-          description: A user object.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 4
-                  name:
-                    type: string
-                    example: Jessica Smith
-        '400':
-          description: The specified user ID is invalid (not a number).
-        '404':
-          description: A user with the specified ID was not found.
-        default:
-          description: Unexpected error
+  # Define all paths here       
   # RULE 19: using other characters instead of forward slash '/'
   .users.{userId}.permissions:
     get:
@@ -71,6 +38,8 @@ paths:
                 type: string
         '400':
           description: The specified user ID is invalid (not a number).
+        '401':
+          description: Unauthorized
         '404':
           description: A user with the specified ID was not found.
         default:
@@ -96,6 +65,8 @@ paths:
                 type: string
         '400':
           description: The specified user ID is invalid (not a number).
+        '401':
+          description: Unauthorized
         '404':
           description: A user with the specified ID was not found.
         default:
@@ -120,6 +91,8 @@ paths:
                 type: string
         '400':
           description: The specified user ID is invalid (not a number).
+        '401':
+          description: Unauthorized
         '404':
           description: A user with the specified ID was not found.
         default:
@@ -144,6 +117,8 @@ paths:
                 type: string
         '400':
           description: The specified user ID is invalid (not a number).
+        '401':
+          description: Unauthorized
         '404':
           description: A user with the specified ID was not found.
         default:
