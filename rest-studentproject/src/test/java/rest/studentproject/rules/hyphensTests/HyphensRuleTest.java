@@ -26,7 +26,7 @@ public class HyphensRuleTest {
     @Test
     @DisplayName("Detect if a path segment contains more than a word. Here 6 paths contain a violation.")
     void checkViolationOnInvalidRESTFile2Violations() {
-        SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation("bin/test/rest/studentproject/rules/hyphensTests/hyphensInvalid2Violations.json", null, null);
+        SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation("src/test/java/rest/studentproject/rules/hyphensTests/hyphensInvalid2Violations.json", null, null);
         OpenAPI openAPI = swaggerParseResult.getOpenAPI();
         List<Violation> violationToTest = null;
         try {
@@ -39,9 +39,9 @@ public class HyphensRuleTest {
     }
 
     @Test
-    @DisplayName("Detect if a path segment contains more than a word. Here 6 paths contain a violation.")
-    void checkViolationOnInvalidRESTFile6Violations() {
-        SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation("bin/test/rest/studentproject/rules/hyphensTests/hyphensInvalid2ViolationsLowercase.json", null, null);
+    @DisplayName("Detect if a path segment contains more than a word. Here 2 paths contain a violation.")
+    void checkViolationOnInvalidRESTFile2ViolationsLowercase() {
+        SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation("src/test/java/rest/studentproject/rules/hyphensTests/hyphensInvalid2ViolationsLowercase.json", null, null);
         OpenAPI openAPI = swaggerParseResult.getOpenAPI();
         List<Violation> violationToTest = null;
         try {
@@ -50,6 +50,21 @@ public class HyphensRuleTest {
             throw new RuntimeException(e);
         }
         assertEquals(2, violationToTest.size(),
+                "Detection of violations should work.");
+    }
+
+    @Test
+    @DisplayName("Detect if a path segment contains more than a word. Here 9 paths contain a violation.")
+    void checkViolationOnInvalidRESTFile6Violations() {
+        SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation("src/test/java/rest/studentproject/rules/hyphensTests/hyphensInvalid9ViolationsSpecialCharactersLowercase.json", null, null);
+        OpenAPI openAPI = swaggerParseResult.getOpenAPI();
+        List<Violation> violationToTest = null;
+        try {
+            violationToTest = hyphensRuleTest.checkViolation(openAPI);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        assertEquals(9, violationToTest.size(),
                 "Detection of violations should work.");
     }
 }
