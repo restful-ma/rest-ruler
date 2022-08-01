@@ -31,7 +31,7 @@ class LowercaseRuleTest {
     @Test
     @DisplayName("Detection of uppercase letters should be successful in detecting 6 violations.")
     void checkViolationOnInvalidRESTFile6Violations() {
-        SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation("bin/test/rest/studentproject/rules/lowercaseTests/lowercaseInvalid6Violations.json", null, null);
+        SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation("src/test/java/rest/studentproject/rules/lowercaseTests/lowercaseInvalid6Violations.json", null, null);
         OpenAPI openAPI = swaggerParseResult.getOpenAPI();
         List<Violation> violationToTest = lowercaseRule.checkViolation(openAPI);
         assertEquals(6, violationToTest.size(),
@@ -41,7 +41,7 @@ class LowercaseRuleTest {
     @Test
     @DisplayName("Detection of uppercase letters should be successful in detecting 3 violations.")
     void checkViolationOnInvalidRESTFile3Violations() {
-        SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation("bin/test/rest/studentproject/rules/lowercaseTests/lowercaseInvalid3Violations.json", null, null);
+        SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation("src/test/java/rest/studentproject/rules/lowercaseTests/lowercaseInvalid3Violations.json", null, null);
         OpenAPI openAPI = swaggerParseResult.getOpenAPI();
         List<Violation> violationToTest = lowercaseRule.checkViolation(openAPI);
         assertEquals(3, violationToTest.size(),
@@ -51,7 +51,7 @@ class LowercaseRuleTest {
     @Test
     @DisplayName("Detection of uppercase letters should be successful in detecting 0 violations and return an empty list.")
     void checkViolationOnInvalidRESTFileEmpty() {
-        SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation("bin/test/rest/studentproject/rules/lowercaseTests/lowercaseInvalidEmptyPaths.json", null, null);
+        SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation("src/test/java/rest/studentproject/rules/lowercaseTests/lowercaseInvalidEmptyPaths.json", null, null);
         OpenAPI openAPI = swaggerParseResult.getOpenAPI();
         List<Violation> violationToTest = lowercaseRule.checkViolation(openAPI);
         assertEquals(0, violationToTest.size(),
@@ -61,7 +61,7 @@ class LowercaseRuleTest {
     @Test
     @DisplayName("Detection of uppercase letters should be successful in detecting 2 violations.")
     void checkViolationOnInvalidRESTFileEmptyURI() {
-        SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation("bin/test/rest/studentproject/rules/lowercaseTests/lowercaseInvalidEmptyURI.json", null, null);
+        SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation("src/test/java/rest/studentproject/rules/lowercaseTests/lowercaseInvalidEmptyURI.json", null, null);
         OpenAPI openAPI = swaggerParseResult.getOpenAPI();
         List<Violation> violationToTest = lowercaseRule.checkViolation(openAPI);
         assertEquals(2, violationToTest.size(),
@@ -71,7 +71,7 @@ class LowercaseRuleTest {
     @Test
     @DisplayName("Detection of uppercase letters should be successful in detecting 0 violations.")
     void checkViolationOnValidFile() {
-        SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation("bin/test/rest/studentproject/rules/lowercaseTests/lowercaseValidFile.json", null, null);
+        SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation("src/test/java/rest/studentproject/rules/lowercaseTests/lowercaseValidFile.json", null, null);
         OpenAPI openAPI = swaggerParseResult.getOpenAPI();
         List<Violation> violationToTest = lowercaseRule.checkViolation(openAPI);
         assertEquals(0, violationToTest.size(),
