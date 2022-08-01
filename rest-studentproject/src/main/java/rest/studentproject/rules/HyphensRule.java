@@ -2,13 +2,10 @@ package rest.studentproject.rules;
 
 import com.google.common.collect.Lists;
 import io.swagger.v3.oas.models.OpenAPI;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
@@ -19,6 +16,7 @@ import static org.apache.commons.lang3.StringUtils.split;
 
 public class HyphensRule implements IRestRule {
 
+    private static final String PATH_TO_ENGLISH_DICTIONARY = "src/main/java/rest/studentproject/docs/wordninja_words.txt";
     private static final String title = "Hyphens (-) should be used to improve the readability of URIs";
     private static final RuleCategory ruleCategory = RuleCategory.URIS;
     private static final RuleSeverity ruleSeverity = RuleSeverity.ERROR;
@@ -105,21 +103,31 @@ public class HyphensRule implements IRestRule {
             String[] pathSegments = path.split("/");
             for (String pathSegment:pathSegments) {
                 if(pathSegment.isEmpty()) continue;
-                String[] pathWithoutParameters = pathSegment.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])");
-                if(pathWithoutParameters.length > 1){
+                List<String> itemsFromHyphens = Arrays.asList(pathSegment.split("-"));
+                // Math the segment path based on the regex. This solution is very fast to run
+                List<String> pathWithoutParameters = Arrays.asList(pathSegment.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])"));
+
+                // If the path is correct and the matching regex creates the same split with the "-" as split, then continue with the next segment path
+                if(itemsFromHyphens.size() > 1 && pathWithoutParameters.size() > 1 && itemsFromHyphens.equals(pathWithoutParameters)) continue;
+
+                if(pathWithoutParameters.size() > 1) {
                     violations.add(new Violation(0, "", "", "Error at:" + path));
                     break;
                 }
-                // Need to implement this part -> https://stackoverflow.com/questions/8870261/how-to-split-text-without-spaces-into-list-of-words/11642687#11642687
+
+                // If with the regex no substring was found then we need to check against a dictionary of english words
+                List<String> subStringFromPath = splitContiguousWords(pathSegment);
+                List<String> pathWithoutParameterDictionaryMatching = Arrays.asList(subStringFromPath.get(0).split(" "));
+                // If the path is correct and the matching regex creates the same split with the "-" as split, then continue with the next segment path
+                if(itemsFromHyphens.size() > 1 && (pathWithoutParameterDictionaryMatching.size() > 1 || subStringFromPath.size() > 1) &&
+                        (itemsFromHyphens.equals(pathWithoutParameterDictionaryMatching) || itemsFromHyphens.equals(subStringFromPath))) continue;
+                // Add violations if there is some match
+                violations.add(new Violation(0, "", "", "Error at:" + path));
+                break;
 
             }
 
         }
-        List<String> testString = splitContiguousWords("smallpets");
-        String[] splitString = testString.get(0).split(" ");
-        String streTest = splitString[0];
-        boolean tstCheck = violations.isEmpty();
-
         return violations;
     }
 
@@ -127,10 +135,10 @@ public class HyphensRule implements IRestRule {
 
         String splitRegex = "[^a-zA-Z0-9']+";
         Map<String, Number> wordCost = new HashMap<>();
-        // List<String> dictionaryWords = IOUtils.linesFromFile("ninja_words.txt", StandardCharsets.UTF_8.name());
         List<String> dictionaryWords = new ArrayList<>();
-        Stream<String> lines = Files.lines(Paths.get("wordninja_words.txt"), Charset.defaultCharset());
+        Stream<String> lines = Files.lines(Paths.get(PATH_TO_ENGLISH_DICTIONARY), Charset.defaultCharset());
         dictionaryWords = lines.collect(Collectors.toList());
+
 
 
         double naturalLogDictionaryWordsCount = Math.log(dictionaryWords.size());
@@ -143,7 +151,6 @@ public class HyphensRule implements IRestRule {
         for (String partSentence : sentence.split(splitRegex)) {
             splitWords.add(split(partSentence, wordCost, maxWordLength));
         }
-        // log.info("Split word for the sentence: {}", splitWords);
         return splitWords;
     }
 
