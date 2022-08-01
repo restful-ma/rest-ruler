@@ -38,7 +38,7 @@ a space or hyphen in English, you should use a hyphen in a URI.
 * pathSegment can be camelCase, kebabCase, snakeCase, all lowercase, all uppercase, or just a mixture of these
 
 ### What is not checked:
-* 
+* presence of invalid delimiters
 ## Source
 
 [1] https://www.oreilly.com/library/view/rest-api-design/9781449317904/
