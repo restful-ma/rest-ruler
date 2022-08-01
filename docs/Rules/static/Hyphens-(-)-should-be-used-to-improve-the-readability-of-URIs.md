@@ -24,7 +24,7 @@ a space or hyphen in English, you should use a hyphen in a URI.
 
 ## Implemented
 
-* TODO
+* Yes
 
 ## Implementation Details (Issue #13)
 
