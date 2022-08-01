@@ -32,6 +32,13 @@ scheme and host components.
 * Check path if it contains an uppercase letter, if so give a warning
 * Give the hint to use lowercase letters instead of uppercase
 
+### What is checked:
+* check if the path contains an uppercase letter
+* check if the path is empty or there are no paths
+
+### What is not checked:
+* presence of invalid delimiters
+
 ## Source
 
 [1] https://www.oreilly.com/library/view/rest-api-design/9781449317904/
