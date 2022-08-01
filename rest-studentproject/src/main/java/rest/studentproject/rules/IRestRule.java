@@ -2,6 +2,7 @@ package rest.studentproject.rules;
 
 import io.swagger.v3.oas.models.OpenAPI;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface IRestRule {
@@ -13,5 +14,5 @@ public interface IRestRule {
     public List<RuleSoftwareQualityAttribute> getRuleSoftwareQualityAttribute();
     public boolean getIsActive();
     public void setIsActive(boolean isActive);
-    public List<Violation> checkViolation(OpenAPI openAPI);
+    public List<Violation> checkViolation(OpenAPI openAPI) throws IOException;
 }

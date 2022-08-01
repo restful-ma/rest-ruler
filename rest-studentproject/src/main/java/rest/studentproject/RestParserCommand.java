@@ -18,7 +18,9 @@ public class RestParserCommand implements Runnable {
         RestAnalyzer restAnalyzer = new RestAnalyzer();
         Report report = new Report();
         String url = "https://api.apis.guru/v2/specs/adyen.com/NotificationConfigurationService/6/openapi.json";
-        System.out.println(restAnalyzer.runAnalyse(url));
+        String urlValid = "https://api.apis.guru/v2/specs/1forge.com/0.0.1/swagger.json";
+        String url2Invalid = "bin/test/rest/studentproject/rules/hyphensTests/hyphensInvalid2ViolationsLowercase.json";
+        System.out.println(restAnalyzer.runAnalyse(urlValid));
 //        System.out.println(report.getDescription());
 
     }
