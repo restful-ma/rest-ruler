@@ -23,9 +23,7 @@ public class SeparatorChecker implements IRestRule {
     RuleType ruleType;
     List<RuleSoftwareQualityAttribute> qualityAttributes;
 
-    private static final String PATH_PATTERN = "((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@:%_\\+.~#?&=]+))+$";
-
-    private final String ERROR_MESSAGE = "A forward slash '/' has to be used as a separator";
+    private static final String ERROR_MESSAGE = "A forward slash '/' has to be used as a separator";
     private static char[] separators = {'.', ':', ';', ',', '\\', '#', '/', '-'};
 
     public SeparatorChecker(boolean isActive) {
@@ -89,18 +87,18 @@ public class SeparatorChecker implements IRestRule {
 
         List<Violation> violationList = new ArrayList<>();
         //expected Pattern
-        Pattern expectedPattern = Pattern.compile("^(\\/" + PATH_PATTERN);
+        Pattern expectedPattern = Pattern.compile("^(\\/((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~#?&=]+))+\\/?$");
 
         for (String path : pathList) {
 
             Matcher matcher = expectedPattern.matcher(path);
-            if (!matcher.find()) {
-                //check if a different character is used as a separator
-                Map<Character, Long> appearances = countPossibleSeparators(path);
-                long forwardSlashAppearances = appearances.get('/');
 
-                for (char c : appearances.keySet()) {
-                    if (appearances.get(c) >= forwardSlashAppearances && c != '/') {
+            int currentSize = violationList.size();
+            //check if path has expected format
+            if (!matcher.find()) {
+
+                for (char c : separators) {
+                    if ( c != '/') {
                         boolean isSeparator = checkForSeparator(c, path);
                         if (isSeparator) {
                             String suggestion = "replace '" + c + "' with a forward slash '/' to indicate a hierarchical relationship";
@@ -109,6 +107,10 @@ public class SeparatorChecker implements IRestRule {
 
                         }
                     }
+                }
+                //unknown case:
+                if (violationList.size() == currentSize){
+                    violationList.add(new Violation(0, "-", path, ERROR_MESSAGE));
                 }
             }
         }
@@ -124,41 +126,49 @@ public class SeparatorChecker implements IRestRule {
      */
     private static boolean checkForSeparator(char separator, String path) {
 
-        Pattern pattern;
+        List<String> patterns = new ArrayList<>();
 
-        //escape regex operation characters
+        // '#' and '-' are unique as they are valid characters in Paths and URLS
         switch (separator) {
             case '.':
-                pattern = Pattern.compile("^(\\." + PATH_PATTERN);
+                //escape regex operation characters, otherwise identical to default case
+                patterns.add("^((\\/|\\.)((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~#?&=]+))*(\\.|\\/)?$");
+
                 break;
             case '\\':
-                pattern = Pattern.compile("^(\\\\" + PATH_PATTERN);
+                //escape regex operation characters, otherwise identical to default case
+                patterns.add("^((\\/|\\\\)((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~#?&=]+))*(\\\\|\\/)?$");
+
                 break;
+            case '#':
+                // starts with '#' but afterwards follows expected pattern
+                patterns.add("^#(((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~#?&=]+)\\/?)+$");
+                //case: path includes path variables that allow detection of '#' as a separator
+                patterns.add("#(\\{[^\\/{}\\(\\)\\[\\]]+\\})");
+
+                break;
+            case '-':
+                // starts with '-' but afterwards follows expected pattern
+                patterns.add("^-(((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~#?&=]+)\\/?)+$");
+                //case: path includes path variables that allow detection of '-' as a separator
+                patterns.add("-(\\{[^\\/{}\\(\\)\\[\\]]+\\})");
+
+                break;
+
             default:
-                pattern = Pattern.compile("^(" + separator + PATH_PATTERN);
+                patterns.add("^((\\/|" + separator + ")((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~#?&=]+))*(" + separator + "|\\/)?$");
+
         }
 
-        Matcher matcher = pattern.matcher(path);
-
-        return matcher.find();
-    }
-
-    /**
-     * counts all appearances of possible separator characters
-     *
-     * @param url
-     * @return
-     */
-    private static Map<Character, Long> countPossibleSeparators(String url) {
-
-        HashMap<Character, Long> appearances = new HashMap<>();
-        //count appearance
-        for (int i = 0; i < separators.length; i++) {
-            char separator = separators[i];
-            long num = url.chars().filter(ch -> ch == separator).count();
-            appearances.put(separator, num);
+        for (String p: patterns) {
+            Pattern stringPattern = Pattern.compile(p);
+            Matcher matcher = stringPattern.matcher(path);
+            if (matcher.find()){
+                return true;
+            }
         }
-        return appearances;
+
+        return false;
     }
 
 }

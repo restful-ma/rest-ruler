@@ -306,7 +306,8 @@
           "destination"
         ]
       }
-    },
+    }
+  },
   "components": {
     "responses": {
       "ExceptionResponse": {
