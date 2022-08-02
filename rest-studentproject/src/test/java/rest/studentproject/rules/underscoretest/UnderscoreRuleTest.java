@@ -25,7 +25,7 @@ class UnderscoreRuleTest {
         this.restAnalyzer = new RestAnalyzer("src/test/java/rest/studentproject/validopenapi/validOpenAPI.json");
         this.underscore = new UnderscoreRule(true);
         List<List<Violation>> violations = this.restAnalyzer.runAnalyse(List.of(this.underscore));
-        assertEquals(null, violations.get(0), "There should be no rule violation for the valid openAPI definition.");
+        assertEquals(0, violations.get(0).size(), "There should be no rule violation for the valid openAPI definition.");
     }
 
     @Test
