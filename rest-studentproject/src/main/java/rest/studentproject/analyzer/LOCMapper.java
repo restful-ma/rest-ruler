@@ -8,6 +8,9 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Maps the keys from the parsed OpenAPI object to the original json or yaml line of code.
+ */
 public class LOCMapper {
 
     private final Map<String, Integer> pathMap = new HashMap<>();
@@ -15,21 +18,33 @@ public class LOCMapper {
     private final OpenAPI openAPI;
     private final String filePath;
 
+    /**
+     * Calls the mapper to map all keys from the parsed OpenAPI object to the line of code from the original json/yaml file.
+     *
+     * @param openAPI  The parsed OpenAPI object.
+     * @param filePath Path to the file that will be parsed and checked against the rules.
+     * @throws MalformedURLException If the file is not found.
+     */
     public LOCMapper(OpenAPI openAPI, String filePath) throws MalformedURLException {
 
         this.openAPI = openAPI;
         this.filePath = filePath;
 
         mapOpenAPIKeysToLOC();
-
     }
 
+    /**
+     * Reads the file and goes through every line.
+     * <p>
+     * Goes to all lines and checks if the line contains a path.
+     *
+     * @throws MalformedURLException
+     */
     private void mapOpenAPIKeysToLOC() throws MalformedURLException {
-        boolean isURL = false;
-        isURL = this.filePath.startsWith("http");
+        boolean isURL = this.filePath.startsWith("http");
+        if (!this.filePath.endsWith("json") && !this.filePath.endsWith("yaml")) System.err.println("Wrong file format");
 
-        URL url = new URL(this.filePath);
-        try (BufferedReader br = new BufferedReader(isURL ? new InputStreamReader(url.openStream()) : new FileReader(this.filePath))) {
+        try (BufferedReader br = new BufferedReader(isURL ? new InputStreamReader(new URL(this.filePath).openStream()) : new FileReader(this.filePath))) {
             String line;
             int currentLine = 0;
 
@@ -40,17 +55,23 @@ public class LOCMapper {
             this.keyLOCMap.put("paths", this.pathMap);
 
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            System.err.println("File not found");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
+    /**
+     * Checks if the given line contains a path. if it does, the path is saved with the line of code in a map.
+     *
+     * @param line the current line from the original json/yaml file
+     * @param currentLine the current line of code from the original json/yaml file
+     */
     private void mapPaths(String line, int currentLine) {
-        if (!this.filePath.endsWith("json") && !this.filePath.endsWith("yaml")) System.out.println("Wrong file format");
-
         for (String keyPath : this.openAPI.getPaths().keySet()) {
+            // To search for the path in the json file
             String pathWithQuotes = "\"" + keyPath + "\"";
+            // To search for the path in the yaml file
             String pathWithColon = keyPath + ":";
 
             if (!line.contains(pathWithQuotes) && !line.contains(pathWithColon)) continue;
@@ -59,10 +80,18 @@ public class LOCMapper {
         }
     }
 
+    /**
+     * @return the whole map of the keys. Map of a map. The inside map is for example the path keys with the loc.
+     */
     public Map<String, Map<String, Integer>> getOpenAPIKeyLOC() {
         return this.keyLOCMap;
     }
 
+    /**
+     *
+     * @param keyPath the path for that the line of code is needed.
+     * @return the line of code from the given path.
+     */
     public int getLOCOfPath(String keyPath) {
         return this.pathMap.get(keyPath);
     }
