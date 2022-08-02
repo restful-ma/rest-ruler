@@ -46,8 +46,14 @@ class SeparatorCheckerTest {
         //execute method under test
         List<Violation> violationList = separatorChecker.checkViolation(openAPI);
 
+
+        for (Violation v:violationList) {
+            System.out.println(v.getKeyViolation());
+        }
+
         assertFalse(violationList.isEmpty());
         assertEquals(6, violationList.size());
+
     }
 
 
@@ -63,7 +69,7 @@ class SeparatorCheckerTest {
         Set<String> input = new HashSet<>();
         input.add(":v1:destination_definition_specifications:get");
         input.add("\\v1\\destination_definitions\\get");
-        input.add("#v1#destination_definitions#create");
+        input.add("#v1#{destination_definitions}#create");
         input.add(".v1.destination_definitions.list_latest");
         input.add(";v1;destinations;update");
         input.add("-v1-{destinations}-update");
@@ -81,8 +87,40 @@ class SeparatorCheckerTest {
         //final check if all are found
         assertEquals(input.size(),violationList.size());
 
+    }
+    @Test
+    @DisplayName("SeparatorChecker identifies partly faulty input paths")
+    void checkPartlyFaultyPaths(){
+        Set<String> input = new HashSet<>();
+        input.add("/v1:destination_definition_specifications:get");
+        input.add("/v1:destination_definition_specifications:get:");
+
+        input.add("/v1\\{destination_definitions}\\get");
+        input.add("/v1\\{destination_definitions}\\get\\");
+
+        input.add("/v1#{destination_definitions}#create");
+
+        input.add(".v1.destination_definitions/list_latest");
+
+        input.add(";v1/destinations/update");
+        input.add(";v1/destinations/update/");
+
+        input.add("/v1/{destinations}:update");
+        input.add("\\v1/{destinations}\\update");
+        input.add(";v1/destinations/update:");
 
 
+        //run method under test
+        List<Violation> violationList = separatorChecker.checkSeparator(input);
 
+        assertFalse(violationList.isEmpty());
+
+        //check if each faulty input is detected
+        for (Violation v:violationList) {
+            assertTrue(input.contains(v.getKeyViolation()));
+        }
+
+        //final check if all are found
+        assertEquals(input.size(),violationList.size());
     }
 }
