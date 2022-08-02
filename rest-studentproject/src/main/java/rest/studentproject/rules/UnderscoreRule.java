@@ -3,12 +3,14 @@ package rest.studentproject.rules;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.servers.Server;
 import rest.studentproject.analyzer.LOCMapper;
+import rest.studentproject.analyzer.RestAnalyzer;
 import rest.studentproject.rules.constants.RuleCategory;
 import rest.studentproject.rules.constants.RuleSeverity;
 import rest.studentproject.rules.constants.RuleSoftwareQualityAttribute;
 import rest.studentproject.rules.constants.RuleType;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -19,37 +21,40 @@ public class UnderscoreRule implements IRestRule {
     private final List<Violation> violationList = new ArrayList<>();
     private boolean isActive;
     private LOCMapper locMapper;
+    private String title = "Underscores (_) should not be used in URI";
+    private RuleCategory category = RuleCategory.URIS;
+    private RuleSeverity severity = RuleSeverity.ERROR;
+    private RuleType type = RuleType.STATIC;
+    private List<RuleSoftwareQualityAttribute> softwareQualityAttributes = Arrays.asList(RuleSoftwareQualityAttribute.MAINTAINABILITY);
 
-    public UnderscoreRule(boolean isActive, LOCMapper locMapper) {
+    public UnderscoreRule(boolean isActive) {
         setIsActive(isActive);
-        this.locMapper = locMapper;
+        this.locMapper = RestAnalyzer.locMapper;
     }
 
     @Override
     public String getTitle() {
-        return "Underscores (_) should not be used in URI";
+        return this.title;
     }
 
     @Override
     public RuleCategory getCategory() {
-        return RuleCategory.URIS;
-    }
+        return this.category;
+    } 
 
     @Override
     public RuleSeverity getSeverityType() {
-        return RuleSeverity.ERROR;
+        return this.severity;
     }
 
     @Override
     public RuleType getRuleType() {
-        return RuleType.STATIC;
+        return this.type;
     }
 
     @Override
     public List<RuleSoftwareQualityAttribute> getRuleSoftwareQualityAttribute() {
-        List<RuleSoftwareQualityAttribute> softwareQualityAttributes = new ArrayList<>();
-        softwareQualityAttributes.add(RuleSoftwareQualityAttribute.MAINTAINABILITY);
-        return softwareQualityAttributes;
+        return this.softwareQualityAttributes;
     }
 
     @Override
