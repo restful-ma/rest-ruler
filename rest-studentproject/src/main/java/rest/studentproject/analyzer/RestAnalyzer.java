@@ -3,32 +3,30 @@ package rest.studentproject.analyzer;
 import io.swagger.parser.OpenAPIParser;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.parser.core.models.SwaggerParseResult;
-import rest.studentproject.report.Report;
-import rest.studentproject.rules.UnderscoreRule;
+import rest.studentproject.rules.IRestRule;
 import rest.studentproject.rules.Violation;
 
 import java.net.MalformedURLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RestAnalyzer {
+    public static LOCMapper locMapper = null;
+    private OpenAPI openAPI;
 
-    public Report runAnalyse(String url) throws MalformedURLException {
-        Report finalReport = new Report();
+    public RestAnalyzer(String url) throws MalformedURLException {
         SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation(url, null, null);
-        OpenAPI openAPI = swaggerParseResult.getOpenAPI();
+        this.openAPI = swaggerParseResult.getOpenAPI();
+        this.locMapper = new LOCMapper(openAPI, url);
+    }
 
-        LOCMapper locMapper = new LOCMapper(openAPI, url);
-
-        // Iterates over all active rules
-        UnderscoreRule underscoreRule = new UnderscoreRule(true, locMapper);
-        // TODO: Handle returned violation list
-        for (Violation violation : underscoreRule.checkViolation(openAPI)){
-            System.out.println(violation.getLineViolation());
-            System.out.println(violation.getKeyViolation());
-            System.out.println(violation.getErrorMessage());
-            System.out.println(violation.getImprovementSuggestion());
+    public List<List<Violation>> runAnalyse(List<IRestRule> activeRules) {
+        List<List<Violation>> violations = new ArrayList<>();
+        for (IRestRule rule : activeRules){
+            if (!rule.getIsActive()) continue;
+            violations.add(rule.checkViolation(this.openAPI));
         }
 
-
-        return finalReport;
+        return violations;
     }
 }
