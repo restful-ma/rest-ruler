@@ -16,7 +16,8 @@ The forward slash (/) character is used in the path portion of the URI to indica
 This is a rule that is examined statically. 
 ### What is checked:
 * "/" is used as a separator
-* if other symbols are used as the separator instead of '/' such as '.', ',', ';', ':', '\', '#', '-'
+* if other symbols are used as the separator instead of '/' such as '.', ',', ';', ':', '\', '#', '-', e.g. 'this:is:a:new:path'
+* if other symbols are used partly as a separator e.g. '/this/is:a:new/path' or ':this:is/another:path'
 * path variable names (surrounded in curly brakets '{}') do not contain the separator
 
 ### What is not checked:
