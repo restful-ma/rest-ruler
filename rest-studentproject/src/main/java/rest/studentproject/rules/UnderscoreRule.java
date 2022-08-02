@@ -18,53 +18,53 @@ import java.util.Set;
  * Implementation of the rule: Underscores (_) should not be used in URI.
  */
 public class UnderscoreRule implements IRestRule {
-    private static List<Violation> violationList = new ArrayList<>();
-    private static boolean isActive;
-    private static LOCMapper locMapper;
     private static final String TITLE = "Underscores (_) should not be used in URI";
     private static final RuleCategory CATEGORY = RuleCategory.URIS;
     private static final RuleSeverity SEVERITY = RuleSeverity.ERROR;
     private static final RuleType TYPE = RuleType.STATIC;
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = Arrays.asList(RuleSoftwareQualityAttribute.MAINTAINABILITY);
+    private static final List<Violation> violationList = new ArrayList<>();
+    private static boolean isActive;
+    private static LOCMapper locMapper;
 
     public UnderscoreRule(boolean isActive) {
         setIsActive(isActive);
-        this.locMapper = RestAnalyzer.locMapper;
+        locMapper = RestAnalyzer.locMapper;
     }
 
     @Override
     public String getTitle() {
-        return this.TITLE;
+        return TITLE;
     }
 
     @Override
     public RuleCategory getCategory() {
-        return this.CATEGORY;
-    } 
+        return CATEGORY;
+    }
 
     @Override
     public RuleSeverity getSeverityType() {
-        return this.SEVERITY;
+        return SEVERITY;
     }
 
     @Override
     public RuleType getRuleType() {
-        return this.TYPE;
+        return TYPE;
     }
 
     @Override
     public List<RuleSoftwareQualityAttribute> getRuleSoftwareQualityAttribute() {
-        return this.SOFTWARE_QUALITY_ATTRIBUTES;
+        return SOFTWARE_QUALITY_ATTRIBUTES;
     }
 
     @Override
     public boolean getIsActive() {
-        return this.isActive;
+        return isActive;
     }
 
     @Override
     public void setIsActive(boolean isActive) {
-        this.isActive = isActive;
+        UnderscoreRule.isActive = isActive;
     }
 
     /**
@@ -77,7 +77,6 @@ public class UnderscoreRule implements IRestRule {
         Set<String> paths = openAPI.getPaths().keySet();
         List<Server> servers = openAPI.getServers();
 
-
         for (String path : paths) {
             if (path.trim().isEmpty()) continue;
             checkUnderscore(path);
@@ -87,7 +86,7 @@ public class UnderscoreRule implements IRestRule {
             if (server.getUrl().trim().isEmpty()) continue;
             checkUnderscore(server.getUrl());
         }
-        return this.violationList;
+        return violationList;
     }
 
     /**
@@ -98,7 +97,7 @@ public class UnderscoreRule implements IRestRule {
     private void checkUnderscore(String path) {
         String pathWithoutVariable = path.replaceAll("\\{" + ".*" + "\\}", "");
         if (!pathWithoutVariable.contains("_")) return;
-        this.violationList.add(new Violation(this.locMapper.getLOCOfPath(path), "", path, ""));
+        violationList.add(new Violation(locMapper.getLOCOfPath(path), "", path, ""));
 
     }
 }

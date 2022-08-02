@@ -64,7 +64,7 @@ public class LOCMapper {
     /**
      * Checks if the given line contains a path. if it does, the path is saved with the line of code in a map.
      *
-     * @param line the current line from the original json/yaml file
+     * @param line        the current line from the original json/yaml file
      * @param currentLine the current line of code from the original json/yaml file
      */
     private void mapPaths(String line, int currentLine) {
@@ -88,7 +88,6 @@ public class LOCMapper {
     }
 
     /**
-     *
      * @param keyPath the path for that the line of code is needed.
      * @return the line of code from the given path.
      */

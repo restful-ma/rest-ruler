@@ -12,21 +12,20 @@ import java.util.List;
 
 public class RestAnalyzer {
     public static LOCMapper locMapper = null;
-    private OpenAPI openAPI;
+    private final OpenAPI openAPI;
 
     public RestAnalyzer(String url) throws MalformedURLException {
         SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation(url, null, null);
         this.openAPI = swaggerParseResult.getOpenAPI();
-        this.locMapper = new LOCMapper(openAPI, url);
+        locMapper = new LOCMapper(openAPI, url);
     }
 
     public List<List<Violation>> runAnalyse(List<IRestRule> activeRules) {
         List<List<Violation>> violations = new ArrayList<>();
-        for (IRestRule rule : activeRules){
+        for (IRestRule rule : activeRules) {
             if (!rule.getIsActive()) continue;
             violations.add(rule.checkViolation(this.openAPI));
         }
-
         return violations;
     }
 }
