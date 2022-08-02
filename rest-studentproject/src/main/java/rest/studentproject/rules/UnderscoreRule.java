@@ -18,14 +18,14 @@ import java.util.Set;
  * Implementation of the rule: Underscores (_) should not be used in URI.
  */
 public class UnderscoreRule implements IRestRule {
-    private final List<Violation> violationList = new ArrayList<>();
-    private boolean isActive;
-    private LOCMapper locMapper;
-    private String title = "Underscores (_) should not be used in URI";
-    private RuleCategory category = RuleCategory.URIS;
-    private RuleSeverity severity = RuleSeverity.ERROR;
-    private RuleType type = RuleType.STATIC;
-    private List<RuleSoftwareQualityAttribute> softwareQualityAttributes = Arrays.asList(RuleSoftwareQualityAttribute.MAINTAINABILITY);
+    private static List<Violation> violationList = new ArrayList<>();
+    private static boolean isActive;
+    private static LOCMapper locMapper;
+    private static final String TITLE = "Underscores (_) should not be used in URI";
+    private static final RuleCategory CATEGORY = RuleCategory.URIS;
+    private static final RuleSeverity SEVERITY = RuleSeverity.ERROR;
+    private static final RuleType TYPE = RuleType.STATIC;
+    private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = Arrays.asList(RuleSoftwareQualityAttribute.MAINTAINABILITY);
 
     public UnderscoreRule(boolean isActive) {
         setIsActive(isActive);
@@ -34,27 +34,27 @@ public class UnderscoreRule implements IRestRule {
 
     @Override
     public String getTitle() {
-        return this.title;
+        return this.TITLE;
     }
 
     @Override
     public RuleCategory getCategory() {
-        return this.category;
+        return this.CATEGORY;
     } 
 
     @Override
     public RuleSeverity getSeverityType() {
-        return this.severity;
+        return this.SEVERITY;
     }
 
     @Override
     public RuleType getRuleType() {
-        return this.type;
+        return this.TYPE;
     }
 
     @Override
     public List<RuleSoftwareQualityAttribute> getRuleSoftwareQualityAttribute() {
-        return this.softwareQualityAttributes;
+        return this.SOFTWARE_QUALITY_ATTRIBUTES;
     }
 
     @Override
@@ -87,7 +87,7 @@ public class UnderscoreRule implements IRestRule {
             if (server.getUrl().trim().isEmpty()) continue;
             checkUnderscore(server.getUrl());
         }
-        return this.violationList.isEmpty() ? null : this.violationList;
+        return this.violationList;
     }
 
     /**
