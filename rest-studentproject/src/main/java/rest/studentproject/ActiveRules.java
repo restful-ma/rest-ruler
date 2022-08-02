@@ -14,6 +14,7 @@ public class ActiveRules {
 
     /**
      * Add all rule objects here that are implemented
+     *
      * @return the list of implemented rules
      */
     public List<IRestRule> getActiveRules() {
