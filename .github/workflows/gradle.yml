@@ -14,11 +14,9 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  junit-test:
 
     runs-on: ubuntu-latest
-    env:
-      working-directory: ./rest-studentproject
 
     steps:
     - uses: actions/checkout@v3
@@ -27,7 +25,9 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-    - name: Build with Gradl
+    - name: Setup Gradle
       uses: gradle/gradle-build-action@v2
       with:
-        arguments: build
+        gradle-version: 7.4.2
+    - run: gradle build
+      working-directory: ./rest-studentproject
