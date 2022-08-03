@@ -24,6 +24,7 @@ public class RestParserCommand implements Runnable {
 
         if (verbose) {
             // TODO: implement
+            System.out.println("Hi!");
         }
     }
 }

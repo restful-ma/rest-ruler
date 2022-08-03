@@ -18,6 +18,7 @@ public class RestAnalyzer {
         SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation(url, null, null);
         this.openAPI = swaggerParseResult.getOpenAPI();
         locMapper = new LOCMapper(openAPI, url);
+        locMapper.mapOpenAPIKeysToLOC();
     }
 
     public List<List<Violation>> runAnalyse(List<IRestRule> activeRules) {
