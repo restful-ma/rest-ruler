@@ -25,12 +25,9 @@ public class LOCMapper {
      * @param filePath Path to the file that will be parsed and checked against the rules.
      * @throws MalformedURLException If the file is not found.
      */
-    public LOCMapper(OpenAPI openAPI, String filePath) throws MalformedURLException {
-
+    public LOCMapper(OpenAPI openAPI, String filePath) {
         this.openAPI = openAPI;
         this.filePath = filePath;
-
-        mapOpenAPIKeysToLOC();
     }
 
     /**
@@ -40,9 +37,12 @@ public class LOCMapper {
      *
      * @throws MalformedURLException
      */
-    private void mapOpenAPIKeysToLOC() throws MalformedURLException {
+    public void mapOpenAPIKeysToLOC() throws MalformedURLException {
         boolean isURL = this.filePath.startsWith("http");
-        if (!this.filePath.endsWith("json") && !this.filePath.endsWith("yaml")) System.err.println("Wrong file format");
+        if (!this.filePath.endsWith("json") && !this.filePath.endsWith("yaml")) {
+            System.err.println("Wrong file format!");
+            return;
+        }
 
         try (BufferedReader br = new BufferedReader(isURL ? new InputStreamReader(new URL(this.filePath).openStream()) : new FileReader(this.filePath))) {
             String line;
@@ -55,7 +55,7 @@ public class LOCMapper {
             this.keyLOCMap.put("paths", this.pathMap);
 
         } catch (FileNotFoundException e) {
-            System.err.println("File not found");
+            System.err.println("File not found!");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
