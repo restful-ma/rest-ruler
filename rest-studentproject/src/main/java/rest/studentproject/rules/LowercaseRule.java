@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
+
 public class LowercaseRule implements IRestRule {
 
     private static final String title = "Lowercase letters should be preferred in URI paths";
@@ -106,7 +108,7 @@ public class LowercaseRule implements IRestRule {
             String pathWithoutParametersLowerCase = pathWithoutParameters.toLowerCase();
             // Check if the path contains only lowercase letters
             if(!pathWithoutParametersLowerCase.equals(pathWithoutParameters)){
-                violations.add(new Violation(0, "", "", "Error at:" + path));
+                violations.add(new Violation(locMapper.getLOCOfPath(path), "", "", "Error at:" + path));
             }
                 
         }
