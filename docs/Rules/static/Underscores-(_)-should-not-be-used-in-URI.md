@@ -25,13 +25,21 @@ should be used to improve the readability of URIs” --> Link to GitHub file fol
 
 ## Implemented
 
-* N
+* Y
 
 ## Implementation Details (Issue #9)
 
-* Static implementation
-* Check path if it contains an underscore (_) and give a warning if it violates the rule
-* Give the hint to use hyphens (-) instead of underscores (_)
+### What is checked
+* Currently, static implementation only
+* Checks every path if it contains an underscore (_) and returns a list of violations
+
+### What is not checked
+
+* The parameters in curly brackets are excluded from the path and are therefore currently not checked.
+
+### Future work
+
+* Dynamic analysis will check the parameter input if it contains an underscore
 
 ## Source
 

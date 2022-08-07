@@ -1,18 +1,28 @@
 package rest.studentproject.rules;
 
 import io.swagger.v3.oas.models.OpenAPI;
+import rest.studentproject.rules.constants.RuleCategory;
+import rest.studentproject.rules.constants.RuleSeverity;
+import rest.studentproject.rules.constants.RuleSoftwareQualityAttribute;
+import rest.studentproject.rules.constants.RuleType;
 
-import java.io.IOException;
 import java.util.List;
 
 public interface IRestRule {
 
-    public String getTitle();
-    public RuleCategory getCategory();
-    public RuleSeverity getSeverityType();
-    public RuleType getRuleType();
-    public List<RuleSoftwareQualityAttribute> getRuleSoftwareQualityAttribute();
-    public boolean getIsActive();
-    public void setIsActive(boolean isActive);
-    public List<Violation> checkViolation(OpenAPI openAPI) throws IOException;
+    String getTitle();
+
+    RuleCategory getCategory();
+
+    RuleSeverity getSeverityType();
+
+    RuleType getRuleType();
+
+    List<RuleSoftwareQualityAttribute> getRuleSoftwareQualityAttribute();
+
+    boolean getIsActive();
+
+    void setIsActive(boolean isActive);
+
+    List<Violation> checkViolation(OpenAPI openAPI);
 }
