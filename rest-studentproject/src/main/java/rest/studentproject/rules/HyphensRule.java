@@ -3,6 +3,10 @@ package rest.studentproject.rules;
 import com.google.common.collect.Lists;
 import io.swagger.v3.oas.models.OpenAPI;
 import org.apache.commons.lang3.tuple.ImmutablePair;
+import rest.studentproject.rules.constants.RuleCategory;
+import rest.studentproject.rules.constants.RuleSeverity;
+import rest.studentproject.rules.constants.RuleSoftwareQualityAttribute;
+import rest.studentproject.rules.constants.RuleType;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -89,7 +93,7 @@ public class HyphensRule implements IRestRule {
      * @param openAPI
      */
     @Override
-    public List<Violation> checkViolation(OpenAPI openAPI) throws IOException {
+    public List<Violation> checkViolation(OpenAPI openAPI) {
         List<Violation> violations = new ArrayList<>();
 
         // Get the paths from the OpenAPI object
@@ -108,7 +112,7 @@ public class HyphensRule implements IRestRule {
                 List<String> pathWithoutParameters = Arrays.asList(pathSegment.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])"));
 
                 // If the path is correct and the matching regex creates the same split with the "-" as split, then continue with the next segment path
-                if(itemsFromHyphens.size() > 1 && pathWithoutParameters.size() > 1 && itemsFromHyphens.equals(pathWithoutParameters)) continue;
+                // if(itemsFromHyphens.size() == 1 && pathWithoutParameters.size() == 1 && itemsFromHyphens.equals(pathWithoutParameters)) continue;
 
                 if(pathWithoutParameters.size() > 1) {
                     violations.add(new Violation(0, "", "", "Error at:" + path));
@@ -116,11 +120,15 @@ public class HyphensRule implements IRestRule {
                 }
 
                 // If with the regex no substring was found then we need to check against a dictionary of english words
-                List<String> subStringFromPath = splitContiguousWords(pathSegment);
+                List<String> subStringFromPath = null;
+                try {
+                    subStringFromPath = splitContiguousWords(pathSegment);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 List<String> pathWithoutParameterDictionaryMatching = Arrays.asList(subStringFromPath.get(0).split(" "));
                 // If the path is correct and the matching regex creates the same split with the "-" as split, then continue with the next segment path
-                if(itemsFromHyphens.size() > 1 && (pathWithoutParameterDictionaryMatching.size() > 1 || subStringFromPath.size() > 1) &&
-                        (itemsFromHyphens.equals(pathWithoutParameterDictionaryMatching) || itemsFromHyphens.equals(subStringFromPath))) continue;
+                if(itemsFromHyphens.equals(pathWithoutParameterDictionaryMatching) || itemsFromHyphens.equals(subStringFromPath)) continue;
                 // Add violations if there is some match
                 violations.add(new Violation(0, "", "", "Error at:" + path));
                 break;
