@@ -6,7 +6,13 @@ info:
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "localhost"
+servers:
+  - url: https://api.example.com/v_1
+    description: Violates the underscore rule
+  - url: https://api.example.com/v1
+    description: Production server (uses live data)
+  - url: https://sandbox-api.example.com:8443/v1
+    description: Sandbox server (uses test data)
 tags:
 - name: "URI Rules"
 - name: "Meta Rules"
@@ -16,7 +22,33 @@ tags:
 schemes:
 - "https"
 paths:
-  # Define all paths here 
+  # Define all paths here
+  "/primary_school":
+    get:
+      tag: "URI Rules"
+      description: "Violates the underscore rule"
+      response:
+        "200":
+          description: "Successful request"
+        "400":
+          description: "Bad request"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+  "/{primary_school}/_school":
+    get:
+      tag: "URI Rules"
+      description: "Violates the underscore rule"
+      response:
+        "200":
+          description: "Successful request"
+        "400":
+          description: "Bad request"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
   "/Pets":
     get:
       tag: "URI Rules"
@@ -147,8 +179,8 @@ components:
     BasicAuth:
       type: http
       scheme: basic
-security:
+  security:
   - BasicAuth: []
-externalDocs:
-  description: "Find out more about Swagger"
-  url: "http://swagger.io"
+  externalDocs:
+    description: "Find out more about Swagger"
+    url: "http://swagger.io"
