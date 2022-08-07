@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.apache.commons.lang3.StringUtils.split;
+import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
 
 public class HyphensRule implements IRestRule {
 
@@ -115,7 +116,7 @@ public class HyphensRule implements IRestRule {
                 // if(itemsFromHyphens.size() == 1 && pathWithoutParameters.size() == 1 && itemsFromHyphens.equals(pathWithoutParameters)) continue;
 
                 if(pathWithoutParameters.size() > 1) {
-                    violations.add(new Violation(0, "", "", "Error at:" + path));
+                    violations.add(new Violation(locMapper.getLOCOfPath(path), "", "", "Error at:" + path));
                     break;
                 }
 
@@ -130,7 +131,7 @@ public class HyphensRule implements IRestRule {
                 // If the path is correct and the matching regex creates the same split with the "-" as split, then continue with the next segment path
                 if(itemsFromHyphens.equals(pathWithoutParameterDictionaryMatching) || itemsFromHyphens.equals(subStringFromPath)) continue;
                 // Add violations if there is some match
-                violations.add(new Violation(0, "", "", "Error at:" + path));
+                violations.add(new Violation(locMapper.getLOCOfPath(path), "", "", "Error at:" + path));
                 break;
 
             }
