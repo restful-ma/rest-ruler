@@ -2,6 +2,7 @@ package rest.studentproject;
 
 import rest.studentproject.rules.IRestRule;
 import rest.studentproject.rules.LowercaseRule;
+import rest.studentproject.rules.SeparatorRule;
 import rest.studentproject.rules.UnderscoreRule;
 
 import java.util.Arrays;
@@ -18,6 +19,6 @@ public class ActiveRules {
      * @return the list of implemented rules
      */
     public List<IRestRule> getActiveRules() {
-        return Arrays.asList(new UnderscoreRule(true), new LowercaseRule(false));
+        return Arrays.asList(new UnderscoreRule(true), new LowercaseRule(false), new SeparatorRule(true));
     }
 }
