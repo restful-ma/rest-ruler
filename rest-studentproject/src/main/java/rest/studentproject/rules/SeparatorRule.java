@@ -24,7 +24,7 @@ public class SeparatorRule implements IRestRule {
 
     private static final String ERROR_MESSAGE = "A forward slash '/' has to be used as a separator";
     boolean isActive;
-    private static char[] separators = {'.', ':', ';', ',', '\\', '#', '/', '-'};
+    private static char[] separators = {'.', ':', ';', ',', '\\', '#', '/', '-', '?', '='};
 
 
 
@@ -34,27 +34,27 @@ public class SeparatorRule implements IRestRule {
 
     @Override
     public String getTitle() {
-        return this.TITLE;
+        return TITLE;
     }
 
     @Override
     public RuleCategory getCategory() {
-        return this.RULE_CATEGORY;
+        return RULE_CATEGORY;
     }
 
     @Override
     public RuleSeverity getSeverityType() {
-        return this.RULE_SEVERITY;
+        return RULE_SEVERITY;
     }
 
     @Override
     public RuleType getRuleType() {
-        return this.RULE_TYPE;
+        return RULE_TYPE;
     }
 
     @Override
     public List<RuleSoftwareQualityAttribute> getRuleSoftwareQualityAttribute() {
-        return this.SOFTWARE_QUALITY_ATTRIBUTES;
+        return SOFTWARE_QUALITY_ATTRIBUTES;
     }
 
     @Override
@@ -83,7 +83,7 @@ public class SeparatorRule implements IRestRule {
 
         List<Violation> violationList = new ArrayList<>();
         //expected Pattern
-        Pattern expectedPattern = Pattern.compile("^(\\/((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~#?&=]+))+\\/?$");
+        Pattern expectedPattern = Pattern.compile("^(\\/((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&=]+))+\\/?$");
 
         for (String path : pathList) {
 
@@ -104,9 +104,16 @@ public class SeparatorRule implements IRestRule {
                         }
                     }
                 }
+
                 //unknown case:
                 if (violationList.size() == currentSize){
-                    violationList.add(new Violation(0, "-", path, ERROR_MESSAGE));
+                    //check for '?' and '#' as they are illegal in paths
+                    if (path.contains("#") | path.contains("?")){
+                        violationList.add(new Violation(0, "remove any '#' and '?' from the path", path, ERROR_MESSAGE));
+                    }else {
+                        violationList.add(new Violation(0, "-", path, ERROR_MESSAGE));
+                    }
+
                 }
             }
         }
@@ -124,35 +131,42 @@ public class SeparatorRule implements IRestRule {
 
         List<String> patterns = new ArrayList<>();
 
-        // '#' and '-' are unique as they are valid characters in Paths and URLS
+        // '=' and '-' are unique as they are valid characters in Paths and URLS
         switch (separator) {
             case '.':
                 //escape regex operation characters, otherwise identical to default case
-                patterns.add("^((\\/|\\.)((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~#?&=]+))*(\\.|\\/)?$");
+                patterns.add("^((\\/|\\.)((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&=]+))*(\\.|\\/)?$");
 
                 break;
             case '\\':
                 //escape regex operation characters, otherwise identical to default case
-                patterns.add("^((\\/|\\\\)((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~#?&=]+))*(\\\\|\\/)?$");
+                patterns.add("^((\\/|\\\\)((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&=]+))*(\\\\|\\/)?$");
 
                 break;
-            case '#':
-                // starts with '#' but afterwards follows expected pattern
-                patterns.add("^#(((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~#?&=]+)\\/?)+$");
-                //case: path includes path variables that allow detection of '#' as a separator
-                patterns.add("#(\\{[^\\/{}\\(\\)\\[\\]]+\\})");
+            case '?':
+                //escape regex operation characters, otherwise identical to default case
+                patterns.add("^((\\/|\\?)((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&=]+))*(\\?|\\/)?$");
+
+                break;
+            case '=':
+                // starts with '=' but afterwards follows expected pattern
+                patterns.add("^=(((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&]+)\\/?)+$");
+                //case: path includes path variables that allow detection of '=' as a separator
+                patterns.add("=(\\{[^\\/{}\\(\\)\\[\\]]+\\})");
+                patterns.add("^((\\/|" + separator + ")((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&]+))*(" + separator + "|\\/)?$");
+
 
                 break;
             case '-':
                 // starts with '-' but afterwards follows expected pattern
-                patterns.add("^-(((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~#?&=]+)\\/?)+$");
+                patterns.add("^-(((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&=]+)\\/?)+$");
                 //case: path includes path variables that allow detection of '-' as a separator
                 patterns.add("-(\\{[^\\/{}\\(\\)\\[\\]]+\\})");
 
                 break;
 
             default:
-                patterns.add("^((\\/|" + separator + ")((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~#?&=]+))*(" + separator + "|\\/)?$");
+                patterns.add("^((\\/|" + separator + ")((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&=]+))*(" + separator + "|\\/)?$");
 
         }
 

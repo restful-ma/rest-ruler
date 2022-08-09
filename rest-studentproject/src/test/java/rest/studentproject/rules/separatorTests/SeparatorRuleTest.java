@@ -73,25 +73,31 @@ class SeparatorRuleTest {
         input.add(";v1;destinations;update");
         input.add("-v1-{destinations}-update");
 
+        input.add("/v1={destination_definitions}=create");
+        input.add("=v1={destination_definitions}=create");
+        input.add("=v1=destination_definitions=create");
+
         //run Method under test
         runMethodUnderTest(input);
 
     }
 
     @Test
-    @DisplayName("SeparatorRule identifies inputs with allowed symbols used illegally as separators")
+    @DisplayName("SeparatorRule identifies inputs with illegal Symbols such as '#' and '?' for paths")
     void checkWronglyUsedCharacters(){
         Set<String> input = new HashSet<>();
 
         input.add("/v1#{destination_definitions}#create");
         input.add("#v1#{destination_definitions}#create");
-        input.add("/v1={destination_definitions}=create");
-        input.add("=v1={destination_definitions}=create");
+
+
         input.add("/v1?{destination_definitions}?create");
         input.add("?v1?{destination_definitions}?create");
 
-        //edge case
+        //edge case: '?' not allowed
         input.add("/get=Pets?Location");
+
+        input.add("#get=Pets?Location");
 
         //run Method under test
         runMethodUnderTest(input);
