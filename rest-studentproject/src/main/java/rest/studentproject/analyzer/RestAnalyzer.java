@@ -4,7 +4,7 @@ import io.swagger.parser.OpenAPIParser;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.parser.core.models.SwaggerParseResult;
 import rest.studentproject.report.Report;
-import rest.studentproject.rules.SeparatorChecker;
+import rest.studentproject.rules.SeparatorRule;
 import rest.studentproject.rules.UnderscoreRule;
 import rest.studentproject.rules.Violation;
 
@@ -24,8 +24,8 @@ public class RestAnalyzer {
         // TODO: Handle returned violation list
         underscoreRule.checkViolation(openAPI);
 
-        SeparatorChecker separatorChecker = new SeparatorChecker(true);
-        List<Violation> violations = separatorChecker.checkViolation(openAPI);
+        SeparatorRule separatorRule = new SeparatorRule(true);
+        List<Violation> violations = separatorRule.checkViolation(openAPI);
 
         for (Violation v: violations) {
             System.out.println(v.getErrorMessage());
