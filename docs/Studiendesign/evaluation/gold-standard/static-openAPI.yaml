@@ -124,7 +124,55 @@ paths:
           description: "A user with the specified ID was not found."
         summary: "Country where a pet is located"
         tags:
-          "pets"         
+          "pets"
+  "/bigPets":
+    get:
+      tag: "URI Rules"
+      description: "Violations: LHyphens (-) should be used to improve the readability of URIs. bigPets should be written as big-pets."
+      response:
+        "200":
+          description: "Big cats"
+        "400":
+          description: "The specified user ID is invalid (not a number)."
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "A user with the specified ID was not found."
+      summary: "List of big cats"
+      tags:
+        "pets"
+  "/small.Pets":
+    get:
+      tag: "URI Rules"
+      description: "Violations: LHyphens (-) should be used to improve the readability of URIs. small.Pets should be written as small-pets."
+      response:
+        "200":
+          description: "Small cats"
+        "400":
+          description: "The specified user ID is invalid (not a number)."
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "A user with the specified ID was not found."
+      summary: "List of small cats"
+      tags:
+        "pets"
+  "/MediumSizePets":
+    get:
+      tag: "URI Rules"
+      description: "Violations: LHyphens (-) should be used to improve the readability of URIs. MediumSizePets should be written as medium-size-pets."
+      response:
+        "200":
+          description: "Small cats"
+        "400":
+          description: "The specified user ID is invalid (not a number)."
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "A user with the specified ID was not found."
+      summary: "List of small cats"
+      tags:
+        "pets"
 components:
   # Define all components here
   securitySchemes:
