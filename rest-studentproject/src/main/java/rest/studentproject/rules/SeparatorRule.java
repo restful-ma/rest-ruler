@@ -14,51 +14,47 @@ import java.util.regex.Pattern;
 /**
  * RULE: Forward slash separator (/) must be used to indicate a hierarchical relationship
  */
-public class SeparatorChecker implements IRestRule {
+public class SeparatorRule implements IRestRule {
 
-    String title;
-    boolean isActive;
-    RuleCategory ruleCategory;
-    RuleSeverity ruleSeverity;
-    RuleType ruleType;
-    List<RuleSoftwareQualityAttribute> qualityAttributes;
+    static final String TITLE = "Forward slash separator (/) must be used to indicate a hierarchical relationship";
+    static final RuleCategory RULE_CATEGORY = RuleCategory.URIS;
+    static final RuleSeverity RULE_SEVERITY = RuleSeverity.CRITICAL;
+    static final RuleType RULE_TYPE = RuleType.STATIC;
+    static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List.of(RuleSoftwareQualityAttribute.MAINTAINABILITY);
 
     private static final String ERROR_MESSAGE = "A forward slash '/' has to be used as a separator";
+    boolean isActive;
     private static char[] separators = {'.', ':', ';', ',', '\\', '#', '/', '-'};
 
-    public SeparatorChecker(boolean isActive) {
-        title = "Forward slash separator (/) must be used to indicate a hierarchical relationship";
+
+
+    public SeparatorRule(boolean isActive) {
         this.isActive = isActive;
-        ruleCategory = RuleCategory.URIS;
-        ruleSeverity = RuleSeverity.CRITICAL;
-        ruleType = RuleType.STATIC;
-        qualityAttributes = new ArrayList<>();
-        qualityAttributes.add(RuleSoftwareQualityAttribute.MAINTAINABILITY);
     }
 
     @Override
     public String getTitle() {
-        return this.title;
+        return this.TITLE;
     }
 
     @Override
     public RuleCategory getCategory() {
-        return this.ruleCategory;
+        return this.RULE_CATEGORY;
     }
 
     @Override
     public RuleSeverity getSeverityType() {
-        return this.ruleSeverity;
+        return this.RULE_SEVERITY;
     }
 
     @Override
     public RuleType getRuleType() {
-        return this.ruleType;
+        return this.RULE_TYPE;
     }
 
     @Override
     public List<RuleSoftwareQualityAttribute> getRuleSoftwareQualityAttribute() {
-        return this.qualityAttributes;
+        return this.SOFTWARE_QUALITY_ATTRIBUTES;
     }
 
     @Override
