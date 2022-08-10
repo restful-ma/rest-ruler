@@ -39,6 +39,10 @@ scheme and host components.
 ### What is not checked:
 * presence of invalid delimiters
 
+### Future work
+
+* None
+
 ## Source
 
 [1] https://www.oreilly.com/library/view/rest-api-design/9781449317904/
