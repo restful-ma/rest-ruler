@@ -52,7 +52,7 @@ paths:
   "/Pets":
   get:
     tag: "URI Rules"
-    description: "Get Pets"
+    description: "Violates the lowercase rule"
     response: 
       "200":
         description: "A list of pets"
@@ -69,7 +69,7 @@ paths:
 "/pets/{petName}/LocationsStates":
   get:
     tag: "URI Rules"
-    description: "Get Pet Locations States",
+    description: "Violates the lowercase rule",
     response: 
       "200":
         description: "A list of locations states given a pet name"
@@ -86,7 +86,7 @@ paths:
 "/pets/{petName}/locations/{locationName}/CITY":
   get:
     tag: "URI Rules"
-    description: "Get Pet Location City" 
+    description: "Violates the lowercase rule"
     response: 
       "200":
         description: "City where a pet is located"
@@ -103,7 +103,7 @@ paths:
 "/pets/{petName}/addLocation": 
   get: 
     tag: "URI Rules"
-    description: "Add a new location to a pet"
+    description: "Violates the lowercase rule"
     requestBody: 
       content: 
           application/json:
