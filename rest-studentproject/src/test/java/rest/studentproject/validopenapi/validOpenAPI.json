@@ -85,6 +85,68 @@
           "quotes"
         ]
       }
+    },
+    "/": {
+      "get": {
+        "description": "Symbol List",
+        "externalDocs": {
+          "description": "Find out more",
+          "url": "http://1forge.com/forex-data-api"
+        },
+        "responses": {
+          "200": {
+            "description": "A list of symbols",
+            "schema": {
+              "example": [
+                "EURUSD",
+                "GBPJPY",
+                "AUDUSD"
+              ],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "summary": "Get a list of symbols for which we provide real-time quotes",
+        "tags": [
+          "forex",
+          "finance",
+          "quotes"
+        ]
+      }
+    },
+    "/adults/{get_adult_ID}/name": {
+      "get": {
+        "description": "Symbol List",
+        "externalDocs": {
+          "description": "Find out more",
+          "url": "http://1forge.com/forex-data-api"
+        },
+        "responses": {
+          "200": {
+            "description": "A list of symbols",
+            "schema": {
+              "example": [
+                "EURUSD",
+                "GBPJPY",
+                "AUDUSD"
+              ],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "summary": "Get a list of symbols for which we provide real-time quotes",
+        "tags": [
+          "forex",
+          "finance",
+          "quotes"
+        ]
+      }
     }
   }
 }

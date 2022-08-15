@@ -17,7 +17,7 @@ class UnderscoreRuleTest {
     UnderscoreRule underscore;
 
     @Test
-    @DisplayName("Test that checks if no violation is detected when there is a correct OpenAPI definition.")
+    @DisplayName("Test that checks if no underscore violation is detected when there is a correct OpenAPI definition.")
     void validFile() throws MalformedURLException {
         this.restAnalyzer = new RestAnalyzer("src/test/java/rest/studentproject/validopenapi/validOpenAPI.json");
         this.underscore = new UnderscoreRule(true);
@@ -27,8 +27,9 @@ class UnderscoreRuleTest {
 
 
     @Test
+    @DisplayName("Test that checks if the three underscore rule violations are detected.")
     void invalidFile() throws MalformedURLException {
-        this.restAnalyzer = new RestAnalyzer("src/test/java/rest/studentproject/rules/underscoretest/InvalidOpenAPI.json");
+        this.restAnalyzer = new RestAnalyzer("src/test/java/rest/studentproject/rules/underscoretest/InvalidOpenAPIUnderscroeRule.json");
         this.underscore = new UnderscoreRule(true);
         List<List<Violation>> violations = this.restAnalyzer.runAnalyse(List.of(this.underscore));
         assertEquals(3, violations.get(0).size(), "There should be three rule violations. Three of the paths are valid.");
