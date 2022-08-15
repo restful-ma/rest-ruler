@@ -35,9 +35,10 @@ class LOCMapperTest {
         this.mapper = new LOCMapper(openAPI, jsonURL);
         this.mapper.mapOpenAPIKeysToLOC();
         assertEquals(38, this.mapper.getLOCOfPath("/quotes"));
-        assertEquals(2, this.mapper.getOpenAPIKeyLOC().get("paths").size());
+        assertEquals(4, this.mapper.getOpenAPIKeyLOC().get("paths").size());
         assertEquals(58, this.mapper.getOpenAPIKeyLOC().get("paths").get("/symbols"));
-
+        assertEquals(89, this.mapper.getOpenAPIKeyLOC().get("paths").get("/"));
+        assertEquals(120, this.mapper.getOpenAPIKeyLOC().get("paths").get("/adults/{get_adult_ID}/name"));
     }
 
     @Test
@@ -47,7 +48,6 @@ class LOCMapperTest {
         this.mapper = new LOCMapper(openAPI, fileNotFoundURL);
         this.mapper.mapOpenAPIKeysToLOC();
         assertEquals("File not found!".trim(), errContent.toString().trim());
-
     }
 
     @Test
@@ -58,6 +58,4 @@ class LOCMapperTest {
         this.mapper.mapOpenAPIKeysToLOC();
         assertEquals("Wrong file format!".trim(), errContent.toString().trim());
     }
-
-
 }
