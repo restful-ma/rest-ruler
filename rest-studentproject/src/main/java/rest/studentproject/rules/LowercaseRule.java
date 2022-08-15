@@ -14,11 +14,11 @@ import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
 
 public class LowercaseRule implements IRestRule {
 
-    private static final String title = "Lowercase letters should be preferred in URI paths";
-    private static final RuleCategory ruleCategory = RuleCategory.URIS;
-    private static final RuleSeverity ruleSeverity = RuleSeverity.ERROR;
-    private static final RuleType ruleType = RuleType.STATIC;
-    private static final List<RuleSoftwareQualityAttribute> lstRuleSoftwareQualityAttribute = List.of(RuleSoftwareQualityAttribute.COMPATIBILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
+    private static final String TITLE = "Lowercase letters should be preferred in URI paths";
+    private static final RuleCategory RULE_CATEGORY = RuleCategory.URIS;
+    private static final RuleSeverity RULE_SEVERITY = RuleSeverity.ERROR;
+    private static final RuleType RULE_TYPE = RuleType.STATIC;
+    private static final List<RuleSoftwareQualityAttribute> RULE_SOFTWARE_QUALITY_ATTRIBUTE_LIST = List.of(RuleSoftwareQualityAttribute.COMPATIBILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
     private boolean isActive;
 
     public LowercaseRule(boolean isActive) {
@@ -31,7 +31,7 @@ public class LowercaseRule implements IRestRule {
      */
     @Override
     public String getTitle() {
-        return title;
+        return TITLE;
     }
 
     /**
@@ -39,7 +39,7 @@ public class LowercaseRule implements IRestRule {
      */
     @Override
     public RuleCategory getCategory() {
-        return LowercaseRule.ruleCategory;
+        return LowercaseRule.RULE_CATEGORY;
 
     }
 
@@ -48,7 +48,7 @@ public class LowercaseRule implements IRestRule {
      */
     @Override
     public RuleSeverity getSeverityType() {
-        return ruleSeverity;
+        return RULE_SEVERITY;
     }
 
     /**
@@ -56,7 +56,7 @@ public class LowercaseRule implements IRestRule {
      */
     @Override
     public RuleType getRuleType() {
-        return LowercaseRule.ruleType;
+        return LowercaseRule.RULE_TYPE;
     }
 
     /**
@@ -64,7 +64,7 @@ public class LowercaseRule implements IRestRule {
      */
     @Override
     public List<RuleSoftwareQualityAttribute> getRuleSoftwareQualityAttribute() {
-        return lstRuleSoftwareQualityAttribute;
+        return RULE_SOFTWARE_QUALITY_ATTRIBUTE_LIST;
     }
 
     /**

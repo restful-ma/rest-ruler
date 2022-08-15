@@ -13,20 +13,21 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.apache.commons.lang3.StringUtils.split;
 import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
 
 public class HyphensRule implements IRestRule {
 
     private static final String PATH_TO_ENGLISH_DICTIONARY = "src/main/java/rest/studentproject/docs/wordninja_words.txt";
-    private static final String title = "Hyphens (-) should be used to improve the readability of URIs";
-    private static final RuleCategory ruleCategory = RuleCategory.URIS;
-    private static final RuleSeverity ruleSeverity = RuleSeverity.ERROR;
-    private static final RuleType ruleType = RuleType.STATIC;
-    private static final List<RuleSoftwareQualityAttribute> lstRuleSoftwareQualityAttribute = List.of(RuleSoftwareQualityAttribute.COMPATIBILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
+    private static final String TITLE = "Hyphens (-) should be used to improve the readability of URIs";
+    private static final RuleCategory RULE_CATEGORY = RuleCategory.URIS;
+    private static final RuleSeverity RULE_SEVERITY = RuleSeverity.ERROR;
+    private static final RuleType RULE_TYPE = RuleType.STATIC;
+    private static final List<RuleSoftwareQualityAttribute> RULE_SOFTWARE_QUALITY_ATTRIBUTE_LIST = List.of(RuleSoftwareQualityAttribute.COMPATIBILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
     private boolean isActive;
 
     public HyphensRule(boolean isActive) {
@@ -37,7 +38,7 @@ public class HyphensRule implements IRestRule {
      */
     @Override
     public String getTitle() {
-        return title;
+        return TITLE;
     }
 
     /**
@@ -45,7 +46,7 @@ public class HyphensRule implements IRestRule {
      */
     @Override
     public RuleCategory getCategory() {
-        return HyphensRule.ruleCategory;
+        return HyphensRule.RULE_CATEGORY;
 
     }
 
@@ -54,7 +55,7 @@ public class HyphensRule implements IRestRule {
      */
     @Override
     public RuleSeverity getSeverityType() {
-        return ruleSeverity;
+        return RULE_SEVERITY;
     }
 
     /**
@@ -62,7 +63,7 @@ public class HyphensRule implements IRestRule {
      */
     @Override
     public RuleType getRuleType() {
-        return HyphensRule.ruleType;
+        return HyphensRule.RULE_TYPE;
     }
 
     /**
@@ -70,7 +71,7 @@ public class HyphensRule implements IRestRule {
      */
     @Override
     public List<RuleSoftwareQualityAttribute> getRuleSoftwareQualityAttribute() {
-        return lstRuleSoftwareQualityAttribute;
+        return RULE_SOFTWARE_QUALITY_ATTRIBUTE_LIST;
     }
 
     /**
@@ -90,7 +91,7 @@ public class HyphensRule implements IRestRule {
     }
 
     /**
-     * Rule to check if the path segments could contains more than one word, if so there is a violation.
+     * Rule to check if the path segments could contain more than one word, if so there is a violation.
      * @param openAPI
      */
     @Override
@@ -102,42 +103,50 @@ public class HyphensRule implements IRestRule {
 
         if(paths.isEmpty()) return violations;
         // Loop through the paths
+        return getLstViolations(violations, paths);
+    }
+
+    private List<Violation> getLstViolations(List<Violation> violations, Set<String> paths) {
         for (String path: paths) {
             if(path.trim().equals("")) continue;
             // Get the path without the curly braces
             String[] pathSegments = path.split("/");
-            for (String pathSegment:pathSegments) {
-                if(pathSegment.isEmpty()) continue;
-                List<String> itemsFromHyphens = Arrays.asList(pathSegment.split("-"));
-                // Math the segment path based on the regex. This solution is very fast to run
-                List<String> pathWithoutParameters = Arrays.asList(pathSegment.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])"));
+            // Extract path segments based on / char and check if there are violations
+            Violation violation = getLstViolationsFromPathSegments(path, pathSegments);
+            if(violation != null) violations.add(violation);
 
-                // If the path is correct and the matching regex creates the same split with the "-" as split, then continue with the next segment path
-                // if(itemsFromHyphens.size() == 1 && pathWithoutParameters.size() == 1 && itemsFromHyphens.equals(pathWithoutParameters)) continue;
 
-                if(pathWithoutParameters.size() > 1) {
-                    violations.add(new Violation(locMapper.getLOCOfPath(path), "", "", "Error at:" + path));
-                    break;
-                }
+        }
+        return violations;
+    }
 
-                // If with the regex no substring was found then we need to check against a dictionary of english words
-                List<String> subStringFromPath = null;
-                try {
-                    subStringFromPath = splitContiguousWords(pathSegment);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+    private Violation getLstViolationsFromPathSegments(String path, String[] pathSegments) {
+        for (String pathSegment: pathSegments) {
+            if(pathSegment.isEmpty()) continue;
+            List<String> itemsFromHyphens = Arrays.asList(pathSegment.split("-"));
+            // Math the segment path based on the regex. This solution is very fast to run
+            List<String> pathWithoutParameters = Arrays.asList(pathSegment.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])"));
+
+            if(pathWithoutParameters.size() > 1) {
+                return new Violation(locMapper.getLOCOfPath(path), "", "", "Error at:" + path);
+            }
+
+            // If with the regex no substring was found then we need to check against a dictionary of english words
+            try {
+                List<String> subStringFromPath = splitContiguousWords(pathSegment);
                 List<String> pathWithoutParameterDictionaryMatching = Arrays.asList(subStringFromPath.get(0).split(" "));
                 // If the path is correct and the matching regex creates the same split with the "-" as split, then continue with the next segment path
                 if(itemsFromHyphens.equals(pathWithoutParameterDictionaryMatching) || itemsFromHyphens.equals(subStringFromPath)) continue;
                 // Add violations if there is some match
-                violations.add(new Violation(locMapper.getLOCOfPath(path), "", "", "Error at:" + path));
-                break;
-
+                return new Violation(locMapper.getLOCOfPath(path), "", "", "Error at:" + path);
+            } catch (IOException e) {
+                Logger logger = Logger.getLogger(HyphensRule.class.getName());
+                logger.log(Level.SEVERE, "Error on checking substring against a dictionary{e}", e);
             }
 
+
         }
-        return violations;
+        return null;
     }
 
     public List<String> splitContiguousWords(String sentence) throws IOException {
@@ -145,10 +154,16 @@ public class HyphensRule implements IRestRule {
         String splitRegex = "[^a-zA-Z0-9']+";
         Map<String, Number> wordCost = new HashMap<>();
         List<String> dictionaryWords = new ArrayList<>();
-        Stream<String> lines = Files.lines(Paths.get(PATH_TO_ENGLISH_DICTIONARY), Charset.defaultCharset());
-        dictionaryWords = lines.collect(Collectors.toList());
-
-
+        Stream<String> stringLines = null;
+        try {
+            stringLines = Files.lines(Paths.get(PATH_TO_ENGLISH_DICTIONARY), Charset.defaultCharset());
+            dictionaryWords = stringLines.collect(Collectors.toList());
+        } catch (Exception e) {
+            Logger logger = Logger.getLogger(HyphensRule.class.getName());
+            logger.log(Level.SEVERE, "Error on getting the english dictionary file {e}", e);
+        } finally {
+            if(stringLines != null) stringLines.close();
+        }
 
         double naturalLogDictionaryWordsCount = Math.log(dictionaryWords.size());
         long wordIdx = 0;
@@ -175,12 +190,11 @@ public class HyphensRule implements IRestRule {
             ImmutablePair<Number, Number> candidate = bestMatch(partSentence, cost, idx, wordCost, maxWordLength);
             Number candidateCost = candidate.getKey();
             Number candidateIndexValue = candidate.getValue();
-            if (candidateCost.doubleValue() != cost.get(idx).getKey().doubleValue()) {
+            if (candidateCost.doubleValue() != cost.get(idx).getKey().doubleValue())
                 throw new RuntimeException("Candidate cost unmatched; This should not be the case!");
-            }
             boolean newToken = true;
             String token = partSentence.substring(idx - candidateIndexValue.intValue(), idx);
-            if (token != "\'" && output.size() > 0) {
+            if (token.equals("\'") && !output.isEmpty()) {
                 String lastWord = output.get(output.size() - 1);
                 if (lastWord.equalsIgnoreCase("\'s") ||
                         (Character.isDigit(partSentence.charAt(idx - 1)) && Character.isDigit(lastWord.charAt(0)))) {
