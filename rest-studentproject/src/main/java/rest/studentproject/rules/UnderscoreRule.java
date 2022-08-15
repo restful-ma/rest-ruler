@@ -9,10 +9,7 @@ import rest.studentproject.rules.constants.RuleSeverity;
 import rest.studentproject.rules.constants.RuleSoftwareQualityAttribute;
 import rest.studentproject.rules.constants.RuleType;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Implementation of the rule: Underscores (_) should not be used in URI.
@@ -74,17 +71,20 @@ public class UnderscoreRule implements IRestRule {
      * @return the list of violations.
      */
     public List<Violation> checkViolation(OpenAPI openAPI) {
-        Set<String> paths = openAPI.getPaths().keySet();
+        Set<String> paths = new HashSet<>();
+        paths.addAll(openAPI.getPaths().keySet());
         List<Server> servers = openAPI.getServers();
 
+        // Add server paths to the path list
+        for (Server server : servers) {
+            if (server.getUrl().trim().isEmpty()) continue;
+            paths.add(server.getUrl());
+        }
+
+        // Violate the underscore rule for the path list
         for (String path : paths) {
             if (path.trim().isEmpty()) continue;
             checkUnderscore(path);
-        }
-
-        for (Server server : servers) {
-            if (server.getUrl().trim().isEmpty()) continue;
-            checkUnderscore(server.getUrl());
         }
         return violationList;
     }
