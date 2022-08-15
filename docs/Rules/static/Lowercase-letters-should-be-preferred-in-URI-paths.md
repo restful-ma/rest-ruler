@@ -38,6 +38,7 @@ scheme and host components.
 
 ### What is not checked:
 * presence of invalid delimiters
+* check of dynamic parameters
 
 ### Future work
 
