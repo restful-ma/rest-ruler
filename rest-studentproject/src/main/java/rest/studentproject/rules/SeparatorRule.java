@@ -13,6 +13,8 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
+
 /**
  * RULE: Forward slash separator (/) must be used to indicate a hierarchical relationship
  */
@@ -28,12 +30,11 @@ public class SeparatorRule implements IRestRule {
     boolean isActive;
     private static char[] separators = {'.', ':', ';', ',', '\\', '#', '/', '-', '?', '='};
 
-    private static LOCMapper locMapper;
+
 
 
     public SeparatorRule(boolean isActive) {
         this.isActive = isActive;
-        locMapper = RestAnalyzer.locMapper;
     }
 
     @Override
@@ -98,7 +99,7 @@ public class SeparatorRule implements IRestRule {
             if (!matcher.find()) {
 
                 //find illegal separators
-                findInvalidSeparators(path);
+                violationList.addAll(findInvalidSeparators(path));
 
                 //unknown case:
                 Violation unknownCase = catchUnknownCase(currentSize, violationList.size(), path);

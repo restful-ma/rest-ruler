@@ -3,12 +3,15 @@ package rest.studentproject.rules.separatorTests;
 import io.swagger.parser.OpenAPIParser;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.parser.core.models.SwaggerParseResult;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import rest.studentproject.analyzer.RestAnalyzer;
 import rest.studentproject.rules.SeparatorRule;
 import rest.studentproject.rules.Violation;
 
+import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashSet;
@@ -19,14 +22,24 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SeparatorRuleTest {
     SeparatorRule separatorRule;
-
-    @BeforeEach
-    void setUp(){
-        separatorRule = new SeparatorRule(true);
-    }
+    RestAnalyzer restAnalyzer;
 
     //relative path to test JSON file
     private static final String PATH = "/src/test/java/rest/studentproject/rules/separatorTests/separator_test.json";
+
+/*
+    @BeforeEach
+    void setUp() {
+        try {
+            restAnalyzer = new RestAnalyzer( Paths.get("").toAbsolutePath().toString() + PATH);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        separatorRule = new SeparatorRule(true);
+    }
+*/
+
+
 
     /**
      * This Test checks if a JSON file can be correctly opened, read and have violations in the file detected
@@ -36,15 +49,23 @@ class SeparatorRuleTest {
     void checkViolation() {
 
         //retrieve current work dir
-        Path currentRelativePath = Paths.get("");
-        String root = currentRelativePath.toAbsolutePath().toString();
+        //Path currentRelativePath = Paths.get("");
+        //String root = currentRelativePath.toAbsolutePath().toString();
 
         //open JSON file
-        SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation(root + PATH, null, null);
-        OpenAPI openAPI = swaggerParseResult.getOpenAPI();
+        //SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation(root + PATH, null, null);
+        //OpenAPI openAPI = swaggerParseResult.getOpenAPI();
 
         //execute method under test
-        List<Violation> violationList = separatorRule.checkViolation(openAPI);
+        //List<Violation> violationList = separatorRule.checkViolation(openAPI);
+        try {
+            restAnalyzer = new RestAnalyzer( Paths.get("").toAbsolutePath().toString() + PATH);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        separatorRule = new SeparatorRule(true);
+
+        List<Violation> violationList = restAnalyzer.runAnalyse(List.of(this.separatorRule), false);
 
 
         for (Violation v:violationList) {
