@@ -157,82 +157,129 @@ paths:
         "404":
           description: "Not Found"
   "/Pets":
-  get:
-    tag: "URI Rules"
-    description: "Get Pets"
-    response: 
-      "200":
-        description: "A list of pets"
-      "400":
-          description: The specified user ID is invalid (not a number).
-      "401":
-        description: Unauthorized
-      "404":
-        description: A user with the specified ID was not found.
-    summary: "A list of pets",
-    tags:
-        "pets"
-  
-"/pets/{petName}/LocationsStates":
-  get:
-    tag: "URI Rules"
-    description: "Get Pet Locations States",
-    response: 
-      "200":
-        description: "A list of locations states given a pet name"
-      "400":
-          description: The specified user ID is invalid (not a number).
-      "401":
-        description: Unauthorized
-      "404":
-        description: A user with the specified ID was not found.
-    summary: "A list of locations states given a pet name",
-      tags: 
-        "pets"
-
-"/pets/{petName}/locations/{locationName}/CITY":
-  get:
-    tag: "URI Rules"
-    description: "Get Pet Location City" 
-    response: 
-      "200":
-        description: "City where a pet is located"
-      "400":
-          description: The specified user ID is invalid (not a number).
-      "401":
-        description: Unauthorized
-      "404":
-        description: A user with the specified ID was not found.
-    summary: "City where a pet is located"
-    tags:
-      "pets"
-      
-"/pets/{petName}/addLocation": 
-  get: 
-    tag: "URI Rules"
-    description: "Add a new location to a pet"
-    requestBody: 
-      content: 
-          application/json:
-            examples:
-              basic: 
-                "$ref": "#/components/examples/post-createNotificationConfiguration-basic"
-            schema: 
-              $ref: "#/components/schemas/CreateNotificationConfigurationRequest"
-              
-    response: 
-      "200":
-        description: "Country where a pet is located"
-      "400":
-        description: The specified user ID is invalid (not a number).
-      "401":
-        description: Unauthorized
-      "404":
-        description: A user with the specified ID was not found.
-      summary: "Country where a pet is located"
+    get:
+      tag: "URI Rules"
+      description: "Get Pets. Violations: Lowercase letters should be preferred in URI paths. Pets should be pets."
+      response: 
+        "200":
+          description: "A list of pets"
+        "400":
+            description: "The specified user ID is invalid (not a number)."
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "A user with the specified ID was not found.""
+      summary: "A list of pets"
       tags:
-        "pets"         
+          "pets"
+  
+  "/pets/{petName}/LocationsStates":
+    get:
+      tag: "URI Rules"
+      description: "Get Pet Locations States. Violations: Lowercase letters should be preferred in URI paths. LocationsStates should be locationsstates"
+      response: 
+        "200":
+          description: "A list of locations states given a pet name"
+        "400":
+            description: "The specified user ID is invalid (not a number)."
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "A user with the specified ID was not found."
+      summary: "A list of locations states given a pet name"
+        tags: 
+          "pets"
 
+  "/pets/{petName}/locations/{locationName}/CITY":
+    get:
+      tag: "URI Rules"
+      description: "Get Pet Location City. Violations: Lowercase letters should be preferred in URI paths. CITY should be city." 
+      response: 
+        "200":
+          description: "City where a pet is located"
+        "400":
+            description: "The specified user ID is invalid (not a number)."
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "A user with the specified ID was not found."
+      summary: "City where a pet is located"
+      tags:
+        "pets"
+      
+  "/pets/{petName}/addLocation": 
+    get: 
+      tag: "URI Rules"
+      description: "Add a new location to a pet. Violations: Lowercase letters should be preferred in URI paths. Location should be location"
+      requestBody: 
+        content: 
+            application/json:
+              examples:
+                basic: 
+                  "$ref": "#/components/examples/post-createNotificationConfiguration-basic"
+              schema: 
+                $ref: "#/components/schemas/CreateNotificationConfigurationRequest"
+                
+      response: 
+        "200":
+          description: "Country where a pet is located"
+        "400":
+          description: "The specified user ID is invalid (not a number)."
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "A user with the specified ID was not found."
+        summary: "Country where a pet is located"
+        tags:
+          "pets"
+  "/bigPets":
+    get:
+      tag: "URI Rules"
+      description: "Violations: LHyphens (-) should be used to improve the readability of URIs. bigPets should be written as big-pets."
+      response:
+        "200":
+          description: "Big cats"
+        "400":
+          description: "The specified user ID is invalid (not a number)."
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "A user with the specified ID was not found."
+      summary: "List of big cats"
+      tags:
+        "pets"
+  "/small.Pets":
+    get:
+      tag: "URI Rules"
+      description: "Violations: LHyphens (-) should be used to improve the readability of URIs. small.Pets should be written as small-pets."
+      response:
+        "200":
+          description: "Small cats"
+        "400":
+          description: "The specified user ID is invalid (not a number)."
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "A user with the specified ID was not found."
+      summary: "List of small cats"
+      tags:
+        "pets"
+  "/MediumSizePets":
+    get:
+      tag: "URI Rules"
+      description: "Violations: LHyphens (-) should be used to improve the readability of URIs. MediumSizePets should be written as medium-size-pets."
+      response:
+        "200":
+          description: "Small cats"
+        "400":
+          description: "The specified user ID is invalid (not a number)."
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "A user with the specified ID was not found."
+      summary: "List of small cats"
+      tags:
+        "pets"
 components:
   # Define all components here
   securitySchemes:
