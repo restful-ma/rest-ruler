@@ -19,8 +19,9 @@ dependencies {
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
     implementation("io.swagger.parser.v3:swagger-parser-v3:2.1.1")
-    implementation 'io.swagger.parser.v3:swagger-parser:2.1.1'
+    implementation ("io.swagger.parser.v3:swagger-parser:2.1.1")
     testImplementation("io.micronaut:micronaut-http-client")
+    implementation("org.apache.directory.studio:org.apache.commons.io:2.4")
 
 }
 
