@@ -23,6 +23,7 @@ public class Violation {
     public IRestRule getRule() {
         return rule;
     }
+
     public int getLineViolation() {
         return lineViolation;
     }
@@ -55,7 +56,7 @@ public class Violation {
         this.errorMessage = errorMessage;
     }
 
-    public static Comparator<Violation> getComparator(){
+    public static Comparator<Violation> getComparator() {
         return Comparator.comparing(Violation::getKeyViolation).thenComparing(v -> v.getRule().getTitle()).thenComparing(v -> v.getRule().getRuleType());
     }
 
