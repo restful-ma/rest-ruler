@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import rest.studentproject.analyzer.RestAnalyzer;
 import rest.studentproject.rules.HyphensRule;
+import rest.studentproject.rules.UnderscoreRule;
 import rest.studentproject.rules.Violation;
 
 import java.net.MalformedURLException;
@@ -19,11 +20,6 @@ class HyphensRuleTest {
     HyphensRule hyphensRuleTest;
     RestAnalyzer restAnalyzer;
 
-    @BeforeEach
-    void setUp() {
-        hyphensRuleTest = new HyphensRule(true);
-
-    }
 
     @Test
     @DisplayName("Detect if a path segment contains more than a word. Here 6 paths contain a violation.")
@@ -71,11 +67,11 @@ class HyphensRuleTest {
                 "Detection of violations should work.");
     }
 
-    private List<Violation> runMethodUnderTest(String url) {
-        //open JSON file
-        SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation(url, null, null);
-        OpenAPI openAPI = swaggerParseResult.getOpenAPI();
+    private List<Violation> runMethodUnderTest(String url) throws MalformedURLException {
 
-        return hyphensRuleTest.checkViolation(openAPI);
+        this.restAnalyzer = new RestAnalyzer(url);
+        this.hyphensRuleTest = new HyphensRule(true);
+
+        return this.restAnalyzer.runAnalyse(List.of(this.hyphensRuleTest),false);
     }
 }

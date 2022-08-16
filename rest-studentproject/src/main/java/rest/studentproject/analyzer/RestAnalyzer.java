@@ -28,13 +28,17 @@ public class RestAnalyzer {
     }
 
 
-    public List<Violation> runAnalyse(List<IRestRule> activeRules) {
+    public List<Violation> runAnalyse(List<IRestRule> activeRules, boolean generateReport) {
         List<Violation> violations = new ArrayList<>();
         for (IRestRule rule : activeRules) {
             if (!rule.getIsActive()) continue;
             violations.addAll(rule.checkViolation(this.openAPI));
         }
-        report.generateReport(violations);
+        //generates Report
+        if (generateReport){
+            report.generateReport(violations);
+        }
+
 
         return violations;
     }
