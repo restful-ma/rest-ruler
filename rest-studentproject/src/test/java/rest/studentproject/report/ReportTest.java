@@ -16,13 +16,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ReportTest {
 
-    @BeforeEach
-    void setUp() {
-    }
-
-    @AfterEach
-    void tearDown() {
-    }
 
     @Test
     void generateReport() {
