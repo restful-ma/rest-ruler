@@ -1,10 +1,7 @@
 package rest.studentproject.rules;
 
 import io.swagger.v3.oas.models.OpenAPI;
-import rest.studentproject.rules.constants.RuleCategory;
-import rest.studentproject.rules.constants.RuleSeverity;
-import rest.studentproject.rules.constants.RuleSoftwareQualityAttribute;
-import rest.studentproject.rules.constants.RuleType;
+import rest.studentproject.rules.constants.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,7 +81,8 @@ public class LowercaseRule implements IRestRule {
     }
 
     /**
-     * Rule to check if the URI path contains only lowercase letters. If not, the rule is violated. 
+     * Rule to check if the URI path contains only lowercase letters. If not, the rule is violated.
+     *
      * @param openAPI
      */
     @Override
@@ -97,22 +95,22 @@ public class LowercaseRule implements IRestRule {
 
         // Get the paths from the OpenAPI object
         Set<String> paths = openAPI.getPaths().keySet();
-        
-        if(paths.isEmpty()) return violations;
+
+        if (paths.isEmpty()) return violations;
         // Loop through the paths
-        for (String path: paths) {
-            if(path.trim().equals("")) continue;
+        for (String path : paths) {
+            if (path.trim().equals("")) continue;
             // Get the path without the curly braces
             String pathWithoutParameters = path.replaceAll(start + ".*" + end, "");
             // Get the path in lowercase
             String pathWithoutParametersLowerCase = pathWithoutParameters.toLowerCase();
             // Check if the path contains only lowercase letters
-            if(!pathWithoutParametersLowerCase.equals(pathWithoutParameters)){
-                violations.add(new Violation(locMapper.getLOCOfPath(path), "", "", "Error at:" + path));
+            if (!pathWithoutParametersLowerCase.equals(pathWithoutParameters)) {
+                violations.add(new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.LOWERCASE, path, ErrorMessage.LOWERCASE));
             }
-                
+
         }
-        
+
         return violations;
     }
 }
