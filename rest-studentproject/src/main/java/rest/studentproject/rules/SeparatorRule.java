@@ -1,8 +1,6 @@
 package rest.studentproject.rules;
 
 import io.swagger.v3.oas.models.OpenAPI;
-import rest.studentproject.analyzer.LOCMapper;
-import rest.studentproject.analyzer.RestAnalyzer;
 import rest.studentproject.rules.constants.RuleCategory;
 import rest.studentproject.rules.constants.RuleSeverity;
 import rest.studentproject.rules.constants.RuleSoftwareQualityAttribute;
@@ -103,9 +101,9 @@ public class SeparatorRule implements IRestRule {
 
                 //unknown case:
                 Violation unknownCase = catchUnknownCase(currentSize, violationList.size(), path);
-                if (unknownCase != null)
+                if (unknownCase != null){
                     violationList.add(unknownCase);
-
+                }
 
             }
         }
@@ -187,7 +185,7 @@ public class SeparatorRule implements IRestRule {
                 boolean isSeparator = checkForSeparator(c, path);
                 if (isSeparator) {
                     String suggestion = "replace '" + c + "' with a forward slash '/' to indicate a hierarchical relationship";
-                    //lineViolation placeholder set as 0
+
                     violationList.add(new Violation(this, locMapper.getLOCOfPath(path), suggestion, path, ERROR_MESSAGE));
 
                 }
