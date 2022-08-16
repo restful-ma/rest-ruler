@@ -4,10 +4,7 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.servers.Server;
 import rest.studentproject.analyzer.LOCMapper;
 import rest.studentproject.analyzer.RestAnalyzer;
-import rest.studentproject.rules.constants.RuleCategory;
-import rest.studentproject.rules.constants.RuleSeverity;
-import rest.studentproject.rules.constants.RuleSoftwareQualityAttribute;
-import rest.studentproject.rules.constants.RuleType;
+import rest.studentproject.rules.constants.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -98,7 +95,7 @@ public class UnderscoreRule implements IRestRule {
         String pathWithoutVariable = path.replaceAll("\\{" + ".*" + "\\}", "");
         if (!pathWithoutVariable.contains("_")) return;
 
-        violationList.add(new Violation(this, locMapper.getLOCOfPath(path), "", path, ""));
+        violationList.add(new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.UNDERSCORE, path, ErrorMessage.UNDERSCORE));
 
 
     }
