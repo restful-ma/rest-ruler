@@ -11,4 +11,10 @@ out/
 .project
 .settings
 .classpath
+<<<<<<< HEAD
 .factorypath
+=======
+.factorypath
+.class
+bin/
+>>>>>>> main
