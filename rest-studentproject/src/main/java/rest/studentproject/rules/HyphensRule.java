@@ -127,7 +127,7 @@ public class HyphensRule implements IRestRule {
             List<String> pathWithoutParameters = Arrays.asList(pathSegment.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])"));
 
             if (pathWithoutParameters.size() > 1) {
-                return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.HYPHEN, "", "Error at:" + path);
+                return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.HYPHEN, path, ErrorMessage.HYPHEN);
             }
 
             // If with the regex no substring was found then we need to check against a dictionary of english words
@@ -138,7 +138,7 @@ public class HyphensRule implements IRestRule {
                 if (itemsFromHyphens.equals(pathWithoutParameterDictionaryMatching) || itemsFromHyphens.equals(subStringFromPath))
                     continue;
                 // Add violations if there is some match
-                return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.HYPHEN, "", "Error at:" + path);
+                return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.HYPHEN, path, ErrorMessage.HYPHEN);
             } catch (IOException e) {
                 Logger logger = Logger.getLogger(HyphensRule.class.getName());
                 logger.log(Level.SEVERE, "Error on checking substring against a dictionary{e}", e);

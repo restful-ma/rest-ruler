@@ -106,7 +106,7 @@ public class LowercaseRule implements IRestRule {
             String pathWithoutParametersLowerCase = pathWithoutParameters.toLowerCase();
             // Check if the path contains only lowercase letters
             if (!pathWithoutParametersLowerCase.equals(pathWithoutParameters)) {
-                violations.add(new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.LOWERCASE, "", "Error at:" + path));
+                violations.add(new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.LOWERCASE, path, ErrorMessage.LOWERCASE));
             }
 
         }
