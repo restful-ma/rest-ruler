@@ -25,6 +25,7 @@ public class RestAnalyzer {
         this.openAPI = swaggerParseResult.getOpenAPI();
         locMapper = new LOCMapper(openAPI, url);
         locMapper.mapOpenAPIKeysToLOC();
+
     }
 
 
