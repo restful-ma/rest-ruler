@@ -1,10 +1,7 @@
 package rest.studentproject.rules;
 
 import io.swagger.v3.oas.models.OpenAPI;
-import rest.studentproject.rules.constants.RuleCategory;
-import rest.studentproject.rules.constants.RuleSeverity;
-import rest.studentproject.rules.constants.RuleSoftwareQualityAttribute;
-import rest.studentproject.rules.constants.RuleType;
+import rest.studentproject.rules.constants.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -109,7 +106,7 @@ public class LowercaseRule implements IRestRule {
             String pathWithoutParametersLowerCase = pathWithoutParameters.toLowerCase();
             // Check if the path contains only lowercase letters
             if (!pathWithoutParametersLowerCase.equals(pathWithoutParameters)) {
-                violations.add(new Violation(this, locMapper.getLOCOfPath(path), "", "", "Error at:" + path));
+                violations.add(new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.LOWERCASE, "", "Error at:" + path));
             }
 
         }

@@ -3,10 +3,7 @@ package rest.studentproject.rules;
 import com.google.common.collect.Lists;
 import io.swagger.v3.oas.models.OpenAPI;
 import org.apache.commons.lang3.tuple.ImmutablePair;
-import rest.studentproject.rules.constants.RuleCategory;
-import rest.studentproject.rules.constants.RuleSeverity;
-import rest.studentproject.rules.constants.RuleSoftwareQualityAttribute;
-import rest.studentproject.rules.constants.RuleType;
+import rest.studentproject.rules.constants.*;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -130,7 +127,7 @@ public class HyphensRule implements IRestRule {
             List<String> pathWithoutParameters = Arrays.asList(pathSegment.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])"));
 
             if (pathWithoutParameters.size() > 1) {
-                return new Violation(this, locMapper.getLOCOfPath(path), "", "", "Error at:" + path);
+                return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.HYPHEN, "", "Error at:" + path);
             }
 
             // If with the regex no substring was found then we need to check against a dictionary of english words
@@ -141,7 +138,7 @@ public class HyphensRule implements IRestRule {
                 if (itemsFromHyphens.equals(pathWithoutParameterDictionaryMatching) || itemsFromHyphens.equals(subStringFromPath))
                     continue;
                 // Add violations if there is some match
-                return new Violation(this, locMapper.getLOCOfPath(path), "", "", "Error at:" + path);
+                return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.HYPHEN, "", "Error at:" + path);
             } catch (IOException e) {
                 Logger logger = Logger.getLogger(HyphensRule.class.getName());
                 logger.log(Level.SEVERE, "Error on checking substring against a dictionary{e}", e);

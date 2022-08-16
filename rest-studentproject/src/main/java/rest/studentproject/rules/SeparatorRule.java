@@ -1,10 +1,7 @@
 package rest.studentproject.rules;
 
 import io.swagger.v3.oas.models.OpenAPI;
-import rest.studentproject.rules.constants.RuleCategory;
-import rest.studentproject.rules.constants.RuleSeverity;
-import rest.studentproject.rules.constants.RuleSoftwareQualityAttribute;
-import rest.studentproject.rules.constants.RuleType;
+import rest.studentproject.rules.constants.*;
 
 
 import java.util.*;
@@ -24,7 +21,6 @@ public class SeparatorRule implements IRestRule {
     static final RuleType RULE_TYPE = RuleType.STATIC;
     static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List.of(RuleSoftwareQualityAttribute.MAINTAINABILITY);
 
-    private static final String ERROR_MESSAGE = "A forward slash '/' has to be used as a separator";
     boolean isActive;
     private static char[] separators = {'.', ':', ';', ',', '\\', '#', '/', '-', '?', '='};
 
@@ -184,7 +180,7 @@ public class SeparatorRule implements IRestRule {
                 if (isSeparator) {
                     String suggestion = "replace '" + c + "' with a forward slash '/' to indicate a hierarchical relationship";
 
-                    violationList.add(new Violation(this, locMapper.getLOCOfPath(path), suggestion, path, ERROR_MESSAGE));
+                    violationList.add(new Violation(this, locMapper.getLOCOfPath(path), suggestion, path, ErrorMessage.SEPARATOR));
 
                 }
             }
@@ -205,9 +201,9 @@ public class SeparatorRule implements IRestRule {
         if (violationListSize == currentSize) {
             //check for '?' and '#' as they are illegal in paths
             if (path.contains("#") || path.contains("?")) {
-                return new Violation(this, locMapper.getLOCOfPath(path), "remove any '#' and '?' from the path", path, ERROR_MESSAGE);
+                return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.SEPARATOR, path, ErrorMessage.SEPARATOR);
             } else {
-                return new Violation(this, locMapper.getLOCOfPath(path), "-", path, ERROR_MESSAGE);
+                return new Violation(this, locMapper.getLOCOfPath(path), "-", path, ErrorMessage.SEPARATOR);
             }
 
         }
