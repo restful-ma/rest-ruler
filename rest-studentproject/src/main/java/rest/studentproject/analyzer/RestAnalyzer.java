@@ -3,8 +3,10 @@ package rest.studentproject.analyzer;
 import io.swagger.parser.OpenAPIParser;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.parser.core.models.SwaggerParseResult;
+
 import rest.studentproject.rules.IRestRule;
 import rest.studentproject.rules.Violation;
+
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ public class RestAnalyzer {
         locMapper = new LOCMapper(openAPI, url);
         locMapper.mapOpenAPIKeysToLOC();
     }
+
 
     public List<List<Violation>> runAnalyse(List<IRestRule> activeRules) {
         List<List<Violation>> violations = new ArrayList<>();
