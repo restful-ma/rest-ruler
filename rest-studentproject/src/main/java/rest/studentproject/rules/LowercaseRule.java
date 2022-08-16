@@ -10,13 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
+
 public class LowercaseRule implements IRestRule {
 
-    private String title = "Lowercase letters should be preferred in URI paths";
-    private RuleCategory ruleCategory = RuleCategory.URIS;
-    private RuleSeverity ruleSeverity = RuleSeverity.ERROR;
-    private RuleType ruleType = RuleType.STATIC;
-    private List<RuleSoftwareQualityAttribute> lstRuleSoftwareQualityAttribute = List.of(RuleSoftwareQualityAttribute.COMPATIBILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
+    private static final String TITLE = "Lowercase letters should be preferred in URI paths";
+    private static final RuleCategory RULE_CATEGORY = RuleCategory.URIS;
+    private static final RuleSeverity RULE_SEVERITY = RuleSeverity.ERROR;
+    private static final RuleType RULE_TYPE = RuleType.STATIC;
+    private static final List<RuleSoftwareQualityAttribute> RULE_SOFTWARE_QUALITY_ATTRIBUTE_LIST = List.of(RuleSoftwareQualityAttribute.COMPATIBILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
     private boolean isActive;
 
     public LowercaseRule(boolean isActive) {
@@ -29,7 +31,7 @@ public class LowercaseRule implements IRestRule {
      */
     @Override
     public String getTitle() {
-        return this.title;
+        return TITLE;
     }
 
     /**
@@ -37,7 +39,7 @@ public class LowercaseRule implements IRestRule {
      */
     @Override
     public RuleCategory getCategory() {
-        return this.ruleCategory;
+        return LowercaseRule.RULE_CATEGORY;
 
     }
 
@@ -46,7 +48,7 @@ public class LowercaseRule implements IRestRule {
      */
     @Override
     public RuleSeverity getSeverityType() {
-        return this.ruleSeverity;
+        return RULE_SEVERITY;
     }
 
     /**
@@ -54,7 +56,7 @@ public class LowercaseRule implements IRestRule {
      */
     @Override
     public RuleType getRuleType() {
-        return this.ruleType;
+        return LowercaseRule.RULE_TYPE;
     }
 
     /**
@@ -62,7 +64,7 @@ public class LowercaseRule implements IRestRule {
      */
     @Override
     public List<RuleSoftwareQualityAttribute> getRuleSoftwareQualityAttribute() {
-        return lstRuleSoftwareQualityAttribute;
+        return RULE_SOFTWARE_QUALITY_ATTRIBUTE_LIST;
     }
 
     /**
@@ -96,7 +98,7 @@ public class LowercaseRule implements IRestRule {
         // Get the paths from the OpenAPI object
         Set<String> paths = openAPI.getPaths().keySet();
         
-        if(paths.isEmpty()) return null;
+        if(paths.isEmpty()) return violations;
         // Loop through the paths
         for (String path: paths) {
             if(path.trim().equals("")) continue;
@@ -106,7 +108,7 @@ public class LowercaseRule implements IRestRule {
             String pathWithoutParametersLowerCase = pathWithoutParameters.toLowerCase();
             // Check if the path contains only lowercase letters
             if(!pathWithoutParametersLowerCase.equals(pathWithoutParameters)){
-                violations.add(new Violation(0, "", "", "Error at:" + path));
+                violations.add(new Violation(locMapper.getLOCOfPath(path), "", "", "Error at:" + path));
             }
                 
         }
