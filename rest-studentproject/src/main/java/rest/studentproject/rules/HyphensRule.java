@@ -3,10 +3,7 @@ package rest.studentproject.rules;
 import com.google.common.collect.Lists;
 import io.swagger.v3.oas.models.OpenAPI;
 import org.apache.commons.lang3.tuple.ImmutablePair;
-import rest.studentproject.rules.constants.RuleCategory;
-import rest.studentproject.rules.constants.RuleSeverity;
-import rest.studentproject.rules.constants.RuleSoftwareQualityAttribute;
-import rest.studentproject.rules.constants.RuleType;
+import rest.studentproject.rules.constants.*;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -33,6 +30,7 @@ public class HyphensRule implements IRestRule {
     public HyphensRule(boolean isActive) {
         this.isActive = isActive;
     }
+
     /**
      *
      */
@@ -92,6 +90,7 @@ public class HyphensRule implements IRestRule {
 
     /**
      * Rule to check if the path segments could contain more than one word, if so there is a violation.
+     *
      * @param openAPI
      */
     @Override
@@ -101,19 +100,19 @@ public class HyphensRule implements IRestRule {
         // Get the paths from the OpenAPI object
         Set<String> paths = openAPI.getPaths().keySet();
 
-        if(paths.isEmpty()) return violations;
+        if (paths.isEmpty()) return violations;
         // Loop through the paths
         return getLstViolations(violations, paths);
     }
 
     private List<Violation> getLstViolations(List<Violation> violations, Set<String> paths) {
-        for (String path: paths) {
-            if(path.trim().equals("")) continue;
+        for (String path : paths) {
+            if (path.trim().equals("")) continue;
             // Get the path without the curly braces
             String[] pathSegments = path.split("/");
             // Extract path segments based on / char and check if there are violations
             Violation violation = getLstViolationsFromPathSegments(path, pathSegments);
-            if(violation != null) violations.add(violation);
+            if (violation != null) violations.add(violation);
 
 
         }
@@ -121,14 +120,14 @@ public class HyphensRule implements IRestRule {
     }
 
     private Violation getLstViolationsFromPathSegments(String path, String[] pathSegments) {
-        for (String pathSegment: pathSegments) {
-            if(pathSegment.isEmpty()) continue;
+        for (String pathSegment : pathSegments) {
+            if (pathSegment.isEmpty()) continue;
             List<String> itemsFromHyphens = Arrays.asList(pathSegment.split("-"));
             // Math the segment path based on the regex. This solution is very fast to run
             List<String> pathWithoutParameters = Arrays.asList(pathSegment.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])"));
 
-            if(pathWithoutParameters.size() > 1) {
-                return new Violation(locMapper.getLOCOfPath(path), "", "", "Error at:" + path);
+            if (pathWithoutParameters.size() > 1) {
+                return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.HYPHEN, path, ErrorMessage.HYPHEN);
             }
 
             // If with the regex no substring was found then we need to check against a dictionary of english words
@@ -136,9 +135,10 @@ public class HyphensRule implements IRestRule {
                 List<String> subStringFromPath = splitContiguousWords(pathSegment);
                 List<String> pathWithoutParameterDictionaryMatching = Arrays.asList(subStringFromPath.get(0).split(" "));
                 // If the path is correct and the matching regex creates the same split with the "-" as split, then continue with the next segment path
-                if(itemsFromHyphens.equals(pathWithoutParameterDictionaryMatching) || itemsFromHyphens.equals(subStringFromPath)) continue;
+                if (itemsFromHyphens.equals(pathWithoutParameterDictionaryMatching) || itemsFromHyphens.equals(subStringFromPath))
+                    continue;
                 // Add violations if there is some match
-                return new Violation(locMapper.getLOCOfPath(path), "", "", "Error at:" + path);
+                return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.HYPHEN, path, ErrorMessage.HYPHEN);
             } catch (IOException e) {
                 Logger logger = Logger.getLogger(HyphensRule.class.getName());
                 logger.log(Level.SEVERE, "Error on checking substring against a dictionary{e}", e);
@@ -162,7 +162,7 @@ public class HyphensRule implements IRestRule {
             Logger logger = Logger.getLogger(HyphensRule.class.getName());
             logger.log(Level.SEVERE, "Error on getting the english dictionary file {e}", e);
         } finally {
-            if(stringLines != null) stringLines.close();
+            if (stringLines != null) stringLines.close();
         }
 
         double naturalLogDictionaryWordsCount = Math.log(dictionaryWords.size());
@@ -212,7 +212,7 @@ public class HyphensRule implements IRestRule {
 
 
     private ImmutablePair<Number, Number> bestMatch(String partSentence, List<ImmutablePair<Number, Number>> cost, int index,
-                                           Map<String, Number> wordCost, int maxWordLength) {
+                                                    Map<String, Number> wordCost, int maxWordLength) {
         List<ImmutablePair<Number, Number>> candidates = Lists.reverse(cost.subList(Math.max(0, index - maxWordLength), index));
         int enumerateIdx = 0;
         ImmutablePair<Number, Number> minPair = new ImmutablePair<>(Integer.MAX_VALUE, Integer.valueOf(enumerateIdx));
