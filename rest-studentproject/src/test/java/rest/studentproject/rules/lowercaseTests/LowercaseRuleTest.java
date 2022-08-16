@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import rest.studentproject.analyzer.RestAnalyzer;
+import rest.studentproject.rules.HyphensRule;
 import rest.studentproject.rules.LowercaseRule;
 import rest.studentproject.rules.Violation;
 
@@ -20,11 +21,6 @@ class LowercaseRuleTest {
     LowercaseRule lowercaseRule;
     RestAnalyzer restAnalyzer;
 
-    @BeforeEach
-    void setUp() {
-        lowercaseRule = new LowercaseRule(true);
-
-    }
 
     @Test
     @DisplayName("Detection of uppercase letters should be successful in detecting 6 violations.")
@@ -82,11 +78,11 @@ class LowercaseRuleTest {
                 "Detection of violations should work and return an empty list.");
     }
 
-    private List<Violation> runMethodUnderTest(String url) {
-        //open JSON file
-        SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation(url, null, null);
-        OpenAPI openAPI = swaggerParseResult.getOpenAPI();
+    private List<Violation> runMethodUnderTest(String url) throws MalformedURLException {
 
-        return lowercaseRule.checkViolation(openAPI);
+        this.restAnalyzer = new RestAnalyzer(url);
+        this.lowercaseRule = new LowercaseRule(true);
+
+        return this.restAnalyzer.runAnalyse(List.of(this.lowercaseRule),false);
     }
 }
