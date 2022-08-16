@@ -36,7 +36,7 @@ public class RestAnalyzer {
             violations.addAll(rule.checkViolation(this.openAPI));
         }
         //generates Report
-        if (generateReport){
+        if (generateReport) {
             report.generateReport(violations);
         }
 

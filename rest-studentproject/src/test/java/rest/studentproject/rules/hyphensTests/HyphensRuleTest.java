@@ -72,6 +72,6 @@ class HyphensRuleTest {
         this.restAnalyzer = new RestAnalyzer(url);
         this.hyphensRuleTest = new HyphensRule(true);
 
-        return this.restAnalyzer.runAnalyse(List.of(this.hyphensRuleTest),false);
+        return this.restAnalyzer.runAnalyse(List.of(this.hyphensRuleTest), false);
     }
 }
