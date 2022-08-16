@@ -72,7 +72,7 @@ public class Report {
 
             //create directory
             Path path = Path.of(OUTPUT_DIR);
-            if (!Files.isDirectory(path)){
+            if (!Files.isDirectory(path)) {
                 path = Files.createDirectory(path);
             }
 

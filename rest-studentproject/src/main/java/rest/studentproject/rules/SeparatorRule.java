@@ -29,8 +29,6 @@ public class SeparatorRule implements IRestRule {
     private static char[] separators = {'.', ':', ';', ',', '\\', '#', '/', '-', '?', '='};
 
 
-
-
     public SeparatorRule(boolean isActive) {
         this.isActive = isActive;
     }
@@ -101,7 +99,7 @@ public class SeparatorRule implements IRestRule {
 
                 //unknown case:
                 Violation unknownCase = catchUnknownCase(currentSize, violationList.size(), path);
-                if (unknownCase != null){
+                if (unknownCase != null) {
                     violationList.add(unknownCase);
                 }
 

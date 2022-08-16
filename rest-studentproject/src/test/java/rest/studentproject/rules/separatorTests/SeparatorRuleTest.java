@@ -26,15 +26,13 @@ class SeparatorRuleTest {
     @BeforeEach
     void setUp() {
         try {
-            restAnalyzer = new RestAnalyzer( Paths.get("").toAbsolutePath().toString() + PATH);
+            restAnalyzer = new RestAnalyzer(Paths.get("").toAbsolutePath().toString() + PATH);
             separatorRule = new SeparatorRule(true);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
 
     }
-
-
 
 
     /**
@@ -79,7 +77,7 @@ class SeparatorRuleTest {
 
     @Test
     @DisplayName("SeparatorRule identifies inputs with illegal Symbols such as '#' and '?' for paths")
-    void checkWronglyUsedCharacters(){
+    void checkWronglyUsedCharacters() {
         Set<String> input = new HashSet<>();
 
         input.add("/v1#{destination_definitions}#create");
@@ -97,9 +95,10 @@ class SeparatorRuleTest {
         //run Method under test
         runMethodUnderTest(input);
     }
+
     @Test
     @DisplayName("SeparatorRule identifies partly faulty input paths")
-    void checkPartlyFaultyPaths(){
+    void checkPartlyFaultyPaths() {
         Set<String> input = new HashSet<>();
         input.add("/v1:destination_definition_specifications:get");
         input.add("/v1:destination_definition_specifications:get:");
@@ -123,18 +122,18 @@ class SeparatorRuleTest {
 
     }
 
-    private void runMethodUnderTest(Set<String> input){
+    private void runMethodUnderTest(Set<String> input) {
         //run method under test
         List<Violation> violationList = separatorRule.checkSeparator(input);
 
         assertFalse(violationList.isEmpty());
 
         //check if each faulty input is detected
-        for (Violation v:violationList) {
+        for (Violation v : violationList) {
             assertTrue(input.contains(v.getKeyViolation()));
         }
 
         //final check if all are found
-        assertEquals(input.size(),violationList.size());
+        assertEquals(input.size(), violationList.size());
     }
 }

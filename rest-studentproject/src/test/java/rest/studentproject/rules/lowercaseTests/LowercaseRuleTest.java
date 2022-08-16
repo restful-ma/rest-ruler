@@ -35,7 +35,7 @@ class LowercaseRuleTest {
 
     @Test
     @DisplayName("Detection of uppercase letters should be successful in detecting 3 violations.")
-    void checkViolationOnInvalidRESTFile3Violations() throws MalformedURLException{
+    void checkViolationOnInvalidRESTFile3Violations() throws MalformedURLException {
 
         String url = "src/test/java/rest/studentproject/rules/lowercaseTests/lowercaseInvalid3Violations.json";
         List<Violation> violationToTest = runMethodUnderTest(url);
@@ -46,7 +46,7 @@ class LowercaseRuleTest {
 
     @Test
     @DisplayName("Detection of uppercase letters should be successful in detecting 0 violations and return an empty list.")
-    void checkViolationOnInvalidRESTFileEmpty() throws MalformedURLException{
+    void checkViolationOnInvalidRESTFileEmpty() throws MalformedURLException {
 
         String url = "src/test/java/rest/studentproject/rules/lowercaseTests/lowercaseInvalidEmptyPaths.json";
         List<Violation> violationToTest = runMethodUnderTest(url);
@@ -58,7 +58,7 @@ class LowercaseRuleTest {
 
     @Test
     @DisplayName("Detection of uppercase letters should be successful in detecting 2 violations.")
-    void checkViolationOnInvalidRESTFileEmptyURI() throws MalformedURLException{
+    void checkViolationOnInvalidRESTFileEmptyURI() throws MalformedURLException {
 
         String url = "src/test/java/rest/studentproject/rules/lowercaseTests/lowercaseInvalidEmptyURI.json";
         List<Violation> violationToTest = runMethodUnderTest(url);
@@ -69,7 +69,7 @@ class LowercaseRuleTest {
 
     @Test
     @DisplayName("Detection of uppercase letters should be successful in detecting 0 violations.")
-    void checkViolationOnValidFile() throws MalformedURLException{
+    void checkViolationOnValidFile() throws MalformedURLException {
 
         String url = "src/test/java/rest/studentproject/validopenapi/validOpenAPI.json";
         List<Violation> violationToTest = runMethodUnderTest(url);
@@ -83,6 +83,6 @@ class LowercaseRuleTest {
         this.restAnalyzer = new RestAnalyzer(url);
         this.lowercaseRule = new LowercaseRule(true);
 
-        return this.restAnalyzer.runAnalyse(List.of(this.lowercaseRule),false);
+        return this.restAnalyzer.runAnalyse(List.of(this.lowercaseRule), false);
     }
 }

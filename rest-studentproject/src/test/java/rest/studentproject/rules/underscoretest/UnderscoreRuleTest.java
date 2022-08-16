@@ -46,6 +46,6 @@ class UnderscoreRuleTest {
         this.restAnalyzer = new RestAnalyzer(url);
         this.underscore = new UnderscoreRule(true);
 
-        return this.restAnalyzer.runAnalyse(List.of(this.underscore),false);
+        return this.restAnalyzer.runAnalyse(List.of(this.underscore), false);
     }
 }

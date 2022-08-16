@@ -31,7 +31,7 @@ class ReportTest {
 
         //create dummy data
         for (int i = 0; i < 10; i++) {
-            new Violation(new UnderscoreRule(true),i, "%i", "%i", "%i");
+            new Violation(new UnderscoreRule(true), i, "%i", "%i", "%i");
         }
         //execute report method
         Report report = Report.getInstance();

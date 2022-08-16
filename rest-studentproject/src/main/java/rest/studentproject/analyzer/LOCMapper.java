@@ -94,11 +94,11 @@ public class LOCMapper {
     public int getLOCOfPath(String keyPath) {
 
         //case: path doesnt exist
-        if (this.pathMap.get(keyPath) == null){
+        if (this.pathMap.get(keyPath) == null) {
             return 0;
         }
 
-        return this.pathMap.get(keyPath) ;
+        return this.pathMap.get(keyPath);
     }
 
 }
