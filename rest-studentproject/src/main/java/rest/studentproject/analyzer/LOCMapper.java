@@ -56,6 +56,7 @@ public class LOCMapper {
 
         } catch (FileNotFoundException e) {
             System.err.println("File not found!");
+            System.exit(0);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -92,6 +93,12 @@ public class LOCMapper {
      * @return the line of code from the given path.
      */
     public int getLOCOfPath(String keyPath) {
+
+        //case: path doesnt exist
+        if (this.pathMap.get(keyPath) == null) {
+            return 0;
+        }
+
         return this.pathMap.get(keyPath);
     }
 

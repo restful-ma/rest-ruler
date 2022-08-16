@@ -1,15 +1,14 @@
 package rest.studentproject.rules;
 
 import io.swagger.v3.oas.models.OpenAPI;
-import rest.studentproject.rules.constants.RuleCategory;
-import rest.studentproject.rules.constants.RuleSeverity;
-import rest.studentproject.rules.constants.RuleSoftwareQualityAttribute;
-import rest.studentproject.rules.constants.RuleType;
+import rest.studentproject.rules.constants.*;
 
 
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
 
 /**
  * RULE: Forward slash separator (/) must be used to indicate a hierarchical relationship
@@ -22,10 +21,8 @@ public class SeparatorRule implements IRestRule {
     static final RuleType RULE_TYPE = RuleType.STATIC;
     static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List.of(RuleSoftwareQualityAttribute.MAINTAINABILITY);
 
-    private static final String ERROR_MESSAGE = "A forward slash '/' has to be used as a separator";
     boolean isActive;
     private static char[] separators = {'.', ':', ';', ',', '\\', '#', '/', '-', '?', '='};
-
 
 
     public SeparatorRule(boolean isActive) {
@@ -94,13 +91,13 @@ public class SeparatorRule implements IRestRule {
             if (!matcher.find()) {
 
                 //find illegal separators
-                findInvalidSeparators(path);
+                violationList.addAll(findInvalidSeparators(path));
 
                 //unknown case:
                 Violation unknownCase = catchUnknownCase(currentSize, violationList.size(), path);
-                if (unknownCase != null)
+                if (unknownCase != null) {
                     violationList.add(unknownCase);
-
+                }
 
             }
         }
@@ -157,10 +154,10 @@ public class SeparatorRule implements IRestRule {
 
         }
 
-        for (String p: patterns) {
+        for (String p : patterns) {
             Pattern stringPattern = Pattern.compile(p);
             Matcher matcher = stringPattern.matcher(path);
-            if (matcher.find()){
+            if (matcher.find()) {
                 return true;
             }
         }
@@ -170,40 +167,43 @@ public class SeparatorRule implements IRestRule {
 
     /**
      * searches a path for a set of separators
+     *
      * @param path
      * @return list of violations
      */
-    private List<Violation> findInvalidSeparators(String path){
+    private List<Violation> findInvalidSeparators(String path) {
         List<Violation> violationList = new ArrayList<>();
 
         for (char c : separators) {
-            if ( c != '/') {
+            if (c != '/') {
                 boolean isSeparator = checkForSeparator(c, path);
                 if (isSeparator) {
                     String suggestion = "replace '" + c + "' with a forward slash '/' to indicate a hierarchical relationship";
-                    //lineViolation placeholder set as 0
-                    violationList.add(new Violation(0, suggestion, path, ERROR_MESSAGE));
+
+                    violationList.add(new Violation(this, locMapper.getLOCOfPath(path), suggestion, path, ErrorMessage.SEPARATOR));
 
                 }
             }
         }
         return violationList;
     }
+
     /**
      * catches all Rule violations that arent handled with custom error messages
+     *
      * @param currentSize
      * @param violationListSize
      * @param path
      * @return a violation
      */
-    private Violation catchUnknownCase(int currentSize, int violationListSize, String path){
+    private Violation catchUnknownCase(int currentSize, int violationListSize, String path) {
 
-        if (violationListSize == currentSize){
+        if (violationListSize == currentSize) {
             //check for '?' and '#' as they are illegal in paths
-            if (path.contains("#") || path.contains("?")){
-                return new Violation(0, "remove any '#' and '?' from the path", path, ERROR_MESSAGE);
-            }else {
-                return new Violation(0, "-", path, ERROR_MESSAGE);
+            if (path.contains("#") || path.contains("?")) {
+                return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.SEPARATOR, path, ErrorMessage.SEPARATOR);
+            } else {
+                return new Violation(this, locMapper.getLOCOfPath(path), "-", path, ErrorMessage.SEPARATOR);
             }
 
         }
