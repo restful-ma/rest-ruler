@@ -50,14 +50,14 @@ public class Report {
         Table.Builder tableBuilder = new Table.Builder();
 
         //Table heading
-        tableBuilder.addRow("Line", "Line No.", "Rule", "Category",
-                "Severity", "Rule Type", "Software Quality Attributes", "Violation", "Improvement Suggestion");
+        tableBuilder.addRow("Line", "Line No.", "Rule Violated", "Category",
+                "Severity", "Rule Type", "Software Quality Attributes", "Improvement Suggestion");
 
         for (Violation v : violationList) {
             IRestRule rule = v.getRule();
             tableBuilder.addRow(v.getKeyViolation(), v.getLineViolation(),
                     rule.getTitle(), rule.getCategory(), rule.getSeverityType(),
-                    rule.getRuleType(), rule.getRuleSoftwareQualityAttribute().toString(), v.getErrorMessage(), v.getImprovementSuggestion());
+                    rule.getRuleType(), rule.getRuleSoftwareQualityAttribute().toString(), v.getImprovementSuggestion());
         }
 
         sb.append(tableBuilder.build());
