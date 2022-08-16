@@ -93,28 +93,15 @@ public class SeparatorRule implements IRestRule {
             //check if path has expected format
             if (!matcher.find()) {
 
-                for (char c : separators) {
-                    if ( c != '/') {
-                        boolean isSeparator = checkForSeparator(c, path);
-                        if (isSeparator) {
-                            String suggestion = "replace '" + c + "' with a forward slash '/' to indicate a hierarchical relationship";
-                            //lineViolation placeholder set as 0
-                            violationList.add(new Violation(0, suggestion, path, ERROR_MESSAGE));
-
-                        }
-                    }
-                }
+                //find illegal separators
+                findInvalidSeparators(path);
 
                 //unknown case:
-                if (violationList.size() == currentSize){
-                    //check for '?' and '#' as they are illegal in paths
-                    if (path.contains("#") | path.contains("?")){
-                        violationList.add(new Violation(0, "remove any '#' and '?' from the path", path, ERROR_MESSAGE));
-                    }else {
-                        violationList.add(new Violation(0, "-", path, ERROR_MESSAGE));
-                    }
+                Violation unknownCase = catchUnknownCase(currentSize, violationList.size(), path);
+                if (unknownCase != null)
+                    violationList.add(unknownCase);
 
-                }
+
             }
         }
         return violationList;
@@ -125,7 +112,7 @@ public class SeparatorRule implements IRestRule {
      *
      * @param separator separator candidate
      * @param path      path under test
-     * @return true or fals deoending on if it is a separator
+     * @return true or false depending on if it is a separator
      */
     private static boolean checkForSeparator(char separator, String path) {
 
@@ -179,6 +166,48 @@ public class SeparatorRule implements IRestRule {
         }
 
         return false;
+    }
+
+    /**
+     * searches a path for a set of separators
+     * @param path
+     * @return list of violations
+     */
+    private List<Violation> findInvalidSeparators(String path){
+        List<Violation> violationList = new ArrayList<>();
+
+        for (char c : separators) {
+            if ( c != '/') {
+                boolean isSeparator = checkForSeparator(c, path);
+                if (isSeparator) {
+                    String suggestion = "replace '" + c + "' with a forward slash '/' to indicate a hierarchical relationship";
+                    //lineViolation placeholder set as 0
+                    violationList.add(new Violation(0, suggestion, path, ERROR_MESSAGE));
+
+                }
+            }
+        }
+        return violationList;
+    }
+    /**
+     * catches all Rule violations that arent handled with custom error messages
+     * @param currentSize
+     * @param violationListSize
+     * @param path
+     * @return a violation
+     */
+    private Violation catchUnknownCase(int currentSize, int violationListSize, String path){
+
+        if (violationListSize == currentSize){
+            //check for '?' and '#' as they are illegal in paths
+            if (path.contains("#") || path.contains("?")){
+                return new Violation(0, "remove any '#' and '?' from the path", path, ERROR_MESSAGE);
+            }else {
+                return new Violation(0, "-", path, ERROR_MESSAGE);
+            }
+
+        }
+        return null;
     }
 
 }
