@@ -66,7 +66,7 @@ public class Report {
         System.out.println(sb);
         try {
             //get current time
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd-HH:mm:ss");
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy_MM_dd-HH_mm_ss");
             LocalDateTime now = LocalDateTime.now();
 
 
@@ -77,7 +77,7 @@ public class Report {
             }
 
             //write file
-            String filename = "Report_" + now + ".md";
+            String filename = "Report_" + dtf.format(now) + ".md";
             Path file = Files.createFile(path.resolve(filename));
             BufferedWriter bw = Files.newBufferedWriter(file);
             PrintWriter printWriter = new PrintWriter(bw);
