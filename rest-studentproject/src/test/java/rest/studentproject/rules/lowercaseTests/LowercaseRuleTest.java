@@ -23,10 +23,6 @@ class LowercaseRuleTest {
 
     }
 
-    @AfterEach
-    void tearDown() {
-    }
-
     @Test
     @DisplayName("Detection of uppercase letters should be successful in detecting 6 violations.")
     void checkViolationOnInvalidRESTFile6Violations() throws MalformedURLException {
