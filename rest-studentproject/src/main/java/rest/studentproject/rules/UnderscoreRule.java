@@ -2,17 +2,14 @@ package rest.studentproject.rules;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.servers.Server;
-import rest.studentproject.analyzer.LOCMapper;
-import rest.studentproject.analyzer.RestAnalyzer;
-import rest.studentproject.rules.constants.RuleCategory;
-import rest.studentproject.rules.constants.RuleSeverity;
-import rest.studentproject.rules.constants.RuleSoftwareQualityAttribute;
-import rest.studentproject.rules.constants.RuleType;
+import rest.studentproject.rules.constants.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+
+import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
 
 /**
  * Implementation of the rule: Underscores (_) should not be used in URI.
@@ -24,12 +21,10 @@ public class UnderscoreRule implements IRestRule {
     private static final RuleType TYPE = RuleType.STATIC;
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = Arrays.asList(RuleSoftwareQualityAttribute.MAINTAINABILITY);
     private static final List<Violation> violationList = new ArrayList<>();
-    private static boolean isActive;
-    private static LOCMapper locMapper;
+    private boolean isActive;
 
     public UnderscoreRule(boolean isActive) {
         setIsActive(isActive);
-        locMapper = RestAnalyzer.locMapper;
     }
 
     @Override
@@ -64,7 +59,7 @@ public class UnderscoreRule implements IRestRule {
 
     @Override
     public void setIsActive(boolean isActive) {
-        UnderscoreRule.isActive = isActive;
+        this.isActive = isActive;
     }
 
     /**
@@ -97,7 +92,9 @@ public class UnderscoreRule implements IRestRule {
     private void checkUnderscore(String path) {
         String pathWithoutVariable = path.replaceAll("\\{" + ".*" + "\\}", "");
         if (!pathWithoutVariable.contains("_")) return;
-        violationList.add(new Violation(locMapper.getLOCOfPath(path), "", path, ""));
+
+        violationList.add(new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.UNDERSCORE, path, ErrorMessage.UNDERSCORE));
+
 
     }
 }

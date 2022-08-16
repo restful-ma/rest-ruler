@@ -16,7 +16,7 @@ public class RestParserCommand implements Runnable {
     public static void main(String[] args) throws MalformedURLException {
         PicocliRunner.run(RestParserCommand.class, args);
         RestAnalyzer restAnalyzer = new RestAnalyzer("https://api.apis.guru/v2/specs/aiception.com/1.0.0/swagger.json");
-        restAnalyzer.runAnalyse(new ActiveRules().getActiveRules());
+        restAnalyzer.runAnalyse(new ActiveRules().getActiveRules(), true);
     }
 
     public void run() {
