@@ -129,7 +129,7 @@ paths:
           description: A user with the specified ID was not found.
         default:
           description: Unexpected error
-  
+  # Rule 22: Underscores (_) should not be used in URIs.
   "/primary_school":
     get:
       tag: "URI Rules"
@@ -143,7 +143,7 @@ paths:
           description: "Unauthorized"
         "404":
           description: "Not Found"
-  "/{primary_school}/_school":
+  "/{primarySchool}/_school":
     get:
       tag: "URI Rules"
       description: "Violates the underscore rule"
@@ -156,6 +156,7 @@ paths:
           description: "Unauthorized"
         "404":
           description: "Not Found"
+  # Rule 23: Lowercase letters should be preferred in URI paths.
   "/Pets":
     get:
       tag: "URI Rules"
@@ -219,7 +220,6 @@ paths:
                   "$ref": "#/components/examples/post-createNotificationConfiguration-basic"
               schema: 
                 $ref: "#/components/schemas/CreateNotificationConfigurationRequest"
-                
       response: 
         "200":
           description: "Country where a pet is located"
@@ -232,6 +232,7 @@ paths:
         summary: "Country where a pet is located"
         tags:
           "pets"
+  # Rule 21: Hyphens (-) should be used to improve the readability of URIs.
   "/bigPets":
     get:
       tag: "URI Rules"
@@ -280,6 +281,72 @@ paths:
       summary: "List of small cats"
       tags:
         "pets"
+  # Rule 27: CRUD function names should not be used in URIs.
+  "/getschool":
+    get:
+      tag: "URI Rules"
+      description: "Violates the CRUD (+ Hyphens + forward slash) rule."
+      response:
+        "200":
+          description: "Successful request"
+        "400":
+          description: "Bad request"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+  "/DELETEschool":
+    delete:
+      tag: "URI Rules"
+      description: "Violates the CRUD (+ Hyphens + forward slash + lowercase) rule."
+      response:
+        "200":
+          description: "Successful request"
+        "400":
+          description: "Bad request"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+  "/postschool":
+    post:
+      tag: "URI Rules"
+      description: "Violates the CRUD (+ Hyphens + forward slash) rule."
+      response:
+        "200":
+          description: "Successful request"
+        "400":
+          description: "Bad request"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+  "/putschool":
+    put:
+      tag: "URI Rules"
+      description: "Violates the CRUD (+ Hyphens + forward slash) rule."
+      response:
+        "200":
+          description: "Successful request"
+        "400":
+          description: "Bad request"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+  "/getschool/{getSchoolID}/delete":
+    delete:
+      tag: "URI Rules"
+      description: "Violates 2 times the CRUD (+ Hyphens + forward slash) rule."
+      response:
+        "200":
+          description: "Successful request"
+        "400":
+          description: "Bad request"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
 components:
   # Define all components here
   securitySchemes:

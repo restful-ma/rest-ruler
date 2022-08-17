@@ -31,11 +31,11 @@ should be used to improve the readability of URIs” --> Link to GitHub file fol
 
 ### What is checked
 * Currently, static implementation only
-* Checks every path if it contains an underscore (_) and returns a list of violations
+* Checks every path (server paths included) if it contains an underscore (_) and returns a list of violations
 
 ### What is not checked
 
-* The parameters in curly brackets are excluded from the path and are therefore currently not checked.
+* The parameters in curly brackets are excluded from the path and are therefore currently not checked in a dynamic fashion.
 
 ### Future work
 
