@@ -31,20 +31,12 @@ public class Report {
         }
     }
 
-    public String descriptionReport;
-
     public void generateReport(List<Violation> violationList) {
-
-
         violationList.sort(Violation.getComparator());
         writeMarkdownReport(violationList);
-
-
     }
 
     private void writeMarkdownReport(List<Violation> violationList) {
-        String currentKey = "";
-
         StringBuilder sb = new StringBuilder();
         sb.append(new Heading("REST API Specification Report", 1)).append("\n");
         Table.Builder tableBuilder = new Table.Builder();
@@ -57,7 +49,7 @@ public class Report {
             IRestRule rule = v.getRule();
             tableBuilder.addRow(v.getKeyViolation(), v.getLineViolation(),
                     rule.getTitle(), rule.getCategory(), rule.getSeverityType(),
-                    rule.getRuleType(), rule.getRuleSoftwareQualityAttribute().toString(), v.getImprovementSuggestion());
+                    rule.getRuleType(), rule.getRuleSoftwareQualityAttribute().toString().replace("[", "").replace("]", ""), v.getImprovementSuggestion());
         }
 
         sb.append(tableBuilder.build());

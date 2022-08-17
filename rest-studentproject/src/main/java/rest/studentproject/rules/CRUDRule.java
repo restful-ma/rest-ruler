@@ -2,15 +2,15 @@ package rest.studentproject.rules;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.servers.Server;
-import rest.studentproject.analyzer.LOCMapper;
-import rest.studentproject.analyzer.RestAnalyzer;
-import rest.studentproject.rules.constants.RuleCategory;
-import rest.studentproject.rules.constants.RuleSeverity;
-import rest.studentproject.rules.constants.RuleSoftwareQualityAttribute;
-import rest.studentproject.rules.constants.RuleType;
+import rest.studentproject.rules.constants.*;
+
+import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
 
 import java.util.*;
 
+/**
+ * Implementation of the rule: Underscores (_) should not be used in URI.
+ */
 public class CRUDRule implements IRestRule {
     private static final String TITLE = "";
     private static final RuleCategory CATEGORY = RuleCategory.URIS;
@@ -18,13 +18,11 @@ public class CRUDRule implements IRestRule {
     private static final RuleSeverity SEVERITY = RuleSeverity.ERROR;
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTE = Arrays.asList(RuleSoftwareQualityAttribute.USABILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
     private static final String[] CRUDOPERATIONS = {"get", "post", "delete", "put"};
-    private static LOCMapper locMapper;
     private final List<Violation> violationList = new ArrayList<>();
     private boolean isActive;
 
     public CRUDRule(boolean isActive) {
         this.isActive = isActive;
-        locMapper = RestAnalyzer.locMapper;
     }
 
     @Override
@@ -63,8 +61,10 @@ public class CRUDRule implements IRestRule {
     }
 
     /**
-     * @param openAPI
-     * @return
+     * Checks if there is a violation against the CRUD rule. All paths and base URLs are checked.
+     *
+     * @param openAPI the definition that will be checked against the rule.
+     * @return the list of violations.
      */
     @Override
     public List<Violation> checkViolation(OpenAPI openAPI) {
@@ -78,15 +78,16 @@ public class CRUDRule implements IRestRule {
             paths.add(server.getUrl());
         }
 
-        // Violate the underscore rule for the path list
+        // Violate the CRUD rule for the path list
         for (String path : paths) {
             if (path.trim().isEmpty()) continue;
 
+            // Goes through every CRUD operation --> If multiple CRUD operations are found --> Multiple violations
             for (String crudOperation : CRUDOPERATIONS) {
-                path = path.replaceAll("\\{" + ".*" + "\\}", "");
-                if (!path.toLowerCase().contains(crudOperation)) continue;
-
-                violationList.add(new Violation(locMapper.getLOCOfPath(path), "", path, ""));
+                String pathWithoutParameters = path.replaceAll("\\{" + ".*" + "\\}", "");
+                if (pathWithoutParameters.toLowerCase().contains(crudOperation)) {
+                    violationList.add(new Violation(this, locMapper.getLOCOfPath(path), "URIS should not be used to indicate that a CRUD function (" + crudOperation.toUpperCase() + ") is performed, instead HTTP request methods should be used for this.", path, ErrorMessage.CRUD));
+                }
             }
         }
         return violationList;
