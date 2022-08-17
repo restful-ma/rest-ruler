@@ -5,6 +5,8 @@ import io.swagger.v3.oas.models.OpenAPI;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import rest.studentproject.rules.constants.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -123,7 +125,12 @@ public class HyphensRule implements IRestRule {
     private Violation getLstViolationsFromPathSegments(String path, String[] pathSegments) {
         for (String pathSegment : pathSegments) {
             if (pathSegment.isEmpty()) continue;
-            boolean isPathFullyContained = getPathSegmentMatch(pathSegment);
+            boolean isPathFullyContained;
+            try {
+                isPathFullyContained = getPathSegmentMatch(pathSegment);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
             if (isPathFullyContained) continue;
             List<String> itemsFromHyphens = Arrays.asList(pathSegment.split("-"));
             // Math the segment path based on the regex. This solution is very fast to run
@@ -152,18 +159,21 @@ public class HyphensRule implements IRestRule {
         return null;
     }
 
-    public boolean getPathSegmentMatch(String word){
-        Stream<String> stringLines = null;
+    public boolean getPathSegmentMatch(String word) throws FileNotFoundException {
+        Scanner scanner = new Scanner(new File(PATH_TO_ENGLISH_DICTIONARY));
         boolean isWordInDictionary = false;
         try {
-            stringLines = Files.lines(Paths.get(PATH_TO_ENGLISH_DICTIONARY), Charset.defaultCharset());
-            isWordInDictionary = stringLines.anyMatch(word::contains);
 
+            if (scanner.useDelimiter("\\Z").next().contains(word)) {
+                isWordInDictionary = true;
+            } else {
+                isWordInDictionary = false;
+            }
         } catch (Exception e) {
             Logger logger = Logger.getLogger(HyphensRule.class.getName());
             logger.log(Level.SEVERE, "Error on checking if a word is contained in a dictionary {e}", e);
         } finally {
-            if (stringLines != null) stringLines.close();
+            scanner.close();
         }
 
         return isWordInDictionary;
@@ -201,7 +211,7 @@ public class HyphensRule implements IRestRule {
 
     private String split(String partSentence, Map<String, Number> wordCost, int maxWordLength) {
         List<ImmutablePair<Number, Number>> cost = new ArrayList<>();
-        cost.add(new ImmutablePair<>(Integer.valueOf(0), Integer.valueOf(0)));
+        cost.add(new ImmutablePair<>(0, 0));
         for (int index = 1; index < partSentence.length() + 1; index++) {
             cost.add(bestMatch(partSentence, cost, index, wordCost, maxWordLength));
         }
@@ -236,7 +246,7 @@ public class HyphensRule implements IRestRule {
                                                     Map<String, Number> wordCost, int maxWordLength) {
         List<ImmutablePair<Number, Number>> candidates = Lists.reverse(cost.subList(Math.max(0, index - maxWordLength), index));
         int enumerateIdx = 0;
-        ImmutablePair<Number, Number> minPair = new ImmutablePair<>(Integer.MAX_VALUE, Integer.valueOf(enumerateIdx));
+        ImmutablePair<Number, Number> minPair = new ImmutablePair<>(Integer.MAX_VALUE, enumerateIdx);
         for (ImmutablePair<Number, Number> pair : candidates) {
             ++enumerateIdx;
             String subsequence = partSentence.substring(index - enumerateIdx, index).toLowerCase();
