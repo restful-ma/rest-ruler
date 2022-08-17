@@ -16,6 +16,6 @@ public class ActiveRules {
      * @return the list of implemented rules
      */
     public List<IRestRule> getActiveRules() {
-        return Arrays.asList(new UnderscoreRule(true), new LowercaseRule(true), new HyphensRule(true), new SeparatorRule(true));
+        return Arrays.asList(new UnderscoreRule(true), new CRUDRule(true), new LowercaseRule(true), new HyphensRule(true), new SeparatorRule(true));
     }
 }

@@ -12,7 +12,6 @@ import java.net.MalformedURLException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class RestAnalyzer {
     public static LOCMapper locMapper = null;

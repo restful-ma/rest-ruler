@@ -56,7 +56,6 @@ public class LOCMapper {
 
         } catch (FileNotFoundException e) {
             System.err.println("File not found!");
-            System.exit(0);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -9,7 +9,7 @@ import java.util.*;
 import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
 
 /**
- * Implementation of the rule: Underscores (_) should not be used in URI.
+ * Implementation of the rule: CRUD function names should not be used in URIs.
  */
 public class UnderscoreRule implements IRestRule {
     private static final String TITLE = "Underscores (_) should not be used in URI";
