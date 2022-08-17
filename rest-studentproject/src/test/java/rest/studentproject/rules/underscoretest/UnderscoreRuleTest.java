@@ -1,13 +1,8 @@
 package rest.studentproject.rules.underscoretest;
 
-import io.swagger.parser.OpenAPIParser;
-import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.parser.core.models.SwaggerParseResult;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import rest.studentproject.analyzer.RestAnalyzer;
-import rest.studentproject.rules.LowercaseRule;
 import rest.studentproject.rules.UnderscoreRule;
 import rest.studentproject.rules.Violation;
 
@@ -33,12 +28,13 @@ class UnderscoreRuleTest {
 
 
     @Test
+    @DisplayName("Test that checks if the four underscore rule violations are detected.")
     void invalidFile() throws MalformedURLException {
 
-        String url = "src/test/java/rest/studentproject/rules/underscoretest/InvalidOpenAPI.json";
+        String url = "src/test/java/rest/studentproject/rules/underscoretest/InvalidOpenAPIUnderscroeRule.json";
 
         List<Violation> violations = runMethodUnderTest(url);
-        assertEquals(3, violations.size(), "There should be three rule violations. Three of the paths are valid.");
+        assertEquals(4, violations.size(), "There should be four rule violations. Three of the seven paths are valid.");
     }
 
     private List<Violation> runMethodUnderTest(String url) throws MalformedURLException {
