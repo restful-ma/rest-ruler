@@ -109,7 +109,8 @@ public class HyphensRule implements IRestRule {
         for (String path : paths) {
             if (path.trim().equals("")) continue;
             // Get the path without the curly braces
-            String[] pathSegments = path.split("/");
+            String pathWithoutVariables = path.replaceAll("\\{" + ".*" + "\\}", "");
+            String[] pathSegments = pathWithoutVariables.split("/");
             // Extract path segments based on / char and check if there are violations
             Violation violation = getLstViolationsFromPathSegments(path, pathSegments);
             if (violation != null) violations.add(violation);
@@ -122,6 +123,8 @@ public class HyphensRule implements IRestRule {
     private Violation getLstViolationsFromPathSegments(String path, String[] pathSegments) {
         for (String pathSegment : pathSegments) {
             if (pathSegment.isEmpty()) continue;
+            boolean isPathFullyContained = getPathSegmentMatch(pathSegment);
+            if (isPathFullyContained) continue;
             List<String> itemsFromHyphens = Arrays.asList(pathSegment.split("-"));
             // Math the segment path based on the regex. This solution is very fast to run
             List<String> pathWithoutParameters = Arrays.asList(pathSegment.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])"));
@@ -147,6 +150,24 @@ public class HyphensRule implements IRestRule {
 
         }
         return null;
+    }
+
+    public boolean getPathSegmentMatch(String word){
+        Stream<String> stringLines = null;
+        boolean isWordInDictionary = false;
+        try {
+            stringLines = Files.lines(Paths.get(PATH_TO_ENGLISH_DICTIONARY), Charset.defaultCharset());
+            isWordInDictionary = stringLines.anyMatch(word::contains);
+
+        } catch (Exception e) {
+            Logger logger = Logger.getLogger(HyphensRule.class.getName());
+            logger.log(Level.SEVERE, "Error on checking if a word is contained in a dictionary {e}", e);
+        } finally {
+            if (stringLines != null) stringLines.close();
+        }
+
+        return isWordInDictionary;
+
     }
 
     public List<String> splitContiguousWords(String sentence) throws IOException {
