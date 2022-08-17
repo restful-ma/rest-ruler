@@ -57,7 +57,7 @@ public class Violation {
     }
 
     public static Comparator<Violation> getComparator() {
-        return Comparator.comparing(Violation::getKeyViolation).thenComparing(v -> v.getRule().getTitle()).thenComparing(v -> v.getRule().getRuleType());
+        return Comparator.comparing(Violation::getLineViolation).thenComparing(Violation::getKeyViolation).thenComparing(v -> v.getRule().getTitle()).thenComparing(v -> v.getRule().getRuleType());
     }
 
 }

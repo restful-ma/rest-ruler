@@ -1,8 +1,6 @@
 package rest.studentproject;
 
 import io.micronaut.configuration.picocli.PicocliRunner;
-import io.micronaut.context.annotation.Parameter;
-import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
@@ -20,6 +18,7 @@ public class RestParserCommand implements Runnable {
 
     public static void main(String[] args) {
         PicocliRunner.run(RestParserCommand.class, args);
+        System.out.println("Hi!");
     }
 
     public void run() {
@@ -34,7 +33,7 @@ public class RestParserCommand implements Runnable {
                 throw new RuntimeException(e);
             }
             restAnalyzer.runAnalyse(new ActiveRules().getActiveRules(), true);
-            System.out.println("Hi!");
+
 
         }
     }

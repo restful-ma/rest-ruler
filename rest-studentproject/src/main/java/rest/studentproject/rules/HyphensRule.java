@@ -133,6 +133,7 @@ public class HyphensRule implements IRestRule {
             }
             if (isPathFullyContained) continue;
             List<String> itemsFromHyphens = Arrays.asList(pathSegment.split("-"));
+            List<String> itemsFromUnderscore = Arrays.asList(pathSegment.split("_"));
             // Math the segment path based on the regex. This solution is very fast to run
             List<String> pathWithoutParameters = Arrays.asList(pathSegment.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])"));
 
@@ -145,7 +146,7 @@ public class HyphensRule implements IRestRule {
                 List<String> subStringFromPath = splitContiguousWords(pathSegment);
                 List<String> pathWithoutParameterDictionaryMatching = Arrays.asList(subStringFromPath.get(0).split(" "));
                 // If the path is correct and the matching regex creates the same split with the "-" as split, then continue with the next segment path
-                if (itemsFromHyphens.equals(pathWithoutParameterDictionaryMatching) || itemsFromHyphens.equals(subStringFromPath))
+                if (itemsFromHyphens.equals(pathWithoutParameterDictionaryMatching) || itemsFromHyphens.equals(subStringFromPath) || subStringFromPath.equals(itemsFromUnderscore))
                     continue;
                 // Add violations if there is some match
                 return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.HYPHEN, path, ErrorMessage.HYPHEN);
