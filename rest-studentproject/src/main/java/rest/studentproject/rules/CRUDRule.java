@@ -12,7 +12,7 @@ import java.util.*;
  * Implementation of the rule: Underscores (_) should not be used in URI.
  */
 public class CRUDRule implements IRestRule {
-    private static final String TITLE = "";
+    private static final String TITLE = "CRUD function names should not be used in URIs.";
     private static final RuleCategory CATEGORY = RuleCategory.URIS;
     private static final RuleType TYPE = RuleType.STATIC;
     private static final RuleSeverity SEVERITY = RuleSeverity.ERROR;

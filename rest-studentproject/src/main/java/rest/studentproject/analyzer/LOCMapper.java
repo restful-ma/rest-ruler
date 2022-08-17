@@ -1,12 +1,14 @@
 package rest.studentproject.analyzer;
 
 import io.swagger.v3.oas.models.OpenAPI;
+import rest.studentproject.rules.HyphensRule;
 
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * Maps the keys from the parsed OpenAPI object to the original json or yaml line of code.
@@ -23,7 +25,6 @@ public class LOCMapper {
      *
      * @param openAPI  The parsed OpenAPI object.
      * @param filePath Path to the file that will be parsed and checked against the rules.
-     * @throws MalformedURLException If the file is not found.
      */
     public LOCMapper(OpenAPI openAPI, String filePath) {
         this.openAPI = openAPI;
@@ -37,7 +38,7 @@ public class LOCMapper {
      *
      * @throws MalformedURLException
      */
-    public void mapOpenAPIKeysToLOC() throws MalformedURLException {
+    public void mapOpenAPIKeysToLOC() {
         boolean isURL = this.filePath.startsWith("http");
         if (!this.filePath.endsWith("json") && !this.filePath.endsWith("yaml")) {
             System.err.println("Wrong file format!");
@@ -53,11 +54,8 @@ public class LOCMapper {
                 mapPaths(line, currentLine);
             }
             this.keyLOCMap.put("paths", this.pathMap);
-
-        } catch (FileNotFoundException e) {
-            System.err.println("File not found!");
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println("Issues appeared when trying to read the file! Error message: "+ e.getMessage());
         }
     }
 

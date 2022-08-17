@@ -42,16 +42,17 @@ class LOCMapperTest {
     }
 
     @Test
-    void fileNotFoundInput() throws MalformedURLException {
+    void fileNotFoundInput() {
         String fileNotFoundURL = "/asd/asd.json";
         this.openAPI = new OpenAPIParser().readLocation(fileNotFoundURL, null, null).getOpenAPI();
         this.mapper = new LOCMapper(openAPI, fileNotFoundURL);
         this.mapper.mapOpenAPIKeysToLOC();
-        assertEquals("File not found!".trim(), errContent.toString().trim());
+        assertEquals("Issues appeared when trying to read the file! " +
+                "Error message: \\asd\\asd.json (Das System kann den angegebenen Pfad nicht finden)", errContent.toString().trim());
     }
 
     @Test
-    void wrongFileFormatInput() throws MalformedURLException {
+    void wrongFileFormatInput() {
         String wrongFileFormat = "src/test/java/rest/studentproject/analyzer/res/openAPIWrongFormat.pdf";
         this.openAPI = new OpenAPIParser().readLocation(wrongFileFormat, null, null).getOpenAPI();
         this.mapper = new LOCMapper(openAPI, wrongFileFormat);
