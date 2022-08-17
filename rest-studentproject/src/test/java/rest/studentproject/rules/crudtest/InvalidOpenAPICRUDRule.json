@@ -266,35 +266,6 @@
         ]
       }
     },
-    "/": {
-      "get": {
-        "description": "Gets the face task.",
-        "parameters": [
-          {
-            "description": "An internal id for the task",
-            "in": "path",
-            "name": "taskId",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The contents of the face task.",
-            "schema": {
-              "$ref": "#/definitions/Task"
-            }
-          },
-          "404": {
-            "description": "The Task does not exists."
-          }
-        },
-        "summary": "Gets the face task [ id -> face task ]",
-        "tags": [
-          "vision"
-        ]
-      }
-    },
     "/putadult": {
       "get": {
         "description": "Gets the face task.",
@@ -470,6 +441,35 @@
       }
     },
     "/deleteUser?id=1234": {
+      "get": {
+        "description": "Gets the face task.",
+        "parameters": [
+          {
+            "description": "An internal id for the task",
+            "in": "path",
+            "name": "taskId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The contents of the face task.",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          },
+          "404": {
+            "description": "The Task does not exists."
+          }
+        },
+        "summary": "Gets the face task [ id -> face task ]",
+        "tags": [
+          "vision"
+        ]
+      }
+    },
+    "/getuser/{id}/delete": {
       "get": {
         "description": "Gets the face task.",
         "parameters": [
