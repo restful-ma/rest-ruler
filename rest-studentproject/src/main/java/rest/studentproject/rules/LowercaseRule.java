@@ -89,10 +89,6 @@ public class LowercaseRule implements IRestRule {
     public List<Violation> checkViolation(OpenAPI openAPI) {
         List<Violation> violations = new ArrayList<>();
 
-        // Define the regex to match the curly braces
-        String start = "\\{";
-        String end = "\\}";
-
         // Get the paths from the OpenAPI object
         Set<String> paths = openAPI.getPaths().keySet();
 
@@ -101,7 +97,7 @@ public class LowercaseRule implements IRestRule {
         for (String path : paths) {
             if (path.trim().equals("")) continue;
             // Get the path without the curly braces
-            String pathWithoutParameters = path.replaceAll(start + ".*" + end, "");
+            String pathWithoutParameters = path.replaceAll("\\{" + ".*" + "\\}", "");
             // Get the path in lowercase
             String pathWithoutParametersLowerCase = pathWithoutParameters.toLowerCase();
             // Check if the path contains only lowercase letters
