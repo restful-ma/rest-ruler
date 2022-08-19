@@ -1,10 +1,9 @@
 package rest.studentproject.analyzer;
 
 import io.swagger.v3.oas.models.OpenAPI;
-import rest.studentproject.rules.HyphensRule;
+
 
 import java.io.*;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,9 +18,11 @@ public class LOCMapper {
     private final Map<String, Map<String, Integer>> keyLOCMap = new HashMap<>();
     private final OpenAPI openAPI;
     private final String filePath;
+    private final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     /**
-     * Calls the mapper to map all keys from the parsed OpenAPI object to the line of code from the original json/yaml file.
+     * Calls the mapper to map all keys from the parsed OpenAPI object to the line of code from the original
+     * json/yaml file.
      *
      * @param openAPI  The parsed OpenAPI object.
      * @param filePath Path to the file that will be parsed and checked against the rules.
@@ -35,17 +36,16 @@ public class LOCMapper {
      * Reads the file and goes through every line.
      * <p>
      * Goes to all lines and checks if the line contains a path.
-     *
-     * @throws MalformedURLException
      */
     public void mapOpenAPIKeysToLOC() {
         boolean isURL = this.filePath.startsWith("http");
         if (!this.filePath.endsWith("json") && !this.filePath.endsWith("yaml")) {
-            System.err.println("Wrong file format!");
+            logger.severe("Wrong file format!");
             return;
         }
 
-        try (BufferedReader br = new BufferedReader(isURL ? new InputStreamReader(new URL(this.filePath).openStream()) : new FileReader(this.filePath))) {
+        try (BufferedReader br = new BufferedReader(isURL ?
+                new InputStreamReader(new URL(this.filePath).openStream()) : new FileReader(this.filePath))) {
             String line;
             int currentLine = 0;
 
@@ -55,7 +55,7 @@ public class LOCMapper {
             }
             this.keyLOCMap.put("paths", this.pathMap);
         } catch (IOException e) {
-            System.err.println("Issues appeared when trying to read the file! Error message: "+ e.getMessage());
+            logger.severe("Issues appeared when trying to read the file! Error message: " + e.getMessage());
         }
     }
 

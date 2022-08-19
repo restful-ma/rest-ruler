@@ -20,7 +20,7 @@ class RestParserCommandTest {
         System.setOut(new PrintStream(baos));
 
         try (ApplicationContext ctx = ApplicationContext.run(Environment.CLI, Environment.TEST)) {
-            String[] args = new String[]{"-v"};
+            String[] args = new String[]{"-h"};
             PicocliRunner.run(RestParserCommand.class, ctx, args);
 
             // rest-parser
