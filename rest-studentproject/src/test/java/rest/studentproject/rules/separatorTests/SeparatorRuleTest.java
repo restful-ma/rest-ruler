@@ -70,6 +70,8 @@ class SeparatorRuleTest {
         input.add("=v1={destination_definitions}=create");
         input.add("=v1=destination_definitions=create");
 
+        input.add("/");
+
         //run Method under test
         runMethodUnderTest(input);
 
