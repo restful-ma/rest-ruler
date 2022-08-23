@@ -119,17 +119,17 @@ public class SeparatorRule implements IRestRule {
         switch (separator) {
             case '.':
                 //escape regex operation characters, otherwise identical to default case
-                patterns.add("^((\\/|\\.)((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&=]+))*(\\.|\\/)?$");
+                patterns.add("^((\\/|\\.)((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&=]+))+(\\.|\\/)?$");
 
                 break;
             case '\\':
                 //escape regex operation characters, otherwise identical to default case
-                patterns.add("^((\\/|\\\\)((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&=]+))*(\\\\|\\/)?$");
+                patterns.add("^((\\/|\\\\)((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&=]+))+(\\\\|\\/)?$");
 
                 break;
             case '?':
                 //escape regex operation characters, otherwise identical to default case
-                patterns.add("^((\\/|\\?)((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&=]+))*(\\?|\\/)?$");
+                patterns.add("^((\\/|\\?)((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&=]+))+(\\?|\\/)?$");
 
                 break;
             case '=':
@@ -137,7 +137,7 @@ public class SeparatorRule implements IRestRule {
                 patterns.add("^=(((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&]+)\\/?)+$");
                 //case: path includes path variables that allow detection of '=' as a separator
                 patterns.add("=(\\{[^\\/{}\\(\\)\\[\\]]+\\})");
-                patterns.add("^((\\/|" + separator + ")((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&]+))*(" + separator + "|\\/)?$");
+                patterns.add("^((\\/|" + separator + ")((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&]+))+(" + separator + "|\\/)?$");
 
 
                 break;
@@ -150,7 +150,7 @@ public class SeparatorRule implements IRestRule {
                 break;
 
             default:
-                patterns.add("^((\\/|" + separator + ")((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&=]+))*(" + separator + "|\\/)?$");
+                patterns.add("^((\\/|" + separator + ")((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&=]+))+(" + separator + "|\\/)?$");
 
         }
 
@@ -203,7 +203,7 @@ public class SeparatorRule implements IRestRule {
             if (path.contains("#") || path.contains("?")) {
                 return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.SEPARATOR, path, ErrorMessage.SEPARATOR);
             } else {
-                return new Violation(this, locMapper.getLOCOfPath(path), "-", path, ErrorMessage.SEPARATOR);
+                return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.SEPARATOR_UNKNOWN, path, ErrorMessage.SEPARATOR);
             }
 
         }
