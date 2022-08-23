@@ -145,10 +145,6 @@ paths:
       responses:
         '200':
           description: A users permissions.
-          content:
-            text/plain:
-              schema:
-                type: string
         '400':
           description: The specified user ID is invalid (not a number).
         '401':
@@ -157,6 +153,25 @@ paths:
           description: A user with the specified ID was not found.
         default:
           description: Unexpected error
+    #missing default and HTTP 200 response      
+    /users/{userId}/status:
+    get:
+      summary: Returns a user permission for ID.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The perimssion of the user to return.
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        '400':
+          description: The specified user ID is invalid (not a number).
+        '401':
+          description: Unauthorized
+        '404':
+          description: A user with the specified ID was not found.
   # Illegal Request Body
   /users/{userId}/rules:
     get:
