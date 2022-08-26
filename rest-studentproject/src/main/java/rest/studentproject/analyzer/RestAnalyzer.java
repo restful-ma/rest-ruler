@@ -5,8 +5,8 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.parser.core.models.SwaggerParseResult;
 
 import rest.studentproject.report.Report;
-import rest.studentproject.rules.IRestRule;
-import rest.studentproject.rules.Violation;
+import rest.studentproject.rule.IRestRule;
+import rest.studentproject.rule.Violation;
 
 import java.net.MalformedURLException;
 

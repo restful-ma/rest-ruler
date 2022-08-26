@@ -1,9 +1,12 @@
-package rest.studentproject.rules;
+package rest.studentproject.rule.rules;
 
 import com.google.common.collect.Lists;
 import io.swagger.v3.oas.models.OpenAPI;
 import org.apache.commons.lang3.tuple.ImmutablePair;
-import rest.studentproject.rules.constants.*;
+import rest.studentproject.rule.IRestRule;
+import rest.studentproject.rule.Violation;
+import rest.studentproject.rule.constants.*;
+import rest.studentproject.rule.utility.MixIDK;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,12 +24,14 @@ import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
 
 public class HyphensRule implements IRestRule {
 
-    private static final String PATH_TO_ENGLISH_DICTIONARY = "src/main/java/rest/studentproject/docs/wordninja_words.txt";
+    private static final String PATH_TO_ENGLISH_DICTIONARY =
+            "src/main/java/rest/studentproject/docs/wordninja_words" + ".txt";
     private static final String TITLE = "Hyphens (-) should be used to improve the readability of URIs";
     private static final RuleCategory RULE_CATEGORY = RuleCategory.URIS;
     private static final RuleSeverity RULE_SEVERITY = RuleSeverity.ERROR;
     private static final RuleType RULE_TYPE = RuleType.STATIC;
-    private static final List<RuleSoftwareQualityAttribute> RULE_SOFTWARE_QUALITY_ATTRIBUTE_LIST = List.of(RuleSoftwareQualityAttribute.COMPATIBILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
+    private static final List<RuleSoftwareQualityAttribute> RULE_SOFTWARE_QUALITY_ATTRIBUTE_LIST =
+            List.of(RuleSoftwareQualityAttribute.COMPATIBILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
     private boolean isActive;
 
     public HyphensRule(boolean isActive) {
@@ -126,59 +131,40 @@ public class HyphensRule implements IRestRule {
         for (String pathSegment : pathSegments) {
             if (pathSegment.isEmpty()) continue;
             boolean isPathFullyContained;
-            try {
-                isPathFullyContained = getPathSegmentMatch(pathSegment);
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
-            }
+
+            isPathFullyContained = MixIDK.getPathSegmentMatch(pathSegment, PATH_TO_ENGLISH_DICTIONARY);
+
             if (isPathFullyContained) continue;
             List<String> itemsFromHyphens = Arrays.asList(pathSegment.split("-"));
             List<String> itemsFromUnderscore = Arrays.asList(pathSegment.split("_"));
             // Math the segment path based on the regex. This solution is very fast to run
-            List<String> pathWithoutParameters = Arrays.asList(pathSegment.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])"));
+            List<String> pathWithoutParameters = Arrays.asList(pathSegment.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)" +
+                    "(?=[A-Z][a-z])"));
 
             if (pathWithoutParameters.size() > 1) {
-                return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.HYPHEN, path, ErrorMessage.HYPHEN);
+                return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.HYPHEN, path,
+                        ErrorMessage.HYPHEN);
             }
 
             // If with the regex no substring was found then we need to check against a dictionary of english words
             try {
                 List<String> subStringFromPath = splitContiguousWords(pathSegment);
-                List<String> pathWithoutParameterDictionaryMatching = Arrays.asList(subStringFromPath.get(0).split(" "));
-                // If the path is correct and the matching regex creates the same split with the "-" as split, then continue with the next segment path
+                List<String> pathWithoutParameterDictionaryMatching = Arrays.asList(subStringFromPath.get(0).split(" "
+                ));
+                // If the path is correct and the matching regex creates the same split with the "-" as split, then
+                // continue with the next segment path
                 if (itemsFromHyphens.equals(pathWithoutParameterDictionaryMatching) || itemsFromHyphens.equals(subStringFromPath) || subStringFromPath.equals(itemsFromUnderscore))
                     continue;
                 // Add violations if there is some match
-                return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.HYPHEN, path, ErrorMessage.HYPHEN);
+                return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.HYPHEN, path,
+                        ErrorMessage.HYPHEN);
             } catch (IOException e) {
                 Logger logger = Logger.getLogger(HyphensRule.class.getName());
                 logger.log(Level.SEVERE, "Error on checking substring against a dictionary{e}", e);
             }
 
-
         }
         return null;
-    }
-
-    public boolean getPathSegmentMatch(String word) throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File(PATH_TO_ENGLISH_DICTIONARY));
-        boolean isWordInDictionary = false;
-        try {
-
-            if (scanner.useDelimiter("\\Z").next().contains(word)) {
-                isWordInDictionary = true;
-            } else {
-                isWordInDictionary = false;
-            }
-        } catch (Exception e) {
-            Logger logger = Logger.getLogger(HyphensRule.class.getName());
-            logger.log(Level.SEVERE, "Error on checking if a word is contained in a dictionary {e}", e);
-        } finally {
-            scanner.close();
-        }
-
-        return isWordInDictionary;
-
     }
 
     public List<String> splitContiguousWords(String sentence) throws IOException {
@@ -226,10 +212,9 @@ public class HyphensRule implements IRestRule {
                 throw new RuntimeException("Candidate cost unmatched; This should not be the case!");
             boolean newToken = true;
             String token = partSentence.substring(idx - candidateIndexValue.intValue(), idx);
-            if (token.equals("\'") && !output.isEmpty()) {
+            if (token.equals("'") && !output.isEmpty()) {
                 String lastWord = output.get(output.size() - 1);
-                if (lastWord.equalsIgnoreCase("\'s") ||
-                        (Character.isDigit(partSentence.charAt(idx - 1)) && Character.isDigit(lastWord.charAt(0)))) {
+                if (lastWord.equalsIgnoreCase("'s") || (Character.isDigit(partSentence.charAt(idx - 1)) && Character.isDigit(lastWord.charAt(0)))) {
                     output.set(output.size() - 1, token + lastWord);
                     newToken = false;
                 }
@@ -243,9 +228,10 @@ public class HyphensRule implements IRestRule {
     }
 
 
-    private ImmutablePair<Number, Number> bestMatch(String partSentence, List<ImmutablePair<Number, Number>> cost, int index,
-                                                    Map<String, Number> wordCost, int maxWordLength) {
-        List<ImmutablePair<Number, Number>> candidates = Lists.reverse(cost.subList(Math.max(0, index - maxWordLength), index));
+    private ImmutablePair<Number, Number> bestMatch(String partSentence, List<ImmutablePair<Number, Number>> cost,
+                                                    int index, Map<String, Number> wordCost, int maxWordLength) {
+        List<ImmutablePair<Number, Number>> candidates = Lists.reverse(cost.subList(Math.max(0,
+                index - maxWordLength), index));
         int enumerateIdx = 0;
         ImmutablePair<Number, Number> minPair = new ImmutablePair<>(Integer.MAX_VALUE, enumerateIdx);
         for (ImmutablePair<Number, Number> pair : candidates) {

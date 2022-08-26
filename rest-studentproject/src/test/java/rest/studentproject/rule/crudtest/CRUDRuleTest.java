@@ -1,11 +1,10 @@
-package rest.studentproject.rules.crudtest;
+package rest.studentproject.rule.crudtest;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import rest.studentproject.analyzer.RestAnalyzer;
-import rest.studentproject.rules.CRUDRule;
-import rest.studentproject.rules.UnderscoreRule;
-import rest.studentproject.rules.Violation;
+import rest.studentproject.rule.rules.CRUDRule;
+import rest.studentproject.rule.Violation;
 
 
 import java.net.MalformedURLException;
@@ -32,6 +31,11 @@ class CRUDRuleTest {
         String path = "src/test/java/rest/studentproject/rules/crudtest/InvalidOpenAPICRUDRule.json";
 
         List<Violation> violations = runMethodUnderTest(path);
+        for (Violation violation : violations) {
+            System.out.println(violation.getKeyViolation());
+            System.out.println(violation.getLineViolation());
+            System.out.println(violation.getRule());
+        }
         assertEquals(13, violations.size(), "There should be 13 rule violations.");
     }
 

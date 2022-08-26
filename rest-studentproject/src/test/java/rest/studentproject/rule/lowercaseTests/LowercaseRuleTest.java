@@ -1,16 +1,10 @@
-package rest.studentproject.rules.lowercaseTests;
+package rest.studentproject.rule.lowercaseTests;
 
-import io.swagger.parser.OpenAPIParser;
-import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.parser.core.models.SwaggerParseResult;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import rest.studentproject.analyzer.RestAnalyzer;
-import rest.studentproject.rules.HyphensRule;
-import rest.studentproject.rules.LowercaseRule;
-import rest.studentproject.rules.Violation;
+import rest.studentproject.rule.rules.LowercaseRule;
+import rest.studentproject.rule.Violation;
 
 import java.net.MalformedURLException;
 import java.util.List;

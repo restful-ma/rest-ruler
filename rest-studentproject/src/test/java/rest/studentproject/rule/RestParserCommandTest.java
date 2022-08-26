@@ -1,4 +1,4 @@
-package rest.studentproject.rules;
+package rest.studentproject.rule;
 
 import io.micronaut.configuration.picocli.PicocliRunner;
 import io.micronaut.context.ApplicationContext;
