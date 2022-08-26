@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.net.MalformedURLException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LOCMapperTest {
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
@@ -29,7 +29,7 @@ class LOCMapperTest {
     }
 
     @Test
-    void validMapping() throws MalformedURLException {
+    void validMapping() {
         String jsonURL = "src/test/java/rest/studentproject/validopenapi/validOpenAPI.json";
         this.openAPI = new OpenAPIParser().readLocation(jsonURL, null, null).getOpenAPI();
         this.mapper = new LOCMapper(openAPI, jsonURL);
@@ -47,8 +47,8 @@ class LOCMapperTest {
         this.openAPI = new OpenAPIParser().readLocation(fileNotFoundURL, null, null).getOpenAPI();
         this.mapper = new LOCMapper(openAPI, fileNotFoundURL);
         this.mapper.mapOpenAPIKeysToLOC();
-        assertEquals("Issues appeared when trying to read the file! " +
-                "Error message: \\asd\\asd.json (Das System kann den angegebenen Pfad nicht finden)", errContent.toString().trim());
+        assertTrue(errContent.toString().trim().endsWith("Issues appeared when trying to read the file! " + "Error " +
+                "message: \\asd\\asd.json (Das System kann den angegebenen Pfad nicht finden)".trim()));
     }
 
     @Test
@@ -57,6 +57,7 @@ class LOCMapperTest {
         this.openAPI = new OpenAPIParser().readLocation(wrongFileFormat, null, null).getOpenAPI();
         this.mapper = new LOCMapper(openAPI, wrongFileFormat);
         this.mapper.mapOpenAPIKeysToLOC();
-        assertEquals("Wrong file format!".trim(), errContent.toString().trim());
+        System.out.println("Actual output: " + errContent.toString().trim());
+        assertTrue(errContent.toString().trim().endsWith("Wrong file format!".trim()));
     }
 }

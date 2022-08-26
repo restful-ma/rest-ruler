@@ -2,8 +2,8 @@ package rest.studentproject.report;
 
 import net.steppschuh.markdowngenerator.table.Table;
 import net.steppschuh.markdowngenerator.text.heading.Heading;
-import rest.studentproject.rules.IRestRule;
-import rest.studentproject.rules.Violation;
+import rest.studentproject.rule.IRestRule;
+import rest.studentproject.rule.Violation;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

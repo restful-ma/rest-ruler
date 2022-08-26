@@ -1,8 +1,10 @@
-package rest.studentproject.rules;
+package rest.studentproject.rule.rules;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.servers.Server;
-import rest.studentproject.rules.constants.*;
+import rest.studentproject.rule.IRestRule;
+import rest.studentproject.rule.Violation;
+import rest.studentproject.rule.constants.*;
 
 import java.util.*;
 

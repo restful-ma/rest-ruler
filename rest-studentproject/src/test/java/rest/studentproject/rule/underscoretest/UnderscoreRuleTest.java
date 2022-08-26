@@ -1,10 +1,10 @@
-package rest.studentproject.rules.underscoretest;
+package rest.studentproject.rule.underscoretest;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import rest.studentproject.analyzer.RestAnalyzer;
-import rest.studentproject.rules.UnderscoreRule;
-import rest.studentproject.rules.Violation;
+import rest.studentproject.rule.rules.UnderscoreRule;
+import rest.studentproject.rule.Violation;
 
 import java.net.MalformedURLException;
 import java.util.List;

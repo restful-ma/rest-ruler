@@ -1,12 +1,16 @@
-package rest.studentproject.rules;
+package rest.studentproject.rule.rules;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.servers.Server;
-import rest.studentproject.rules.constants.*;
+import rest.studentproject.rule.IRestRule;
+import rest.studentproject.rule.Violation;
+import rest.studentproject.rule.constants.*;
+import rest.studentproject.rule.utility.MixIDK;
 
 import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 /**
  * Implementation of the rule: Underscores (_) should not be used in URI.
@@ -16,9 +20,12 @@ public class CRUDRule implements IRestRule {
     private static final RuleCategory CATEGORY = RuleCategory.URIS;
     private static final RuleType TYPE = RuleType.STATIC;
     private static final RuleSeverity SEVERITY = RuleSeverity.ERROR;
-    private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTE = Arrays.asList(RuleSoftwareQualityAttribute.USABILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
-    private static final String[] CRUDOPERATIONS = {"get", "post", "delete", "put"};
+    private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTE =
+            Arrays.asList(RuleSoftwareQualityAttribute.USABILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
+    private final String[] CRUDOPERATIONS = {"get", "post", "delete", "put", "create", "read", "update", "patch",
+            "insert", "select"};
     private final List<Violation> violationList = new ArrayList<>();
+    private final String PATH_TO_CRUD_DICTIONARY = "src/main/java/rest/studentproject/docs/CRUD_words.txt";
     private boolean isActive;
 
     public CRUDRule(boolean isActive) {
@@ -81,12 +88,15 @@ public class CRUDRule implements IRestRule {
         // Violate the CRUD rule for the path list
         for (String path : paths) {
             if (path.trim().isEmpty()) continue;
-
-            // Goes through every CRUD operation --> If multiple CRUD operations are found --> Multiple violations
-            for (String crudOperation : CRUDOPERATIONS) {
-                String pathWithoutParameters = path.replaceAll("\\{" + ".*" + "\\}", "");
-                if (pathWithoutParameters.toLowerCase().contains(crudOperation)) {
-                    violationList.add(new Violation(this, locMapper.getLOCOfPath(path), "URIS should not be used to indicate that a CRUD function (" + crudOperation.toUpperCase() + ") is performed, instead HTTP request methods should be used for this.", path, ErrorMessage.CRUD));
+            String pathWithoutParameters = path.replaceAll("\\{" + ".*" + "\\}", "");
+            String[] pathSegments = pathWithoutParameters.split("/");
+            for (String segment : pathSegments) {
+                if (MixIDK.getPathSegmentMatch(segment, this.PATH_TO_CRUD_DICTIONARY)) continue;
+                for (String crudOperation : this.CRUDOPERATIONS) {
+                    if (segment.toLowerCase().contains(crudOperation)) {
+                        violationList.add(new Violation(this, locMapper.getLOCOfPath(path),
+                                "URIS should not be used to " + "indicate that a CRUD function (" + crudOperation.toUpperCase() + ") is performed, " + "instead HTTP request methods should be used for this.", path, ErrorMessage.CRUD));
+                    }
                 }
             }
         }

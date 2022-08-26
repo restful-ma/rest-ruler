@@ -1,15 +1,10 @@
-package rest.studentproject.rules.hyphensTests;
+package rest.studentproject.rule.hyphensTests;
 
-import io.swagger.parser.OpenAPIParser;
-import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.parser.core.models.SwaggerParseResult;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import rest.studentproject.analyzer.RestAnalyzer;
-import rest.studentproject.rules.HyphensRule;
-import rest.studentproject.rules.UnderscoreRule;
-import rest.studentproject.rules.Violation;
+import rest.studentproject.rule.rules.HyphensRule;
+import rest.studentproject.rule.Violation;
 
 import java.net.MalformedURLException;
 import java.util.List;

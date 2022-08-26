@@ -1,4 +1,4 @@
-package rest.studentproject.rules;
+package rest.studentproject.rule;
 
 import java.util.Comparator;
 

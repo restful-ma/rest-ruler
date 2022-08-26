@@ -1,11 +1,11 @@
-package rest.studentproject.rules.separatorTests;
+package rest.studentproject.rule.separatorTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import rest.studentproject.analyzer.RestAnalyzer;
-import rest.studentproject.rules.SeparatorRule;
-import rest.studentproject.rules.Violation;
+import rest.studentproject.rule.rules.SeparatorRule;
+import rest.studentproject.rule.Violation;
 
 import java.net.MalformedURLException;
 import java.nio.file.Paths;

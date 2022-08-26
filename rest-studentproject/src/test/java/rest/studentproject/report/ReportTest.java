@@ -1,10 +1,8 @@
 package rest.studentproject.report;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import rest.studentproject.rules.UnderscoreRule;
-import rest.studentproject.rules.Violation;
+import rest.studentproject.rule.rules.UnderscoreRule;
+import rest.studentproject.rule.Violation;
 
 import java.io.IOException;
 import java.nio.file.Files;
