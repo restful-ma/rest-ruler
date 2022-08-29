@@ -20,7 +20,7 @@ class HyphensRuleTest {
     @DisplayName("Detect if a path segment contains more than a word. Here 6 paths contain a violation.")
     void checkViolationOnInvalidRESTFile2Violations() throws MalformedURLException {
 
-        String url = "src/test/java/rest/studentproject/rules/hyphensTests/hyphensInvalid2Violations.json";
+        String url = "src/test/java/rest/studentproject/rule/hyphensTests/hyphensInvalid2Violations.json";
 
         List<Violation> violationToTest = runMethodUnderTest(url);
 
@@ -32,7 +32,7 @@ class HyphensRuleTest {
     @DisplayName("Detect if a path segment contains more than a word. Here 2 paths contain a violation.")
     void checkViolationOnInvalidRESTFile2ViolationsLowercase() throws MalformedURLException {
 
-        String url = "src/test/java/rest/studentproject/rules/hyphensTests/hyphensInvalid2ViolationsLowercase.json";
+        String url = "src/test/java/rest/studentproject/rule/hyphensTests/hyphensInvalid2ViolationsLowercase.json";
 
         List<Violation> violationToTest = runMethodUnderTest(url);
 
@@ -44,7 +44,7 @@ class HyphensRuleTest {
     @DisplayName("Detect if a path segment contains more than a word. Here 9 paths contain a violation.")
     void checkViolationOnInvalidRESTFile6Violations() throws MalformedURLException {
 
-        String url = "src/test/java/rest/studentproject/rules/hyphensTests/hyphensInvalid9ViolationsSpecialCharactersLowercase.json";
+        String url = "src/test/java/rest/studentproject/rule/hyphensTests/hyphensInvalid9ViolationsSpecialCharactersLowercase.json";
         List<Violation> violationToTest = runMethodUnderTest(url);
 
         assertEquals(9, violationToTest.size(),

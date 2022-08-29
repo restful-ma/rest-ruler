@@ -34,16 +34,12 @@ public class RestParserCommand implements Runnable {
 
             RestAnalyzer restAnalyzer = null;
 
-            try {
-                //https://api.apis.guru/v2/specs/aiception.com/1.0.0/swagger.json
-                // Handle when no rule is active
+            //https://api.apis.guru/v2/specs/aiception.com/1.0.0/swagger.json
+            // Handle when no rule is active
 
-                System.out.println("----------------------------------------------\n");
-                System.out.println("Begin with the analysis of the file from: " + this.path);
-                restAnalyzer = new RestAnalyzer(this.path);
-            } catch (IOException e) {
-                logger.severe("Exception when reading the URI: " + e.getMessage());
-            }
+            System.out.println("----------------------------------------------\n");
+            System.out.println("Begin with the analysis of the file from: " + this.path);
+            restAnalyzer = new RestAnalyzer(this.path);
             restAnalyzer.runAnalyse(new ActiveRules().getAllRuleObjects(), true);
         }
     }

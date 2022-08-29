@@ -20,7 +20,7 @@ class LowercaseRuleTest {
     @DisplayName("Detection of uppercase letters should be successful in detecting 6 violations.")
     void checkViolationOnInvalidRESTFile6Violations() throws MalformedURLException {
 
-        String url = "src/test/java/rest/studentproject/rules/lowercaseTests/lowercaseInvalid6Violations.json";
+        String url = "src/test/java/rest/studentproject/rule/lowercaseTests/lowercaseInvalid6Violations.json";
         List<Violation> violationToTest = runMethodUnderTest(url);
 
         assertEquals(6, violationToTest.size(),
@@ -31,7 +31,7 @@ class LowercaseRuleTest {
     @DisplayName("Detection of uppercase letters should be successful in detecting 3 violations.")
     void checkViolationOnInvalidRESTFile3Violations() throws MalformedURLException {
 
-        String url = "src/test/java/rest/studentproject/rules/lowercaseTests/lowercaseInvalid3Violations.json";
+        String url = "src/test/java/rest/studentproject/rule/lowercaseTests/lowercaseInvalid3Violations.json";
         List<Violation> violationToTest = runMethodUnderTest(url);
 
         assertEquals(3, violationToTest.size(),
@@ -42,7 +42,7 @@ class LowercaseRuleTest {
     @DisplayName("Detection of uppercase letters should be successful in detecting 0 violations and return an empty list.")
     void checkViolationOnInvalidRESTFileEmpty() throws MalformedURLException {
 
-        String url = "src/test/java/rest/studentproject/rules/lowercaseTests/lowercaseInvalidEmptyPaths.json";
+        String url = "src/test/java/rest/studentproject/rule/lowercaseTests/lowercaseInvalidEmptyPaths.json";
         List<Violation> violationToTest = runMethodUnderTest(url);
 
 
@@ -54,7 +54,7 @@ class LowercaseRuleTest {
     @DisplayName("Detection of uppercase letters should be successful in detecting 2 violations.")
     void checkViolationOnInvalidRESTFileEmptyURI() throws MalformedURLException {
 
-        String url = "src/test/java/rest/studentproject/rules/lowercaseTests/lowercaseInvalidEmptyURI.json";
+        String url = "src/test/java/rest/studentproject/rule/lowercaseTests/lowercaseInvalidEmptyURI.json";
         List<Violation> violationToTest = runMethodUnderTest(url);
 
         assertEquals(2, violationToTest.size(),

@@ -8,8 +8,6 @@ import rest.studentproject.report.Report;
 import rest.studentproject.rule.IRestRule;
 import rest.studentproject.rule.Violation;
 
-import java.net.MalformedURLException;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +18,7 @@ public class RestAnalyzer {
     private static final Report report = Report.getInstance();
 
 
-    public RestAnalyzer(String url) throws MalformedURLException {
+    public RestAnalyzer(String url) {
         SwaggerParseResult swaggerParseResult = new OpenAPIParser().readLocation(url, null, null);
         this.openAPI = swaggerParseResult.getOpenAPI();
         locMapper = new LOCMapper(openAPI, url);
