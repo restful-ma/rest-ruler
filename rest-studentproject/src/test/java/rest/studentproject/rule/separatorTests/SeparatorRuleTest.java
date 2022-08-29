@@ -20,17 +20,13 @@ class SeparatorRuleTest {
     RestAnalyzer restAnalyzer;
 
     //relative path to test JSON file
-    private static final String PATH = "/src/test/java/rest/studentproject/rules/separatorTests/separator_test.json";
+    private static final String PATH = "/src/test/java/rest/studentproject/rule/separatorTests/separator_test.json";
 
 
     @BeforeEach
     void setUp() {
-        try {
-            restAnalyzer = new RestAnalyzer(Paths.get("").toAbsolutePath().toString() + PATH);
-            separatorRule = new SeparatorRule(true);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        restAnalyzer = new RestAnalyzer(Paths.get("").toAbsolutePath().toString() + PATH);
+        separatorRule = new SeparatorRule(true);
 
     }
 

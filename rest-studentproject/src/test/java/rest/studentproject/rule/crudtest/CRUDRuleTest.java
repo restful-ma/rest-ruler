@@ -28,18 +28,18 @@ class CRUDRuleTest {
     @Test
     @DisplayName("Test that checks if the 13 crud rule violations are detected.")
     void invalidFile() throws MalformedURLException {
-        String path = "src/test/java/rest/studentproject/rules/crudtest/InvalidOpenAPICRUDRule.json";
+        String path = "src/test/java/rest/studentproject/rule/crudtest/InvalidOpenAPICRUDRule.json";
 
         List<Violation> violations = runMethodUnderTest(path);
         for (Violation violation : violations) {
             System.out.println(violation.getKeyViolation());
             System.out.println(violation.getLineViolation());
-            System.out.println(violation.getRule());
+            System.out.println(violation.getImprovementSuggestion());
         }
         assertEquals(13, violations.size(), "There should be 13 rule violations.");
     }
 
-    private List<Violation> runMethodUnderTest(String url) throws MalformedURLException {
+    private List<Violation> runMethodUnderTest(String url) {
 
         this.restAnalyzer = new RestAnalyzer(url);
         this.crudRule = new CRUDRule(true);

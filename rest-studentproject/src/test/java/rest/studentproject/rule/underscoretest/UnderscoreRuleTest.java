@@ -31,7 +31,7 @@ class UnderscoreRuleTest {
     @DisplayName("Test that checks if the four underscore rule violations are detected.")
     void invalidFile() throws MalformedURLException {
 
-        String url = "src/test/java/rest/studentproject/rules/underscoretest/InvalidOpenAPIUnderscroeRule.json";
+        String url = "src/test/java/rest/studentproject/rule/underscoretest/InvalidOpenAPIUnderscroeRule.json";
 
         List<Violation> violations = runMethodUnderTest(url);
         assertEquals(4, violations.size(), "There should be four rule violations. Three of the seven paths are valid.");

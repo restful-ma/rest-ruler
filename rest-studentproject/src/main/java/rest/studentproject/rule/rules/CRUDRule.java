@@ -7,10 +7,9 @@ import rest.studentproject.rule.Violation;
 import rest.studentproject.rule.constants.*;
 import rest.studentproject.rule.utility.MixIDK;
 
-import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
-
 import java.util.*;
-import java.util.stream.Stream;
+
+import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
 
 /**
  * Implementation of the rule: Underscores (_) should not be used in URI.
@@ -85,21 +84,28 @@ public class CRUDRule implements IRestRule {
             paths.add(server.getUrl());
         }
 
-        // Violate the CRUD rule for the path list
+
         for (String path : paths) {
             if (path.trim().isEmpty()) continue;
             String pathWithoutParameters = path.replaceAll("\\{" + ".*" + "\\}", "");
             String[] pathSegments = pathWithoutParameters.split("/");
             for (String segment : pathSegments) {
+                System.out.println(segment);
                 if (MixIDK.getPathSegmentMatch(segment, this.PATH_TO_CRUD_DICTIONARY)) continue;
+                System.out.println("after if");
                 for (String crudOperation : this.CRUDOPERATIONS) {
+                    System.out.println("crud: " + crudOperation);
+                    System.out.println(segment.toLowerCase());
                     if (segment.toLowerCase().contains(crudOperation)) {
-                        violationList.add(new Violation(this, locMapper.getLOCOfPath(path),
-                                "URIS should not be used to " + "indicate that a CRUD function (" + crudOperation.toUpperCase() + ") is performed, " + "instead HTTP request methods should be used for this.", path, ErrorMessage.CRUD));
+                        System.out.println("violation");
+                        this.violationList.add(new Violation(this, locMapper.getLOCOfPath(path), "URIS should not be used " +
+                                "to " + "indicate that a CRUD function (" + crudOperation.toUpperCase() + ") is " +
+                                "performed, " + "instead HTTP request methods should be used for this.", path,
+                                ErrorMessage.CRUD));
                     }
                 }
             }
         }
-        return violationList;
+        return this.violationList;
     }
 }
