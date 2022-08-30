@@ -2,8 +2,10 @@ package rest.studentproject.analyzer;
 
 import io.swagger.v3.oas.models.OpenAPI;
 
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,7 +57,8 @@ public class LOCMapper {
             }
             this.keyLOCMap.put("paths", this.pathMap);
         } catch (IOException e) {
-            logger.severe("Issues appeared when trying to read the file! Error message: " + e.getMessage());
+            System.err.println("Issues appeared when trying to read the file! Error message: " + e.getMessage());
+
         }
     }
 
