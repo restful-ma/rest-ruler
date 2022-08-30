@@ -31,3 +31,5 @@ jobs:
         gradle-version: 7.4.2
     - run: gradle build
       working-directory: ./rest-studentproject
+    - name: Test Reporter
+      uses: dorny/test-reporter@v1.5.0
