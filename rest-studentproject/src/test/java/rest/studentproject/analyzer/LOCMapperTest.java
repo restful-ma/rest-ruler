@@ -2,6 +2,7 @@ package rest.studentproject.analyzer;
 
 import io.swagger.parser.OpenAPIParser;
 import io.swagger.v3.oas.models.OpenAPI;
+import org.apache.commons.io.FilenameUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -47,8 +48,9 @@ class LOCMapperTest {
         this.openAPI = new OpenAPIParser().readLocation(fileNotFoundURL, null, null).getOpenAPI();
         this.mapper = new LOCMapper(openAPI, fileNotFoundURL);
         this.mapper.mapOpenAPIKeysToLOC();
-        assertTrue(errContent.toString().trim().endsWith("Issues appeared when trying to read the file! " + "Error " +
-                "message: \\asd\\asd.json (Das System kann den angegebenen Pfad nicht finden)".trim()));
+        System.out.println(fileNotFoundURL);
+        System.out.println(errContent.toString());
+        assertEquals("Issues appeared when trying to read the file! " + "Error " + "message: " + FilenameUtils.separatorsToSystem(fileNotFoundURL) + " (Das System kann den angegebenen Pfad nicht finden)", errContent.toString().trim());
     }
 
     @Test
