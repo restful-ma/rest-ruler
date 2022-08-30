@@ -19,7 +19,7 @@ public class ActiveRules {
             ".properties";
     private static final String PATH_TO_RULES = "rest.studentproject.rule.rules";
     private final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-    private final String METHOD_NAME = "getTitle";
+    private static final String METHOD_NAME = "getTitle";
 
     /**
      * With the help of reflections, all rule objects are created from the package {@link #PATH_TO_RULES}. It is
@@ -41,7 +41,7 @@ public class ActiveRules {
             try {
                 Constructor<?> ruleConstructor = ruleClass.getConstructor(boolean.class);
                 Object classObj = ruleConstructor.newInstance(true);
-                Method ruleMethod = ruleClass.getDeclaredMethod(this.METHOD_NAME);
+                Method ruleMethod = ruleClass.getDeclaredMethod(METHOD_NAME);
 
                 String ruleTitle = ruleMethod.invoke(classObj).toString().replace(" ", "");
 
