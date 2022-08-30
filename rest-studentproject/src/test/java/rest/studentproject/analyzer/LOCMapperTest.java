@@ -57,7 +57,6 @@ class LOCMapperTest {
         this.openAPI = new OpenAPIParser().readLocation(wrongFileFormat, null, null).getOpenAPI();
         this.mapper = new LOCMapper(openAPI, wrongFileFormat);
         this.mapper.mapOpenAPIKeysToLOC();
-        System.out.println("Actual output: " + errContent.toString().trim());
         assertTrue(errContent.toString().trim().endsWith("Wrong file format!".trim()));
     }
 }

@@ -36,7 +36,7 @@ class SeparatorRuleTest {
      */
     @Test
     @DisplayName("Separator Rule detects violations in an OPEN API JSON file")
-    void checkViolation() throws MalformedURLException {
+    void checkViolation() {
 
         List<Violation> violationList = restAnalyzer.runAnalyse(List.of(this.separatorRule), false);
 
