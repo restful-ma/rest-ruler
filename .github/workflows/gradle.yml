@@ -29,7 +29,5 @@ jobs:
       uses: gradle/gradle-build-action@v2
       with:
         gradle-version: 7.4.2
-    - run: gradle build
+    - run: gradle build --info
       working-directory: ./rest-studentproject
-    - name: Test Reporter
-      uses: dorny/test-reporter@v1.5.0
