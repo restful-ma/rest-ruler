@@ -50,7 +50,7 @@ class LOCMapperTest {
         this.mapper.mapOpenAPIKeysToLOC();
         System.out.println(fileNotFoundURL);
         System.out.println(errContent.toString());
-        assertEquals("Issues appeared when trying to read the file! " + "Error " + "message: " + FilenameUtils.separatorsToSystem(fileNotFoundURL) + " (Das System kann den angegebenen Pfad nicht finden)", errContent.toString().trim());
+        assertEquals(errContent.toString().trim().startsWith("Issues appeared when trying to read the file! " + "Error " + "message: " + FilenameUtils.separatorsToSystem(fileNotFoundURL)), true);
     }
 
     @Test
