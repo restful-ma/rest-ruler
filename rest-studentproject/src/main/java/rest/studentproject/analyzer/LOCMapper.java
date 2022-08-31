@@ -2,8 +2,10 @@ package rest.studentproject.analyzer;
 
 import io.swagger.v3.oas.models.OpenAPI;
 
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -68,11 +70,15 @@ public class LOCMapper {
     private void mapPaths(String line, int currentLine) {
         for (String keyPath : this.openAPI.getPaths().keySet()) {
             // To search for the path in the json file
-            String pathWithQuotes = "\"" + keyPath + "\"";
+            String pathWithDoubleQuotes = "\"" + keyPath + "\"";
+            String pathWithSingleQuotes = "'" + keyPath + "'";
             // To search for the path in the yaml file
             String pathWithColon = keyPath + ":";
+            String pathWithColonAndSingleQuotes = keyPath + "':";
+            String pathWithColonAndDoubleQuotes = keyPath + "\":";
 
-            if (!line.contains(pathWithQuotes) && !line.contains(pathWithColon)) continue;
+            if (!line.contains(pathWithDoubleQuotes) && !line.contains(pathWithSingleQuotes) && !line.contains(pathWithColon) && !line.contains(pathWithColonAndSingleQuotes) && !line.contains(pathWithColonAndDoubleQuotes))
+                continue;
 
             this.pathMap.put(keyPath, currentLine);
         }
