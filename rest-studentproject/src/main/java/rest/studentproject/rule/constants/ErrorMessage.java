@@ -7,6 +7,8 @@ public class ErrorMessage {
     public static final String SEPARATOR = "A forward slash '/' has to be used as a separator";
     public static final String HYPHEN = "Hyphens (-) should be used to improve the readability of URIs";
     public static final String CRUD = "CRUD function names should not be used in URIs";
+    public static final String UNAUTHERIZED =
+            "401 (\"Unauthorized\") must be used when there is a problem with the " + "client's credentials";
 
     private ErrorMessage() {
         throw new IllegalStateException("Utility class");
