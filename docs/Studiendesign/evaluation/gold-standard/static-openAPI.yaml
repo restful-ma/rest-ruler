@@ -14,15 +14,15 @@ servers:
   - url: https://sandbox-api.example.com:8443/v1
     description: Sandbox server (uses test data)
 tags:
-- name: "URI Rules"
-- name: "Meta Rules"
-- name: "Representational Rules"
-- name: "HTTP Rules"
-- name: "Client Rules"
+  - name: "URI Rules"
+  - name: "Meta Rules"
+  - name: "Representational Rules"
+  - name: "HTTP Rules"
+  - name: "Client Rules"
 schemes:
-- "https"
+  - "https"
 paths:
-  # Define all paths here       
+  # Define all paths here
   # RULE 19: using other characters instead of forward slash '/'
   .users.{userId}.permissions:
     get:
@@ -36,17 +36,17 @@ paths:
             type: string
             minimum: 1
       responses:
-        '200':
+        "200":
           description: A users permissions.
           content:
             text/plain:
               schema:
                 type: string
-        '400':
+        "400":
           description: The specified user ID is invalid (not a number).
-        '401':
+        "401":
           description: Unauthorized
-        '404':
+        "404":
           description: A user with the specified ID was not found.
         default:
           description: Unexpected error
@@ -63,17 +63,17 @@ paths:
             type: string
             minimum: 1
       responses:
-        '200':
+        "200":
           description: A users permissions.
           content:
             text/plain:
               schema:
                 type: string
-        '400':
+        "400":
           description: The specified user ID is invalid (not a number).
-        '401':
+        "401":
           description: Unauthorized
-        '404':
+        "404":
           description: A user with the specified ID was not found.
         default:
           description: Unexpected error
@@ -89,17 +89,17 @@ paths:
             type: string
             minimum: 1
       responses:
-        '200':
+        "200":
           description: A users permissions.
           content:
             text/plain:
               schema:
                 type: string
-        '400':
+        "400":
           description: The specified user ID is invalid (not a number).
-        '401':
+        "401":
           description: Unauthorized
-        '404':
+        "404":
           description: A user with the specified ID was not found.
         default:
           description: Unexpected error
@@ -115,17 +115,17 @@ paths:
             type: string
             minimum: 1
       responses:
-        '200':
+        "200":
           description: A users permissions.
           content:
             text/plain:
               schema:
                 type: string
-        '400':
+        "400":
           description: The specified user ID is invalid (not a number).
-        '401':
+        "401":
           description: Unauthorized
-        '404':
+        "404":
           description: A user with the specified ID was not found.
         default:
           description: Unexpected error
@@ -161,25 +161,25 @@ paths:
     get:
       tag: "URI Rules"
       description: "Get Pets. Violations: Lowercase letters should be preferred in URI paths. Pets should be pets."
-      response: 
+      response:
         "200":
           description: "A list of pets"
         "400":
-            description: "The specified user ID is invalid (not a number)."
+          description: "The specified user ID is invalid (not a number)."
         "401":
           description: "Unauthorized"
         "404":
           description: "A user with the specified ID was not found."
-  
+
   "/pets/{petName}/LocationsStates":
     get:
       tag: "URI Rules"
       description: "Get Pet Locations States. Violations: Lowercase letters should be preferred in URI paths. LocationsStates should be locationsstates"
-      response: 
+      response:
         "200":
           description: "A list of locations states given a pet name"
         "400":
-            description: "The specified user ID is invalid (not a number)."
+          description: "The specified user ID is invalid (not a number)."
         "401":
           description: "Unauthorized"
         "404":
@@ -188,30 +188,30 @@ paths:
   "/pets/{petName}/locations/{locationName}/CITY":
     get:
       tag: "URI Rules"
-      description: "Get Pet Location City. Violations: Lowercase letters should be preferred in URI paths. CITY should be city." 
-      response: 
+      description: "Get Pet Location City. Violations: Lowercase letters should be preferred in URI paths. CITY should be city."
+      response:
         "200":
           description: "City where a pet is located"
         "400":
-            description: "The specified user ID is invalid (not a number)."
+          description: "The specified user ID is invalid (not a number)."
         "401":
           description: "Unauthorized"
         "404":
           description: "A user with the specified ID was not found."
-      
-  "/pets/{petName}/addLocation": 
-    get: 
+
+  "/pets/{petName}/addLocation":
+    get:
       tag: "URI Rules"
       description: "Add a new location to a pet. Violations: Lowercase letters should be preferred in URI paths. Location should be location"
-      requestBody: 
-        content: 
-            application/json:
-              examples:
-                basic: 
-                  "$ref": "#/components/examples/post-createNotificationConfiguration-basic"
-              schema: 
-                $ref: "#/components/schemas/CreateNotificationConfigurationRequest"
-      response: 
+      requestBody:
+        content:
+          application/json:
+            examples:
+              basic:
+                "$ref": "#/components/examples/post-createNotificationConfiguration-basic"
+            schema:
+              $ref: "#/components/schemas/CreateNotificationConfigurationRequest"
+      response:
         "200":
           description: "Country where a pet is located"
         "400":
@@ -221,8 +221,7 @@ paths:
         "404":
           description: "A user with the specified ID was not found."
         summary: "Country where a pet is located"
-        tags:
-          "pets"
+        tags: "pets"
   # Rule 21: Hyphens (-) should be used to improve the readability of URIs.
   "/bigPets":
     get:
@@ -316,7 +315,7 @@ paths:
         "400":
           description: "Bad request"
         "401":
-          description: "Unauthorized"
+          description: "Unauthorized"<
         "404":
           description: "Not Found"
   "/getschool/{getSchoolID}/delete":
@@ -332,6 +331,18 @@ paths:
           description: "Unauthorized"
         "404":
           description: "Not Found"
+  # Rule 35: 401 (Unauthorized) must be used when there is a problem with the client's credentials
+  "/school":
+    get:
+      tag: "HTTP Rules"
+      description: "Violates the Unauthorized rule."
+      response:
+        "200":
+          description: "Successful request"
+        "400":
+          description: "Bad request"
+        "404":
+          description: "Not Found"
 components:
   # Define all components here
   securitySchemes:
@@ -339,7 +350,7 @@ components:
       type: http
       scheme: basic
   security:
-  - BasicAuth: []
+    - BasicAuth: []
   externalDocs:
     description: "Find out more about Swagger"
     url: "http://swagger.io"
