@@ -1,4 +1,4 @@
-package rest.studentproject;
+package rest.studentproject.utility;
 
 import rest.studentproject.analyzer.RestAnalyzer;
 import rest.studentproject.rule.ActiveRules;
@@ -29,7 +29,7 @@ public class Output {
         String startConfig = scanner.next().trim();
 
         if (startConfig.equals("y") || startConfig.equals("yes")) {
-            Map<String, Boolean> config = new HashMap<>();
+            Map<String, String> config = new HashMap<>();
             int currentRuleIndex = 1;
 
             System.out.println("\n---------------------INFO---------------------");
@@ -49,12 +49,12 @@ public class Output {
                 switch (userRuleInput) {
                     case "y":
                     case "yes":
-                        Objects.requireNonNull(config).put(currentRule.getTitle().replaceAll("\\s+", ""), true);
+                        Objects.requireNonNull(config).put(currentRule.getTitle().replaceAll("\\s+", ""), "true");
                         currentRuleIndex++;
                         break;
                     case "n":
                     case "no":
-                        Objects.requireNonNull(config).put(currentRule.getTitle().replaceAll("\\s+", ""), false);
+                        Objects.requireNonNull(config).put(currentRule.getTitle().replaceAll("\\s+", ""), "false");
                         currentRuleIndex++;
                         break;
                     case "i":
@@ -78,7 +78,7 @@ public class Output {
             }
             System.out.println("Finished configuration.");
 
-            activeRules.setActiveRules(config);
+            new Config().addToConfig(config);
         } else System.out.println("Skip configuration");
     }
 
@@ -89,6 +89,7 @@ public class Output {
      */
     public void startAnalysis(String pathToFile) {
         // Example: https://api.apis.guru/v2/specs/aiception.com/1.0.0/swagger.json
+        // Very long example (just under 20k lines): https://api.apis.guru/v2/specs/amazonaws.com/autoscaling/2011-01-01/openapi.json
         System.out.println("----------------------------------------------\n");
         System.out.println("Begin with the analysis of the file from: " + pathToFile);
 
