@@ -3,6 +3,7 @@ package rest.studentproject;
 import io.micronaut.configuration.picocli.PicocliRunner;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
+import rest.studentproject.utility.Output;
 
 @Command(name = "rest-parser", description = "...", mixinStandardHelpOptions = true)
 public class RestParserCommand implements Runnable {
