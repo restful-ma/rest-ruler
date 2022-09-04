@@ -90,7 +90,7 @@ public class UnauthorizedRule implements IRestRule {
                 if (operation.getResponses().containsKey("401")) continue;
 
                 this.violationList.add(new Violation(this, locMapper.getLOCOfPath(path.getKey()),
-                        ImprovementSuggestion.UNAUTHERIZED, path.getKey(), ErrorMessage.UNAUTHERIZED));
+                        ImprovementSuggestion.UNAUTHORIZED, path.getKey(), ErrorMessage.UNAUTHORIZED));
             }
         }
         return this.violationList;
@@ -105,13 +105,14 @@ public class UnauthorizedRule implements IRestRule {
      */
     private List<Operation> getPathOperationsWithSec(PathItem pathItem, boolean globalSec) {
         List<Operation> operations = new ArrayList<>();
+
         if (pathItem.getGet() != null && (globalSec || pathItem.getGet().getSecurity() != null))
             operations.add(pathItem.getGet());
-        else if (pathItem.getPut() != null && (globalSec || pathItem.getPut().getSecurity() != null))
+        if (pathItem.getPut() != null && (globalSec || pathItem.getPut().getSecurity() != null))
             operations.add(pathItem.getPut());
-        else if (pathItem.getPost() != null && (globalSec || pathItem.getPost().getSecurity() != null))
+        if (pathItem.getPost() != null && (globalSec || pathItem.getPost().getSecurity() != null))
             operations.add(pathItem.getPost());
-        else if (pathItem.getDelete() != null && (globalSec || pathItem.getDelete().getSecurity() != null))
+        if (pathItem.getDelete() != null && (globalSec || pathItem.getDelete().getSecurity() != null))
             operations.add(pathItem.getDelete());
 
         return operations;
