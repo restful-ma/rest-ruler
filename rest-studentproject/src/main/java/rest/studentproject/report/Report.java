@@ -76,6 +76,7 @@ public class Report {
             printWriter.print(sb);
 
             //notification
+            System.out.println("In total " + violationList.size() +" rule violations were found");
             System.out.println("Your report can be found here: " + path.toAbsolutePath());
 
             printWriter.close();
