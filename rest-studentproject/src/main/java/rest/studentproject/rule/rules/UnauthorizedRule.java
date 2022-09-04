@@ -1,5 +1,6 @@
 package rest.studentproject.rule.rules;
 
+import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.PathItem;
@@ -8,10 +9,12 @@ import rest.studentproject.rule.IRestRule;
 import rest.studentproject.rule.Violation;
 import rest.studentproject.rule.constants.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.nio.file.Path;
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.logging.Logger;
 
 import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
 
@@ -28,7 +31,11 @@ public class UnauthorizedRule implements IRestRule {
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTE =
             Arrays.asList(RuleSoftwareQualityAttribute.COMPATIBILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY,
                     RuleSoftwareQualityAttribute.USABILITY);
+    private static final List<String> OPERATION_METHOD_NAMES = List.of("getGet", "getPut", "getPost", "getDelete",
+            "getPatch", "getHead", "getOptions", "getTrace");
+    private static final String OPERATION_METHOD_SECURITY = "getSecurity";
     private final List<Violation> violationList = new ArrayList<>();
+    private final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private boolean isActive;
 
     public UnauthorizedRule(boolean isActive) {
@@ -84,13 +91,13 @@ public class UnauthorizedRule implements IRestRule {
         boolean globalSec = security != null && !security.isEmpty();
 
         for (Map.Entry<String, PathItem> path : openAPI.getPaths().entrySet()) {
-            List<Operation> operations = getPathOperationsWithSec(path.getValue(), globalSec);
+            Map<String, Operation> operations = getPathOperationsWithSec(path.getValue(), globalSec);
 
-            for (Operation operation : operations) {
-                if (operation.getResponses().containsKey("401")) continue;
+            for (Map.Entry<String, Operation> operation : operations.entrySet()) {
+                if (operation.getValue().getResponses().containsKey("401")) continue;
 
                 this.violationList.add(new Violation(this, locMapper.getLOCOfPath(path.getKey()),
-                        ImprovementSuggestion.UNAUTHORIZED, path.getKey(), ErrorMessage.UNAUTHORIZED));
+                        "Provide the 401 " + "response in the " + "definition of the path in the operation (here: " + operation.getKey() + ")", path.getKey(), ErrorMessage.UNAUTHORIZED));
             }
         }
         return this.violationList;
@@ -103,17 +110,23 @@ public class UnauthorizedRule implements IRestRule {
      * @param globalSec if the security is globally defined.
      * @return the list of operations for the specified path for which security has been defined.
      */
-    private List<Operation> getPathOperationsWithSec(PathItem pathItem, boolean globalSec) {
-        List<Operation> operations = new ArrayList<>();
+    private Map<String, Operation> getPathOperationsWithSec(PathItem pathItem, boolean globalSec) {
+        Map<String, Operation> operations = new HashMap<>();
 
-        if (pathItem.getGet() != null && (globalSec || pathItem.getGet().getSecurity() != null))
-            operations.add(pathItem.getGet());
-        if (pathItem.getPut() != null && (globalSec || pathItem.getPut().getSecurity() != null))
-            operations.add(pathItem.getPut());
-        if (pathItem.getPost() != null && (globalSec || pathItem.getPost().getSecurity() != null))
-            operations.add(pathItem.getPost());
-        if (pathItem.getDelete() != null && (globalSec || pathItem.getDelete().getSecurity() != null))
-            operations.add(pathItem.getDelete());
+        for (String method : OPERATION_METHOD_NAMES) {
+            try {
+                Method operationMethod = PathItem.class.getMethod(method);
+                Method securityMethod = Operation.class.getMethod(OPERATION_METHOD_SECURITY);
+
+                Operation curOperation = (Operation) operationMethod.invoke(pathItem);
+
+                if (curOperation != null && (globalSec || securityMethod.invoke(curOperation) != null)) {
+                    operations.put(method.replace("get", "").toUpperCase(), curOperation);
+                }
+            } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+                logger.severe("Exception when trying to get method to get the operations from a path: " + e.getMessage());
+            }
+        }
 
         return operations;
     }
