@@ -1,21 +1,36 @@
-# 401 ("Unauthorized") must be used when there is a problem with the client's credentials
+# CRUD function names should not be used in URIs
 ## Category
-HTTP
+URIs
+
 ## Importance, severity, difficulty
-* High importance
-* Critical severity
-* Easily estimated difficulty to develop rule
+* Importance: high
+* Severity: critical
+* Difficulty to implement the rule: easy
+
 ## Quality Attribute
-* Usability (8)
-* Compatibility (8)
-* Maintainability (7)
-* Functional Suitability (1)
+* Usability
+* Compatibility
+* Maintainability
+
 ## Rule Description
-A 401 error response indicates that the client tried to operate on a protected resource without providing the proper authorization. It may have provided the wrong credentials or none at all [1].
+Description from Massé [1].
+
+"A 401 error response indicates that the client tried to operate on a protected resource without providing the proper authorization. It may have provided the wrong credentials or none at all."
+
 ## Implemented
-* N
-## Implementation Details
-This is a rule that is examined statically. 
+* Y
+
+## Implementation Details (Issue #31)
+Rule is checked statically.
+
+### What is checked
+* When the security is globally defined all operations for the path need the 401 response
+* When the security is locally defined all local operations for the path need the 401 response
+  
+
+### What is not checked
+
 
 ## Source
+
 [1] https://www.oreilly.com/library/view/rest-api-design/9781449317904/
