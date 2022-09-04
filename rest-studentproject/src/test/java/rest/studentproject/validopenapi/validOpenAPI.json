@@ -42,9 +42,19 @@
           "description": "Find out more",
           "url": "http://1forge.com/forex-data-api"
         },
+        "security": [
+          {
+            "OAuth2": [
+              "read"
+            ]
+          }
+        ],
         "responses": {
           "200": {
             "description": "A list of quotes"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         },
         "summary": "Get quotes for all symbols",
@@ -62,6 +72,13 @@
           "description": "Find out more",
           "url": "http://1forge.com/forex-data-api"
         },
+        "security": [
+          {
+            "OAuth2": [
+              "read"
+            ]
+          }
+        ],
         "responses": {
           "200": {
             "description": "A list of symbols",
@@ -76,6 +93,9 @@
               },
               "type": "array"
             }
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         },
         "summary": "Get a list of symbols for which we provide real-time quotes",
@@ -93,6 +113,13 @@
           "description": "Find out more",
           "url": "http://1forge.com/forex-data-api"
         },
+        "security": [
+          {
+            "OAuth2": [
+              "read"
+            ]
+          }
+        ],
         "responses": {
           "200": {
             "description": "A list of symbols",
@@ -107,6 +134,9 @@
               },
               "type": "array"
             }
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         },
         "summary": "Get a list of symbols for which we provide real-time quotes",
@@ -124,6 +154,13 @@
           "description": "Find out more",
           "url": "http://1forge.com/forex-data-api"
         },
+        "security": [
+          {
+            "OAuth2": [
+              "read"
+            ]
+          }
+        ],
         "responses": {
           "200": {
             "description": "A list of symbols",
@@ -138,6 +175,9 @@
               },
               "type": "array"
             }
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         },
         "summary": "Get a list of symbols for which we provide real-time quotes",
