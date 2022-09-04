@@ -1,6 +1,5 @@
 package rest.studentproject.rule.rules;
 
-import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.PathItem;
@@ -11,9 +10,7 @@ import rest.studentproject.rule.constants.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.nio.file.Path;
 import java.util.*;
-import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
