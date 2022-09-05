@@ -1,4 +1,4 @@
-# CRUD function names should not be used in URIs
+# 401 ("Unauthorized") must be used when there is a problem with the client's credentials
 ## Category
 URIs
 
