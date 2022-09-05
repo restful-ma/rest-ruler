@@ -3,9 +3,9 @@ package rest.studentproject.rule.rules;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.servers.Server;
 import rest.studentproject.rule.IRestRule;
+import rest.studentproject.rule.Utility;
 import rest.studentproject.rule.Violation;
 import rest.studentproject.rule.constants.*;
-import rest.studentproject.rule.utility.MixIDK;
 
 import java.util.*;
 
@@ -21,10 +21,11 @@ public class CRUDRule implements IRestRule {
     private static final RuleSeverity SEVERITY = RuleSeverity.ERROR;
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTE =
             Arrays.asList(RuleSoftwareQualityAttribute.USABILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
-    private final String[] CRUDOPERATIONS = {"get", "post", "delete", "put", "create", "read", "update", "patch",
+    private static final String[] CRUD_OPERATIONS = {"get", "post", "delete", "put", "create", "read", "update",
+            "patch",
             "insert", "select"};
+    private static final String PATH_TO_CRUD_DICTIONARY = "src/main/java/rest/studentproject/docs/CRUD_words.txt";
     private final List<Violation> violationList = new ArrayList<>();
-    private final String PATH_TO_CRUD_DICTIONARY = "src/main/java/rest/studentproject/docs/CRUD_words.txt";
     private boolean isActive;
 
     public CRUDRule(boolean isActive) {
@@ -84,28 +85,34 @@ public class CRUDRule implements IRestRule {
             paths.add(server.getUrl());
         }
 
-
+        // Every path is split at each segment
         for (String path : paths) {
             if (path.trim().isEmpty()) continue;
             String pathWithoutParameters = path.replaceAll("\\{" + ".*" + "\\}", "");
             String[] pathSegments = pathWithoutParameters.split("/");
             for (String segment : pathSegments) {
-                System.out.println(segment);
-                if (MixIDK.getPathSegmentMatch(segment, this.PATH_TO_CRUD_DICTIONARY)) continue;
-                System.out.println("after if");
-                for (String crudOperation : this.CRUDOPERATIONS) {
-                    System.out.println("crud: " + crudOperation);
-                    System.out.println(segment.toLowerCase());
-                    if (segment.toLowerCase().contains(crudOperation)) {
-                        System.out.println("violation");
-                        this.violationList.add(new Violation(this, locMapper.getLOCOfPath(path), "URIS should not be used " +
-                                "to " + "indicate that a CRUD function (" + crudOperation.toUpperCase() + ") is " +
-                                "performed, " + "instead HTTP request methods should be used for this.", path,
-                                ErrorMessage.CRUD));
-                    }
-                }
+                // Check if the segment is included in the CRUD dictionary (strings that include CRUD operation
+                // substrings)
+                if (Utility.getPathSegmentMatch(segment, PATH_TO_CRUD_DICTIONARY)) continue;
+                // The segment is checked if it contains a CRUD operation
+                checkCRUDInSegment(segment, path);
             }
         }
         return this.violationList;
+    }
+
+    /**
+     * Checks if the segment contains a CRUD operation
+     *
+     * @param segment the currently examined segment
+     * @param path    the whole request path
+     */
+    private void checkCRUDInSegment(String segment, String path) {
+        for (String crudOperation : CRUD_OPERATIONS) {
+            if (segment.toLowerCase().contains(crudOperation)) {
+                this.violationList.add(new Violation(this, locMapper.getLOCOfPath(path), "URIS should not be "
+                        + "used " + "to " + "indicate that a CRUD function (" + crudOperation.toUpperCase() + ") is " + "performed, " + "instead HTTP request methods should be used for this.", path, ErrorMessage.CRUD));
+            }
+        }
     }
 }

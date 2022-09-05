@@ -6,8 +6,6 @@ import rest.studentproject.analyzer.RestAnalyzer;
 import rest.studentproject.rule.rules.CRUDRule;
 import rest.studentproject.rule.Violation;
 
-
-import java.net.MalformedURLException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,7 +16,7 @@ class CRUDRuleTest {
 
     @Test
     @DisplayName("Test that checks if no crud rule violation is detected when there is a correct OpenAPI definition.")
-    void validFile() throws MalformedURLException {
+    void validFile() {
         String path = "src/test/java/rest/studentproject/validopenapi/validOpenAPI.json";
 
         List<Violation> violations = runMethodUnderTest(path);
@@ -27,7 +25,7 @@ class CRUDRuleTest {
 
     @Test
     @DisplayName("Test that checks if the 13 crud rule violations are detected.")
-    void invalidFile() throws MalformedURLException {
+    void invalidFile() {
         String path = "src/test/java/rest/studentproject/rule/crudtest/InvalidOpenAPICRUDRule.json";
 
         List<Violation> violations = runMethodUnderTest(path);

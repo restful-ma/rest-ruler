@@ -42,7 +42,7 @@ public class LOCMapper {
     public void mapOpenAPIKeysToLOC() {
         boolean isURL = this.filePath.startsWith("http");
         if (!this.filePath.endsWith("json") && !this.filePath.endsWith("yaml")) {
-            logger.severe("Wrong file format!");
+            System.err.println("Wrong file format!");
             return;
         }
 
@@ -57,7 +57,8 @@ public class LOCMapper {
             }
             this.keyLOCMap.put("paths", this.pathMap);
         } catch (IOException e) {
-            logger.severe("Issues appeared when trying to read the file! Error message: " + e.getMessage());
+            System.err.println("Issues appeared when trying to read the file! Error message: " + e.getMessage());
+
         }
     }
 
