@@ -18,7 +18,7 @@ class LowercaseRuleTest {
 
     @Test
     @DisplayName("Detection of uppercase letters should be successful in detecting 6 violations.")
-    void checkViolationOnInvalidRESTFile6Violations() throws MalformedURLException {
+    void checkViolationOnInvalidRESTFile6Violations() {
 
         String url = "src/test/java/rest/studentproject/rule/lowercaseTests/lowercaseInvalid6Violations.json";
         List<Violation> violationToTest = runMethodUnderTest(url);
@@ -29,7 +29,7 @@ class LowercaseRuleTest {
 
     @Test
     @DisplayName("Detection of uppercase letters should be successful in detecting 3 violations.")
-    void checkViolationOnInvalidRESTFile3Violations() throws MalformedURLException {
+    void checkViolationOnInvalidRESTFile3Violations() {
 
         String url = "src/test/java/rest/studentproject/rule/lowercaseTests/lowercaseInvalid3Violations.json";
         List<Violation> violationToTest = runMethodUnderTest(url);
@@ -40,7 +40,7 @@ class LowercaseRuleTest {
 
     @Test
     @DisplayName("Detection of uppercase letters should be successful in detecting 0 violations and return an empty list.")
-    void checkViolationOnInvalidRESTFileEmpty() throws MalformedURLException {
+    void checkViolationOnInvalidRESTFileEmpty() {
 
         String url = "src/test/java/rest/studentproject/rule/lowercaseTests/lowercaseInvalidEmptyPaths.json";
         List<Violation> violationToTest = runMethodUnderTest(url);
@@ -52,7 +52,7 @@ class LowercaseRuleTest {
 
     @Test
     @DisplayName("Detection of uppercase letters should be successful in detecting 2 violations.")
-    void checkViolationOnInvalidRESTFileEmptyURI() throws MalformedURLException {
+    void checkViolationOnInvalidRESTFileEmptyURI() {
 
         String url = "src/test/java/rest/studentproject/rule/lowercaseTests/lowercaseInvalidEmptyURI.json";
         List<Violation> violationToTest = runMethodUnderTest(url);
@@ -63,7 +63,7 @@ class LowercaseRuleTest {
 
     @Test
     @DisplayName("Detection of uppercase letters should be successful in detecting 0 violations.")
-    void checkViolationOnValidFile() throws MalformedURLException {
+    void checkViolationOnValidFile() {
 
         String url = "src/test/java/rest/studentproject/validopenapi/validOpenAPI.json";
         List<Violation> violationToTest = runMethodUnderTest(url);
@@ -72,7 +72,7 @@ class LowercaseRuleTest {
                 "Detection of violations should work and return an empty list.");
     }
 
-    private List<Violation> runMethodUnderTest(String url) throws MalformedURLException {
+    private List<Violation> runMethodUnderTest(String url) {
 
         this.restAnalyzer = new RestAnalyzer(url);
         this.lowercaseRule = new LowercaseRule(true);

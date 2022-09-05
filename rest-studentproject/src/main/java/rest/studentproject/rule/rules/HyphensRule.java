@@ -4,12 +4,10 @@ import com.google.common.collect.Lists;
 import io.swagger.v3.oas.models.OpenAPI;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import rest.studentproject.rule.IRestRule;
+import rest.studentproject.rule.Utility;
 import rest.studentproject.rule.Violation;
 import rest.studentproject.rule.constants.*;
-import rest.studentproject.rule.utility.MixIDK;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -33,63 +31,42 @@ public class HyphensRule implements IRestRule {
     private static final List<RuleSoftwareQualityAttribute> RULE_SOFTWARE_QUALITY_ATTRIBUTE_LIST =
             List.of(RuleSoftwareQualityAttribute.COMPATIBILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
     private boolean isActive;
+    private final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public HyphensRule(boolean isActive) {
         this.isActive = isActive;
     }
 
-    /**
-     *
-     */
     @Override
     public String getTitle() {
         return TITLE;
     }
 
-    /**
-     *
-     */
     @Override
     public RuleCategory getCategory() {
         return HyphensRule.RULE_CATEGORY;
-
     }
 
-    /**
-     *
-     */
     @Override
     public RuleSeverity getSeverityType() {
         return RULE_SEVERITY;
     }
 
-    /**
-     *
-     */
     @Override
     public RuleType getRuleType() {
         return HyphensRule.RULE_TYPE;
     }
 
-    /**
-     *
-     */
     @Override
     public List<RuleSoftwareQualityAttribute> getRuleSoftwareQualityAttribute() {
         return RULE_SOFTWARE_QUALITY_ATTRIBUTE_LIST;
     }
 
-    /**
-     *
-     */
     @Override
     public boolean getIsActive() {
         return this.isActive;
     }
 
-    /**
-     *
-     */
     @Override
     public void setIsActive(boolean isActive) {
         this.isActive = isActive;
@@ -132,7 +109,7 @@ public class HyphensRule implements IRestRule {
             if (pathSegment.isEmpty()) continue;
             boolean isPathFullyContained;
 
-            isPathFullyContained = MixIDK.getPathSegmentMatch(pathSegment, PATH_TO_ENGLISH_DICTIONARY);
+            isPathFullyContained = Utility.getPathSegmentMatch(pathSegment, PATH_TO_ENGLISH_DICTIONARY);
 
             if (isPathFullyContained) continue;
             List<String> itemsFromHyphens = Arrays.asList(pathSegment.split("-"));
@@ -159,7 +136,6 @@ public class HyphensRule implements IRestRule {
                 return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.HYPHEN, path,
                         ErrorMessage.HYPHEN);
             } catch (IOException e) {
-                Logger logger = Logger.getLogger(HyphensRule.class.getName());
                 logger.log(Level.SEVERE, "Error on checking substring against a dictionary{e}", e);
             }
 
@@ -177,7 +153,6 @@ public class HyphensRule implements IRestRule {
             stringLines = Files.lines(Paths.get(PATH_TO_ENGLISH_DICTIONARY), Charset.defaultCharset());
             dictionaryWords = stringLines.collect(Collectors.toList());
         } catch (Exception e) {
-            Logger logger = Logger.getLogger(HyphensRule.class.getName());
             logger.log(Level.SEVERE, "Error on getting the english dictionary file {e}", e);
         } finally {
             if (stringLines != null) stringLines.close();
@@ -209,7 +184,7 @@ public class HyphensRule implements IRestRule {
             Number candidateCost = candidate.getKey();
             Number candidateIndexValue = candidate.getValue();
             if (candidateCost.doubleValue() != cost.get(idx).getKey().doubleValue())
-                throw new RuntimeException("Candidate cost unmatched; This should not be the case!");
+                logger.log(Level.SEVERE, "Candidate cost unmatched; This should not be the case!");
             boolean newToken = true;
             String token = partSentence.substring(idx - candidateIndexValue.intValue(), idx);
             if (token.equals("'") && !output.isEmpty()) {

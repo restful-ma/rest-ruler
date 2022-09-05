@@ -18,7 +18,7 @@ class HyphensRuleTest {
 
     @Test
     @DisplayName("Detect if a path segment contains more than a word. Here 6 paths contain a violation.")
-    void checkViolationOnInvalidRESTFile2Violations() throws MalformedURLException {
+    void checkViolationOnInvalidRESTFile2Violations() {
 
         String url = "src/test/java/rest/studentproject/rule/hyphensTests/hyphensInvalid2Violations.json";
 
@@ -30,7 +30,7 @@ class HyphensRuleTest {
 
     @Test
     @DisplayName("Detect if a path segment contains more than a word. Here 2 paths contain a violation.")
-    void checkViolationOnInvalidRESTFile2ViolationsLowercase() throws MalformedURLException {
+    void checkViolationOnInvalidRESTFile2ViolationsLowercase() {
 
         String url = "src/test/java/rest/studentproject/rule/hyphensTests/hyphensInvalid2ViolationsLowercase.json";
 
@@ -42,7 +42,7 @@ class HyphensRuleTest {
 
     @Test
     @DisplayName("Detect if a path segment contains more than a word. Here 9 paths contain a violation.")
-    void checkViolationOnInvalidRESTFile6Violations() throws MalformedURLException {
+    void checkViolationOnInvalidRESTFile6Violations() {
 
         String url = "src/test/java/rest/studentproject/rule/hyphensTests/hyphensInvalid9ViolationsSpecialCharactersLowercase.json";
         List<Violation> violationToTest = runMethodUnderTest(url);
@@ -53,7 +53,7 @@ class HyphensRuleTest {
 
     @Test
     @DisplayName("Detect if a path segment contains more than a word. Here 9 paths contain a violation.")
-    void checkViolationOnValidRESTFile() throws MalformedURLException {
+    void checkViolationOnValidRESTFile() {
 
         String url = "src/test/java/rest/studentproject/validopenapi/validOpenAPI.json";
         List<Violation> violationToTest = runMethodUnderTest(url);
@@ -62,7 +62,7 @@ class HyphensRuleTest {
                 "Detection of violations should work.");
     }
 
-    private List<Violation> runMethodUnderTest(String url) throws MalformedURLException {
+    private List<Violation> runMethodUnderTest(String url) {
 
         this.restAnalyzer = new RestAnalyzer(url);
         this.hyphensRuleTest = new HyphensRule(true);

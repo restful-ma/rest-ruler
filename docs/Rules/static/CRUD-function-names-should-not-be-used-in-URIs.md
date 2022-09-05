@@ -33,7 +33,6 @@ The following anti-patterns exemplify what not to do:
 * GET /deleteUser/1234
 * DELETE /deleteUser/1234
 * POST /users/1234/delete
-  "
 
 ## Implemented
 
@@ -45,6 +44,7 @@ The following anti-patterns exemplify what not to do:
 
 * Currently, static implementation only
 * Checks every path (server paths included) if it contains CRUD operation keywords and returns a list of violations
+* Individual segments are checked if they have a crud operation as substring (target includes get) --> there is no violation
 
 ### What is not checked
 
