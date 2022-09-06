@@ -92,7 +92,7 @@ public class CRUDRule implements IRestRule {
             for (String segment : pathSegments) {
                 // Check if the segment is included in the CRUD dictionary (strings that include CRUD operation
                 // substrings)
-                if (Utility.getPathSegmentMatch(segment, PATH_TO_CRUD_DICTIONARY)) continue;
+                if (Utility.getPathSegmentContained(segment, PATH_TO_CRUD_DICTIONARY)) continue;
                 // The segment is checked if it contains a CRUD operation
                 checkCRUDInSegment(segment, path);
             }
