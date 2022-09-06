@@ -22,8 +22,7 @@ public class CRUDRule implements IRestRule {
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTE =
             Arrays.asList(RuleSoftwareQualityAttribute.USABILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
     private static final String[] CRUD_OPERATIONS = {"get", "post", "delete", "put", "create", "read", "update",
-            "patch",
-            "insert", "select"};
+            "patch", "insert", "select"};
     private static final String PATH_TO_CRUD_DICTIONARY = "src/main/java/rest/studentproject/docs/CRUD_words.txt";
     private final List<Violation> violationList = new ArrayList<>();
     private boolean isActive;
@@ -110,8 +109,8 @@ public class CRUDRule implements IRestRule {
     private void checkCRUDInSegment(String segment, String path) {
         for (String crudOperation : CRUD_OPERATIONS) {
             if (segment.toLowerCase().contains(crudOperation)) {
-                this.violationList.add(new Violation(this, locMapper.getLOCOfPath(path), "URIS should not be "
-                        + "used " + "to " + "indicate that a CRUD function (" + crudOperation.toUpperCase() + ") is " + "performed, " + "instead HTTP request methods should be used for this.", path, ErrorMessage.CRUD));
+                this.violationList.add(new Violation(this, locMapper.getLOCOfPath(path), "URIS should not be " +
+                        "used " + "to " + "indicate that a CRUD function (" + crudOperation.toUpperCase() + ") is " + "performed, " + "instead HTTP request methods should be used for this.", path, ErrorMessage.CRUD));
             }
         }
     }
