@@ -8,4 +8,6 @@ public class ImprovementSuggestion {
     public static final String SEPARATOR = "remove any '#' and '?' from the path";
     public static final String SEPARATOR_UNKNOWN = "Please check validity of path";
     public static final String HYPHEN = "Use hyphens to improve the readability of the segments";
+    public static final String SINGULARDOCUMENTNAME = "Use singular nouns for document names";
+    public static final String PLURALNAME = "Use plural nouns for collection or store names";
 }
