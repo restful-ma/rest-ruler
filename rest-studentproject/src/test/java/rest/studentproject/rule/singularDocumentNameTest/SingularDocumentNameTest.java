@@ -1,16 +1,11 @@
 package rest.studentproject.rules.singularDocumentNameTest;
 
-import io.swagger.parser.OpenAPIParser;
-import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.parser.core.models.SwaggerParseResult;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import rest.studentproject.analyzer.RestAnalyzer;
-import rest.studentproject.rules.HyphensRule;
-import rest.studentproject.rules.SingularDocumentNameRule;
-import rest.studentproject.rules.UnderscoreRule;
-import rest.studentproject.rules.Violation;
+import rest.studentproject.rule.Violation;
+import rest.studentproject.rule.rules.SingularDocumentNameRule;
+
 
 import java.net.MalformedURLException;
 import java.util.List;
@@ -23,14 +18,25 @@ class SingularDocumentNameTest {
 
 
     @Test
-    @DisplayName("Detect if a path segment contains more than a word. Here 6 paths contain a violation.")
+    @DisplayName("Detect if a path segment contains a violation regarding the document name")
     void checkViolationOnInvalidRESTFile2Violations() throws MalformedURLException {
 
-        String url = "src/test/java/rest/studentproject/rules/singularDocumentNameTest/singularDocumentName2Violations.json";
+        String url = "src/test/java/rest/studentproject/rule/singularDocumentNameTest/singularDocumentName2Violations.json";
 
         List<Violation> violationToTest = runMethodUnderTest(url);
 
         assertEquals(2, violationToTest.size(),
+                "Detection of violations should work.");
+    }
+
+    @Test
+    @DisplayName("Test a valid api. No error should be detected.")
+    void checkViolationOnValidRESTFile() throws MalformedURLException {
+
+        String url = "src/test/java/rest/studentproject/validopenapi/validOpenAPI.json";
+        List<Violation> violationToTest = runMethodUnderTest(url);
+
+        assertEquals(0, violationToTest.size(),
                 "Detection of violations should work.");
     }
 

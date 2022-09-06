@@ -35,7 +35,221 @@
     "x-serviceName": "BinLookupService"
   },
   "paths": {
-    "/enterprises/{enterprise}/action/runner": {
+    "/enterprises/{enterprise}/{action}/runner": {
+      "post": {
+        "description": "Verifies whether 3D Secure is available for the specified BIN or card brand. For 3D Secure 2, this endpoint also returns device fingerprinting keys.\n\nFor more information, refer to [3D Secure 2](https://docs.adyen.com/online-payments/3d-secure/native-3ds2).",
+        "operationId": "post-get3dsAvailability",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "get3dsAvailability": {
+                  "$ref": "#/components/examples/post-get3dsAvailability-get3dsAvailability"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/ThreeDSAvailabilityRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get3dsAvailability": {
+                    "$ref": "#/components/examples/post-get3dsAvailability-get3dsAvailability-200"
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ThreeDSAvailabilityResponse"
+                }
+              }
+            },
+            "description": "OK - the request has succeeded."
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "generic": {
+                    "$ref": "#/components/examples/generic-400"
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceError"
+                }
+              }
+            },
+            "description": "Bad Request - a problem reading or understanding the request."
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceError"
+                }
+              }
+            },
+            "description": "Unauthorized - authentication required."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceError"
+                }
+              }
+            },
+            "description": "Forbidden - insufficient permissions to process the request."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceError"
+                }
+              }
+            },
+            "description": "Unprocessable Entity - a request validation error."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceError"
+                }
+              }
+            },
+            "description": "Internal Server Error - the server could not process the request."
+          }
+        },
+        "security": [
+          {
+            "BasicAuth": []
+          },
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Checks 3D Secure availability.",
+        "tags": [
+          "General"
+        ],
+        "x-addedInVersion": "1",
+        "x-groupName": "General",
+        "x-sortIndex": 0
+      }
+    },
+    "/enterprises/{enterprise}/Action/Runner/Food": {
+      "post": {
+        "description": "Verifies whether 3D Secure is available for the specified BIN or card brand. For 3D Secure 2, this endpoint also returns device fingerprinting keys.\n\nFor more information, refer to [3D Secure 2](https://docs.adyen.com/online-payments/3d-secure/native-3ds2).",
+        "operationId": "post-get3dsAvailability",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "get3dsAvailability": {
+                  "$ref": "#/components/examples/post-get3dsAvailability-get3dsAvailability"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/ThreeDSAvailabilityRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get3dsAvailability": {
+                    "$ref": "#/components/examples/post-get3dsAvailability-get3dsAvailability-200"
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ThreeDSAvailabilityResponse"
+                }
+              }
+            },
+            "description": "OK - the request has succeeded."
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "generic": {
+                    "$ref": "#/components/examples/generic-400"
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceError"
+                }
+              }
+            },
+            "description": "Bad Request - a problem reading or understanding the request."
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceError"
+                }
+              }
+            },
+            "description": "Unauthorized - authentication required."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceError"
+                }
+              }
+            },
+            "description": "Forbidden - insufficient permissions to process the request."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceError"
+                }
+              }
+            },
+            "description": "Unprocessable Entity - a request validation error."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceError"
+                }
+              }
+            },
+            "description": "Internal Server Error - the server could not process the request."
+          }
+        },
+        "security": [
+          {
+            "BasicAuth": []
+          },
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Checks 3D Secure availability.",
+        "tags": [
+          "General"
+        ],
+        "x-addedInVersion": "1",
+        "x-groupName": "General",
+        "x-sortIndex": 0
+      }
+    },
+    "/enterprises/{enterprise}/{action}/{runner}": {
       "post": {
         "description": "Verifies whether 3D Secure is available for the specified BIN or card brand. For 3D Secure 2, this endpoint also returns device fingerprinting keys.\n\nFor more information, refer to [3D Secure 2](https://docs.adyen.com/online-payments/3d-secure/native-3ds2).",
         "operationId": "post-get3dsAvailability",

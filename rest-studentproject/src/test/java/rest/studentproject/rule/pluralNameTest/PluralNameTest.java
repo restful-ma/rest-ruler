@@ -1,11 +1,10 @@
-package rest.studentproject.rules.pluralNameTest;
+package rest.studentproject.rule.pluralNameTest;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import rest.studentproject.analyzer.RestAnalyzer;
-import rest.studentproject.rules.PluralNameRule;
-import rest.studentproject.rules.SingularDocumentNameRule;
-import rest.studentproject.rules.Violation;
+import rest.studentproject.rule.Violation;
+import rest.studentproject.rule.rules.PluralNameRule;
 
 import java.net.MalformedURLException;
 import java.util.List;
@@ -19,14 +18,25 @@ public class PluralNameTest {
 
 
     @Test
-    @DisplayName("Detect if a path segment contains more than a word. Here 6 paths contain a violation.")
+    @DisplayName("Detect if a path segment contains a violation regarding the store or collection name")
     void checkViolationOnInvalidRESTFile2Violations() throws MalformedURLException {
 
-        String url = "src/test/java/rest/studentproject/rules/singularDocumentNameTest/singularDocumentName2Violations.json";
+        String url = "src/test/java/rest/studentproject/rule/pluralNameTest/pluralName4Violations.json";
 
         List<Violation> violationToTest = runMethodUnderTest(url);
 
-        assertEquals(2, violationToTest.size(),
+        assertEquals(4, violationToTest.size(),
+                "Detection of violations should work.");
+    }
+
+    @Test
+    @DisplayName("Test a valid api. No error should be detected.")
+    void checkViolationOnValidRESTFile() throws MalformedURLException {
+
+        String url = "src/test/java/rest/studentproject/validopenapi/validOpenAPI.json";
+        List<Violation> violationToTest = runMethodUnderTest(url);
+
+        assertEquals(0, violationToTest.size(),
                 "Detection of violations should work.");
     }
 
