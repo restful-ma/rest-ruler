@@ -119,7 +119,11 @@ public class PluralNameRule implements IRestRule {
             // If the word is contained and the form of the word doesn't match the current switchPathSegment then we have a violation
             if (Boolean.TRUE.equals(isPathSegmentInJson.getLeft()) && switchPathSegment.equals(isPathSegmentInJson.getRight()) && switchPathSegment.equals(SINGULAR) && !listPathSegments.get(0).equals(pathSegment)) {
                 return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.PLURALNAME, path, ErrorMessage.PLURALNAME+ WITH_PATH_SEGMENT + pathSegment);
-            }else if(Boolean.TRUE.equals(isPathSegmentInJson.getLeft())) continue;
+            }else if(Boolean.TRUE.equals(isPathSegmentInJson.getLeft())) {
+                switchPathSegment = skipFirstSwitchPathSegmentAssign ? switchPathSegment : getControlPathSegmentForRule(switchPathSegment.equals(PLURAL));
+                skipFirstSwitchPathSegmentAssign = false;
+                continue;
+            }
 
             // If the word is not contained in the jsonDictionary, we need to check if the word is present in the OxfordDictionaryAPI
             // We get a true if the word is singular otherwise a false if it is plural
