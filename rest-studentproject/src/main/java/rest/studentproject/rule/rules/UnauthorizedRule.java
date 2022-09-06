@@ -14,6 +14,7 @@ import java.util.*;
 import java.util.logging.Logger;
 
 import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
+import static rest.studentproject.analyzer.RestAnalyzer.securitySchemas;
 
 /**
  * Implementation of the rule: 401 ("Unauthorized") must be used when there is a problem with the client's credentials

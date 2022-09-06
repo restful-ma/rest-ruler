@@ -9,7 +9,7 @@ import rest.studentproject.utility.Output;
 public class RestParserCommand implements Runnable {
 
     @Option(names = {"-e", "--expertMode"}, description = "Enable if you want to select the rules.")
-    boolean expertMode;
+    private boolean expertMode;
     @Option(names = {"-r", "--runAnalyse"}, description = "Run the rest analysis. Required: Path to openapi " +
             "definition (2.0 or higher; json or yaml)")
     private String path;
