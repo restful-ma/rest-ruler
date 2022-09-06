@@ -20,7 +20,6 @@ public class LOCMapper {
     private final Map<String, Map<String, Integer>> keyLOCMap = new HashMap<>();
     private final OpenAPI openAPI;
     private final String filePath;
-    private final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     /**
      * Calls the mapper to map all keys from the parsed OpenAPI object to the line of code from the original

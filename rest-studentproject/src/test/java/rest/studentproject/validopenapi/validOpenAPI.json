@@ -147,7 +147,7 @@
         ]
       }
     },
-    "/adults/{get_adult_ID}/name": {
+    "/adults/{get_adult_ID}/names": {
       "get": {
         "description": "Symbol List",
         "externalDocs": {

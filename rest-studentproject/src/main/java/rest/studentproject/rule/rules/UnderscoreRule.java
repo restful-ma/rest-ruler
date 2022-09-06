@@ -6,20 +6,25 @@ import rest.studentproject.rule.IRestRule;
 import rest.studentproject.rule.Violation;
 import rest.studentproject.rule.constants.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
 
 /**
- * Implementation of the rule: CRUD function names should not be used in URIs.
+ * Implementation of the rule: Underscores (_) should not be used in URI.
  */
 public class UnderscoreRule implements IRestRule {
     private static final String TITLE = "Underscores (_) should not be used in URI";
     private static final RuleCategory CATEGORY = RuleCategory.URIS;
     private static final RuleSeverity SEVERITY = RuleSeverity.ERROR;
     private static final RuleType TYPE = RuleType.STATIC;
-    private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = Arrays.asList(RuleSoftwareQualityAttribute.MAINTAINABILITY);
+    private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES =
+            List.of(RuleSoftwareQualityAttribute.MAINTAINABILITY);
     private static final List<Violation> violationList = new ArrayList<>();
+
     private boolean isActive;
 
     public UnderscoreRule(boolean isActive) {
@@ -95,7 +100,8 @@ public class UnderscoreRule implements IRestRule {
         String pathWithoutVariable = path.replaceAll("\\{" + ".*" + "\\}", "");
         if (!pathWithoutVariable.contains("_")) return;
 
-        violationList.add(new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.UNDERSCORE, path, ErrorMessage.UNDERSCORE));
+        violationList.add(new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.UNDERSCORE, path,
+                ErrorMessage.UNDERSCORE));
 
 
     }
