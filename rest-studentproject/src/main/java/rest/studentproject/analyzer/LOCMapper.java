@@ -2,11 +2,14 @@ package rest.studentproject.analyzer;
 
 import io.swagger.v3.oas.models.OpenAPI;
 
-import java.io.*;
-import java.net.MalformedURLException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * Maps the keys from the parsed OpenAPI object to the original json or yaml line of code.
@@ -19,11 +22,11 @@ public class LOCMapper {
     private final String filePath;
 
     /**
-     * Calls the mapper to map all keys from the parsed OpenAPI object to the line of code from the original json/yaml file.
+     * Calls the mapper to map all keys from the parsed OpenAPI object to the line of code from the original
+     * json/yaml file.
      *
      * @param openAPI  The parsed OpenAPI object.
      * @param filePath Path to the file that will be parsed and checked against the rules.
-     * @throws MalformedURLException If the file is not found.
      */
     public LOCMapper(OpenAPI openAPI, String filePath) {
         this.openAPI = openAPI;
@@ -34,17 +37,16 @@ public class LOCMapper {
      * Reads the file and goes through every line.
      * <p>
      * Goes to all lines and checks if the line contains a path.
-     *
-     * @throws MalformedURLException
      */
-    public void mapOpenAPIKeysToLOC() throws MalformedURLException {
+    public void mapOpenAPIKeysToLOC() {
         boolean isURL = this.filePath.startsWith("http");
         if (!this.filePath.endsWith("json") && !this.filePath.endsWith("yaml")) {
             System.err.println("Wrong file format!");
             return;
         }
 
-        try (BufferedReader br = new BufferedReader(isURL ? new InputStreamReader(new URL(this.filePath).openStream()) : new FileReader(this.filePath))) {
+        try (BufferedReader br = new BufferedReader(isURL ?
+                new InputStreamReader(new URL(this.filePath).openStream()) : new FileReader(this.filePath))) {
             String line;
             int currentLine = 0;
 
@@ -53,12 +55,9 @@ public class LOCMapper {
                 mapPaths(line, currentLine);
             }
             this.keyLOCMap.put("paths", this.pathMap);
-
-        } catch (FileNotFoundException e) {
-            System.err.println("File not found!");
-            System.exit(0);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println("Issues appeared when trying to read the file! Error message: " + e.getMessage());
+
         }
     }
 
