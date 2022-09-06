@@ -1,4 +1,4 @@
-package rest.studentproject.rules.singularDocumentNameTest;
+package rest.studentproject.rule.singularDocumentNameTest;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

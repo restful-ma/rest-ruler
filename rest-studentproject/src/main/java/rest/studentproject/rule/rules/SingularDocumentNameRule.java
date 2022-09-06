@@ -121,23 +121,25 @@ public class SingularDocumentNameRule implements IRestRule {
     private Violation getLstViolationsFromPathSegments(String path, String[] pathSegments){
         String switchPathSegment = "";
         String firstPathSegment = "";
+        boolean skipFirstSwitchPathSegmentAssign = true;
+        List<String> listPathSegments = new ArrayList<>(List.of(pathSegments));
+        listPathSegments.removeAll(Arrays.asList("", null));
         // Check if a path is starting with a plural or singular word.
-        if(pathSegments.length > 0) firstPathSegment = pathSegments[0].trim().toLowerCase();
+        if(!listPathSegments.isEmpty()) firstPathSegment = listPathSegments.get(0).trim().toLowerCase();
         // Set the switch based on the firstPathSegment. We need to see if a path has the form singular/plural/singular.. or plural/singular/plural.. based on the firstPathSegment
         switchPathSegment = getSwitchPathSegment(pathSegments, switchPathSegment, firstPathSegment);
 
-        for (String pathSegment : pathSegments) {
-            if (pathSegment.isEmpty()) continue;
+        for (String pathSegment : listPathSegments) {
             // If a pathSegment contains a curly brace, it is a parameter, and we don't need to check it. But we know that such a pathSegment is automatically singular.
             if (pathSegment.contains("{")) {
                 // Switch to plural because the curly brace pathSegment is singular
-                switchPathSegment = PLURAL;
+                switchPathSegment = SINGULAR;
                 continue;
             }
             // Check if the jsonDictionary already contained the pathSegment. The return value is a tuple, with a boolean (true if the word is present) and a string (the word in singular or plural form)
             ImmutablePair<Boolean, String> isPathSegmentInJson = checkIfWordInJson(pathSegment);
             // If the word is contained and the form of the word doesn't match the current switchPathSegment then we have a violation
-            if (Boolean.TRUE.equals(isPathSegmentInJson.getLeft()) && !switchPathSegment.equals(isPathSegmentInJson.getRight())) {
+            if (Boolean.TRUE.equals(isPathSegmentInJson.getLeft()) && switchPathSegment.equals(isPathSegmentInJson.getRight()) && switchPathSegment.equals(PLURAL) && !listPathSegments.get(0).equals(pathSegment)) {
                 return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.SINGULARDOCUMENTNAME, path, ErrorMessage.SINGULARDOCUMENTNAME + WITH_PATH_SEGMENT + pathSegment);
             }
 
@@ -145,11 +147,12 @@ public class SingularDocumentNameRule implements IRestRule {
             // We get a true if the word is singular otherwise a false if it is plural
             boolean isSingular = checkWordUsingOxfordDictionariesAPI(pathSegment.trim().toLowerCase());
             // If the word is plural but the current switchPathSegment is singular, then we have a violation.
-            if(!isSingular && switchPathSegment.equals(SINGULAR)) {
+            if(!isSingular && switchPathSegment.equals(PLURAL) && !listPathSegments.get(0).equals(pathSegment)) {
                 return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.SINGULARDOCUMENTNAME, path, ErrorMessage.SINGULARDOCUMENTNAME + WITH_PATH_SEGMENT + pathSegment);
             }
             // Change the switchPathSegment based on the current form.
-            switchPathSegment = getControlPathSegmentForRule(switchPathSegment.equals(PLURAL));
+            switchPathSegment = skipFirstSwitchPathSegmentAssign ? switchPathSegment : getControlPathSegmentForRule(switchPathSegment.equals(PLURAL));
+            skipFirstSwitchPathSegmentAssign = false;
 
         }
         return null;
