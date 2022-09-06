@@ -154,7 +154,7 @@ paths:
         default:
           description: Unexpected error
     #missing default and HTTP 200 response      
-    /users/{userId}/status:
+  /users/{userId}/status:
     get:
       summary: Returns a user permission for ID.
       parameters:
@@ -207,7 +207,7 @@ paths:
           description: A user with the specified ID was not found.
         default:
           description: Unexpected error
-  
+  # Rule 22: Underscores (_) should not be used in URIs.
   "/primary_school":
     get:
       tag: "URI Rules"
@@ -221,7 +221,7 @@ paths:
           description: "Unauthorized"
         "404":
           description: "Not Found"
-  "/{primary_school}/_school":
+  "/{primarySchool}/_school":
     get:
       tag: "URI Rules"
       description: "Violates the underscore rule"
@@ -234,6 +234,7 @@ paths:
           description: "Unauthorized"
         "404":
           description: "Not Found"
+  # Rule 23: Lowercase letters should be preferred in URI paths.
   "/Pets":
     get:
       tag: "URI Rules"
@@ -246,10 +247,7 @@ paths:
         "401":
           description: "Unauthorized"
         "404":
-          description: "A user with the specified ID was not found.""
-      summary: "A list of pets"
-      tags:
-          "pets"
+          description: "A user with the specified ID was not found."
   
   "/pets/{petName}/LocationsStates":
     get:
@@ -264,9 +262,6 @@ paths:
           description: "Unauthorized"
         "404":
           description: "A user with the specified ID was not found."
-      summary: "A list of locations states given a pet name"
-        tags: 
-          "pets"
 
   "/pets/{petName}/locations/{locationName}/CITY":
     get:
@@ -281,9 +276,6 @@ paths:
           description: "Unauthorized"
         "404":
           description: "A user with the specified ID was not found."
-      summary: "City where a pet is located"
-      tags:
-        "pets"
       
   "/pets/{petName}/addLocation": 
     get: 
@@ -297,7 +289,6 @@ paths:
                   "$ref": "#/components/examples/post-createNotificationConfiguration-basic"
               schema: 
                 $ref: "#/components/schemas/CreateNotificationConfigurationRequest"
-                
       response: 
         "200":
           description: "Country where a pet is located"
@@ -310,10 +301,11 @@ paths:
         summary: "Country where a pet is located"
         tags:
           "pets"
+  # Rule 21: Hyphens (-) should be used to improve the readability of URIs.
   "/bigPets":
     get:
       tag: "URI Rules"
-      description: "Violations: LHyphens (-) should be used to improve the readability of URIs. bigPets should be written as big-pets."
+      description: "Violations: Hyphens (and lowercase violation) (-) should be used to improve the readability of URIs. bigPets should be written as big-pets."
       response:
         "200":
           description: "Big cats"
@@ -323,13 +315,10 @@ paths:
           description: "Unauthorized"
         "404":
           description: "A user with the specified ID was not found."
-      summary: "List of big cats"
-      tags:
-        "pets"
   "/small.Pets":
     get:
       tag: "URI Rules"
-      description: "Violations: LHyphens (-) should be used to improve the readability of URIs. small.Pets should be written as small-pets."
+      description: "Violations: Hyphens (and lowercase violation) (-) should be used to improve the readability of URIs. small.Pets should be written as small-pets."
       response:
         "200":
           description: "Small cats"
@@ -339,13 +328,10 @@ paths:
           description: "Unauthorized"
         "404":
           description: "A user with the specified ID was not found."
-      summary: "List of small cats"
-      tags:
-        "pets"
   "/MediumSizePets":
     get:
       tag: "URI Rules"
-      description: "Violations: LHyphens (-) should be used to improve the readability of URIs. MediumSizePets should be written as medium-size-pets."
+      description: "Violations: Hyphens (and lowercase violation) (-) should be used to improve the readability of URIs. MediumSizePets should be written as medium-size-pets."
       response:
         "200":
           description: "Small cats"
@@ -355,9 +341,72 @@ paths:
           description: "Unauthorized"
         "404":
           description: "A user with the specified ID was not found."
-      summary: "List of small cats"
-      tags:
-        "pets"
+  # Rule 27: CRUD function names should not be used in URIs.
+  "/getschool":
+    get:
+      tag: "URI Rules"
+      description: "Violates the CRUD (+ Hyphens + forward slash) rule."
+      response:
+        "200":
+          description: "Successful request"
+        "400":
+          description: "Bad request"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+  "/DELETEschool":
+    delete:
+      tag: "URI Rules"
+      description: "Violates the CRUD (+ Hyphens + forward slash + lowercase) rule."
+      response:
+        "200":
+          description: "Successful request"
+        "400":
+          description: "Bad request"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+  "/postschool":
+    post:
+      tag: "URI Rules"
+      description: "Violates the CRUD (+ Hyphens + forward slash) rule."
+      response:
+        "200":
+          description: "Successful request"
+        "400":
+          description: "Bad request"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+  "/putschool":
+    put:
+      tag: "URI Rules"
+      description: "Violates the CRUD (+ Hyphens + forward slash) rule."
+      response:
+        "200":
+          description: "Successful request"
+        "400":
+          description: "Bad request"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+  "/getschool/{getSchoolID}/delete":
+    delete:
+      tag: "URI Rules"
+      description: "Violates 2 times the CRUD (+ Hyphens + forward slash) rule."
+      response:
+        "200":
+          description: "Successful request"
+        "400":
+          description: "Bad request"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
 components:
   # Define all components here
   securitySchemes:
