@@ -22,6 +22,8 @@ dependencies {
     implementation("io.swagger.parser.v3:swagger-parser-v3:2.1.1")
     implementation('io.swagger.parser.v3:swagger-parser:2.1.1')
     implementation('com.github.Steppschuh:Java-Markdown-Generator:master-SNAPSHOT')
+    implementation 'org.fusesource.jansi:jansi:2.2.0'
+    implementation 'org.reflections:reflections:0.10.2'
 
     testImplementation("io.micronaut:micronaut-http-client")
     implementation("org.apache.directory.studio:org.apache.commons.io:2.4")

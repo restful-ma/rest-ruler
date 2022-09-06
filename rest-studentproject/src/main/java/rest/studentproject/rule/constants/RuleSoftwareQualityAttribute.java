@@ -1,0 +1,5 @@
+package rest.studentproject.rule.constants;
+
+public enum RuleSoftwareQualityAttribute {
+    MAINTAINABILITY, FUNCTIONAL_SUITABILITY, PERFORMANCE_EFFICIENCY, COMPATIBILITY, USABILITY, RELIABILITY, SECURITY, PORTABILITY
+}

@@ -1,6 +1,7 @@
 # CRUD function names should not be used in URIs
 
 ## Category
+
 URIs
 
 ## Importance, severity, difficulty
@@ -10,10 +11,12 @@ URIs
 * Difficulty to implement the rule: easy
 
 ## Quality Attribute
+
 * Usability
 * Maintainability
 
 ## Rule Description
+
 Description from Massé [1].
 
 "URIs should not be used to indicate that a CRUD§ function is performed. URIs should
@@ -21,6 +24,7 @@ be used to uniquely identify resources [...]" and the "[...] HTTP request method
 should be used to indicate which CRUD function is performed."
 
 "For example, this API interaction design is preferred:
+
 * DELETE /users/1234
 
 The following anti-patterns exemplify what not to do:
@@ -29,23 +33,27 @@ The following anti-patterns exemplify what not to do:
 * GET /deleteUser/1234
 * DELETE /deleteUser/1234
 * POST /users/1234/delete
-"
 
 ## Implemented
 
-* N
+* Y
 
-## Implementation Details
-Will follow soon.
+## Implementation Details (Issue #19)
 
 ### What is checked
 
-* Static
-* Notes, difficulties
+* Currently, static implementation only
+* Checks every path (server paths included) if it contains CRUD operation keywords and returns a list of violations
+* Individual segments are checked if they have a crud operation as substring (target includes get) --> there is no violation
 
 ### What is not checked
 
+* The parameters in curly brackets are excluded from the path and are therefore currently not checked in a dynamic
+  fashion
+
 ### Future work
+
+* Dynamic analysis will check the parameter input if it contains CRUD operation keywords
 
 ## Source
 
