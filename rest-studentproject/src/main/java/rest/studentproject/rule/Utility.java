@@ -5,6 +5,10 @@ import java.io.FileReader;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+import static rest.studentproject.oxford.dictionary.api.OxfordConstants.PLURAL;
+import static rest.studentproject.oxford.dictionary.api.OxfordConstants.SINGULAR;
+import static rest.studentproject.oxford.dictionary.api.OxfordDictionariesApi.checkWordUsingOxfordDictionariesAPI;
+
 public class Utility {
     private static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
@@ -37,5 +41,47 @@ public class Utility {
             logger.severe("Error on checking if a word is contained in a dictionary: " + e.getMessage());
         }
         return isWordInDictionary;
+    }
+
+    /**
+     * Method to determine the switchPathSegment based on the firstPathSegment.
+     * @param pathSegments
+     * @param switchPathSegment
+     * @param firstPathSegment
+     * @return
+     */
+    public static String getSwitchPathSegment(String[] pathSegments, String switchPathSegment, String firstPathSegment) {
+        if(!firstPathSegment.isEmpty()) {
+            switchPathSegment = getPluralOrSingularOfWord(firstPathSegment);
+        }else if(pathSegments.length > 1){
+            firstPathSegment = pathSegments[1].trim().toLowerCase();
+            switchPathSegment = getPluralOrSingularOfWord(firstPathSegment);
+        }
+        return switchPathSegment;
+    }
+
+    /**
+     * Method to get the plural or singular form of a word using the OxfordDictionaryAPI.
+     * @param firstPathSegment
+     * @return
+     */
+    public static String getPluralOrSingularOfWord(String firstPathSegment) {
+        String switchPathSegment;
+        boolean firstPathSegmentForm = checkWordUsingOxfordDictionariesAPI(firstPathSegment);
+        switchPathSegment = getControlPathSegmentForRule(firstPathSegmentForm);
+        return switchPathSegment;
+    }
+
+    /**
+     * Method to change the switchPathSegment from plural to singular a vice versa.
+     * @param equals
+     * @return
+     */
+    public static String getControlPathSegmentForRule(boolean equals) {
+        if (equals) {
+            return SINGULAR;
+        } else {
+            return PLURAL;
+        }
     }
 }

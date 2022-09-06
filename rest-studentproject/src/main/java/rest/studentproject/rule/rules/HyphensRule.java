@@ -98,8 +98,6 @@ public class HyphensRule implements IRestRule {
             // Extract path segments based on / char and check if there are violations
             Violation violation = getLstViolationsFromPathSegments(path, pathSegments);
             if (violation != null) violations.add(violation);
-
-
         }
         return violations;
     }
