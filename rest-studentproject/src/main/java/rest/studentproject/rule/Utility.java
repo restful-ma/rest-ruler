@@ -22,7 +22,6 @@ public class Utility {
                     isWordInDictionary = true;
                     break;
                 }
-
             }
         } catch (Exception e) {
             logger.severe("Error on checking if a word is contained in a dictionary: " + e.getMessage());
