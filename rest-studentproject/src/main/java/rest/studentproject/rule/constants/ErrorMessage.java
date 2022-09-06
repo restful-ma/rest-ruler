@@ -10,6 +10,8 @@ public class ErrorMessage {
     public static final String GET_RESOURCE_REQUESTBODY = "GET requests do not have a request body";
     public static final String GET_RESOURCE_MISSING_RESPONSE = "Missing Response";
     public static final String CRUD = "CRUD function names should not be used in URIs";
+    public static final String SINGULARDOCUMENTNAME = "A singular noun should be used for document names";
+    public static final String PLURALNAME = "A plural noun should be used for collection or store names";
 
     private ErrorMessage() {
         throw new IllegalStateException("Utility class");
