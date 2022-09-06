@@ -1,7 +1,6 @@
 together
 computer
 already
-gets
 getting
 computers
 spread
@@ -129,7 +128,6 @@ maputo
 brahmaputra
 nuggets
 spreadsheets
-geta
 dispatcher
 proofreading
 dispatch
