@@ -1,0 +1,716 @@
+{
+  "words": [
+    {
+      "form": "singular",
+      "word": "enterprise"
+    },
+    {
+      "form": "plural",
+      "word": "enterprises"
+    },
+    {
+      "form": "singular",
+      "word": "action"
+    },
+    {
+      "form": "plural",
+      "word": "actions"
+    },
+    {
+      "form": "singular",
+      "word": "runner"
+    },
+    {
+      "form": "plural",
+      "word": "runners"
+    },
+    {
+      "form": "singular",
+      "word": "secret"
+    },
+    {
+      "form": "plural",
+      "word": "secrets"
+    },
+    {
+      "form": "singular",
+      "word": "quote"
+    },
+    {
+      "form": "plural",
+      "word": "quotes"
+    },
+    {
+      "form": "singular",
+      "word": "symbol"
+    },
+    {
+      "form": "plural",
+      "word": "symbols"
+    },
+    {
+      "form": "singular",
+      "word": "adult"
+    },
+    {
+      "form": "plural",
+      "word": "adults"
+    },
+    {
+      "form": "singular",
+      "word": "name"
+    },
+    {
+      "form": "singular",
+      "word": "name"
+    },
+    {
+      "form": "plural",
+      "word": "names"
+    },
+    {
+      "form": "singular",
+      "word": "app"
+    },
+    {
+      "form": "singular",
+      "word": "hook"
+    },
+    {
+      "form": "singular",
+      "word": "installation"
+    },
+    {
+      "form": "plural",
+      "word": "installations"
+    },
+    {
+      "form": "singular",
+      "word": "suspended"
+    },
+    {
+      "form": "singular",
+      "word": "application"
+    },
+    {
+      "form": "plural",
+      "word": "applications"
+    },
+    {
+      "form": "singular",
+      "word": "grant"
+    },
+    {
+      "form": "plural",
+      "word": "grants"
+    },
+    {
+      "form": "singular",
+      "word": "token"
+    },
+    {
+      "form": "singular",
+      "word": "token"
+    },
+    {
+      "form": "plural",
+      "word": "tokens"
+    },
+    {
+      "form": "singular",
+      "word": "app"
+    },
+    {
+      "form": "plural",
+      "word": "apps"
+    },
+    {
+      "form": "singular",
+      "word": "authorization"
+    },
+    {
+      "form": "plural",
+      "word": "authorizations"
+    },
+    {
+      "form": "singular",
+      "word": "client"
+    },
+    {
+      "form": "plural",
+      "word": "clients"
+    },
+    {
+      "form": "singular",
+      "word": "emoji"
+    },
+    {
+      "form": "plural",
+      "word": "emojis"
+    },
+    {
+      "form": "singular",
+      "word": "permission"
+    },
+    {
+      "form": "plural",
+      "word": "permissions"
+    },
+    {
+      "form": "singular",
+      "word": "event"
+    },
+    {
+      "form": "plural",
+      "word": "events"
+    },
+    {
+      "form": "singular",
+      "word": "feed"
+    },
+    {
+      "form": "plural",
+      "word": "feeds"
+    },
+    {
+      "form": "singular",
+      "word": "gist"
+    },
+    {
+      "form": "plural",
+      "word": "gists"
+    },
+    {
+      "form": "singular",
+      "word": "public"
+    },
+    {
+      "form": "singular",
+      "word": "star"
+    },
+    {
+      "form": "plural",
+      "word": "starred"
+    },
+    {
+      "form": "singular",
+      "word": "comment"
+    },
+    {
+      "form": "plural",
+      "word": "comments"
+    },
+    {
+      "form": "singular",
+      "word": "commit"
+    },
+    {
+      "form": "plural",
+      "word": "commits"
+    },
+    {
+      "form": "singular",
+      "word": "fork"
+    },
+    {
+      "form": "plural",
+      "word": "forks"
+    },
+    {
+      "form": "singular",
+      "word": "template"
+    },
+    {
+      "form": "plural",
+      "word": "templates"
+    },
+    {
+      "form": "singular",
+      "word": "repository"
+    },
+    {
+      "form": "plural",
+      "word": "repositories"
+    },
+    {
+      "form": "singular",
+      "word": "issue"
+    },
+    {
+      "form": "plural",
+      "word": "issues"
+    },
+    {
+      "form": "singular",
+      "word": "license"
+    },
+    {
+      "form": "plural",
+      "word": "licenses"
+    },
+    {
+      "form": "singular",
+      "word": "markdown"
+    },
+    {
+      "form": "singular",
+      "word": "raw"
+    },
+    {
+      "form": "singular",
+      "word": "account"
+    },
+    {
+      "form": "plural",
+      "word": "accounts"
+    },
+    {
+      "form": "singular",
+      "word": "plan"
+    },
+    {
+      "form": "plural",
+      "word": "plans"
+    },
+    {
+      "form": "singular",
+      "word": "stub"
+    },
+    {
+      "form": "plural",
+      "word": "stubbed"
+    },
+    {
+      "form": "singular",
+      "word": "meta"
+    },
+    {
+      "form": "singular",
+      "word": "network"
+    },
+    {
+      "form": "plural",
+      "word": "networks"
+    },
+    {
+      "form": "singular",
+      "word": "notification"
+    },
+    {
+      "form": "plural",
+      "word": "notifications"
+    },
+    {
+      "form": "singular",
+      "word": "thread"
+    },
+    {
+      "form": "plural",
+      "word": "threads"
+    },
+    {
+      "form": "singular",
+      "word": "organization"
+    },
+    {
+      "form": "plural",
+      "word": "organizations"
+    },
+    {
+      "form": "singular",
+      "word": "download"
+    },
+    {
+      "form": "plural",
+      "word": "downloads"
+    },
+    {
+      "form": "singular",
+      "word": "setting"
+    },
+    {
+      "form": "plural",
+      "word": "settings"
+    },
+    {
+      "form": "singular",
+      "word": "bill"
+    },
+    {
+      "form": "plural",
+      "word": "billing"
+    },
+    {
+      "form": "singular",
+      "word": "package"
+    },
+    {
+      "form": "plural",
+      "word": "packages"
+    },
+    {
+      "form": "singular",
+      "word": "subscription"
+    },
+    {
+      "form": "singular",
+      "word": "project"
+    },
+    {
+      "form": "plural",
+      "word": "projects"
+    },
+    {
+      "form": "singular",
+      "word": "column"
+    },
+    {
+      "form": "plural",
+      "word": "columns"
+    },
+    {
+      "form": "singular",
+      "word": "card"
+    },
+    {
+      "form": "plural",
+      "word": "cards"
+    },
+    {
+      "form": "singular",
+      "word": "move"
+    },
+    {
+      "form": "plural",
+      "word": "moves"
+    },
+    {
+      "form": "singular",
+      "word": "collaborator"
+    },
+    {
+      "form": "plural",
+      "word": "collaborators"
+    },
+    {
+      "form": "singular",
+      "word": "reaction"
+    },
+    {
+      "form": "plural",
+      "word": "reactions"
+    },
+    {
+      "form": "singular",
+      "word": "repo"
+    },
+    {
+      "form": "plural",
+      "word": "repos"
+    },
+    {
+      "form": "singular",
+      "word": "environment"
+    },
+    {
+      "form": "plural",
+      "word": "environments"
+    },
+    {
+      "form": "singular",
+      "word": "v-2"
+    },
+    {
+      "form": "plural",
+      "word": "v2"
+    },
+    {
+      "form": "singular",
+      "word": "group"
+    },
+    {
+      "form": "plural",
+      "word": "groups"
+    },
+    {
+      "form": "singular",
+      "word": "search"
+    },
+    {
+      "form": "singular",
+      "word": "code"
+    },
+    {
+      "form": "singular",
+      "word": "label"
+    },
+    {
+      "form": "plural",
+      "word": "labels"
+    },
+    {
+      "form": "singular",
+      "word": "topic"
+    },
+    {
+      "form": "plural",
+      "word": "topics"
+    },
+    {
+      "form": "singular",
+      "word": "user"
+    },
+    {
+      "form": "plural",
+      "word": "users"
+    },
+    {
+      "form": "singular",
+      "word": "team"
+    },
+    {
+      "form": "plural",
+      "word": "teams"
+    },
+    {
+      "form": "singular",
+      "word": "discussion"
+    },
+    {
+      "form": "plural",
+      "word": "discussions"
+    },
+    {
+      "form": "singular",
+      "word": "conversion"
+    },
+    {
+      "form": "plural",
+      "word": "conversions"
+    },
+    {
+      "form": "singular",
+      "word": "scope"
+    },
+    {
+      "form": "plural",
+      "word": "scoped"
+    },
+    {
+      "form": "singular",
+      "word": "attachment"
+    },
+    {
+      "form": "plural",
+      "word": "attachments"
+    },
+    {
+      "form": "singular",
+      "word": "block"
+    },
+    {
+      "form": "plural",
+      "word": "blocks"
+    },
+    {
+      "form": "singular",
+      "word": "hook"
+    },
+    {
+      "form": "plural",
+      "word": "hooks"
+    },
+    {
+      "form": "singular",
+      "word": "ping"
+    },
+    {
+      "form": "plural",
+      "word": "pings"
+    },
+    {
+      "form": "singular",
+      "word": "invitation"
+    },
+    {
+      "form": "plural",
+      "word": "invitations"
+    },
+    {
+      "form": "singular",
+      "word": "member"
+    },
+    {
+      "form": "plural",
+      "word": "members"
+    },
+    {
+      "form": "singular",
+      "word": "membership"
+    },
+    {
+      "form": "plural",
+      "word": "memberships"
+    },
+    {
+      "form": "singular",
+      "word": "protection"
+    },
+    {
+      "form": "singular",
+      "word": "branch"
+    },
+    {
+      "form": "plural",
+      "word": "branches"
+    },
+    {
+      "form": "singular",
+      "word": "context"
+    },
+    {
+      "form": "plural",
+      "word": "contexts"
+    },
+    {
+      "form": "singular",
+      "word": "restriction"
+    },
+    {
+      "form": "plural",
+      "word": "restrictions"
+    },
+    {
+      "form": "singular",
+      "word": "rename"
+    },
+    {
+      "form": "singular",
+      "word": "annotation"
+    },
+    {
+      "form": "plural",
+      "word": "annotations"
+    },
+    {
+      "form": "singular",
+      "word": "preference"
+    },
+    {
+      "form": "plural",
+      "word": "preferences"
+    },
+    {
+      "form": "singular",
+      "word": "alert"
+    },
+    {
+      "form": "plural",
+      "word": "alerts"
+    },
+    {
+      "form": "singular",
+      "word": "instance"
+    },
+    {
+      "form": "plural",
+      "word": "instances"
+    },
+    {
+      "form": "singular",
+      "word": "analysis"
+    },
+    {
+      "form": "plural",
+      "word": "analyses"
+    },
+    {
+      "form": "singular",
+      "word": "pull"
+    },
+    {
+      "form": "plural",
+      "word": "pulls"
+    },
+    {
+      "form": "singular",
+      "word": "status"
+    },
+    {
+      "form": "singular",
+      "word": "status"
+    },
+    {
+      "form": "plural",
+      "word": "statuses"
+    },
+    {
+      "form": "singular",
+      "word": "community"
+    },
+    {
+      "form": "singular",
+      "word": "profile"
+    },
+    {
+      "form": "singular",
+      "word": "language"
+    },
+    {
+      "form": "plural",
+      "word": "languages"
+    },
+    {
+      "form": "singular",
+      "word": "merge"
+    },
+    {
+      "form": "plural",
+      "word": "merges"
+    },
+    {
+      "form": "singular",
+      "word": "milestone"
+    },
+    {
+      "form": "plural",
+      "word": "milestones"
+    },
+    {
+      "form": "singular",
+      "word": "page"
+    },
+    {
+      "form": "plural",
+      "word": "pages"
+    },
+    {
+      "form": "singular",
+      "word": "build"
+    },
+    {
+      "form": "plural",
+      "word": "builds"
+    },
+    {
+      "form": "singular",
+      "word": "latest"
+    },
+    {
+      "form": "singular",
+      "word": "reply"
+    },
+    {
+      "form": "plural",
+      "word": "replies"
+    },
+    {
+      "form": "singular",
+      "word": "file"
+    },
+    {
+      "form": "plural",
+      "word": "files"
+    }
+  ]
+}

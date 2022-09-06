@@ -15,4 +15,4 @@ production/
 .factorypath
 .class
 bin/
-doc/config.properties
+docs/config.properties

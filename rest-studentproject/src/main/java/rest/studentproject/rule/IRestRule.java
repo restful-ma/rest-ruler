@@ -24,5 +24,11 @@ public interface IRestRule {
 
     void setIsActive(boolean isActive);
 
+    /**
+     * Method used to check for any violations of the implemented rule
+     *
+     * @param openAPI structured Object containing a representation of a OpenAPI specification
+     * @return List of Violations of the executing Rule
+     */
     List<Violation> checkViolation(OpenAPI openAPI);
 }

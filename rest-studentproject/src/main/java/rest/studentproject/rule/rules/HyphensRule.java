@@ -30,8 +30,8 @@ public class HyphensRule implements IRestRule {
     private static final RuleType RULE_TYPE = RuleType.STATIC;
     private static final List<RuleSoftwareQualityAttribute> RULE_SOFTWARE_QUALITY_ATTRIBUTE_LIST =
             List.of(RuleSoftwareQualityAttribute.COMPATIBILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
-    private boolean isActive;
     private final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    private boolean isActive;
 
     public HyphensRule(boolean isActive) {
         this.isActive = isActive;
@@ -98,8 +98,6 @@ public class HyphensRule implements IRestRule {
             // Extract path segments based on / char and check if there are violations
             Violation violation = getLstViolationsFromPathSegments(path, pathSegments);
             if (violation != null) violations.add(violation);
-
-
         }
         return violations;
     }
