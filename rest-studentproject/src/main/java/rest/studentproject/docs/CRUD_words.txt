@@ -1,7 +1,5 @@
 together
-created
 computer
-deleted
 already
 gets
 getting
@@ -9,16 +7,13 @@ computers
 spread
 reading
 ready
-selected
 selection
 putting
 bread
 output
 target
-creates
 input
 readers
-puts
 vegetables
 deputy
 reputation
@@ -27,14 +22,12 @@ dispute
 getty
 widespread
 budget
-updated
 reader
 disputed
 postal
 vegetable
 disputes
 posted
-reads
 georgetown
 thread
 vegetation
@@ -48,8 +41,6 @@ readings
 altogether
 threads
 targeted
-inserted
-updates
 apostle
 spreads
 postage
@@ -79,7 +70,6 @@ readable
 putin
 gadget
 postulate
-inserting
 computation
 postcodes
 vegetarians
@@ -99,7 +89,6 @@ compute
 reputed
 supercomputer
 outpost
-selects
 compost
 dispatched
 budgets
@@ -136,7 +125,6 @@ postcard
 serengeti
 unreadable
 computable
-inserts
 maputo
 brahmaputra
 nuggets
@@ -167,10 +155,8 @@ dread
 selectable
 readiness
 multithreading
-postl
 dreadlocks
 postman
-geto
 breaded
 sweetbreads
 postmodernism
@@ -234,7 +220,6 @@ georgette
 minicomputer
 caput
 getelementbyid
-selector
 threaded
 getica
 budgeting
@@ -313,7 +298,6 @@ putzgruppe
 postcolonial
 postpositional
 postsecondary
-reade
 budgetary
 apostolica
 putna
@@ -349,8 +333,6 @@ sputum
 gethsemane
 kharput
 cajuput
-putt
-putz
 starposts
 kidsreads
 herget
@@ -370,7 +352,6 @@ suffragettes
 putri
 postmarked
 putlibai
-poste
 putih
 createnavigationbartogglebutton
 harput
@@ -605,7 +586,6 @@ riposted
 inputted
 selectman
 composts
-updater
 threading
 lamppost
 toreadors
