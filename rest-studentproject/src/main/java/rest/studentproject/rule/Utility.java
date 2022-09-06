@@ -1,13 +1,11 @@
 package rest.studentproject.rule;
 
-import rest.studentproject.rule.rules.HyphensRule;
-
-import java.io.File;
+import java.io.FileReader;
 import java.util.Scanner;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Utility {
+    private static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     private Utility() {
         throw new IllegalStateException("Utility class");
@@ -15,11 +13,18 @@ public class Utility {
 
     public static boolean getPathSegmentMatch(String word, String filePath) {
         boolean isWordInDictionary = false;
-        try (Scanner scanner = new Scanner(new File(filePath))) {
-            if (scanner.useDelimiter("\\Z").next().matches(word)) isWordInDictionary = true;
+
+        try (FileReader fileReader = new FileReader(filePath)) {
+            Scanner scanner = new Scanner(fileReader);
+            while (scanner.hasNext()) {
+                String wordFromDictionary = scanner.next();
+                if (word.toLowerCase().contains(wordFromDictionary)) {
+                    isWordInDictionary = true;
+                    break;
+                }
+            }
         } catch (Exception e) {
-            Logger logger = Logger.getLogger(HyphensRule.class.getName());
-            logger.log(Level.SEVERE, "Error on checking if a word is contained in a dictionary {e}", e);
+            logger.severe("Error on checking if a word is contained in a dictionary: " + e.getMessage());
         }
         return isWordInDictionary;
     }
