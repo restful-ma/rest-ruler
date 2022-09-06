@@ -27,7 +27,7 @@ class GetResourceRuleTest {
     @DisplayName("Get Requests have no request body")
     void checkRequestBody() {
 
-        String path = "src/test/java/rest/studentproject/rules/getResourceTests/requestBody_test.json";
+        String path = "src/test/java/rest/studentproject/rule/getResourceTests/requestBody_test.json";
 
         this.restAnalyzer = new RestAnalyzer(path);
 
@@ -42,7 +42,7 @@ class GetResourceRuleTest {
     @Test
     @DisplayName("Get Requests contain a representation of the response content")
     void checkResponseContent() {
-        String path = "src/test/java/rest/studentproject/rules/getResourceTests/requestResponse_test.json";
+        String path = "src/test/java/rest/studentproject/rule/getResourceTests/requestResponse_test.json";
 
         this.restAnalyzer = new RestAnalyzer(path);
 
@@ -65,7 +65,7 @@ class GetResourceRuleTest {
     @DisplayName("Valid Requests")
     void checkValidContent() {
 
-        String path = "src/test/java/rest/studentproject/rules/getResourceTests/valid_requests_test.json";
+        String path = "src/test/java/rest/studentproject/rule/getResourceTests/valid_requests_test.json";
 
         this.restAnalyzer = new RestAnalyzer(path);
 
