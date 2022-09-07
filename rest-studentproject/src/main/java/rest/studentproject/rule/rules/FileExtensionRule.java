@@ -79,10 +79,13 @@ public class FileExtensionRule implements IRestRule {
             String pathWithoutParameters = path.replaceAll("\\{" + ".*" + "\\}", "").toUpperCase();
 
 
+            // Reads file that contains about 838 file extensions
             try (BufferedReader br = new BufferedReader(new FileReader(PATH_TO_FILE_EXTENSIONS))) {
                 String line;
 
                 while ((line = br.readLine()) != null) {
+
+                    // Stops when one violation is found --> rest of extensions are not checked
                     if (pathWithoutParameters.endsWith("." + line.toUpperCase())) {
                         violationList.add(new Violation(this, locMapper.getLOCOfPath(path),
                                 "To indicate the format " + "of a message's entity body (" + line + ") rely on the " + "media type inside the Content-Type header.", path, ErrorMessage.FILE_EXTENSION));
