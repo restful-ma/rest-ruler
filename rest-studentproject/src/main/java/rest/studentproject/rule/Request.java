@@ -1,4 +1,4 @@
-package rest.studentproject.rules;
+package rest.studentproject.rule;
 
 import rest.studentproject.rules.constants.RequestType;
 
