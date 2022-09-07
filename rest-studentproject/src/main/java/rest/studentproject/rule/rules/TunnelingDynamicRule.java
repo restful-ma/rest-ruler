@@ -1,10 +1,13 @@
-package rest.studentproject.rules;
+package rest.studentproject.rule.rules;
 
 import io.swagger.v3.oas.models.OpenAPI;
-import rest.studentproject.rules.constants.RuleCategory;
-import rest.studentproject.rules.constants.RuleSeverity;
-import rest.studentproject.rules.constants.RuleSoftwareQualityAttribute;
-import rest.studentproject.rules.constants.RuleType;
+import rest.studentproject.rule.IRestRule;
+import rest.studentproject.rule.Request;
+import rest.studentproject.rule.Violation;
+import rest.studentproject.rule.constants.RuleCategory;
+import rest.studentproject.rule.constants.RuleSeverity;
+import rest.studentproject.rule.constants.RuleSoftwareQualityAttribute;
+import rest.studentproject.rule.constants.RuleType;
 
 import java.io.IOException;
 import java.net.URI;

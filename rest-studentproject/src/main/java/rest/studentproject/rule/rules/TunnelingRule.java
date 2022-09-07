@@ -1,14 +1,16 @@
-package rest.studentproject.rules;
+package rest.studentproject.rule.rules;
 
 import io.swagger.v3.oas.models.OpenAPI;
-import rest.studentproject.rules.constants.RuleCategory;
-import rest.studentproject.rules.constants.RuleSeverity;
-import rest.studentproject.rules.constants.RuleSoftwareQualityAttribute;
-import rest.studentproject.rules.constants.RuleType;
+import rest.studentproject.rule.IRestRule;
+import rest.studentproject.rule.Violation;
+import rest.studentproject.rule.constants.RuleCategory;
+import rest.studentproject.rule.constants.RuleSeverity;
+import rest.studentproject.rule.constants.RuleSoftwareQualityAttribute;
+import rest.studentproject.rule.constants.RuleType;
 
 import java.util.List;
 
-public class TunnelingRule implements IRestRule{
+public class TunnelingRule implements IRestRule {
 
     private static final String TITLE = "GET and POST must not be used to tunnel other request methods";
     private static final RuleCategory RULE_CATEGORY = RuleCategory.HTTP;
