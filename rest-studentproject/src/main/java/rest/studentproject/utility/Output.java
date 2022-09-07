@@ -16,8 +16,12 @@ import static java.util.Map.entry;
  */
 public class Output {
     private static final String UNDERLINE = "----------------------------------------------";
-    private static final Map<String, String> authMapping = Map.ofEntries(entry("apiKey", "1"), entry("basic", "2"),
-            entry("bearer", "3"));
+    private static final Map<String, String> secToNumbAuthMapping = Map.ofEntries(entry("apiKey", "1"), entry("basic"
+            , "2"), entry("bearer", "3"));
+    private static final Map<String, String> numbToSecAuthMapping = Map.ofEntries(entry("1", "apiKey"), entry("2",
+            "basic"), entry("3", "bearer"));
+    private static final String yesNo = "[yes/no]";
+    private String pathToFile = "";
 
     /**
      * Method for the expert mode. User will be asked to enable or disable each rule. The input will be saved in the
@@ -88,8 +92,6 @@ public class Output {
 
             new Config().addToConfig(config);
         } else System.out.println("Skip configuration");
-
-        scanner.close();
     }
 
     /**
@@ -98,8 +100,9 @@ public class Output {
      * @param pathToFile path to the OpenAPI definition to be examined
      */
     public void startAnalysis(String pathToFile) {
+        this.pathToFile = pathToFile;
         RestAnalyzer restAnalyzer = new RestAnalyzer(pathToFile);
-        RestAnalyzer.securitySchemas = askAuth(pathToFile, Utility.getOpenAPI(pathToFile));
+        RestAnalyzer.securitySchemas = askAuth(Utility.getOpenAPI(pathToFile));
 
         // Example: https://api.apis.guru/v2/specs/aiception.com/1.0.0/swagger.json
         // Very long example (just under 20k lines): https://api.apis.guru/v2/specs/amazonaws.com/autoscaling/2011-01-01/openapi.json
@@ -110,16 +113,14 @@ public class Output {
     }
 
     /**
-     * @param pathToFile
      * @param openAPI
      * @return empty map --> no auth necessary; null --> no dynamic analysis wanted; map with at least one entry -->
      * entered security
      */
-    public Map<String, String> askAuth(String pathToFile, OpenAPI openAPI) {
-        // TODO check if credential saved
-        // TODO check if credentials already defined
+    public Map<String, Map<String, String>> askAuth(OpenAPI openAPI) {
         Scanner scanner = new Scanner(System.in);
-        Map<String, String> secTokens = new HashMap<>();
+        Map<String, String> authSchema = new HashMap<>(Map.of("username", "", "token", ""));
+        Map<String, Map<String, String>> secTokens = new HashMap<>();
 
 
         System.out.println("\n-----------------INFO ANALYSIS----------------");
@@ -127,7 +128,7 @@ public class Output {
         System.out.println("Besides the static analysis there is the dynamic analysis for which the credentials for " + "the openapi definition need to be provided. These are not stored unless you allow it. No changes will be" + " made to resources nor are they saved.");
         System.out.println("If you want to do the dynamic analysis, enter yes or y, if you do not want to do it, " +
                 "enter any other key.");
-        System.out.println("[yes/no]");
+        System.out.println(yesNo);
 
         String dynamicAnalysis = scanner.next();
 
@@ -147,11 +148,12 @@ public class Output {
             Map<String, String> secSchemeMap = new HashMap<>();
 
             if (!secDefined) {
-                System.out.println("There is no authentication method found in the openAPI definition.");
-                System.out.println("\nChoose the authentication method (number) to set the credentials or enter any " + "other key to 'save' and skip:");
+                System.out.println("\nChoose the authentication method (number) to get/set the credentials or enter " + "any " + "other key to 'save' and skip:");
                 System.out.println("1 - API Key");
                 System.out.println("2 - Basic Authentication");
                 System.out.println("3 - Bearer");
+                System.out.println("4 - OpenID");
+                System.out.println("5 - OAuth");
                 // Add more
                 System.out.println("9 - No authentication needed for requests");
                 System.out.println("0 - Redo whole input and cancel authentication");
@@ -159,8 +161,7 @@ public class Output {
 
             } else {
                 System.out.println("Found " + secSchemas.size() + " security schemas for given openAPI definition.");
-                System.out.println("\nChoose the authentication method (number) to set the credentials or enter" + " "
-                        + "any " + "other " + "key to select other security methods:");
+                System.out.println("\nChoose the authentication method (number) to get/set the credentials or enter" + " " + "any " + "other " + "key to select other security methods:");
 
                 int selectionNumber = 0;
                 for (Map.Entry<String, SecurityScheme> secSchema : secSchemas.entrySet()) {
@@ -175,42 +176,92 @@ public class Output {
                     continue;
                 }
 
-                if (!authMapping.containsKey(secSchemeMap.get(choice))) {
+                if (!secToNumbAuthMapping.containsKey(secSchemeMap.get(choice))) {
                     System.out.println("We currently do not support this kind of authentication. Please select " +
                             "another method.");
                     continue;
                 }
-                choice = authMapping.get(secSchemeMap.get(choice));
+                choice = secToNumbAuthMapping.get(secSchemeMap.get(choice));
             }
 
+            String username = "";
+            String token = "";
 
-            switch (choice) {
-                // API Key
-                case "1":
-                    // username und api key
-                    System.out.println("Choice 1");
-                    break;
-                // Basic
-                case "2":
-                    System.out.println("Choice 2");
-                    break;
-                // Bearer
-                case "3":
-                    System.out.println("Choice 3");
-                    break;
-                // No auth needed for requests
-                case "9":
-                    return new HashMap<>();
-                // Do not save any input and skip auth
-                case "0":
-                    System.out.println("Authentication canceled and no credentials are used.");
-                    return null;
-                default:
-                    System.out.println("Authentication skipped.");
-                    enterMoreSec = false;
+            Properties properties = new Config().getConfig();
+            boolean secInProps = false;
+
+            // authTypPathToFile
+            String prefixProps = numbToSecAuthMapping.get(choice) + this.pathToFile;
+            // authTypPathToFileUsername
+            String keyUsernameProps = prefixProps + "username";
+            // authTypPathToFileToken
+            String keyTokenProps = prefixProps + "token";
+
+            if (properties.containsKey(keyTokenProps) && properties.containsKey(keyUsernameProps)) {
+                System.out.println("\nFound credentials for this security method in config. Do you want to use them " + "(yes or y) or enter new credentials (no or n)?");
+                System.out.println(yesNo);
+                String input = scanner.next();
+                if (input.equals("y") || input.equals("yes")) {
+                    secInProps = true;
+                    authSchema.put("username", properties.getProperty(keyTokenProps));
+                    authSchema.put("token", properties.getProperty(keyUsernameProps));
+                    secTokens.put(numbToSecAuthMapping.get(choice), authSchema);
+                }
+            }
+
+            if (!secInProps) {
+                switch (choice) {
+                    // API Key
+                    case "1":
+                        // api key
+                        System.out.println("Enter api key: ");
+                        token = scanner.next();
+                        authSchema.put("username", "");
+                        authSchema.put("token", token);
+                        secTokens.put(numbToSecAuthMapping.get(choice), authSchema);
+                        break;
+                    // Basic
+                    case "2":
+                        // username and pw
+                        System.out.println("Enter username: ");
+                        username = scanner.next();
+                        authSchema.put("username", username);
+                        System.out.println("Enter password: ");
+                        token = scanner.next();
+                        authSchema.put("token", token);
+                        secTokens.put(numbToSecAuthMapping.get(choice), authSchema);
+                        break;
+                    // Bearer
+                    case "3":
+                        // access_token
+                        System.out.println("Enter access token: ");
+                        token = scanner.next();
+                        authSchema.put("username", "");
+                        authSchema.put("token", token);
+                        secTokens.put(numbToSecAuthMapping.get(choice), authSchema);
+                        break;
+                    // OpenID
+                    case "4":
+                        System.out.println("OpenID currently not implemented");
+                        break;
+                    // OAuth
+                    case "5":
+                        System.out.println("OAuth currently not implemented");
+                        break;
+                    // No auth needed for requests
+                    case "9":
+                        return new HashMap<>();
+                    // Do not save any input and skip auth
+                    case "0":
+                        System.out.println("Authentication canceled and no credentials are used.");
+                        return null;
+                    default:
+                        System.out.println("Authentication skipped.");
+                        enterMoreSec = false;
+                }
             }
             System.out.println("Do you want to enter another security schema? Enter yes or y, enter no or n.");
-            System.out.println("[yes/no]");
+            System.out.println(yesNo);
 
             choice = scanner.next();
 
@@ -222,22 +273,32 @@ public class Output {
                     enterMoreSec = false;
             }
         }
-        System.out.println("Do you want to save the credentials local for further analyses enter yes or y or only use" +
-                " the input only for the next analysis enter any other key.");
-        System.out.println("[yes/no]");
+        System.out.println("\n" + UNDERLINE);
+        System.out.println("Do you want to save the credentials local for further analyses enter yes or y or only " + "use" + " the input only for the next analysis enter any other key.");
+        System.out.println(yesNo);
 
         choice = scanner.next();
 
         if (choice.equals("y") || choice.equals("yes")) {
-            // TODO
-            setSec();
+            setSec(secTokens);
         }
 
         scanner.close();
         return secTokens;
     }
 
-    private void setSec(){
+    private void setSec(Map<String, Map<String, String>> secTokens) {
+        for (Map.Entry<String, Map<String, String>> secToken : secTokens.entrySet()) {
+            String prefix = secToken.getKey() + this.pathToFile.trim().replaceAll("\\s+", "");
 
+            // authTypPathToFileUsername
+            String username = prefix + "username";
+            // authTypPathToFileToken
+            String token = prefix + "token";
+
+            new Config().addToConfig(Map.of(username, secToken.getValue().get("username"), token,
+                    secToken.getValue().get("token")));
+        }
     }
+
 }

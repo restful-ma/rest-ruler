@@ -17,7 +17,7 @@ public class RestAnalyzer {
     //Singleton
     private static final Report report = Report.getInstance();
     public static LOCMapper locMapper = null;
-    public static Map<String, String> securitySchemas = null;
+    public static Map<String, Map<String, String>> securitySchemas = null;
 
     public final OpenAPI openAPI;
 

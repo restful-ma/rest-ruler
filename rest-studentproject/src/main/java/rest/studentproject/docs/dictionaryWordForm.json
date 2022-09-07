@@ -711,6 +711,258 @@
     {
       "form": "plural",
       "word": "files"
+    },
+    {
+      "form": "singular",
+      "word": "option"
+    },
+    {
+      "form": "plural",
+      "word": "options"
+    },
+    {
+      "form": "singular",
+      "word": "base"
+    },
+    {
+      "form": "singular",
+      "word": "device"
+    },
+    {
+      "form": "plural",
+      "word": "devices"
+    },
+    {
+      "form": "singular",
+      "word": "i%27m"
+    },
+    {
+      "form": "plural",
+      "word": "im"
+    },
+    {
+      "form": "singular",
+      "word": "chat"
+    },
+    {
+      "form": "singular",
+      "word": "session"
+    },
+    {
+      "form": "plural",
+      "word": "sessions"
+    },
+    {
+      "form": "singular",
+      "word": "meeting"
+    },
+    {
+      "form": "plural",
+      "word": "meetings"
+    },
+    {
+      "form": "singular",
+      "word": "registrant"
+    },
+    {
+      "form": "plural",
+      "word": "registrants"
+    },
+    {
+      "form": "singular",
+      "word": "live_stream"
+    },
+    {
+      "form": "plural",
+      "word": "livestream"
+    },
+    {
+      "form": "singular",
+      "word": "poll"
+    },
+    {
+      "form": "plural",
+      "word": "polls"
+    },
+    {
+      "form": "singular",
+      "word": "recording"
+    },
+    {
+      "form": "plural",
+      "word": "recordings"
+    },
+    {
+      "form": "singular",
+      "word": "metric"
+    },
+    {
+      "form": "plural",
+      "word": "metrics"
+    },
+    {
+      "form": "singular",
+      "word": "webinar"
+    },
+    {
+      "form": "plural",
+      "word": "webinars"
+    },
+    {
+      "form": "singular",
+      "word": "cyclic_redundancy_check"
+    },
+    {
+      "form": "plural",
+      "word": "crc"
+    },
+    {
+      "form": "singular",
+      "word": "report"
+    },
+    {
+      "form": "singular",
+      "word": "daily"
+    },
+    {
+      "form": "singular",
+      "word": "domain"
+    },
+    {
+      "form": "plural",
+      "word": "domains"
+    },
+    {
+      "form": "singular",
+      "word": "entry"
+    },
+    {
+      "form": "plural",
+      "word": "entries"
+    },
+    {
+      "form": "singular",
+      "word": "field"
+    },
+    {
+      "form": "plural",
+      "word": "fields"
+    },
+    {
+      "form": "singular",
+      "word": "filter"
+    },
+    {
+      "form": "plural",
+      "word": "filters"
+    },
+    {
+      "form": "singular",
+      "word": "inflection"
+    },
+    {
+      "form": "plural",
+      "word": "inflections"
+    },
+    {
+      "form": "singular",
+      "word": "lemma"
+    },
+    {
+      "form": "plural",
+      "word": "lemmas"
+    },
+    {
+      "form": "singular",
+      "word": "register"
+    },
+    {
+      "form": "plural",
+      "word": "registers"
+    },
+    {
+      "form": "singular",
+      "word": "thesaurus"
+    },
+    {
+      "form": "singular",
+      "word": "translation"
+    },
+    {
+      "form": "plural",
+      "word": "translations"
+    },
+    {
+      "form": "singular",
+      "word": "sentence"
+    },
+    {
+      "form": "plural",
+      "word": "sentences"
+    },
+    {
+      "form": "singular",
+      "word": "word"
+    },
+    {
+      "form": "plural",
+      "word": "words"
+    },
+    {
+      "form": "singular",
+      "word": "participant"
+    },
+    {
+      "form": "plural",
+      "word": "participants"
+    },
+    {
+      "form": "singular",
+      "word": "qa"
+    },
+    {
+      "form": "singular",
+      "word": "telephone"
+    },
+    {
+      "form": "singular",
+      "word": "tsp"
+    },
+    {
+      "form": "singular",
+      "word": "assistant"
+    },
+    {
+      "form": "plural",
+      "word": "assistants"
+    },
+    {
+      "form": "singular",
+      "word": "scheduler"
+    },
+    {
+      "form": "plural",
+      "word": "schedulers"
+    },
+    {
+      "form": "singular",
+      "word": "picture"
+    },
+    {
+      "form": "singular",
+      "word": "password"
+    },
+    {
+      "form": "singular",
+      "word": "pac"
+    },
+    {
+      "form": "singular",
+      "word": "email"
+    },
+    {
+      "form": "singular",
+      "word": "face"
     }
   ]
 }

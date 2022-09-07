@@ -37,9 +37,9 @@ class LOCMapperTest {
         this.mapper.mapOpenAPIKeysToLOC();
         assertEquals(38, this.mapper.getLOCOfPath("/quotes"));
         assertEquals(4, this.mapper.getOpenAPIKeyLOC().get("paths").size());
-        assertEquals(58, this.mapper.getOpenAPIKeyLOC().get("paths").get("/symbols"));
-        assertEquals(89, this.mapper.getOpenAPIKeyLOC().get("paths").get("/"));
-        assertEquals(120, this.mapper.getOpenAPIKeyLOC().get("paths").get("/adults/{get_adult_ID}/names"));
+        assertEquals(68, this.mapper.getOpenAPIKeyLOC().get("paths").get("/symbols"));
+        assertEquals(109, this.mapper.getOpenAPIKeyLOC().get("paths").get("/"));
+        assertEquals(150, this.mapper.getOpenAPIKeyLOC().get("paths").get("/adults/{get_adult_ID}/names"));
     }
 
     @Test
