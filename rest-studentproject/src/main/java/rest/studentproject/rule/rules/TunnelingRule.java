@@ -19,7 +19,9 @@ public class TunnelingRule implements IRestRule {
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List.of(RuleSoftwareQualityAttribute.MAINTAINABILITY, RuleSoftwareQualityAttribute.COMPATIBILITY, RuleSoftwareQualityAttribute.FUNCTIONAL_SUITABILITY, RuleSoftwareQualityAttribute.USABILITY);
     private boolean isActive;
 
-
+    public void TunnelingRule(boolean isActive) {
+        this.isActive = isActive;
+    }
     @Override
     public String getTitle() {
         return TITLE;

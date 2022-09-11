@@ -2,11 +2,16 @@ package rest.studentproject.utility;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.security.SecurityScheme;
+import io.swagger.v3.oas.models.servers.Server;
 import rest.studentproject.analyzer.RestAnalyzer;
 import rest.studentproject.rule.ActiveRules;
 import rest.studentproject.rule.IRestRule;
 import rest.studentproject.rule.Utility;
+import rest.studentproject.rule.constants.SecuritySchema;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.*;
 
 import static java.util.Map.entry;
@@ -16,12 +21,13 @@ import static java.util.Map.entry;
  */
 public class Output {
     private static final String UNDERLINE = "----------------------------------------------";
-    private static final Map<String, String> secToNumbAuthMapping = Map.ofEntries(entry("apiKey", "1"), entry("basic"
-            , "2"), entry("bearer", "3"));
-    private static final Map<String, String> numbToSecAuthMapping = Map.ofEntries(entry("1", "apiKey"), entry("2",
-            "basic"), entry("3", "bearer"));
+    private static final Map<SecuritySchema, String> secToNumbAuthMapping = Map.ofEntries(entry(SecuritySchema.APIKEY, "1"), entry(SecuritySchema.BASIC
+            , "2"), entry(SecuritySchema.BEARER, "3"));
+    private static final Map<String, SecuritySchema> numbToSecAuthMapping = Map.ofEntries(entry("1", SecuritySchema.APIKEY), entry("2",
+            SecuritySchema.BASIC), entry("3", SecuritySchema.BEARER));
     private static final String yesNo = "[yes/no]";
     private String pathToFile = "";
+
 
     /**
      * Method for the expert mode. User will be asked to enable or disable each rule. The input will be saved in the
@@ -103,6 +109,7 @@ public class Output {
         this.pathToFile = pathToFile;
         RestAnalyzer restAnalyzer = new RestAnalyzer(pathToFile);
         RestAnalyzer.securitySchemas = askAuth(Utility.getOpenAPI(pathToFile));
+        RestAnalyzer.dynamicAnalysis = RestAnalyzer.securitySchemas != null;
 
         // Example: https://api.apis.guru/v2/specs/aiception.com/1.0.0/swagger.json
         // Very long example (just under 20k lines): https://api.apis.guru/v2/specs/amazonaws.com/autoscaling/2011-01-01/openapi.json
@@ -117,11 +124,13 @@ public class Output {
      * @return empty map --> no auth necessary; null --> no dynamic analysis wanted; map with at least one entry -->
      * entered security
      */
-    public Map<String, Map<String, String>> askAuth(OpenAPI openAPI) {
+    public Map<SecuritySchema, String> askAuth(OpenAPI openAPI) {
+        // TODO: Delete all auth
+        // TODO: SecScheme Enum
+        // TODO: Check syntax of auth input (also not empty)
+        // TODO: Exclude no dynamic analysis wanted
         Scanner scanner = new Scanner(System.in);
-        Map<String, String> authSchema = new HashMap<>(Map.of("username", "", "token", ""));
-        Map<String, Map<String, String>> secTokens = new HashMap<>();
-
+        Map<SecuritySchema, String> secTokens = new HashMap<>();
 
         System.out.println("\n-----------------INFO ANALYSIS----------------");
         System.out.println("-----------------------------------------------\n");
@@ -134,6 +143,18 @@ public class Output {
 
         if (!(dynamicAnalysis.equals("y") || dynamicAnalysis.equals("yes"))) return null;
 
+        for (Server server : openAPI.getServers()) {
+            String url = server.getUrl();
+            System.out.println("Ping server: " + server.getUrl());
+            if (!pingURL(url, 1000)) {
+                System.out.println("Server is not responding: " + url);
+                System.out.println("Make sure the server is running or delete it from the openAPI definition.");
+                System.out.println("--> Skip dynamic analysis.");
+                return null;
+            }
+        }
+
+
         System.out.println("\n----------------AUTHENTICATION----------------");
         System.out.println(UNDERLINE);
 
@@ -144,7 +165,9 @@ public class Output {
 
         boolean enterMoreSec = true;
         String choice = "";
+        boolean secInProps = false;
         while (enterMoreSec) {
+//            Map<String, String> authSchema = new HashMap<>(Map.of("username", "", "token", ""));
             Map<String, String> secSchemeMap = new HashMap<>();
 
             if (!secDefined) {
@@ -156,7 +179,7 @@ public class Output {
                 System.out.println("5 - OAuth");
                 // Add more
                 System.out.println("9 - No authentication needed for requests");
-                System.out.println("0 - Redo whole input and cancel authentication");
+                System.out.println("0 - Redo whole security input and cancel authentication");
                 choice = scanner.next();
 
             } else {
@@ -165,8 +188,8 @@ public class Output {
 
                 int selectionNumber = 0;
                 for (Map.Entry<String, SecurityScheme> secSchema : secSchemas.entrySet()) {
-                    System.out.println(++selectionNumber + " - " + secSchema.getValue().getType());
-                    secSchemeMap.put(String.valueOf(selectionNumber), secSchema.getValue().getType().toString());
+                    System.out.println(++selectionNumber + " - " + secSchema.getValue().getScheme());
+                    secSchemeMap.put(String.valueOf(selectionNumber), secSchema.getValue().getScheme());
 
                 }
                 choice = scanner.next();
@@ -176,36 +199,37 @@ public class Output {
                     continue;
                 }
 
-                if (!secToNumbAuthMapping.containsKey(secSchemeMap.get(choice))) {
+                if (!secToNumbAuthMapping.containsKey(SecuritySchema.valueOf(secSchemeMap.get(choice).toUpperCase()))) {
                     System.out.println("We currently do not support this kind of authentication. Please select " +
                             "another method.");
                     continue;
                 }
-                choice = secToNumbAuthMapping.get(secSchemeMap.get(choice));
+                choice = secToNumbAuthMapping.get(SecuritySchema.valueOf(secSchemeMap.get(choice).toUpperCase()));
             }
 
-            String username = "";
+//            String username = "";
             String token = "";
 
             Properties properties = new Config().getConfig();
-            boolean secInProps = false;
+
 
             // authTypPathToFile
             String prefixProps = numbToSecAuthMapping.get(choice) + this.pathToFile;
             // authTypPathToFileUsername
-            String keyUsernameProps = prefixProps + "username";
+//            String keyUsernameProps = prefixProps + "username";
             // authTypPathToFileToken
             String keyTokenProps = prefixProps + "token";
 
-            if (properties.containsKey(keyTokenProps) && properties.containsKey(keyUsernameProps)) {
+//            if (properties.containsKey(keyTokenProps) && properties.containsKey(keyUsernameProps)) {
+            if (properties.containsKey(keyTokenProps)) {
                 System.out.println("\nFound credentials for this security method in config. Do you want to use them " + "(yes or y) or enter new credentials (no or n)?");
                 System.out.println(yesNo);
                 String input = scanner.next();
                 if (input.equals("y") || input.equals("yes")) {
                     secInProps = true;
-                    authSchema.put("username", properties.getProperty(keyTokenProps));
-                    authSchema.put("token", properties.getProperty(keyUsernameProps));
-                    secTokens.put(numbToSecAuthMapping.get(choice), authSchema);
+//                    authSchema.put("username", properties.getProperty(keyUsernameProps));
+//                    authSchema.put("token", properties.getProperty(keyTokenProps));
+                    secTokens.put(numbToSecAuthMapping.get(choice), properties.getProperty(keyTokenProps));
                 }
             }
 
@@ -216,29 +240,29 @@ public class Output {
                         // api key
                         System.out.println("Enter api key: ");
                         token = scanner.next();
-                        authSchema.put("username", "");
-                        authSchema.put("token", token);
-                        secTokens.put(numbToSecAuthMapping.get(choice), authSchema);
+//                        authSchema.put("username", "");
+//                        authSchema.put("token", token);
+                        secTokens.put(numbToSecAuthMapping.get(choice), token);
                         break;
                     // Basic
                     case "2":
                         // username and pw
-                        System.out.println("Enter username: ");
-                        username = scanner.next();
-                        authSchema.put("username", username);
-                        System.out.println("Enter password: ");
+//                        System.out.println("Enter username: ");
+//                        username = scanner.next();
+//                        authSchema.put("username", username);
+                        System.out.println("Enter token consisting of username and password: ");
                         token = scanner.next();
-                        authSchema.put("token", token);
-                        secTokens.put(numbToSecAuthMapping.get(choice), authSchema);
+//                        authSchema.put("token", token);
+                        secTokens.put(numbToSecAuthMapping.get(choice), token);
                         break;
                     // Bearer
                     case "3":
                         // access_token
                         System.out.println("Enter access token: ");
                         token = scanner.next();
-                        authSchema.put("username", "");
-                        authSchema.put("token", token);
-                        secTokens.put(numbToSecAuthMapping.get(choice), authSchema);
+//                        authSchema.put("username", "");
+//                        authSchema.put("token", token);
+                        secTokens.put(numbToSecAuthMapping.get(choice), token);
                         break;
                     // OpenID
                     case "4":
@@ -250,11 +274,10 @@ public class Output {
                         break;
                     // No auth needed for requests
                     case "9":
-                        return new HashMap<>();
                     // Do not save any input and skip auth
                     case "0":
                         System.out.println("Authentication canceled and no credentials are used.");
-                        return null;
+                        return new HashMap<>();
                     default:
                         System.out.println("Authentication skipped.");
                         enterMoreSec = false;
@@ -273,31 +296,62 @@ public class Output {
                     enterMoreSec = false;
             }
         }
-        System.out.println("\n" + UNDERLINE);
-        System.out.println("Do you want to save the credentials local for further analyses enter yes or y or only " + "use" + " the input only for the next analysis enter any other key.");
-        System.out.println(yesNo);
 
-        choice = scanner.next();
+        if (!secInProps) {
+            System.out.println("\n" + UNDERLINE);
+            System.out.println("---------------------Save---------------------");
+            System.out.println("Do you want to save the credentials local for further analyses enter yes or y or only" +
+                    " " + "use" + " the input only for the next analysis enter any other key.");
+            System.out.println(yesNo + "\n");
 
-        if (choice.equals("y") || choice.equals("yes")) {
-            setSec(secTokens);
+            choice = scanner.next();
+
+            if (choice.equals("y") || choice.equals("yes")) {
+                setSec(secTokens);
+            }
         }
 
         scanner.close();
         return secTokens;
     }
 
-    private void setSec(Map<String, Map<String, String>> secTokens) {
-        for (Map.Entry<String, Map<String, String>> secToken : secTokens.entrySet()) {
-            String prefix = secToken.getKey() + this.pathToFile.trim().replaceAll("\\s+", "");
+    private void setSec(Map<SecuritySchema, String> secTokens) {
+        for (Map.Entry<SecuritySchema, String> secToken : secTokens.entrySet()) {
+            String prefix = secToken.getKey().name() + this.pathToFile.trim().replaceAll("\\s+", "");
 
             // authTypPathToFileUsername
-            String username = prefix + "username";
+//            String username = prefix + "username";
             // authTypPathToFileToken
             String token = prefix + "token";
 
-            new Config().addToConfig(Map.of(username, secToken.getValue().get("username"), token,
-                    secToken.getValue().get("token")));
+            new Config().addToConfig(Map.of(token, secToken.getValue()));
+        }
+    }
+
+    /**
+     * Pings HTTP URL. This effectively sends a HEAD request and returns <code>true</code> if the response code is in
+     * the 200-399 range.
+     *
+     * @param url     The HTTP URL to be pinged.
+     * @param timeout The timeout in millis for both the connection timeout and the response read timeout. Note that
+     *                the total timeout is effectively two times the given timeout.
+     * @return <code>true</code> if the given HTTP URL has returned response code 200-399 on a HEAD request within the
+     * given timeout, otherwise <code>false</code>.
+     */
+    public boolean pingURL(String url, int timeout) {
+        url = url.replaceFirst("^https", "http"); // Otherwise an exception may be thrown on invalid SSL certificates.
+
+        try {
+            HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+            connection.setConnectTimeout(timeout);
+            connection.setReadTimeout(timeout);
+            connection.setRequestMethod("HEAD");
+            int responseCode = connection.getResponseCode();
+            System.out.println("Server responded with: " + responseCode);
+            // Server responded
+            return true;
+        } catch (IOException exception) {
+            return false;
         }
     }
 

@@ -1,5 +1,5 @@
 plugins {
-//    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("com.github.johnrengelman.shadow") version "7.1.2"
     id("io.micronaut.application") version "3.4.1"
 }
 
@@ -19,13 +19,13 @@ dependencies {
     implementation("jakarta.annotation:jakarta.annotation-api")
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
-    implementation("io.swagger.parser.v3:swagger-parser-v3:2.1.1")
+    implementation('io.swagger.parser.v3:swagger-parser-v3:2.1.2')
     implementation('io.swagger.parser.v3:swagger-parser:2.1.1')
     implementation('com.github.Steppschuh:Java-Markdown-Generator:master-SNAPSHOT')
-    implementation 'org.fusesource.jansi:jansi:2.2.0'
+    implementation 'org.fusesource.jansi:jansi:2.4.0'
     implementation 'org.reflections:reflections:0.10.2'
-    implementation ('edu.stanford.nlp:stanford-corenlp:4.5.0')
-    implementation ('edu.stanford.nlp:stanford-corenlp:4.5.0:models')
+    implementation ('edu.stanford.nlp:stanford-corenlp:4.5.1')
+    implementation ('edu.stanford.nlp:stanford-corenlp:4.5.1:models')
     testImplementation("io.micronaut:micronaut-http-client")
     implementation("org.apache.directory.studio:org.apache.commons.io:2.4")
 
