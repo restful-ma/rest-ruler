@@ -1,20 +1,22 @@
 package rest.studentproject.rule;
 
-import rest.studentproject.rules.constants.RequestType;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import rest.studentproject.rule.constants.RequestType;
+import rest.studentproject.rule.constants.SecuritySchema;
 
 import java.net.http.HttpRequest;
 
 public class Request {
 
-    private String path;
-    private String url;
+    private final String path;
+    private final String url;
     private String[] headers;
-    private RequestType requestType;
+    private final RequestType requestType;
 
     private HttpRequest.BodyPublisher body;
 
 
-    public Request(String path, String url, RequestType requestType){
+    public Request(String path, String url, RequestType requestType) {
         this.path = path;
         this.url = url;
         this.requestType = requestType;
@@ -47,4 +49,15 @@ public class Request {
     public void setBody(HttpRequest.BodyPublisher body) {
         this.body = body;
     }
+
+//    public ImmutablePair<String, String> getSecurityHeader(SecuritySchema usedSecurity, String token) {
+//        switch (usedSecurity) {
+//            case BASIC:
+//                return ImmutablePair.of("Authorization", "Bearer " + token);
+//            case APIKEY:
+//                return ImmutablePair.of("Authorization");
+//            case BEARER:
+//                return;
+//        }
+//    }
 }

@@ -30,7 +30,9 @@ public class TunnelingDynamicRule implements IRestRule {
 
     private HttpClient client;
 
-    public TunnelingDynamicRule() {
+    public TunnelingDynamicRule(boolean isActive) {
+
+        this.isActive = isActive;
         this.client = HttpClient.newHttpClient();
     }
 
