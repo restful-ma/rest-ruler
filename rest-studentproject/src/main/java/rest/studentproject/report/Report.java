@@ -84,8 +84,9 @@ public class Report {
             printWriter.print(sbMDReport);
 
             //notification
-            System.out.println("In total " + violationList.size() +" rule violations were found");
-            System.out.println("The detailed report can be found here: " + path.toAbsolutePath());
+            System.out.println("----------------------------------------------");
+            System.out.println("\nIn total " + violationList.size() +" rule violations were found");
+            System.out.println("--> The detailed report can be found here: " + path.toAbsolutePath());
 
             printWriter.close();
             bw.close();

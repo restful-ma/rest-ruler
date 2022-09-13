@@ -110,7 +110,21 @@ public class Output {
         RestAnalyzer restAnalyzer = new RestAnalyzer(pathToFile);
         boolean checkDynamicAnalysis = checkDynamicAnalysis();
         RestAnalyzer.dynamicAnalysis = checkDynamicAnalysis;
-        if (checkDynamicAnalysis) RestAnalyzer.securitySchemas = askAuth(Utility.getOpenAPI(pathToFile));
+        if (checkDynamicAnalysis) {
+            OpenAPI openAPI = Utility.getOpenAPI(pathToFile);
+            for (Server server : openAPI.getServers()) {
+                String url = server.getUrl();
+                System.out.println("Ping server: " + server.getUrl());
+                if (!pingURL(url, 1000)) {
+                    System.out.println("Server is not responding: " + url);
+                    System.out.println("Make sure the server is running or delete it from the openAPI definition.");
+                    System.out.println("--> Skip dynamic analysis.");
+                    RestAnalyzer.dynamicAnalysis = false;
+                }
+            }
+            RestAnalyzer.securitySchemas = askAuth(openAPI);
+
+        }
 
 
         // Example: https://api.apis.guru/v2/specs/aiception.com/1.0.0/swagger.json
@@ -132,7 +146,6 @@ public class Output {
         System.out.println(yesNo);
 
         String dynamicAnalysis = scanner.next();
-        scanner.close();
 
         return dynamicAnalysis.equals("y") || dynamicAnalysis.equals("yes");
     }
@@ -147,19 +160,7 @@ public class Output {
         // TODO: Check syntax of auth input (also not empty)
         // TODO: Wrong auth input
         Scanner scanner = new Scanner(System.in);
-        Map<SecuritySchema, String> secTokens = new HashMap<>();
-
-        for (Server server : openAPI.getServers()) {
-            String url = server.getUrl();
-            System.out.println("Ping server: " + server.getUrl());
-            if (!pingURL(url, 1000)) {
-                System.out.println("Server is not responding: " + url);
-                System.out.println("Make sure the server is running or delete it from the openAPI definition.");
-                System.out.println("--> Skip dynamic analysis.");
-                return null;
-            }
-        }
-
+        EnumMap<SecuritySchema, String> secTokens = new EnumMap<>(SecuritySchema.class);
 
         System.out.println("\n----------------AUTHENTICATION----------------");
         System.out.println(UNDERLINE);
@@ -244,7 +245,7 @@ public class Output {
                     // API Key
                     case "1":
                         // api key
-                        System.out.println("Enter api key or type 0 (zero) to return to select another auth method: ");
+                        System.out.println("Enter api key or type 0 (zero) to skip: ");
                         token = scanner.next();
                         if (token.equals("0")) break;
 //                        authSchema.put("username", "");
@@ -257,8 +258,7 @@ public class Output {
 //                        System.out.println("Enter username: ");
 //                        username = scanner.next();
 //                        authSchema.put("username", username);
-                        System.out.println("Enter token consisting of username and password or type 0 (zero) to " +
-                                "return to select another auth method: ");
+                        System.out.println("Enter token consisting of username and password or type 0 (zero) to skip: ");
                         token = scanner.next();
                         if (token.equals("0")) break;
 //                        authSchema.put("token", token);
@@ -267,8 +267,7 @@ public class Output {
                     // Bearer
                     case "3":
                         // access_token
-                        System.out.println("Enter access token or type 0 (zero) to return to select another auth " +
-                                "method: ");
+                        System.out.println("Enter access token or type 0 (zero) to skip: ");
                         token = scanner.next();
                         if (token.equals("0")) break;
 //                        authSchema.put("username", "");
