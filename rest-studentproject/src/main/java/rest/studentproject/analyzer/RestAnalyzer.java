@@ -42,7 +42,8 @@ public class RestAnalyzer {
         List<Violation> violations = new ArrayList<>();
         for (IRestRule rule : activeRules) {
             if (!rule.getIsActive()) continue;
-            violations.addAll(rule.checkViolation(this.openAPI));
+            List<Violation> test = rule.checkViolation(this.openAPI);
+            violations.addAll(test);
         }
         //generates Report
         if (generateReport) {

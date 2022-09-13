@@ -35,6 +35,8 @@ public class ActiveRules {
         Properties prop = new Config().getConfig();
 
         for (Class<?> ruleClass : allClasses) {
+            // Classes with the $1, $2 holds the anonymous inner classes, we are not interested on them.
+            if (ruleClass.getName().contains("$")) continue;
             try {
                 Constructor<?> ruleConstructor = ruleClass.getConstructor(boolean.class);
                 Object classObj = ruleConstructor.newInstance(true);
@@ -55,7 +57,8 @@ public class ActiveRules {
                 }
                 rules.add(classObject);
             } catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
-                logger.severe("Exception when trying to read the config.property: " + e.getMessage());
+                System.out.println(e);
+                logger.severe("Exception when trying to get the rule objects or reading the config: " + e.getMessage());
             }
         }
         return rules;

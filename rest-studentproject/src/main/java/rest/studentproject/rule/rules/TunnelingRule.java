@@ -8,6 +8,7 @@ import rest.studentproject.rule.constants.RuleSeverity;
 import rest.studentproject.rule.constants.RuleSoftwareQualityAttribute;
 import rest.studentproject.rule.constants.RuleType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TunnelingRule implements IRestRule {
@@ -19,7 +20,7 @@ public class TunnelingRule implements IRestRule {
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List.of(RuleSoftwareQualityAttribute.MAINTAINABILITY, RuleSoftwareQualityAttribute.COMPATIBILITY, RuleSoftwareQualityAttribute.FUNCTIONAL_SUITABILITY, RuleSoftwareQualityAttribute.USABILITY);
     private boolean isActive;
 
-    public void TunnelingRule(boolean isActive) {
+    public TunnelingRule(boolean isActive) {
         this.isActive = isActive;
     }
     @Override
@@ -66,6 +67,6 @@ public class TunnelingRule implements IRestRule {
 
         //TODO: dynamic rule execution
 
-        return null;
+        return new ArrayList<>();
     }
 }

@@ -114,10 +114,6 @@ public class UnauthorizedRule implements IRestRule {
         boolean violationFound = false;
         for (Map.Entry<String, PathItem> path : this.openAPI.getPaths().entrySet()) {
             for (Violation violation : this.violationList) {
-                System.out.println("violation.getKeyViolation()");
-                System.out.println(violation.getKeyViolation());
-                System.out.println("path.getKey()");
-                System.out.println(path.getKey());
                 violationFound = violation.getKeyViolation().equals(path.getKey());
                 if (violationFound) break;
             }
@@ -137,7 +133,6 @@ public class UnauthorizedRule implements IRestRule {
                     request = new Request(path.getKey(), server.getUrl(),
                             RequestType.valueOf(operation.getKey().toUpperCase()));
 
-                    System.out.println(operation.getKey().toUpperCase() + " Path: " + request.getUrl() + path.getKey());
                     try {
 
                         for (Map.Entry<SecuritySchema, String> sec : securitySchemas.entrySet()) {
@@ -174,7 +169,6 @@ public class UnauthorizedRule implements IRestRule {
 
                             }
                             int status = con.getResponseCode();
-                            System.out.println("Response Code: " + status);
                             if (status != 401)
                                 violationList.add(new Violation(this, locMapper.getLOCOfPath(path.getKey()), "Provide"
                                         + " the 401 " + "response in the " + "definition of the path in the operation" +
@@ -206,7 +200,6 @@ public class UnauthorizedRule implements IRestRule {
         boolean globalSec = security != null && !security.isEmpty();
 
         for (Map.Entry<String, PathItem> path : this.openAPI.getPaths().entrySet()) {
-            System.out.println(path.getKey());
             Map<String, Operation> operations = getPathOperations(path.getValue(), globalSec, true);
 
             for (Map.Entry<String, Operation> operation : operations.entrySet()) {

@@ -25,7 +25,7 @@ public class Config {
             prop.load(propsInput);
             return prop;
         } catch (IOException e) {
-            logger.severe("Error when trying to read the config file: " + e.getMessage());
+            logger.info("Error when trying to read the config file: " + e.getMessage());
             createConfigFile();
             return null;
         }
