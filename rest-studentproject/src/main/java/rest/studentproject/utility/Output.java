@@ -21,10 +21,10 @@ import static java.util.Map.entry;
  */
 public class Output {
     private static final String UNDERLINE = "----------------------------------------------";
-    private static final Map<SecuritySchema, String> secToNumbAuthMapping = Map.ofEntries(entry(SecuritySchema.APIKEY, "1"), entry(SecuritySchema.BASIC
-            , "2"), entry(SecuritySchema.BEARER, "3"));
-    private static final Map<String, SecuritySchema> numbToSecAuthMapping = Map.ofEntries(entry("1", SecuritySchema.APIKEY), entry("2",
-            SecuritySchema.BASIC), entry("3", SecuritySchema.BEARER));
+    private static final Map<SecuritySchema, String> secToNumbAuthMapping = Map.ofEntries(entry(SecuritySchema.APIKEY
+            , "1"), entry(SecuritySchema.BASIC, "2"), entry(SecuritySchema.BEARER, "3"));
+    private static final Map<String, SecuritySchema> numbToSecAuthMapping = Map.ofEntries(entry("1",
+            SecuritySchema.APIKEY), entry("2", SecuritySchema.BASIC), entry("3", SecuritySchema.BEARER));
     private static final String yesNo = "[yes/no]";
     private String pathToFile = "";
 
@@ -108,8 +108,10 @@ public class Output {
     public void startAnalysis(String pathToFile) {
         this.pathToFile = pathToFile;
         RestAnalyzer restAnalyzer = new RestAnalyzer(pathToFile);
-        RestAnalyzer.securitySchemas = askAuth(Utility.getOpenAPI(pathToFile));
-        RestAnalyzer.dynamicAnalysis = RestAnalyzer.securitySchemas != null;
+        boolean checkDynamicAnalysis = checkDynamicAnalysis();
+        RestAnalyzer.dynamicAnalysis = checkDynamicAnalysis;
+        if (checkDynamicAnalysis) RestAnalyzer.securitySchemas = askAuth(Utility.getOpenAPI(pathToFile));
+
 
         // Example: https://api.apis.guru/v2/specs/aiception.com/1.0.0/swagger.json
         // Very long example (just under 20k lines): https://api.apis.guru/v2/specs/amazonaws.com/autoscaling/2011-01-01/openapi.json
@@ -119,18 +121,8 @@ public class Output {
         restAnalyzer.runAnalyse(new ActiveRules().getAllRuleObjects(), true);
     }
 
-    /**
-     * @param openAPI
-     * @return empty map --> no auth necessary; null --> no dynamic analysis wanted; map with at least one entry -->
-     * entered security
-     */
-    public Map<SecuritySchema, String> askAuth(OpenAPI openAPI) {
-        // TODO: Delete all auth
-        // TODO: SecScheme Enum
-        // TODO: Check syntax of auth input (also not empty)
-        // TODO: Exclude no dynamic analysis wanted
+    public boolean checkDynamicAnalysis() {
         Scanner scanner = new Scanner(System.in);
-        Map<SecuritySchema, String> secTokens = new HashMap<>();
 
         System.out.println("\n-----------------INFO ANALYSIS----------------");
         System.out.println("-----------------------------------------------\n");
@@ -140,8 +132,22 @@ public class Output {
         System.out.println(yesNo);
 
         String dynamicAnalysis = scanner.next();
+        scanner.close();
 
-        if (!(dynamicAnalysis.equals("y") || dynamicAnalysis.equals("yes"))) return null;
+        return dynamicAnalysis.equals("y") || dynamicAnalysis.equals("yes");
+    }
+
+    /**
+     * @param openAPI
+     * @return empty map --> no auth necessary; null --> no dynamic analysis wanted; map with at least one entry -->
+     * entered security
+     */
+    public Map<SecuritySchema, String> askAuth(OpenAPI openAPI) {
+        // TODO: Delete all auth
+        // TODO: Check syntax of auth input (also not empty)
+        // TODO: Wrong auth input
+        Scanner scanner = new Scanner(System.in);
+        Map<SecuritySchema, String> secTokens = new HashMap<>();
 
         for (Server server : openAPI.getServers()) {
             String url = server.getUrl();
@@ -238,8 +244,9 @@ public class Output {
                     // API Key
                     case "1":
                         // api key
-                        System.out.println("Enter api key: ");
+                        System.out.println("Enter api key or type 0 (zero) to return to select another auth method: ");
                         token = scanner.next();
+                        if (token.equals("0")) break;
 //                        authSchema.put("username", "");
 //                        authSchema.put("token", token);
                         secTokens.put(numbToSecAuthMapping.get(choice), token);
@@ -250,16 +257,20 @@ public class Output {
 //                        System.out.println("Enter username: ");
 //                        username = scanner.next();
 //                        authSchema.put("username", username);
-                        System.out.println("Enter token consisting of username and password: ");
+                        System.out.println("Enter token consisting of username and password or type 0 (zero) to " +
+                                "return to select another auth method: ");
                         token = scanner.next();
+                        if (token.equals("0")) break;
 //                        authSchema.put("token", token);
                         secTokens.put(numbToSecAuthMapping.get(choice), token);
                         break;
                     // Bearer
                     case "3":
                         // access_token
-                        System.out.println("Enter access token: ");
+                        System.out.println("Enter access token or type 0 (zero) to return to select another auth " +
+                                "method: ");
                         token = scanner.next();
+                        if (token.equals("0")) break;
 //                        authSchema.put("username", "");
 //                        authSchema.put("token", token);
                         secTokens.put(numbToSecAuthMapping.get(choice), token);
@@ -274,7 +285,7 @@ public class Output {
                         break;
                     // No auth needed for requests
                     case "9":
-                    // Do not save any input and skip auth
+                        // Do not save any input and skip auth
                     case "0":
                         System.out.println("Authentication canceled and no credentials are used.");
                         return new HashMap<>();
@@ -300,8 +311,8 @@ public class Output {
         if (!secInProps) {
             System.out.println("\n" + UNDERLINE);
             System.out.println("---------------------Save---------------------");
-            System.out.println("Do you want to save the credentials local for further analyses enter yes or y or only" +
-                    " " + "use" + " the input only for the next analysis enter any other key.");
+            System.out.println("Do you want to save the credentials local for further analyses enter yes or y or " +
+                    "only" + " " + "use" + " the input only for the next analysis enter any other key.");
             System.out.println(yesNo + "\n");
 
             choice = scanner.next();
