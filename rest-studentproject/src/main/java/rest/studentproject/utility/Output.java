@@ -77,8 +77,8 @@ public class Output {
                 }
             }
             System.out.println("Finished configuration.");
+            if (config != null) new Config().addToConfig(config);
 
-            new Config().addToConfig(config);
         } else System.out.println("Skip configuration");
     }
 
