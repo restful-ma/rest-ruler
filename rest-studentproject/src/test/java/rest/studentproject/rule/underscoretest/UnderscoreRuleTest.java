@@ -1,4 +1,4 @@
-package rest.studentproject.rule.underscoretest;
+package rest.studentproject.rule.underscoreTest;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -6,7 +6,6 @@ import rest.studentproject.analyzer.RestAnalyzer;
 import rest.studentproject.rule.rules.UnderscoreRule;
 import rest.studentproject.rule.Violation;
 
-import java.net.MalformedURLException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
