@@ -1,0 +1,410 @@
+{
+  "swagger": "2.0",
+  "schemes": [
+    "https"
+  ],
+  "host": "aiception.com",
+  "basePath": "/api/v2.1",
+  "info": {
+    "contact": {
+      "x-twitter": "AIception"
+    },
+    "description": "Here you can play & test & prototype all the endpoints using just your browser! Go ahead!",
+    "title": "AIception Interactive",
+    "version": "1.0.0",
+    "x-apisguru-categories": [
+      "machine_learning"
+    ],
+    "x-logo": {
+      "url": "https://api.apis.guru/v2/cache/logo/https_twitter.com_AIception_profile_image.jpeg"
+    },
+    "x-origin": [
+      {
+        "format": "swagger",
+        "url": "https://aiception.com/static/swagger.json",
+        "version": "2.0"
+      }
+    ],
+    "x-providerName": "aiception.com"
+  },
+  "securityDefinitions": {
+    "UserSecurity": {
+      "type": "basic"
+    }
+  },
+  "security": [
+    {
+      "UserSecurity": []
+    }
+  ],
+  "tags": [
+    {
+      "description": "Everything about AIception vision API",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "https://aiception.com"
+      },
+      "name": "vision"
+    },
+    {
+      "description": "What will you make?",
+      "name": "creative"
+    },
+    {
+      "description": "Speech to text, text to speech, natural language processing",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "https://aiception.com"
+      },
+      "name": "language"
+    }
+  ],
+  "paths": {
+    "/adult/infos.json": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Creates a new adult with infos.",
+        "parameters": [
+          {
+            "description": "The infos to analyze",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "properties": {
+                "async": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "image_url": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "image_url"
+              ]
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Infos succesfully created.",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          },
+          "400": {
+            "description": "Task could not be created."
+          }
+        },
+        "summary": "Infos of adult",
+        "tags": [
+          "vision"
+        ]
+      }
+    },
+    "/info.json": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Creates infos.",
+        "parameters": [
+          {
+            "description": "Infos",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "properties": {
+                "async": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "image_url": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "image_url"
+              ]
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Infos successfully created.",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          },
+          "400": {
+            "description": "Infos could not be created."
+          }
+        },
+        "summary": "Infos in json format",
+        "tags": [
+          "vision"
+        ]
+      }
+    },
+    "/info.JSON": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Creates infos.",
+        "parameters": [
+          {
+            "description": "Infos",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "properties": {
+                "async": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "image_url": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "image_url"
+              ]
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Infos successfully created.",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          },
+          "400": {
+            "description": "Infos could not be created."
+          }
+        },
+        "summary": "Infos in json format",
+        "tags": [
+          "vision"
+        ]
+      }
+    },
+    "/info.nofileextension": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Creates infos.",
+        "parameters": [
+          {
+            "description": "Infos",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "properties": {
+                "async": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "image_url": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "image_url"
+              ]
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Infos successfully created.",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          },
+          "400": {
+            "description": "Infos could not be created."
+          }
+        },
+        "summary": "Infos in json format",
+        "tags": [
+          "vision"
+        ]
+      }
+    },
+    "/.json": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Creates infos.",
+        "parameters": [
+          {
+            "description": "Infos",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "properties": {
+                "async": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "image_url": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "image_url"
+              ]
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Infos successfully created.",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          },
+          "400": {
+            "description": "Infos could not be created."
+          }
+        },
+        "summary": "Infos in json format",
+        "tags": [
+          "vision"
+        ]
+      }
+    },
+    "/info/json": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Creates infos.",
+        "parameters": [
+          {
+            "description": "Infos",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "properties": {
+                "async": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "image_url": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "image_url"
+              ]
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Infos successfully created.",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          },
+          "400": {
+            "description": "Infos could not be created."
+          }
+        },
+        "summary": "Infos in json format",
+        "tags": [
+          "vision"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "AgeAnswer": {
+      "properties": {
+        "max": {
+          "type": "integer"
+        },
+        "min": {
+          "type": "integer"
+        },
+        "score": {
+          "type": "number"
+        }
+      }
+    },
+    "Person": {
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "username"
+      ]
+    },
+    "Persons": {
+      "items": {
+        "$ref": "#/definitions/Person"
+      },
+      "type": "array"
+    },
+    "Task": {
+      "properties": {
+        "answer": {
+          "description": "The answer you are looking for.",
+          "readOnly": true,
+          "type": "number"
+        },
+        "image_url": {
+          "description": "The url of the image that will be processed.",
+          "type": "string"
+        },
+        "this_url": {
+          "description": "Use this url to get this task.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "required": [
+        "image_url"
+      ]
+    }
+  }
+}
