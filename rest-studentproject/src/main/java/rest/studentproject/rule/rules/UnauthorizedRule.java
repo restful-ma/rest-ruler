@@ -114,7 +114,12 @@ public class UnauthorizedRule implements IRestRule {
         boolean violationFound = false;
         for (Map.Entry<String, PathItem> path : this.openAPI.getPaths().entrySet()) {
             for (Violation violation : this.violationList) {
+                System.out.println("violation.getKeyViolation()");
+                System.out.println(violation.getKeyViolation());
+                System.out.println("path.getKey()");
+                System.out.println(path.getKey());
                 violationFound = violation.getKeyViolation().equals(path.getKey());
+                if (violationFound) break;
             }
 
             if (violationFound) continue;
@@ -122,10 +127,9 @@ public class UnauthorizedRule implements IRestRule {
             Map<String, Operation> operations = getPathOperations(path.getValue(), false, false);
 
             for (Map.Entry<String, Operation> operation : operations.entrySet()) {
-//                if (operation.getValue().getResponses().containsKey("401")) continue;
+                if (operation.getValue().getResponses().containsKey("401")) continue;
 
-                if (operation.getKey().equalsIgnoreCase("POST") || operation.getKey().equalsIgnoreCase("PUT") || operation.getKey().equalsIgnoreCase("PATCH"))
-                    continue;
+                if (!operation.getKey().equalsIgnoreCase("GET")) continue;
 
                 for (Server server : servers) {
                     // path.getKey????
@@ -165,16 +169,16 @@ public class UnauthorizedRule implements IRestRule {
                                 case APIKEY:
                                     break;
                                 default:
-                                    logger.severe("This request type (" + request.getRequestType() + ") is currently " +
-                                            "not " + "supported");
+                                    logger.severe("This request type (" + request.getRequestType() + ") is currently "
+                                            + "not " + "supported");
 
                             }
                             int status = con.getResponseCode();
                             System.out.println("Response Code: " + status);
                             if (status != 401)
-                                violationList.add(new Violation(this, locMapper.getLOCOfPath(path.getKey()), "Provide" +
-                                        " the 401 " + "response in the " + "definition of the path in the operation " +
-                                        "(here: " + operation.getKey() + ") --> Found dynamic", path.getKey(),
+                                violationList.add(new Violation(this, locMapper.getLOCOfPath(path.getKey()), "Provide"
+                                        + " the 401 " + "response in the " + "definition of the path in the operation" +
+                                        " " + "(here: " + operation.getKey() + ") --> Found dynamic", path.getKey(),
                                         ErrorMessage.UNAUTHORIZED));
                         }
 
