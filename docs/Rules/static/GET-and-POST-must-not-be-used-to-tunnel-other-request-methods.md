@@ -17,13 +17,15 @@ and undermines the protocol’s transparency. A REST API must not compromise its
 design by misusing HTTP’s request methods in an effort to accommodate clients with
 limited HTTP vocabulary.[1].
 ## Implemented
-* N
+* Y
 ## Implementation Details
 This is a rule that is examined statically. 
 ### What is checked:
-
+* only checks paths that have a CRUD rule violation
+* checks if paths that contain a CRUD rule violation contain a HTTP request operation type and then see if it differes from the set HTTP request operation type.
 ### What is not checked:
 * Serverside handling of the request. it is possible server could for example delete a resource with a GET request.
+* Any path that doesn't contain a CRUD rule violation
 ### Future work
 * Dynamic Checks
 ## Source
