@@ -13,6 +13,7 @@ public class ErrorMessage {
     public static final String SINGULARDOCUMENTNAME = "A singular noun should be used for document names";
     public static final String PLURALNAME = "A plural noun should be used for collection or store names";
     public static final String FILE_EXTENSION = "File extensions should not be included in URIs";
+    public static final String TUNNELING = "Possibly wrong HTTP request type used";
 
     private ErrorMessage() {
         throw new IllegalStateException("Utility class");
