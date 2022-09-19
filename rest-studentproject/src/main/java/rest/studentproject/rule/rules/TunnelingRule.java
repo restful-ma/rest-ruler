@@ -1,14 +1,15 @@
 package rest.studentproject.rule.rules;
 
 import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.PathItem;
+import io.swagger.v3.oas.models.Paths;
 import rest.studentproject.rule.IRestRule;
 import rest.studentproject.rule.Violation;
-import rest.studentproject.rule.constants.RuleCategory;
-import rest.studentproject.rule.constants.RuleSeverity;
-import rest.studentproject.rule.constants.RuleSoftwareQualityAttribute;
-import rest.studentproject.rule.constants.RuleType;
+import rest.studentproject.rule.constants.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class TunnelingRule implements IRestRule {
 
@@ -19,6 +20,10 @@ public class TunnelingRule implements IRestRule {
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List.of(RuleSoftwareQualityAttribute.MAINTAINABILITY, RuleSoftwareQualityAttribute.COMPATIBILITY, RuleSoftwareQualityAttribute.FUNCTIONAL_SUITABILITY, RuleSoftwareQualityAttribute.USABILITY);
     private boolean isActive;
 
+
+    public TunnelingRule(boolean isActive) {
+        this.isActive = isActive;
+    }
 
     @Override
     public String getTitle() {
@@ -55,15 +60,97 @@ public class TunnelingRule implements IRestRule {
         this.isActive = isActive;
     }
 
+
     @Override
     public List<Violation> checkViolation(OpenAPI openAPI) {
+        List<Violation> violations = new ArrayList<>();
+        Paths paths = openAPI.getPaths();
 
-        //TODO: execute CRUD rule and check if CRUD operator matches request Type
+        //check CRUD violations for further violations
+        CRUDRule crudRule = new CRUDRule(true);
 
-        //TODO: check GET RULE and list each violation as own
+        List<Violation> crudViolations = crudRule.checkViolation(openAPI);
 
-        //TODO: dynamic rule execution
+        for (Violation crudViolation : crudViolations) {
 
+            Violation tunnelingViolation = checkCRUDForTunneling(crudViolation, paths);
+
+            if (tunnelingViolation != null) violations.add(tunnelingViolation);
+
+        }
+
+
+        return violations;
+    }
+
+    /**
+     * checks CRUD violations if there is also a potential Tunneling violation
+     *
+     * @param violation CRUD violation
+     * @param paths     representation of all paths
+     * @return
+     */
+    private Violation checkCRUDForTunneling(Violation violation, Paths paths) {
+
+        String requestType;
+
+        //iterate through all the path representations
+        for (Map.Entry<String, PathItem> entry : paths.entrySet()) {
+            String path = entry.getKey();
+            PathItem item = entry.getValue();
+
+            //find the path where a CRUD violation was found
+            if (!path.equals(violation.getKeyViolation())) continue;
+            requestType = getRequestType(item);
+            if (requestType != null) {
+                System.out.println("Path:" + path + " | type: " + requestType);
+                //key word search in path to see if request type is found in the path
+                if (checkPathforrequesttype(path, requestType))
+                    return new Violation(this, violation.getLineViolation(), ImprovementSuggestion.TUNNELING, violation.getKeyViolation(), ErrorMessage.TUNNELING);
+            }
+
+
+        }
         return null;
+    }
+
+    /**
+     * retrieves the request type for a given request
+     *
+     * @param item a request representation
+     * @return
+     */
+    private String getRequestType(PathItem item) {
+
+        if (item.getGet() != null) return "get";
+        if (item.getPost() != null) return "post";
+        if (item.getDelete() != null) return "delete";
+        if (item.getPut() != null) return "put";
+        if (item.getPatch() != null) return "patch";
+        if (item.getOptions() != null) return "options";
+        if (item.getHead() != null) return "head";
+        if (item.getTrace() != null) return "trace";
+
+        //invalid request
+        return null;
+
+    }
+
+    /**
+     * checks if a http operation can be found in the path and then check if it matches the operation type for the request
+     * @param path path of the request
+     * @param type request operation type
+     * @return
+     */
+    private boolean checkPathforrequesttype (String path,  String type){
+        String[] requestypes = { "get","post","delete", "put", "patch", "options", "head", "trace" };
+
+        for (String requestype: requestypes) {
+
+            if (path.contains(requestype)){
+                if (!requestype.equals(type)) return true;
+            }
+        }
+        return false;
     }
 }

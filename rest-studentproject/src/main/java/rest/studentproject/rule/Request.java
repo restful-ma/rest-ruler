@@ -1,6 +1,6 @@
 package rest.studentproject.rule;
 
-import rest.studentproject.rules.constants.RequestType;
+import rest.studentproject.rule.constants.RequestType;
 
 import java.net.http.HttpRequest;
 
