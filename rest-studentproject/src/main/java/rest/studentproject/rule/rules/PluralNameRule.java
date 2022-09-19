@@ -2,22 +2,18 @@ package rest.studentproject.rule.rules;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.atteo.evo.inflector.English;
 import rest.studentproject.rule.IRestRule;
 import rest.studentproject.rule.Violation;
 import rest.studentproject.rule.constants.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
-import static rest.studentproject.oxford.dictionary.api.JsonOxfordDictionary.checkIfWordInJson;
-import static rest.studentproject.oxford.dictionary.api.OxfordConstants.PLURAL;
-import static rest.studentproject.oxford.dictionary.api.OxfordConstants.SINGULAR;
-import static rest.studentproject.oxford.dictionary.api.OxfordDictionariesApi.checkWordUsingOxfordDictionariesAPI;
 import static rest.studentproject.rule.Utility.getControlPathSegmentForRule;
 import static rest.studentproject.rule.Utility.getSwitchPathSegment;
+import static rest.studentproject.rule.rules.SingularDocumentNameRule.PLURAL;
+import static rest.studentproject.rule.rules.SingularDocumentNameRule.SINGULAR;
 
 public class PluralNameRule implements IRestRule {
 
@@ -114,20 +110,10 @@ public class PluralNameRule implements IRestRule {
                 switchPathSegment = SINGULAR;
                 continue;
             }
-            // Check if the jsonDictionary already contained the pathSegment. The return value is a tuple, with a boolean (true if the word is present) and a string (the word in singular or plural form)
-            ImmutablePair<Boolean, String> isPathSegmentInJson = checkIfWordInJson(pathSegment);
-            // If the word is contained and the form of the word doesn't match the current switchPathSegment then we have a violation
-            if (Boolean.TRUE.equals(isPathSegmentInJson.getLeft()) && switchPathSegment.equals(isPathSegmentInJson.getRight()) && switchPathSegment.equals(SINGULAR) && !listPathSegments.get(0).equals(pathSegment)) {
-                return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.PLURALNAME, path, ErrorMessage.PLURALNAME+ WITH_PATH_SEGMENT + pathSegment);
-            }else if(Boolean.TRUE.equals(isPathSegmentInJson.getLeft())) {
-                switchPathSegment = skipFirstSwitchPathSegmentAssign ? switchPathSegment : getControlPathSegmentForRule(switchPathSegment.equals(PLURAL));
-                skipFirstSwitchPathSegmentAssign = false;
-                continue;
-            }
-
             // If the word is not contained in the jsonDictionary, we need to check if the word is present in the OxfordDictionaryAPI
             // We get a true if the word is singular otherwise a false if it is plural
-            boolean isSingular = checkWordUsingOxfordDictionariesAPI(pathSegment.trim().toLowerCase());
+            String test = English.plural(pathSegment.trim().toLowerCase(), 1);
+            boolean isSingular = !pathSegment.equals(English.plural(pathSegment.trim().toLowerCase(), 1));
             // If the word is singular but the current switchPathSegment is plural, then we have a violation.
             if(isSingular && switchPathSegment.equals(SINGULAR) && !listPathSegments.get(0).equals(pathSegment)) {
                 return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.PLURALNAME, path, ErrorMessage.PLURALNAME+ WITH_PATH_SEGMENT + pathSegment);

@@ -1,13 +1,14 @@
 package rest.studentproject.rule;
 
+import org.atteo.evo.inflector.English;
+
 import java.io.File;
 import java.io.FileReader;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-import static rest.studentproject.oxford.dictionary.api.OxfordConstants.PLURAL;
-import static rest.studentproject.oxford.dictionary.api.OxfordConstants.SINGULAR;
-import static rest.studentproject.oxford.dictionary.api.OxfordDictionariesApi.checkWordUsingOxfordDictionariesAPI;
+import static rest.studentproject.rule.rules.SingularDocumentNameRule.PLURAL;
+import static rest.studentproject.rule.rules.SingularDocumentNameRule.SINGULAR;
 
 public class Utility {
     private static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -67,7 +68,7 @@ public class Utility {
      */
     public static String getPluralOrSingularOfWord(String firstPathSegment) {
         String switchPathSegment;
-        boolean firstPathSegmentForm = checkWordUsingOxfordDictionariesAPI(firstPathSegment);
+        boolean firstPathSegmentForm = !firstPathSegment.equals(English.plural(firstPathSegment.trim().toLowerCase(), 1));
         switchPathSegment = getControlPathSegmentForRule(firstPathSegmentForm);
         return switchPathSegment;
     }
