@@ -1,17 +1,28 @@
 package rest.studentproject.rule;
 
+import com.google.common.collect.Lists;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.atteo.evo.inflector.English;
 
 import java.io.File;
 import java.io.FileReader;
-import java.util.Scanner;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static rest.studentproject.rule.rules.SingularDocumentNameRule.PLURAL;
 import static rest.studentproject.rule.rules.SingularDocumentNameRule.SINGULAR;
 
 public class Utility {
     private static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    private static final String PATH_TO_ENGLISH_DICTIONARY =
+            "src/main/java/rest/studentproject/docs/wordninja_words.txt";
 
     private Utility() {
         throw new IllegalStateException("Utility class");
@@ -84,5 +95,83 @@ public class Utility {
         } else {
             return PLURAL;
         }
+    }
+
+    public static List<String> splitContiguousWords(String sentence) throws IOException {
+        String splitRegex = "[^a-zA-Z0-9']+";
+        Map<String, Number> wordCost = new HashMap<>();
+        List<String> dictionaryWords = new ArrayList<>();
+        Stream<String> stringLines = null;
+        try {
+            stringLines = Files.lines(Paths.get(PATH_TO_ENGLISH_DICTIONARY), Charset.defaultCharset());
+            dictionaryWords = stringLines.collect(Collectors.toList());
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Error on getting the english dictionary file {e}", e);
+        } finally {
+            if (stringLines != null) stringLines.close();
+        }
+
+        double naturalLogDictionaryWordsCount = Math.log(dictionaryWords.size());
+        long wordIdx = 0;
+        for (String word : dictionaryWords) {
+            wordCost.put(word, Math.log(++wordIdx * naturalLogDictionaryWordsCount));
+        }
+        int maxWordLength = Collections.max(dictionaryWords, Comparator.comparing(String::length)).length();
+        List<String> splitWords = new ArrayList<>();
+        for (String partSentence : sentence.split(splitRegex)) {
+            splitWords.add(split(partSentence, wordCost, maxWordLength));
+        }
+        return splitWords;
+    }
+
+    public static String split(String partSentence, Map<String, Number> wordCost, int maxWordLength) {
+        List<ImmutablePair<Number, Number>> cost = new ArrayList<>();
+        cost.add(new ImmutablePair<>(0, 0));
+        for (int index = 1; index < partSentence.length() + 1; index++) {
+            cost.add(bestMatch(partSentence, cost, index, wordCost, maxWordLength));
+        }
+        int idx = partSentence.length();
+        List<String> output = new ArrayList<>();
+        while (idx > 0) {
+            ImmutablePair<Number, Number> candidate = bestMatch(partSentence, cost, idx, wordCost, maxWordLength);
+            Number candidateCost = candidate.getKey();
+            Number candidateIndexValue = candidate.getValue();
+            if (candidateCost.doubleValue() != cost.get(idx).getKey().doubleValue())
+                logger.log(Level.SEVERE, "Candidate cost unmatched; This should not be the case!");
+            boolean newToken = true;
+            String token = partSentence.substring(idx - candidateIndexValue.intValue(), idx);
+            if (token.equals("'") && !output.isEmpty()) {
+                String lastWord = output.get(output.size() - 1);
+                if (lastWord.equalsIgnoreCase("'s") || (Character.isDigit(partSentence.charAt(idx - 1)) && Character.isDigit(lastWord.charAt(0)))) {
+                    output.set(output.size() - 1, token + lastWord);
+                    newToken = false;
+                }
+            }
+            if (newToken) {
+                output.add(token);
+            }
+            idx -= candidateIndexValue.intValue();
+        }
+        return String.join(" ", Lists.reverse(output));
+    }
+
+    public static ImmutablePair<Number, Number> bestMatch(String partSentence, List<ImmutablePair<Number, Number>> cost,
+                                                    int index, Map<String, Number> wordCost, int maxWordLength) {
+        List<ImmutablePair<Number, Number>> candidates = Lists.reverse(cost.subList(Math.max(0,
+                index - maxWordLength), index));
+        int enumerateIdx = 0;
+        ImmutablePair<Number, Number> minPair = new ImmutablePair<>(Integer.MAX_VALUE, enumerateIdx);
+        for (ImmutablePair<Number, Number> pair : candidates) {
+            ++enumerateIdx;
+            String subsequence = partSentence.substring(index - enumerateIdx, index).toLowerCase();
+            Number minCost = Integer.MAX_VALUE;
+            if (wordCost.containsKey(subsequence)) {
+                minCost = pair.getKey().doubleValue() + wordCost.get(subsequence).doubleValue();
+            }
+            if (minCost.doubleValue() < minPair.getKey().doubleValue()) {
+                minPair = new ImmutablePair<>(minCost.doubleValue(), enumerateIdx);
+            }
+        }
+        return minPair;
     }
 }

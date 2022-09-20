@@ -12,6 +12,7 @@ public class ErrorMessage {
     public static final String CRUD = "CRUD function names should not be used in URIs";
     public static final String SINGULARDOCUMENTNAME = "A singular noun should be used for document names";
     public static final String PLURALNAME = "A plural noun should be used for collection or store names";
+    public static final String VERBPHRASE = " A verb or verb phrase should be used for controller names";
 
     private ErrorMessage() {
         throw new IllegalStateException("Utility class");
