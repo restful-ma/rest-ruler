@@ -1,12 +1,13 @@
 package rest.studentproject.rule;
 
 import com.google.common.collect.Lists;
+import opennlp.tools.postag.POSModel;
+import opennlp.tools.postag.POSTaggerME;
+import opennlp.tools.tokenize.SimpleTokenizer;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.atteo.evo.inflector.English;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -23,6 +24,7 @@ public class Utility {
     private static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private static final String PATH_TO_ENGLISH_DICTIONARY =
             "src/main/java/rest/studentproject/docs/wordninja_words.txt";
+    public static final String MODELS_EN_POS_MAXENT_BIN = "models/en-pos-maxent.bin";
 
     private Utility() {
         throw new IllegalStateException("Utility class");
@@ -56,35 +58,6 @@ public class Utility {
     }
 
     /**
-     * Method to determine the switchPathSegment based on the firstPathSegment.
-     * @param pathSegments
-     * @param switchPathSegment
-     * @param firstPathSegment
-     * @return
-     */
-    public static String getSwitchPathSegment(String[] pathSegments, String switchPathSegment, String firstPathSegment) {
-        if(!firstPathSegment.isEmpty()) {
-            switchPathSegment = getPluralOrSingularOfWord(firstPathSegment);
-        }else if(pathSegments.length > 1){
-            firstPathSegment = pathSegments[1].trim().toLowerCase();
-            switchPathSegment = getPluralOrSingularOfWord(firstPathSegment);
-        }
-        return switchPathSegment;
-    }
-
-    /**
-     * Method to get the plural or singular form of a word using the OxfordDictionaryAPI.
-     * @param firstPathSegment
-     * @return
-     */
-    public static String getPluralOrSingularOfWord(String firstPathSegment) {
-        String switchPathSegment;
-        boolean firstPathSegmentForm = !firstPathSegment.equals(English.plural(firstPathSegment.trim().toLowerCase(), 1));
-        switchPathSegment = getControlPathSegmentForRule(firstPathSegmentForm);
-        return switchPathSegment;
-    }
-
-    /**
      * Method to change the switchPathSegment from plural to singular a vice versa.
      * @param equals
      * @return
@@ -97,6 +70,50 @@ public class Utility {
         }
     }
 
+    /**
+     * Get a token from a word using the nlp apache pos tagger library.
+     * @param pathSegment
+     * @return
+     */
+    public static String getTokenNLP(String pathSegment){
+        SimpleTokenizer tokenizer = SimpleTokenizer.INSTANCE;
+        String[] tokens = tokenizer.tokenize(pathSegment);
+        try(InputStream modelIn = new FileInputStream(
+                MODELS_EN_POS_MAXENT_BIN);) {
+            POSModel posModel = new POSModel(modelIn);
+            POSTaggerME posTagger = new POSTaggerME(posModel);
+            String tags[] = posTagger.tag(tokens);
+            return tags[0];
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    /**
+     * Given a word check if it is plural or singular based on token.
+     * @param token
+     * @return
+     */
+    public static String getTokenFromWord(String token) {
+        String currentSwitchPathSegment;
+        if (token.equals("NNS") || token.equals("NNPS")) {
+            currentSwitchPathSegment = PLURAL;
+        } else if (token.equals("NN") || token.equals("NNP")) {
+            currentSwitchPathSegment = SINGULAR;
+        } else {
+            currentSwitchPathSegment = PLURAL;
+        }
+        return currentSwitchPathSegment;
+    }
+
+    /**
+     * Split a string into words if possible using an english dictionary to match the words.
+     * @param sentence
+     * @return
+     * @throws IOException
+     */
     public static List<String> splitContiguousWords(String sentence) throws IOException {
         String splitRegex = "[^a-zA-Z0-9']+";
         Map<String, Number> wordCost = new HashMap<>();
@@ -124,6 +141,13 @@ public class Utility {
         return splitWords;
     }
 
+    /**
+     * Split a string into sub strings.
+     * @param partSentence
+     * @param wordCost
+     * @param maxWordLength
+     * @return
+     */
     public static String split(String partSentence, Map<String, Number> wordCost, int maxWordLength) {
         List<ImmutablePair<Number, Number>> cost = new ArrayList<>();
         cost.add(new ImmutablePair<>(0, 0));
@@ -155,6 +179,15 @@ public class Utility {
         return String.join(" ", Lists.reverse(output));
     }
 
+    /**
+     * Get the best match for a word.
+     * @param partSentence
+     * @param cost
+     * @param index
+     * @param wordCost
+     * @param maxWordLength
+     * @return
+     */
     public static ImmutablePair<Number, Number> bestMatch(String partSentence, List<ImmutablePair<Number, Number>> cost,
                                                     int index, Map<String, Number> wordCost, int maxWordLength) {
         List<ImmutablePair<Number, Number>> candidates = Lists.reverse(cost.subList(Math.max(0,
