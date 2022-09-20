@@ -19,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
+import static rest.studentproject.rule.Utility.getTokenNLP;
 import static rest.studentproject.rule.Utility.splitContiguousWords;
 
 public class VerbPhraseRule implements IRestRule {
@@ -84,6 +85,12 @@ public class VerbPhraseRule implements IRestRule {
         return getLstViolations(violations, openApiPaths);
     }
 
+    /**
+     * Get list of violation for the rule 5 (Verb Phrase Rule)
+     * @param violations
+     * @param paths
+     * @return
+     */
     private List<Violation> getLstViolations(List<Violation> violations, Paths paths) {
         paths.forEach((path, pathItem) -> {
             if (!path.trim().equals("")) {
@@ -96,13 +103,20 @@ public class VerbPhraseRule implements IRestRule {
                 // Extract path segments based on / char and check if there are violations
                 Violation violation = getLstViolationsFromPathSegments(path, pathSegments, getOperation, postOperation);
                 if (violation != null) violations.add(violation);
-                Operation operationGet = pathItem.getGet();
-                Operation operationPost = pathItem.getPost();
             }
         });
         return violations;
     }
 
+    /**
+     * Get a violation based on the last path segment of a path. If the last part segment is a verb and the request
+     * is not of type GET or POST, then there is a violation.
+     * @param path
+     * @param pathSegments
+     * @param getOperation
+     * @param postOperation
+     * @return
+     */
     private Violation getLstViolationsFromPathSegments(String path, String[] pathSegments, Operation getOperation, Operation postOperation) {
         // Get the last pathSegment which we need to analyze
         if(pathSegments.length < 1) return null;
@@ -125,24 +139,6 @@ public class VerbPhraseRule implements IRestRule {
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Error on checking substring against a dictionary{e}", e);
         }
-        return null;
-    }
-
-
-
-    public String getTokenNLP(String pathSegment){
-        SimpleTokenizer tokenizer = SimpleTokenizer.INSTANCE;
-        String[] tokens = tokenizer.tokenize(pathSegment);
-        try(InputStream modelIn = new FileInputStream(
-                MODELS_EN_POS_MAXENT_BIN);) {
-            POSModel posModel = new POSModel(modelIn);
-            POSTaggerME posTagger = new POSTaggerME(posModel);
-            String tags[] = posTagger.tag(tokens);
-            return tags[0];
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         return null;
     }
 

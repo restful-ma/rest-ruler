@@ -30,9 +30,9 @@ named to indicate its action."
 
 ### What is checked
 
-* Currently, static implementation only
+* This rule is implemented in a static way.
 * Split every path in path segments and analyze the last one. If the last path segment contains a verb as first word, and the request is not of type 
-* GET or POST then the rule is violated. The rule wants to use a verb to indicate controller actions. Controller can only be of type GET or POST.
+* GET or POST then the rule is violated. The rule requires to use a verb to indicate controller actions. A controller can only be of type GET or POST.
 ### What is not checked
 
 * The semantic of rule is not checked, only the syntax following the defined schema.

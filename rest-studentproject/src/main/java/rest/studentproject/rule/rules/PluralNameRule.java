@@ -10,8 +10,7 @@ import rest.studentproject.rule.constants.*;
 import java.util.*;
 
 import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
-import static rest.studentproject.rule.Utility.getControlPathSegmentForRule;
-import static rest.studentproject.rule.Utility.getSwitchPathSegment;
+import static rest.studentproject.rule.Utility.*;
 import static rest.studentproject.rule.rules.SingularDocumentNameRule.PLURAL;
 import static rest.studentproject.rule.rules.SingularDocumentNameRule.SINGULAR;
 
@@ -89,17 +88,18 @@ public class PluralNameRule implements IRestRule {
     }
 
     private Violation getLstViolationsFromPathSegments(String path, String[] pathSegments){
-        String switchPathSegment = "";
         String firstPathSegment = "";
-        boolean skipFirstSwitchPathSegmentAssign = true;
         List<String> listPathSegments = new ArrayList<>(List.of(pathSegments));
         listPathSegments.removeAll(Arrays.asList("", null));
+        listPathSegments.removeAll(Arrays.asList(" ", null));
         // Check if a path is starting with a plural or singular word.
         if(!listPathSegments.isEmpty()) firstPathSegment =listPathSegments.get(0).trim().toLowerCase();
         // Set the switch based on the firstPathSegment. We need to see if a path has the form singular/plural/singular.. or plural/singular/plural.. based on the firstPathSegment
-        switchPathSegment = getSwitchPathSegment(pathSegments, switchPathSegment, firstPathSegment);
+        String initialToken = getTokenNLP(firstPathSegment);
+        String switchPathSegment = getTokenFromWord(initialToken);
 
         for (String pathSegment : listPathSegments) {
+            if(listPathSegments.get(0).equals(pathSegment)) continue;
             if(pathSegment.isEmpty()) continue;
             // If a pathSegment contains a curly brace, it is a parameter, and we don't need to check it. But we know that such a pathSegment is automatically singular.
             // In this case is important to see if the previous switchPathSegment is plural or singular. If was singular,and we have a pathSegment with curly braces, then we have a violation because singular/singular path.
@@ -110,17 +110,16 @@ public class PluralNameRule implements IRestRule {
                 switchPathSegment = SINGULAR;
                 continue;
             }
-            // If the word is not contained in the jsonDictionary, we need to check if the word is present in the OxfordDictionaryAPI
-            // We get a true if the word is singular otherwise a false if it is plural
-            String test = English.plural(pathSegment.trim().toLowerCase(), 1);
-            boolean isSingular = !pathSegment.equals(English.plural(pathSegment.trim().toLowerCase(), 1));
+            // Get singular or plural based on the token
+            String token = getTokenNLP(pathSegment);
+            String currentSwitchPathSegment = getTokenFromWord(token);
+            boolean test = false;
             // If the word is singular but the current switchPathSegment is plural, then we have a violation.
-            if(isSingular && switchPathSegment.equals(SINGULAR) && !listPathSegments.get(0).equals(pathSegment)) {
+            if(switchPathSegment.equals(SINGULAR) && currentSwitchPathSegment.equals(SINGULAR)) {
                 return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.PLURALNAME, path, ErrorMessage.PLURALNAME+ WITH_PATH_SEGMENT + pathSegment);
             }
 
-            switchPathSegment = skipFirstSwitchPathSegmentAssign ? switchPathSegment : getControlPathSegmentForRule(switchPathSegment.equals(PLURAL));
-            skipFirstSwitchPathSegmentAssign = false;
+            switchPathSegment = getControlPathSegmentForRule(switchPathSegment.equals(PLURAL));
         }
         return null;
     }
