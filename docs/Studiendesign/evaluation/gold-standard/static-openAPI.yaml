@@ -39,17 +39,48 @@ paths:
         "200":
           description: A users permissions.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                type: object
+                properties:
+                  username:
+                    type: string
         "400":
           description: The specified user ID is invalid (not a number).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "401":
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "404":
           description: A user with the specified ID was not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         default:
           description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
 
   \users\{userId}\permissions:
     get:
@@ -66,17 +97,48 @@ paths:
         "200":
           description: A users permissions.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                type: object
+                properties:
+                  username:
+                    type: string
         "400":
           description: The specified user ID is invalid (not a number).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "401":
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "404":
           description: A user with the specified ID was not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         default:
           description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
   -users-{userId}-permissions:
     get:
       summary: Returns a user permission for ID.
@@ -92,17 +154,48 @@ paths:
         "200":
           description: A users permissions.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                type: object
+                properties:
+                  username:
+                    type: string
         "400":
           description: The specified user ID is invalid (not a number).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "401":
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "404":
           description: A user with the specified ID was not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         default:
           description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
   \#users\#{userId}\#permissions:
     get:
       summary: Returns a user permission for ID.
@@ -118,17 +211,48 @@ paths:
         "200":
           description: A users permissions.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                type: object
+                properties:
+                  username:
+                    type: string
         "400":
           description: The specified user ID is invalid (not a number).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "401":
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "404":
           description: A user with the specified ID was not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         default:
           description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
   # Rule 28: GET must be used to retrieve a representation of a resource
   # missing resource representation
   /users/{userId}/permissions:
@@ -143,16 +267,51 @@ paths:
             type: string
             minimum: 1
       responses:
-        '200':
+        "200":
           description: A users permissions.
-        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "400":
           description: The specified user ID is invalid (not a number).
-        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "401":
           description: Unauthorized
-        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "404":
           description: A user with the specified ID was not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         default:
           description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
     #missing default and HTTP 200 response
   /users/{userId}/status:
     get:
@@ -166,12 +325,33 @@ paths:
             type: string
             minimum: 1
       responses:
-        '400':
+        "400":
           description: The specified user ID is invalid (not a number).
-        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "401":
           description: Unauthorized
-        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "404":
           description: A user with the specified ID was not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
   # Illegal Request Body
   /users/{userId}/rules:
     get:
@@ -186,27 +366,58 @@ paths:
             minimum: 1
       requestBody:
         content:
-            application/json:
-              examples:
-                basic:
-                  "$ref": "#/components/examples/post-createNotificationConfiguration-basic"
-              schema:
-                $ref: "#/components/schemas/CreateNotificationConfigurationRequest"
+          application/json:
+            examples:
+              basic:
+                "$ref": "#/components/examples/post-createNotificationConfiguration-basic"
+            schema:
+              $ref: "#/components/schemas/CreateNotificationConfigurationRequest"
       responses:
-        '200':
+        "200":
           description: A users permissions.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-        '400':
+                type: object
+                properties:
+                  username:
+                    type: string
+        "400":
           description: The specified user ID is invalid (not a number).
-        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "401":
           description: Unauthorized
-        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "404":
           description: A user with the specified ID was not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         default:
           description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
   # Rule 22: Underscores (_) should not be used in URIs.
   "/primary_school":
     get:
@@ -215,12 +426,40 @@ paths:
       response:
         "200":
           description: "Successful request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "400":
           description: "Bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "401":
           description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "404":
           description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
   "/{primarySchool}/_school":
     get:
       tag: "URI Rules"
@@ -228,12 +467,40 @@ paths:
       response:
         "200":
           description: "Successful request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "400":
           description: "Bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "401":
           description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "404":
           description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
   # Rule 23: Lowercase letters should be preferred in URI paths.
   "/Pets":
     get:
@@ -242,12 +509,40 @@ paths:
       response:
         "200":
           description: "A list of pets"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "400":
           description: "The specified user ID is invalid (not a number)."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "401":
           description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "404":
           description: "A user with the specified ID was not found."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
   "/pets/{petName}/LocationsStates":
     get:
       tag: "URI Rules"
@@ -255,13 +550,40 @@ paths:
       response:
         "200":
           description: "A list of locations states given a pet name"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "400":
           description: "The specified user ID is invalid (not a number)."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "401":
           description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "404":
           description: "A user with the specified ID was not found."
-
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
   "/pets/{petName}/locations/{locationName}/CITY":
     get:
       tag: "URI Rules"
@@ -269,12 +591,40 @@ paths:
       response:
         "200":
           description: "City where a pet is located"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "400":
           description: "The specified user ID is invalid (not a number)."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "401":
           description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "404":
           description: "A user with the specified ID was not found."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
   "/pets/{petName}/addLocation":
     get:
       tag: "URI Rules"
@@ -290,12 +640,40 @@ paths:
       response:
         "200":
           description: "Country where a pet is located"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "400":
           description: "The specified user ID is invalid (not a number)."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "401":
           description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "404":
           description: "A user with the specified ID was not found."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         summary: "Country where a pet is located"
         tags: "pets"
   # Rule 21: Hyphens (-) should be used to improve the readability of URIs.
@@ -306,12 +684,40 @@ paths:
       response:
         "200":
           description: "Big cats"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "400":
           description: "The specified user ID is invalid (not a number)."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "401":
           description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "404":
           description: "A user with the specified ID was not found."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
   "/small.Pets":
     get:
       tag: "URI Rules"
@@ -319,12 +725,40 @@ paths:
       response:
         "200":
           description: "Small cats"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "400":
           description: "The specified user ID is invalid (not a number)."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "401":
           description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "404":
           description: "A user with the specified ID was not found."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
   "/MediumSizePets":
     get:
       tag: "URI Rules"
@@ -332,12 +766,40 @@ paths:
       response:
         "200":
           description: "Small cats"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "400":
           description: "The specified user ID is invalid (not a number)."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "401":
           description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "404":
           description: "A user with the specified ID was not found."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
   # Rule 27: CRUD function names should not be used in URIs.
   "/getschool":
     get:
@@ -346,12 +808,40 @@ paths:
       response:
         "200":
           description: "Successful request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "400":
           description: "Bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "401":
           description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "404":
           description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
   "/DELETEschool":
     delete:
       tag: "URI Rules"
@@ -359,38 +849,146 @@ paths:
       response:
         "200":
           description: "Successful request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "400":
           description: "Bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "401":
           description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "404":
           description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
   "/postschool":
     post:
       tag: "URI Rules"
       description: "Violates the CRUD (+ Hyphens + forward slash) rule."
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                foo:
+                  type: string
+                bar:
+                  type: string
+                baz:
+                  type: string
       response:
         "200":
           description: "Successful request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "400":
           description: "Bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "401":
           description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "404":
           description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
   "/putschool":
     put:
       tag: "URI Rules"
       description: "Violates the CRUD (+ Hyphens + forward slash) rule."
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                foo:
+                  type: string
+                bar:
+                  type: string
+                baz:
+                  type: string
       response:
         "200":
           description: "Successful request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "400":
           description: "Bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "401":
           description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "404":
           description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
   "/getschool/{getSchoolID}/delete":
     delete:
       tag: "URI Rules"
@@ -398,12 +996,40 @@ paths:
       response:
         "200":
           description: "Successful request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "400":
           description: "Bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "401":
           description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "404":
           description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
   # Rule 35: 401 (Unauthorized) must be used when there is a problem with the client's credentials
   "/school":
     get:
@@ -412,10 +1038,31 @@ paths:
       response:
         "200":
           description: "Successful request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "400":
           description: "Bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "404":
           description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
   # RULE 23: A singular noun should be used for document names
   /animals/pets/{catid}/foods:
     get:
@@ -429,24 +1076,55 @@ paths:
             type: string
             minimum: 1
       responses:
-        '200':
+        "200":
           description: Foods for catId.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-        '400':
+                type: object
+                properties:
+                  username:
+                    type: string
+        "400":
           description: The specified cat ID is invalid (not a number).
-        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "401":
           description: Unauthorized
-        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "404":
           description: A cat with the specified ID was not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         default:
           description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
 
   /animals/{catId}/Kids/Foods:
     get:
-      summary:  Returns foods for the kids of a catId.
+      summary: Returns foods for the kids of a catId.
       parameters:
         - name: userId
           in: path
@@ -456,20 +1134,51 @@ paths:
             type: string
             minimum: 1
       responses:
-        '200':
+        "200":
           description: A cat permissions.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-        '400':
+                type: object
+                properties:
+                  username:
+                    type: string
+        "400":
           description: The specified cat ID is invalid (not a number).
-        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "401":
           description: Unauthorized
-        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "404":
           description: A cat with the specified ID was not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         default:
           description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
   # RULE 24 and 4: A plural noun should be used for collection or store names
   /animals/pet/{catid}/food:
     get:
@@ -483,20 +1192,51 @@ paths:
             type: string
             minimum: 1
       responses:
-        '200':
+        "200":
           description: Foods for catId.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-        '400':
+                type: object
+                properties:
+                  username:
+                    type: string
+        "400":
           description: The specified cat ID is invalid (not a number).
-        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "401":
           description: Unauthorized
-        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "404":
           description: A cat with the specified ID was not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         default:
           description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
 
   /animals/{catId}/Kids/Food/{foodId}:
     get:
@@ -510,20 +1250,198 @@ paths:
             type: string
             minimum: 1
       responses:
-        '200':
+        "200":
           description: A cat permissions.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-        '400':
+                type: object
+                properties:
+                  username:
+                    type: string
+        "400":
           description: The specified cat ID is invalid (not a number).
-        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "401":
           description: Unauthorized
-        '404':
+        "404":
           description: A cat with the specified ID was not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         default:
           description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+  # Rule 36: File extensions should not be included in URIs
+  "/enterprise/locations/employee/info.json":
+    get:
+      tag: "URI Rules"
+      description: "Violates the file extension rule."
+      response:
+        "200":
+          description: "Successful request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "400":
+          description: "Bad request"
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+  "/enterprise/locations/employee/info.JSON":
+    get:
+      tag: "URI Rules"
+      description: "Violates the file extension rule."
+      response:
+        "200":
+          description: "Successful request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "400":
+          description: "Bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+  # Rule 38: Content-type must be used
+  "/enterprise":
+    get:
+      tag: "Meta Rules"
+      description: "Violates the content-type rule. --> no content defined on 200 responses"
+      response:
+        "200":
+          description: "Successful request"
+        "400":
+          description: "Bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+  "/enterprise/locations":
+    post:
+      tag: "Meta Rules"
+      description: "Violates the content-type rule. --> missing content type in request body."
+      requestBody:
+        required: true
+      response:
+        "200":
+          description: "Successful request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "400":
+          description: "Bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
 components:
   # Define all components here
   securitySchemes:
