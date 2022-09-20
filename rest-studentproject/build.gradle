@@ -24,11 +24,10 @@ dependencies {
     implementation('com.github.Steppschuh:Java-Markdown-Generator:master-SNAPSHOT')
     implementation 'org.fusesource.jansi:jansi:2.2.0'
     implementation 'org.reflections:reflections:0.10.2'
-    implementation ('edu.stanford.nlp:stanford-corenlp:4.5.0')
-    implementation ('edu.stanford.nlp:stanford-corenlp:4.5.0:models')
     testImplementation("io.micronaut:micronaut-http-client")
     implementation("org.apache.directory.studio:org.apache.commons.io:2.4")
-
+    implementation ("org.atteo:evo-inflector:1.2.2")
+    implementation ("org.apache.opennlp:opennlp-tools:1.9.1")
 }
 
 
