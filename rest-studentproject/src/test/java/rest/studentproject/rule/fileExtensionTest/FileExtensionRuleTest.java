@@ -1,18 +1,19 @@
-package rest.studentproject.rule.crudtest;
+package rest.studentproject.rule.fileExtensionTest;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import rest.studentproject.analyzer.RestAnalyzer;
-import rest.studentproject.rule.rules.CRUDRule;
 import rest.studentproject.rule.Violation;
+import rest.studentproject.rule.rules.FileExtensionRule;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CRUDRuleTest {
+class FileExtensionRuleTest {
+
     RestAnalyzer restAnalyzer;
-    CRUDRule crudRule;
+    FileExtensionRule fileExtensionRule;
 
     @Test
     @DisplayName("Test that checks if no crud rule violation is detected when there is a correct OpenAPI definition.")
@@ -26,17 +27,18 @@ class CRUDRuleTest {
     @Test
     @DisplayName("Test that checks if the 13 crud rule violations are detected.")
     void invalidFile() {
-        String path = "src/test/java/rest/studentproject/rule/crudtest/InvalidOpenAPICRUDRule.json";
+        String path = "src/test/java/rest/studentproject/rule/fileExtensionTest/InvalidOpenAPIFileExtensionRule.json";
 
         List<Violation> violations = runMethodUnderTest(path);
-        assertEquals(13, violations.size(), "There should be 13 rule violations.");
+        assertEquals(4, violations.size(), "There should be 4 rule violations.");
     }
 
     private List<Violation> runMethodUnderTest(String url) {
 
         this.restAnalyzer = new RestAnalyzer(url);
-        this.crudRule = new CRUDRule(true);
+        this.fileExtensionRule = new FileExtensionRule(true);
 
-        return this.restAnalyzer.runAnalyse(List.of(this.crudRule), false);
+        return this.restAnalyzer.runAnalyse(List.of(this.fileExtensionRule), false);
     }
+
 }
