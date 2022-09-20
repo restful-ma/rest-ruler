@@ -544,6 +544,59 @@ paths:
           description: "Unauthorized"
         "404":
           description: "Not Found"
+  # RULE 5: A verb or verb phrase should be used for controllerA verb or verb phrase should be used for controller names
+  /animals/{catId}/Food/{foodId}/deliverFood:
+    put:
+      summary: Returns foods for the kids of a catId.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: Returns foods for the kids of a catId.
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        '200':
+          description: A cat permissions.
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: The specified cat ID is invalid (not a number).
+        '401':
+          description: Unauthorized
+        '404':
+          description: A cat with the specified ID was not found.
+        default:
+          description: Unexpected error
+  /animals/{catId}/Food/{foodId}/removeFood:
+    delete:
+      summary: Returns foods for the kids of a catId.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: Returns foods for the kids of a catId.
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        '200':
+          description: A cat permissions.
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: The specified cat ID is invalid (not a number).
+        '401':
+          description: Unauthorized
+        '404':
+          description: A cat with the specified ID was not found.
+        default:
+          description: Unexpected error
 components:
   # Define all components here
   securitySchemes:
