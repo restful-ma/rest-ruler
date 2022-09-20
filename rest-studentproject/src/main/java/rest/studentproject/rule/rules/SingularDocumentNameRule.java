@@ -133,6 +133,7 @@ public class SingularDocumentNameRule implements IRestRule {
         if(!listPathSegments.isEmpty()) firstPathSegment = listPathSegments.get(0).trim().toLowerCase();
         // Set the switch based on the firstPathSegment. We need to see if a path has the form singular/plural/singular.. or plural/singular/plural.. based on the firstPathSegment
         String initialToken = getTokenNLP(firstPathSegment);
+        if(initialToken == null) return null;
         switchPathSegment = getTokenFromWord(initialToken);
 
         //switchPathSegment = getSwitchPathSegment(pathSegments, switchPathSegment, firstPathSegment);
