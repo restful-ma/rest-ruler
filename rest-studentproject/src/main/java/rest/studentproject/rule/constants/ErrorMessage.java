@@ -14,6 +14,8 @@ public class ErrorMessage {
             "401 (\"Unauthorized\") must be used when there is a problem with the " + "client's credentials";
     public static final String SINGULAR_DOCUMENT_NAME = "A singular noun should be used for document names";
     public static final String PLURAL_NAME = "A plural noun should be used for collection or store names";
+    public static final String FILE_EXTENSION = "File extensions should not be included in URIs";
+    public static final String CONTENT_TYPE = "Content-Type must be used";
 
     private ErrorMessage() {
         throw new IllegalStateException("Utility class");
