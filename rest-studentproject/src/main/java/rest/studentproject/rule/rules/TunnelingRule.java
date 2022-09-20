@@ -102,12 +102,11 @@ public class TunnelingRule implements IRestRule {
             //find the path where a CRUD violation was found
             if (!path.equals(violation.getKeyViolation())) continue;
             requestType = getRequestType(item);
-    
+
             //key word search in path to see if request type is found in the path
             if (requestType != null && checkPathforrequesttype(path, requestType))
                 return new Violation(this, violation.getLineViolation(), ImprovementSuggestion.TUNNELING, violation.getKeyViolation(), ErrorMessage.TUNNELING);
-
-
+            
         }
         return null;
     }
