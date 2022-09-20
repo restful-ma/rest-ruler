@@ -13,6 +13,7 @@ public class ImprovementSuggestion {
     public static final String GET_RESOURCE_MISSING_RESPONSE = "Add missing Response for HTTP Code 200";
     public static final String SINGULARDOCUMENTNAME = "Use singular nouns for document names";
     public static final String PLURALNAME = "Use plural nouns for collection or store names";
+    public static final String TUNNELING = "Use the appropriate HTTP request type";
     public static final String VERBPHRASE = "Use a verb or verb phrase for controller names";
 
     private ImprovementSuggestion(){
