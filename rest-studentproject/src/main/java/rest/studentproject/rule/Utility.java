@@ -76,6 +76,9 @@ public class Utility {
      * @return
      */
     public static String getTokenNLP(String pathSegment){
+        if(pathSegment.equals("")){
+            return null;
+        }
         SimpleTokenizer tokenizer = SimpleTokenizer.INSTANCE;
         String[] tokens = tokenizer.tokenize(pathSegment);
         try(InputStream modelIn = new FileInputStream(
