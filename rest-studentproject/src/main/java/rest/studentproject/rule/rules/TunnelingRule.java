@@ -102,12 +102,10 @@ public class TunnelingRule implements IRestRule {
             //find the path where a CRUD violation was found
             if (!path.equals(violation.getKeyViolation())) continue;
             requestType = getRequestType(item);
-            if (requestType != null) {
-                System.out.println("Path:" + path + " | type: " + requestType);
-                //key word search in path to see if request type is found in the path
-                if (checkPathforrequesttype(path, requestType))
-                    return new Violation(this, violation.getLineViolation(), ImprovementSuggestion.TUNNELING, violation.getKeyViolation(), ErrorMessage.TUNNELING);
-            }
+    
+            //key word search in path to see if request type is found in the path
+            if (requestType != null && checkPathforrequesttype(path, requestType))
+                return new Violation(this, violation.getLineViolation(), ImprovementSuggestion.TUNNELING, violation.getKeyViolation(), ErrorMessage.TUNNELING);
 
 
         }
@@ -138,18 +136,18 @@ public class TunnelingRule implements IRestRule {
 
     /**
      * checks if a http operation can be found in the path and then check if it matches the operation type for the request
+     *
      * @param path path of the request
      * @param type request operation type
      * @return
      */
-    private boolean checkPathforrequesttype (String path,  String type){
-        String[] requestypes = { "get","post","delete", "put", "patch", "options", "head", "trace" };
+    private boolean checkPathforrequesttype(String path, String type) {
+        String[] requestypes = {"get", "post", "delete", "put", "patch", "options", "head", "trace"};
 
-        for (String requestype: requestypes) {
+        for (String requestype : requestypes) {
 
-            if (path.contains(requestype)){
-                if (!requestype.equals(type)) return true;
-            }
+            if (path.contains(requestype) && !requestype.equals(type)) return true;
+
         }
         return false;
     }
