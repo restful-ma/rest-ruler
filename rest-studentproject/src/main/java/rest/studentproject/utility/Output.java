@@ -9,7 +9,10 @@ import rest.studentproject.rule.IRestRule;
 import rest.studentproject.rule.Utility;
 import rest.studentproject.rule.constants.SecuritySchema;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.*;
@@ -106,6 +109,7 @@ public class Output {
      * @param pathToFile path to the OpenAPI definition to be examined
      */
     public void startAnalysis(String pathToFile) {
+        // TODO: check if path is valid
         this.pathToFile = pathToFile;
         RestAnalyzer restAnalyzer = new RestAnalyzer(pathToFile);
         boolean checkDynamicAnalysis = checkDynamicAnalysis();
@@ -122,7 +126,9 @@ public class Output {
                     RestAnalyzer.dynamicAnalysis = false;
                 }
             }
-            RestAnalyzer.securitySchemas = askAuth(openAPI);
+            if (RestAnalyzer.dynamicAnalysis) {
+                RestAnalyzer.securitySchemas = askAuth(openAPI);
+            }
 
         }
 
@@ -135,6 +141,11 @@ public class Output {
         restAnalyzer.runAnalyse(new ActiveRules().getAllRuleObjects(), true);
     }
 
+    /**
+     * Asks the user if he also wants to have a dynamic analysis
+     *
+     * @return true for dynamic analysis; false only static analysis
+     */
     public boolean checkDynamicAnalysis() {
         Scanner scanner = new Scanner(System.in);
 
@@ -151,9 +162,12 @@ public class Output {
     }
 
     /**
-     * @param openAPI
-     * @return empty map --> no auth necessary; null --> no dynamic analysis wanted; map with at least one entry -->
-     * entered security
+     * Asks the user for authentication --> needed for dynamic analysis
+     * <p>
+     * Currently implemented auth schemas: bearer, api key and basic authentication
+     *
+     * @param openAPI the openAPI definition that will be checked --> Needed the get the defined sec schemas
+     * @return a map with the security schemas and the passwords
      */
     public Map<SecuritySchema, String> askAuth(OpenAPI openAPI) {
         // TODO: Delete all auth
@@ -173,8 +187,8 @@ public class Output {
         boolean enterMoreSec = true;
         String choice = "";
         boolean secInProps = false;
+
         while (enterMoreSec) {
-//            Map<String, String> authSchema = new HashMap<>(Map.of("username", "", "token", ""));
             Map<String, String> secSchemeMap = new HashMap<>();
 
             if (!secDefined) {
@@ -182,8 +196,7 @@ public class Output {
                 System.out.println("1 - API Key");
                 System.out.println("2 - Basic Authentication");
                 System.out.println("3 - Bearer");
-                System.out.println("4 - OpenID");
-                System.out.println("5 - OAuth");
+
                 // Add more
                 System.out.println("9 - No authentication needed for requests");
                 System.out.println("0 - Redo whole security input and cancel authentication");
@@ -214,7 +227,6 @@ public class Output {
                 choice = secToNumbAuthMapping.get(SecuritySchema.valueOf(secSchemeMap.get(choice).toUpperCase()));
             }
 
-//            String username = "";
             String token = "";
 
             Properties properties = new Config().getConfig();
@@ -222,20 +234,16 @@ public class Output {
 
             // authTypPathToFile
             String prefixProps = numbToSecAuthMapping.get(choice) + this.pathToFile;
-            // authTypPathToFileUsername
-//            String keyUsernameProps = prefixProps + "username";
+
             // authTypPathToFileToken
             String keyTokenProps = prefixProps + "token";
 
-//            if (properties.containsKey(keyTokenProps) && properties.containsKey(keyUsernameProps)) {
             if (properties.containsKey(keyTokenProps)) {
                 System.out.println("\nFound credentials for this security method in config. Do you want to use them " + "(yes or y) or enter new credentials (no or n)?");
                 System.out.println(yesNo);
                 String input = scanner.next();
                 if (input.equals("y") || input.equals("yes")) {
                     secInProps = true;
-//                    authSchema.put("username", properties.getProperty(keyUsernameProps));
-//                    authSchema.put("token", properties.getProperty(keyTokenProps));
                     secTokens.put(numbToSecAuthMapping.get(choice), properties.getProperty(keyTokenProps));
                 }
             }
@@ -248,20 +256,15 @@ public class Output {
                         System.out.println("Enter api key or type 0 (zero) to skip: ");
                         token = scanner.next();
                         if (token.equals("0")) break;
-//                        authSchema.put("username", "");
-//                        authSchema.put("token", token);
                         secTokens.put(numbToSecAuthMapping.get(choice), token);
                         break;
                     // Basic
                     case "2":
                         // username and pw
-//                        System.out.println("Enter username: ");
-//                        username = scanner.next();
-//                        authSchema.put("username", username);
-                        System.out.println("Enter token consisting of username and password or type 0 (zero) to skip: ");
+                        System.out.println("Enter token consisting of username and password or type 0 (zero) to " +
+                                "skip:" + " ");
                         token = scanner.next();
                         if (token.equals("0")) break;
-//                        authSchema.put("token", token);
                         secTokens.put(numbToSecAuthMapping.get(choice), token);
                         break;
                     // Bearer
@@ -270,17 +273,7 @@ public class Output {
                         System.out.println("Enter access token or type 0 (zero) to skip: ");
                         token = scanner.next();
                         if (token.equals("0")) break;
-//                        authSchema.put("username", "");
-//                        authSchema.put("token", token);
                         secTokens.put(numbToSecAuthMapping.get(choice), token);
-                        break;
-                    // OpenID
-                    case "4":
-                        System.out.println("OpenID currently not implemented");
-                        break;
-                    // OAuth
-                    case "5":
-                        System.out.println("OAuth currently not implemented");
                         break;
                     // No auth needed for requests
                     case "9":
@@ -325,12 +318,17 @@ public class Output {
         return secTokens;
     }
 
+    /**
+     * Saves the security schema in the config.
+     * <p>
+     * Structure: type of security schema + path to file + "token" = password
+     *
+     * @param secTokens map of the security schemas and the passwords to be saved
+     */
     private void setSec(Map<SecuritySchema, String> secTokens) {
         for (Map.Entry<SecuritySchema, String> secToken : secTokens.entrySet()) {
             String prefix = secToken.getKey().name() + this.pathToFile.trim().replaceAll("\\s+", "");
 
-            // authTypPathToFileUsername
-//            String username = prefix + "username";
             // authTypPathToFileToken
             String token = prefix + "token";
 
@@ -339,28 +337,46 @@ public class Output {
     }
 
     /**
-     * Pings HTTP URL. This effectively sends a HEAD request and returns <code>true</code> if the response code is in
-     * the 200-399 range.
+     * Pings HTTP URL. This effectively sends a HEAD request and returns <code>true</code> if the server responded.
      *
      * @param url     The HTTP URL to be pinged.
      * @param timeout The timeout in millis for both the connection timeout and the response read timeout. Note that
      *                the total timeout is effectively two times the given timeout.
-     * @return <code>true</code> if the given HTTP URL has returned response code 200-399 on a HEAD request within the
+     * @return <code>true</code> if the given HTTP URL is reachable on a HEAD request within the
      * given timeout, otherwise <code>false</code>.
      */
     public boolean pingURL(String url, int timeout) {
-        url = url.replaceFirst("^https", "http"); // Otherwise an exception may be thrown on invalid SSL certificates.
+        url = url.replaceFirst("^https", "http"); // Otherwise, an exception may be thrown on invalid SSL certificates.
 
+        BufferedReader br = null;
         try {
             HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
             connection.setConnectTimeout(timeout);
             connection.setReadTimeout(timeout);
             connection.setRequestMethod("HEAD");
+            connection.setDoOutput(true);
             int responseCode = connection.getResponseCode();
             System.out.println("Server responded with: " + responseCode);
+            InputStream inputStream;
+            if (responseCode == 404) {
+
+                System.out.println("response 404");
+                System.out.println(connection.getResponseMessage());
+                inputStream = connection.getInputStream();
+                BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
+
+                StringBuilder response = new StringBuilder();
+                String currentLine;
+
+                while ((currentLine = in.readLine()) != null) response.append(currentLine);
+
+//                in.close();
+
+            }
             // Server responded
             return true;
         } catch (IOException exception) {
+            System.out.println("Exception!!");
             return false;
         }
     }

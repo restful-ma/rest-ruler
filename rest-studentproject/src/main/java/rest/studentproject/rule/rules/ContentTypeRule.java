@@ -15,6 +15,9 @@ import java.util.*;
 
 import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
 
+/**
+ * Implementation of the rule: Content-Type must be used.
+ */
 public class ContentTypeRule implements IRestRule {
     private static final String TITLE = "Content-Type must be used";
     private static final RuleCategory CATEGORY = RuleCategory.META;
@@ -34,7 +37,6 @@ public class ContentTypeRule implements IRestRule {
     private boolean isActive;
 
     public ContentTypeRule(boolean isActive) {
-
         this.isActive = isActive;
     }
 
@@ -93,6 +95,13 @@ public class ContentTypeRule implements IRestRule {
         return this.violationList;
     }
 
+    /**
+     * Checks for operations defined for the path. GET and DELETE should not have request bodies --> only responses
+     * need to be checked if content type is defined. POST, PUT and PATCH should have request bodies --> request body
+     * and responses need the content type defined
+     *
+     * @param path current path to check
+     */
     private void checkContentType(PathItem path) {
         Operation getOp = path.getGet();
         Operation deleteOp = path.getDelete();
@@ -134,29 +143,45 @@ public class ContentTypeRule implements IRestRule {
         }
     }
 
+    /**
+     * Checks for an operation if each response has the content type defined.
+     *
+     * @param responses the responses from the operation
+     * @param operation the operation that is checked
+     */
     private void examineResponses(ApiResponses responses, String operation) {
-        String improvementSuggestion = "Specify content type in response (here: " + operation + "), because clients and servers rely on the value of this header to know how to process the sequence of bytes in the message body.";
-        Violation violation = new Violation(this, locMapper.getLOCOfPath(this.pathName), improvementSuggestion, this.pathName, ErrorMessage.CONTENT_TYPE);
+        String improvementSuggestion =
+                "Specify content type in response (here: " + operation + "), because clients " + "and servers rely " + "on" + " the value of this header to know how to process the sequence of bytes in the " + "message " + "body.";
+        Violation violation = new Violation(this, locMapper.getLOCOfPath(this.pathName), improvementSuggestion,
+                this.pathName, ErrorMessage.CONTENT_TYPE);
+
         if (responses == null) {
             this.violationList.add(violation);
             return;
         }
 
         for (ApiResponse response : responses.values()) {
-            if (response.getContent() == null && response.get$ref() == null)
-                this.violationList.add(violation);
+
+            // No content and no reference to components defined
+            if (response.getContent() == null && response.get$ref() == null) this.violationList.add(violation);
+                // No content but ref to components
             else if (response.getContent() == null && response.get$ref() != null) {
+                // Ref to content type
                 String ref = response.get$ref();
                 String refLastIndex = ref.substring(ref.lastIndexOf("/") + 1);
-                // Check if in responses defined
+
                 improvementSuggestion = "Define content in refs in /components/responses/" + refLastIndex + " or " +
                         "directly in the response (here: " + operation + ").";
                 violation = new Violation(this, locMapper.getLOCOfPath(this.pathName), improvementSuggestion,
                         this.pathName, ErrorMessage.CONTENT_TYPE);
+
+                // Check if in responses defined (needs this structure)
                 if (!ref.endsWith("/components/responses/" + refLastIndex)) {
                     this.violationList.add(violation);
                     continue;
                 }
+
+                // Checks if ref has content type defined. If again ref to another component --> violation
                 Map<String, ApiResponse> compResponses = this.openAPI.getComponents().getResponses();
                 if (compResponses != null) {
                     for (Map.Entry<String, ApiResponse> compResponse : compResponses.entrySet()) {
@@ -164,24 +189,56 @@ public class ContentTypeRule implements IRestRule {
                             this.violationList.add(violation);
                         }
                     }
-                } else
-                    this.violationList.add(violation);
+                } else this.violationList.add(violation);
             }
         }
     }
 
-    private void examineRequestBody(RequestBody requestBodys, String operation) {
-        String improvementSuggestion = "Specify content type in response (here: " + operation + "), because clients and servers rely on the value of this header to know how to process the sequence of bytes in the message body.";
-        Violation violation = new Violation(this, locMapper.getLOCOfPath(this.pathName), improvementSuggestion, this.pathName, ErrorMessage.CONTENT_TYPE);
-        if (requestBodys == null) {
+    /**
+     * Checks for an operation (only PATCH, POST, PUT) if there is a response body with a content type defined
+     *
+     * @param requestBody request body of operation
+     * @param operation   the operation that is checked
+     */
+    private void examineRequestBody(RequestBody requestBody, String operation) {
+        String improvementSuggestion = "Specify content type in request body (here: " + operation + "), because " +
+                "clients and servers rely on the value of this header to know how to process the sequence of bytes " + "in" + " the message body.";
+        Violation violation = new Violation(this, locMapper.getLOCOfPath(this.pathName), improvementSuggestion,
+                this.pathName, ErrorMessage.CONTENT_TYPE);
+
+        if (requestBody == null) {
             this.violationList.add(violation);
             return;
         }
 
-        if (requestBodys.getContent() == null && requestBodys.get$ref() == null) {
+        // No content type defined in response body and no ref to components
+        if (requestBody.getContent() == null && requestBody.get$ref() == null)
             this.violationList.add(violation);
-        } else if (requestBodys.getContent() == null && requestBodys.get$ref() != null) {
-            // check where defined
+        // No content but ref to components
+        else if (requestBody.getContent() == null && requestBody.get$ref() != null) {
+            String ref = requestBody.get$ref();
+            String refLastIndex = ref.substring(ref.lastIndexOf("/") + 1);
+
+            improvementSuggestion = "Define content in refs in /components/requestBodies/" + refLastIndex + " or " +
+                    "directly in the request body (here: " + operation + ").";
+            violation = new Violation(this, locMapper.getLOCOfPath(this.pathName), improvementSuggestion,
+                    this.pathName, ErrorMessage.CONTENT_TYPE);
+
+            // Check if in request bodies defined (needs this structure)
+            if (!ref.endsWith("/components/requestBodies/" + refLastIndex)) {
+                this.violationList.add(violation);
+                return;
+            }
+
+            // Check if content type defined in components
+            Map<String, RequestBody> compRequestBodies = this.openAPI.getComponents().getRequestBodies();
+            if (compRequestBodies != null) {
+                for (Map.Entry<String, RequestBody> compRequestBody : compRequestBodies.entrySet()) {
+                    if (compRequestBody.getKey().equals(refLastIndex) && (compRequestBody.getValue() == null || compRequestBody.getValue().getContent() == null)) {
+                        this.violationList.add(violation);
+                    }
+                }
+            }
         }
     }
 }
