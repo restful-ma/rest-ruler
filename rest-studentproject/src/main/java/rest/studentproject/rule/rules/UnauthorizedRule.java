@@ -6,30 +6,21 @@ import io.swagger.v3.oas.models.PathItem;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.servers.Server;
 import rest.studentproject.rule.IRestRule;
-import rest.studentproject.rule.Request;
+import rest.studentproject.rule.Utility;
 import rest.studentproject.rule.Violation;
 import rest.studentproject.rule.constants.*;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
 import java.util.*;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
-import static rest.studentproject.analyzer.RestAnalyzer.securitySchemas;
-import static rest.studentproject.analyzer.RestAnalyzer.dynamicAnalysis;
+import static rest.studentproject.analyzer.RestAnalyzer.*;
 
 /**
  * Implementation of the rule: 401 ("Unauthorized") must be used when there is a problem with the client's credentials
@@ -50,6 +41,7 @@ public class UnauthorizedRule implements IRestRule {
     private final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private boolean isActive;
     private OpenAPI openAPI;
+    private HttpURLConnection con;
 
     public UnauthorizedRule(boolean isActive) {
         this.isActive = isActive;
@@ -107,94 +99,116 @@ public class UnauthorizedRule implements IRestRule {
         return this.violationList;
     }
 
+    /**
+     * This method runs the dynamic analysis of the unauthorized rule. If there is no sec defined in the openAPI
+     * definition a request is made with an adapted (last char missing) token to check if the 401 response is
+     * returned. Limitations:
+     * 1. only GET request methods are included in the analysis --> If sec is defined by user
+     * but no sec is required for e.g. POST --> resources will be deleted/updated
+     * 2. when the server returns another response code than 401 --> not checked (maybe implement AI that checks
+     * response message)
+     */
     private void dynamicAnalysis() {
-        Request request;
-
         List<Server> servers = this.openAPI.getServers();
-        boolean violationFound = false;
+
+        // Iterate over each defined path
         for (Map.Entry<String, PathItem> path : this.openAPI.getPaths().entrySet()) {
-            for (Violation violation : this.violationList) {
-                violationFound = violation.getKeyViolation().equals(path.getKey());
-                if (violationFound) break;
-            }
 
-            if (violationFound) continue;
+            // If there is already a violation from static analysis skip this path
+            if (checkViolationForPath(path.getKey())) continue;
 
+            // All operations defined for each path
             Map<String, Operation> operations = getPathOperations(path.getValue(), false, false);
 
+            // Iterate over operations
             for (Map.Entry<String, Operation> operation : operations.entrySet()) {
+
+                // When 401 is defined in operation there is no violation
                 if (operation.getValue().getResponses().containsKey("401")) continue;
 
+                // Dynamic analysis is only for GET implemented because else there is the possibility to
+                // update/delete some resources
                 if (!operation.getKey().equalsIgnoreCase("GET")) continue;
 
+                // Requests for each defined server
                 for (Server server : servers) {
-                    // path.getKey????
-                    // request for every server???
-                    request = new Request(path.getKey(), server.getUrl(),
-                            RequestType.valueOf(operation.getKey().toUpperCase()));
-
                     try {
+                        boolean found401 = false;
 
+                        // Make request for each security defined by the user
                         for (Map.Entry<SecuritySchema, String> sec : securitySchemas.entrySet()) {
-                            URL url;
-                            if (sec.getKey() == SecuritySchema.APIKEY)
-                                url = new URL(request.getUrl() + path.getKey() + "?api_key=" + sec.getValue().substring(0, sec.getValue().length() - 1));
-                            else url = new URL(request.getUrl() + path.getKey());
+                            URL url = Utility.getURL(sec.getKey(), sec.getValue(), server.getUrl(), path.getKey());
 
-                            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-                            con.setRequestMethod(operation.getKey().toUpperCase());
-                            con.setConnectTimeout(5000);
-                            con.setReadTimeout(5000);
-                            con.setDoOutput(true);
-                            con.setInstanceFollowRedirects(false);
+                            this.con = Utility.createHttpConnection(url,
+                                    RequestType.valueOf(operation.getKey().toUpperCase()));
 
-                            switch (sec.getKey()) {
-                                case BASIC:
-                                    String encoding =
-                                            Base64.getEncoder().encodeToString((sec.getValue()).getBytes(StandardCharsets.UTF_8));
-                                    // Token with one char missing to trigger 401
-                                    con.setRequestProperty("Authorization", "Basic " + encoding.substring(0,
-                                            encoding.length() - 1));
-                                    break;
-                                case BEARER:
-                                    // Token with one char missing to trigger 401
-                                    con.setRequestProperty("Authorization", "Bearer " + sec.getValue().substring(0,
-                                            sec.getValue().length() - 1));
-                                    break;
-                                case APIKEY:
-                                    break;
-                                default:
-                                    logger.severe("This request type (" + request.getRequestType() + ") is currently "
-                                            + "not " + "supported");
-
+                            // If connection fails
+                            if (this.con == null) {
+                                logger.severe("Error occurred when creating the http connection");
+                                return;
                             }
-                            int status = con.getResponseCode();
-                            if (status != 401)
-                                violationList.add(new Violation(this, locMapper.getLOCOfPath(path.getKey()), "Provide"
-                                        + " the 401 " + "response in the " + "definition of the path in the operation" +
-                                        " " + "(here: " + operation.getKey() + ") --> Found dynamic", path.getKey(),
-                                        ErrorMessage.UNAUTHORIZED));
+
+                            setAuthHeader(sec.getKey(), sec.getValue());
+
+                            int status = this.con.getResponseCode();
+
+                            if (status == 401) found401 = true;
                         }
 
-
+                        // If for each defined security there is no 401 --> violation
+                        if (found401)
+                            violationList.add(new Violation(this, locMapper.getLOCOfPath(path.getKey()), "Provide" +
+                                    " the 401 " + "response in the " + "definition of the path in the " + "operation" + " " + "(here: " + operation.getKey() + ") --> Found dynamic", path.getKey(), ErrorMessage.UNAUTHORIZED));
                     } catch (IOException e) {
                         logger.severe("Exception on trying to request: " + e.getMessage());
                     }
-
-                    // TODO
-
-
                 }
-
-
-//                this.violationList.add(new Violation(this, locMapper.getLOCOfPath(path.getKey()),
-//                        "Provide the 401 " + "response in the " + "definition of the path in the operation (here: "
-//                        + operation.getKey() + ")", path.getKey(), ErrorMessage.UNAUTHORIZED));
             }
         }
-
     }
 
+    /**
+     * To check if there is already a violation for the path from the static analysis.
+     *
+     * @param path the path to check if violation already exists for.
+     * @return true if a violation exists for path --> else false
+     */
+    private boolean checkViolationForPath(String path) {
+        for (Violation violation : this.violationList) {
+            if (violation.getKeyViolation().equals(path)) return true;
+        }
+        return false;
+    }
+
+    /**
+     * Adds the body on the basis of the used security schema to the existing http url connection.
+     *
+     * @param securitySchema the used security schema from the user (e.g. BASIC, BEARER, APIKEY)
+     * @param pw             the password for the used security schema
+     */
+    private void setAuthHeader(SecuritySchema securitySchema, String pw) {
+        switch (securitySchema) {
+            case BASIC:
+                String encoding = Base64.getEncoder().encodeToString(pw.getBytes(StandardCharsets.UTF_8));
+                // Token with one char missing to trigger 401
+                this.con.setRequestProperty("Authorization", "Basic " + encoding.substring(0, encoding.length() - 1));
+                break;
+            case BEARER:
+                // Token with one char missing to trigger 401
+                this.con.setRequestProperty("Authorization", "Bearer " + pw.substring(0, pw.length() - 1));
+                break;
+            case APIKEY:
+                break;
+            default:
+                logger.log(Level.SEVERE, "This security schema is currently not supported");
+
+        }
+    }
+
+    /**
+     * This method analyses the openAPI definition statically. Either the security is globally defined --> each path
+     * needs 401 response; or the security is locally defined --> only paths with defined security need the 401 response
+     */
     private void staticAnalysis() {
         List<SecurityRequirement> security = this.openAPI.getSecurity();
         boolean globalSec = security != null && !security.isEmpty();

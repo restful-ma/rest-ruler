@@ -22,7 +22,7 @@ public class RestParserCommand implements Runnable {
      * When the user runs a command, this method is called.
      */
     public void run() {
-        this.path = "https://api.apis.guru/v2/specs/ably.io/platform/1.1.0/openapi.json";
+        this.path = "https://api.apis.guru/v2/specs/ably.net/control/1.0.14/openapi.json";
         this.expertMode = false;
         Output output = new Output();
         if (expertMode) output.askActiveRules();
@@ -30,7 +30,6 @@ public class RestParserCommand implements Runnable {
             output.startAnalysis(this.path);
         }
     }
-
 }
 
 
