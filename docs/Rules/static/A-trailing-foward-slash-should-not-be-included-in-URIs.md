@@ -14,14 +14,14 @@ As the last character within a URI’s path, a forward slash (/) adds no semanti
 and may cause confusion. REST APIs should not expect a trailing slash and should not
 include them in the links that they provide to clients.[1].
 ## Implemented
-* N
+* Y
 ## Implementation Details
 This is a rule that is examined statically. 
 ### What is checked:
-
+- Checks if a path segement contains a trailing foward slash (/)
 ### What is not checked:
-
+-
 ### Future work
-
+-
 ## Source
 [1] https://www.oreilly.com/library/view/rest-api-design/9781449317904/
