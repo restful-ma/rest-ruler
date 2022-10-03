@@ -21,6 +21,10 @@ public class TrailingRule implements IRestRule {
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List.of(RuleSoftwareQualityAttribute.MAINTAINABILITY);
     private boolean isActive;
 
+    public TrailingRule (boolean isActive){
+        this.isActive = isActive;
+    }
+
     @Override
     public String getTitle() {
         return TITLE;
