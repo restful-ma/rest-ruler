@@ -129,6 +129,34 @@ paths:
           description: A user with the specified ID was not found.
         default:
           description: Unexpected error
+  # Define all paths here
+  # RULE 1: A trailing forward slash (/) should not be included in URIs
+  /users/{userId}/details/:
+    get:
+      summary: Returns a user permission for ID.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The details of the user to return.
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        "200":
+          description: A users permissions.
+          content:
+            text/plain:
+              schema:
+                type: string
+        "400":
+          description: The specified user ID is invalid (not a number).
+        "401":
+          description: Unauthorized
+        "404":
+          description: A user with the specified ID was not found.
+        default:
+          description: Unexpected error
   # Rule 28: GET must be used to retrieve a representation of a resource
   # missing resource representation
   /users/{userId}/permissions:
