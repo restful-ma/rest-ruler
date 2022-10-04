@@ -15,6 +15,7 @@ public class ImprovementSuggestion {
     public static final String PLURALNAME = "Use plural nouns for collection or store names";
     public static final String TUNNELING = "Use the appropriate HTTP request type";
     public static final String VERBPHRASE = "Use a verb or verb phrase for controller names";
+    public static final String TRAILINGSLASH = "remove trailing forward slash '/' from URI";
 
     private ImprovementSuggestion(){
         throw new IllegalStateException("Utility class");
