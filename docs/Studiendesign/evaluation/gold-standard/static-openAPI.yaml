@@ -1399,6 +1399,40 @@ paths:
                 properties:
                   username:
                     type: string
+  "/enterprise/employees":
+    get:
+      tag: "Meta Rules"
+      description: "Violates the content-type rule. --> no content defined on 200 responses in the ref"
+      response:
+        "200":
+          $ref: "components/responses/OkResponse"
+        "400":
+          description: "Bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
   "/enterprise/locations":
     post:
       tag: "Meta Rules"
@@ -1444,6 +1478,17 @@ paths:
                     type: string
 components:
   # Define all components here
+  responses:
+    OkResponse:
+      content:
+        application/x-www-form-urlencoded:
+           schema:
+            type: object
+              properties:
+                color:
+                  type: array
+                  items:
+                    type: string
   securitySchemes:
     BasicAuth:
       type: http
