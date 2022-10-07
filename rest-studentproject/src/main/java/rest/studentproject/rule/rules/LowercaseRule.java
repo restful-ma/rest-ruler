@@ -16,14 +16,14 @@ public class LowercaseRule implements IRestRule {
     private static final String TITLE = "Lowercase letters should be preferred in URI paths";
     private static final RuleCategory RULE_CATEGORY = RuleCategory.URIS;
     private static final RuleSeverity RULE_SEVERITY = RuleSeverity.ERROR;
-    private static final RuleType RULE_TYPE = RuleType.STATIC;
-    private static final List<RuleSoftwareQualityAttribute> RULE_SOFTWARE_QUALITY_ATTRIBUTE_LIST = List.of(RuleSoftwareQualityAttribute.COMPATIBILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
+    private static final List<RuleType> RULE_TYPE = List.of(RuleType.STATIC);
+    private static final List<RuleSoftwareQualityAttribute> RULE_SOFTWARE_QUALITY_ATTRIBUTE_LIST = List
+            .of(RuleSoftwareQualityAttribute.COMPATIBILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
     private boolean isActive;
 
     public LowercaseRule(boolean isActive) {
         this.isActive = isActive;
     }
-
 
     /**
      *
@@ -54,7 +54,7 @@ public class LowercaseRule implements IRestRule {
      *
      */
     @Override
-    public RuleType getRuleType() {
+    public List<RuleType> getRuleType() {
         return LowercaseRule.RULE_TYPE;
     }
 
@@ -83,7 +83,8 @@ public class LowercaseRule implements IRestRule {
     }
 
     /**
-     * Rule to check if the URI path contains only lowercase letters. If not, the rule is violated.
+     * Rule to check if the URI path contains only lowercase letters. If not, the
+     * rule is violated.
      *
      * @param openAPI
      */
@@ -94,17 +95,20 @@ public class LowercaseRule implements IRestRule {
         // Get the paths from the OpenAPI object
         Set<String> paths = openAPI.getPaths().keySet();
 
-        if (paths.isEmpty()) return violations;
+        if (paths.isEmpty())
+            return violations;
         // Loop through the paths
         for (String path : paths) {
-            if (path.trim().equals("")) continue;
+            if (path.trim().equals(""))
+                continue;
             // Get the path without the curly braces
             String pathWithoutParameters = path.replaceAll("\\{" + ".*" + "\\}", "");
             // Get the path in lowercase
             String pathWithoutParametersLowerCase = pathWithoutParameters.toLowerCase();
             // Check if the path contains only lowercase letters
             if (!pathWithoutParametersLowerCase.equals(pathWithoutParameters)) {
-                violations.add(new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.LOWERCASE, path, ErrorMessage.LOWERCASE));
+                violations.add(new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.LOWERCASE, path,
+                        ErrorMessage.LOWERCASE));
             }
 
         }

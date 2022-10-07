@@ -23,18 +23,19 @@ import java.util.logging.Logger;
 import static rest.studentproject.analyzer.RestAnalyzer.*;
 
 /**
- * Implementation of the rule: 401 ("Unauthorized") must be used when there is a problem with the client's credentials
+ * Implementation of the rule: 401 ("Unauthorized") must be used when there is a
+ * problem with the client's credentials
  */
 public class UnauthorizedRule implements IRestRule {
 
     private static final String TITLE = "401 (\"Unauthorized\") must be used when there is a problem with the " +
             "client's credentials";
     private static final RuleCategory CATEGORY = RuleCategory.HTTP;
-    private static final RuleType TYPE = RuleType.STATIC;
+    private static final List<RuleType> TYPE = Arrays.asList(RuleType.STATIC, RuleType.DYNAMIC);
     private static final RuleSeverity SEVERITY = RuleSeverity.CRITICAL;
-    private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTE =
-            Arrays.asList(RuleSoftwareQualityAttribute.COMPATIBILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY,
-                    RuleSoftwareQualityAttribute.USABILITY);
+    private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTE = Arrays.asList(
+            RuleSoftwareQualityAttribute.COMPATIBILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY,
+            RuleSoftwareQualityAttribute.USABILITY);
     private static final List<String> OPERATION_METHOD_NAMES = List.of("getGet", "getPut", "getPost", "getDelete");
     private static final String OPERATION_METHOD_SECURITY = "getSecurity";
     private final List<Violation> violationList = new ArrayList<>();
@@ -63,7 +64,7 @@ public class UnauthorizedRule implements IRestRule {
     }
 
     @Override
-    public RuleType getRuleType() {
+    public List<RuleType> getRuleType() {
         return TYPE;
     }
 
@@ -83,8 +84,10 @@ public class UnauthorizedRule implements IRestRule {
     }
 
     /**
-     * Checks if there is a violation against the 401 (unauthorized) rule. If the security is defined globally, the
-     * 401 response must be defined for each request. If security is defined locally, the 401 response must be
+     * Checks if there is a violation against the 401 (unauthorized) rule. If the
+     * security is defined globally, the
+     * 401 response must be defined for each request. If security is defined
+     * locally, the 401 response must be
      * defined only for the local request.
      *
      * @param openAPI the definition that will be checked against the rule.
@@ -94,18 +97,23 @@ public class UnauthorizedRule implements IRestRule {
     public List<Violation> checkViolation(OpenAPI openAPI) {
         this.openAPI = openAPI;
         staticAnalysis();
-        if (dynamicAnalysis && !securitySchemas.isEmpty()) dynamicAnalysis();
+        if (dynamicAnalysis && !securitySchemas.isEmpty())
+            dynamicAnalysis();
 
         return this.violationList;
     }
 
     /**
-     * This method runs the dynamic analysis of the unauthorized rule. If there is no sec defined in the openAPI
-     * definition a request is made with an adapted (last char missing) token to check if the 401 response is
+     * This method runs the dynamic analysis of the unauthorized rule. If there is
+     * no sec defined in the openAPI
+     * definition a request is made with an adapted (last char missing) token to
+     * check if the 401 response is
      * returned. Limitations:
-     * 1. only GET request methods are included in the analysis --> If sec is defined by user
+     * 1. only GET request methods are included in the analysis --> If sec is
+     * defined by user
      * but no sec is required for e.g. POST --> resources will be deleted/updated
-     * 2. when the server returns another response code than 401 --> not checked (maybe implement AI that checks
+     * 2. when the server returns another response code than 401 --> not checked
+     * (maybe implement AI that checks
      * response message)
      */
     private void dynamicAnalysis() {
@@ -115,7 +123,8 @@ public class UnauthorizedRule implements IRestRule {
         for (Map.Entry<String, PathItem> path : this.openAPI.getPaths().entrySet()) {
 
             // If there is already a violation from static analysis skip this path
-            if (checkViolationForPath(path.getKey())) continue;
+            if (checkViolationForPath(path.getKey()))
+                continue;
 
             // All operations defined for each path
             Map<String, Operation> operations = getPathOperations(path.getValue(), false, false);
@@ -124,11 +133,14 @@ public class UnauthorizedRule implements IRestRule {
             for (Map.Entry<String, Operation> operation : operations.entrySet()) {
 
                 // When 401 is defined in operation there is no violation
-                if (operation.getValue().getResponses().containsKey("401")) continue;
+                if (operation.getValue().getResponses().containsKey("401"))
+                    continue;
 
-                // Dynamic analysis is only for GET implemented because else there is the possibility to
+                // Dynamic analysis is only for GET implemented because else there is the
+                // possibility to
                 // update/delete some resources
-                if (!operation.getKey().equalsIgnoreCase("GET")) continue;
+                if (!operation.getKey().equalsIgnoreCase("GET"))
+                    continue;
 
                 // Requests for each defined server
                 for (Server server : servers) {
@@ -145,20 +157,23 @@ public class UnauthorizedRule implements IRestRule {
                             // If connection fails
                             if (this.con == null) {
                                 logger.severe("Error occurred when creating the http connection");
-                                return;
+                                continue;
                             }
 
                             setAuthHeader(sec.getKey(), sec.getValue());
 
                             int status = this.con.getResponseCode();
 
-                            if (status == 401) found401 = true;
+                            if (status == 401)
+                                found401 = true;
                         }
 
                         // If for each defined security there is no 401 --> violation
                         if (found401)
                             violationList.add(new Violation(this, locMapper.getLOCOfPath(path.getKey()), "Provide" +
-                                    " the 401 " + "response in the " + "definition of the path in the " + "operation" + " " + "(here: " + operation.getKey() + ") --> Found dynamic", path.getKey(), ErrorMessage.UNAUTHORIZED));
+                                    " the 401 " + "response in the " + "definition of the path in the " + "operation"
+                                    + " " + "(here: " + operation.getKey() + ") --> Found dynamic", path.getKey(),
+                                    ErrorMessage.UNAUTHORIZED));
                     } catch (IOException e) {
                         logger.severe("Exception on trying to request: " + e.getMessage());
                     }
@@ -168,22 +183,26 @@ public class UnauthorizedRule implements IRestRule {
     }
 
     /**
-     * To check if there is already a violation for the path from the static analysis.
+     * To check if there is already a violation for the path from the static
+     * analysis.
      *
      * @param path the path to check if violation already exists for.
      * @return true if a violation exists for path --> else false
      */
     private boolean checkViolationForPath(String path) {
         for (Violation violation : this.violationList) {
-            if (violation.getKeyViolation().equals(path)) return true;
+            if (violation.getKeyViolation().equals(path))
+                return true;
         }
         return false;
     }
 
     /**
-     * Adds the body on the basis of the used security schema to the existing http url connection.
+     * Adds the body on the basis of the used security schema to the existing http
+     * url connection.
      *
-     * @param securitySchema the used security schema from the user (e.g. BASIC, BEARER, APIKEY)
+     * @param securitySchema the used security schema from the user (e.g. BASIC,
+     *                       BEARER, APIKEY)
      * @param pw             the password for the used security schema
      */
     private void setAuthHeader(SecuritySchema securitySchema, String pw) {
@@ -206,8 +225,10 @@ public class UnauthorizedRule implements IRestRule {
     }
 
     /**
-     * This method analyses the openAPI definition statically. Either the security is globally defined --> each path
-     * needs 401 response; or the security is locally defined --> only paths with defined security need the 401 response
+     * This method analyses the openAPI definition statically. Either the security
+     * is globally defined --> each path
+     * needs 401 response; or the security is locally defined --> only paths with
+     * defined security need the 401 response
      */
     private void staticAnalysis() {
         List<SecurityRequirement> security = this.openAPI.getSecurity();
@@ -217,10 +238,13 @@ public class UnauthorizedRule implements IRestRule {
             Map<String, Operation> operations = getPathOperations(path.getValue(), globalSec, true);
 
             for (Map.Entry<String, Operation> operation : operations.entrySet()) {
-                if (operation.getValue().getResponses().containsKey("401")) continue;
+                if (operation.getValue().getResponses().containsKey("401"))
+                    continue;
 
                 this.violationList.add(new Violation(this, locMapper.getLOCOfPath(path.getKey()),
-                        "Provide the 401 " + "response in the " + "definition of the path in the operation (here: " + operation.getKey() + ")", path.getKey(), ErrorMessage.UNAUTHORIZED));
+                        "Provide the 401 " + "response in the " + "definition of the path in the operation (here: "
+                                + operation.getKey() + ")",
+                        path.getKey(), ErrorMessage.UNAUTHORIZED));
             }
         }
     }
@@ -228,9 +252,11 @@ public class UnauthorizedRule implements IRestRule {
     /**
      * Gives for the path all the operations defined.
      *
-     * @param pathItem    the path item (swagger) with operations and their security, etc.
+     * @param pathItem    the path item (swagger) with operations and their
+     *                    security, etc.
      * @param globalSec   if the security is globally defined.
-     * @param onlyWithSec true when operations do have security defined --> false every operation needed
+     * @param onlyWithSec true when operations do have security defined --> false
+     *                    every operation needed
      * @return the list of operations for the specified path
      */
     private Map<String, Operation> getPathOperations(PathItem pathItem, boolean globalSec, boolean onlyWithSec) {
@@ -243,7 +269,8 @@ public class UnauthorizedRule implements IRestRule {
 
                 Operation curOperation = (Operation) operationMethod.invoke(pathItem);
 
-                if (curOperation == null) continue;
+                if (curOperation == null)
+                    continue;
 
                 Object secOb = securityMethod.invoke(curOperation);
 
@@ -251,7 +278,8 @@ public class UnauthorizedRule implements IRestRule {
                     operations.put(method.replace("get", "").toUpperCase(), curOperation);
                 }
             } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
-                logger.severe("Exception when trying to get method to get the operations from a path: " + e.getMessage());
+                logger.severe(
+                        "Exception when trying to get method to get the operations from a path: " + e.getMessage());
             }
         }
 

@@ -10,11 +10,15 @@ import rest.studentproject.rule.Utility;
 import rest.studentproject.rule.constants.SecuritySchema;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.InetAddress;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.*;
 
 import static java.util.Map.entry;
@@ -24,16 +28,16 @@ import static java.util.Map.entry;
  */
 public class Output {
     private static final String UNDERLINE = "----------------------------------------------";
-    private static final Map<SecuritySchema, String> secToNumbAuthMapping = Map.ofEntries(entry(SecuritySchema.APIKEY
-            , "1"), entry(SecuritySchema.BASIC, "2"), entry(SecuritySchema.BEARER, "3"));
+    private static final Map<SecuritySchema, String> secToNumbAuthMapping = Map.ofEntries(
+            entry(SecuritySchema.APIKEY, "1"), entry(SecuritySchema.BASIC, "2"), entry(SecuritySchema.BEARER, "3"));
     private static final Map<String, SecuritySchema> numbToSecAuthMapping = Map.ofEntries(entry("1",
             SecuritySchema.APIKEY), entry("2", SecuritySchema.BASIC), entry("3", SecuritySchema.BEARER));
-    private static final String yesNo = "[yes/no]";
+    private static final String YES_NO = "[yes/no]";
     private String pathToFile = "";
 
-
     /**
-     * Method for the expert mode. User will be asked to enable or disable each rule. The input will be saved in the
+     * Method for the expert mode. User will be asked to enable or disable each
+     * rule. The input will be saved in the
      * config file.
      */
     public void askActiveRules() {
@@ -57,14 +61,16 @@ public class Output {
             System.out.println(UNDERLINE);
             System.out.println("For every rule enable it with y/yes and disable it with n/no. For further " +
                     "information" + " to the rule press" + " i/info. To cancel the configuration and discard the " +
-                    "input press q/quit. To " + "skip the rest of the " + "rules without discarding the input press " + "s/skip.");
+                    "input press q/quit. To " + "skip the rest of the " + "rules without discarding the input press "
+                    + "s/skip.");
             System.out.println("\n-----------------SELECT RULES-----------------");
             System.out.println(UNDERLINE);
 
             while (currentRuleIndex <= activeRuleList.size()) {
                 IRestRule currentRule = activeRuleList.get(currentRuleIndex - 1);
 
-                System.out.println("--> Enable Rule " + currentRuleIndex + " of " + activeRuleList.size() + ": " + currentRule.getTitle() + " [y/n]");
+                System.out.println("--> Enable Rule " + currentRuleIndex + " of " + activeRuleList.size() + ": "
+                        + currentRule.getTitle() + " [y/n]");
 
                 String userRuleInput = scanner.next().trim().toLowerCase();
                 switch (userRuleInput) {
@@ -80,7 +86,10 @@ public class Output {
                         break;
                     case "i":
                     case "info":
-                        System.out.println("Rule: '" + currentRule.getTitle() + ".' is from the category: '" + currentRule.getCategory() + "' with severity type: '" + currentRule.getSeverityType() + "' and has an influence on: '" + currentRule.getRuleSoftwareQualityAttribute() + "'");
+                        System.out.println("Rule: '" + currentRule.getTitle() + ".' is from the category: '"
+                                + currentRule.getCategory() + "' with severity type: '" + currentRule.getSeverityType()
+                                + "' and has an influence on: '" + currentRule.getRuleSoftwareQualityAttribute()
+                                + "'. The rule will be checked: " + currentRule.getRuleType());
                         break;
                     case "s":
                     case "skip":
@@ -98,9 +107,11 @@ public class Output {
                 }
             }
             System.out.println("Finished configuration.");
-            if (config != null) new Config().addToConfig(config);
+            if (config != null)
+                new Config().addToConfig(config);
 
-        } else System.out.println("Skip configuration");
+        } else
+            System.out.println("Skip configuration");
     }
 
     /**
@@ -109,7 +120,15 @@ public class Output {
      * @param pathToFile path to the OpenAPI definition to be examined
      */
     public void startAnalysis(String pathToFile) {
-        // TODO: check if path is valid
+
+        if (pathToFile.toLowerCase().startsWith("http") && !checkURL(pathToFile)) {
+            System.err.println("The URL is not reachable. Please check the URL and try again.");
+            return;
+        } else if (!pathToFile.toLowerCase().startsWith("http") && !checkFileLocation(pathToFile)) {
+            System.err.println("The file is not found. Please check the path to the file and try again.");
+            return;
+        }
+
         this.pathToFile = pathToFile;
         RestAnalyzer restAnalyzer = new RestAnalyzer(pathToFile);
         boolean checkDynamicAnalysis = checkDynamicAnalysis();
@@ -119,7 +138,7 @@ public class Output {
             for (Server server : openAPI.getServers()) {
                 String url = server.getUrl();
                 System.out.println("Ping server: " + server.getUrl());
-                if (!pingURL(url, 1000)) {
+                if (!pingURL(url)) {
                     System.out.println("Server is not responding: " + url);
                     System.out.println("Make sure the server is running or delete it from the openAPI definition.");
                     System.out.println("--> Skip dynamic analysis.");
@@ -132,9 +151,9 @@ public class Output {
 
         }
 
-
         // Example: https://api.apis.guru/v2/specs/aiception.com/1.0.0/swagger.json
-        // Very long example (just under 20k lines): https://api.apis.guru/v2/specs/amazonaws.com/autoscaling/2011-01-01/openapi.json
+        // Very long example (just under 20k lines):
+        // https://api.apis.guru/v2/specs/amazonaws.com/autoscaling/2011-01-01/openapi.json
         System.out.println("----------------------------------------------\n");
         System.out.println("Begin with the analysis of the file from: " + pathToFile);
         System.out.println("\n----------------------------------------------");
@@ -151,10 +170,13 @@ public class Output {
 
         System.out.println("\n-----------------INFO ANALYSIS----------------");
         System.out.println("-----------------------------------------------\n");
-        System.out.println("Besides the static analysis there is the dynamic analysis for which the credentials for " + "the openapi definition need to be provided. These are not stored unless you allow it. No changes will be" + " made to resources nor are they saved.");
+        System.out.println("Besides the static analysis there is the dynamic analysis for which the credentials for "
+                + "the openapi definition need to be provided. These are not stored unless you allow it. No changes will be"
+                + " made to resources nor are they saved.");
         System.out.println("If you want to do the dynamic analysis, enter yes or y, if you do not want to do it, " +
                 "enter any other key.");
-        System.out.println(yesNo);
+        System.out.println(YES_NO
+);
 
         String dynamicAnalysis = scanner.next();
 
@@ -166,7 +188,8 @@ public class Output {
      * <p>
      * Currently implemented auth schemas: bearer, api key and basic authentication
      *
-     * @param openAPI the openAPI definition that will be checked --> Needed the get the defined sec schemas
+     * @param openAPI the openAPI definition that will be checked --> Needed the get
+     *                the defined sec schemas
      * @return a map with the security schemas and the passwords
      */
     public Map<SecuritySchema, String> askAuth(OpenAPI openAPI) {
@@ -183,7 +206,6 @@ public class Output {
 
         boolean secDefined = secSchemas != null && !secSchemas.isEmpty();
 
-
         boolean enterMoreSec = true;
         String choice = "";
         boolean secInProps = false;
@@ -192,7 +214,8 @@ public class Output {
             Map<String, String> secSchemeMap = new HashMap<>();
 
             if (!secDefined) {
-                System.out.println("\nChoose the authentication method (number) to get/set the credentials or enter " + "any " + "other key to 'save' and skip:");
+                System.out.println("\nChoose the authentication method (number) to get/set the credentials or enter "
+                        + "any " + "other key to 'save' and skip:");
                 System.out.println("1 - API Key");
                 System.out.println("2 - Basic Authentication");
                 System.out.println("3 - Bearer");
@@ -204,7 +227,8 @@ public class Output {
 
             } else {
                 System.out.println("Found " + secSchemas.size() + " security schemas for given openAPI definition.");
-                System.out.println("\nChoose the authentication method (number) to get/set the credentials or enter" + " " + "any " + "other " + "key to select other security methods:");
+                System.out.println("\nChoose the authentication method (number) to get/set the credentials or enter"
+                        + " " + "any " + "other " + "key to select other security methods:");
 
                 int selectionNumber = 0;
                 for (Map.Entry<String, SecurityScheme> secSchema : secSchemas.entrySet()) {
@@ -231,7 +255,6 @@ public class Output {
 
             Properties properties = new Config().getConfig();
 
-
             // authTypPathToFile
             String prefixProps = numbToSecAuthMapping.get(choice) + this.pathToFile;
 
@@ -239,8 +262,10 @@ public class Output {
             String keyTokenProps = prefixProps + "token";
 
             if (properties.containsKey(keyTokenProps)) {
-                System.out.println("\nFound credentials for this security method in config. Do you want to use them " + "(yes or y) or enter new credentials (no or n)?");
-                System.out.println(yesNo);
+                System.out.println("\nFound credentials for this security method in config. Do you want to use them "
+                        + "(yes or y) or enter new credentials (no or n)?");
+                System.out.println(YES_NO
+        );
                 String input = scanner.next();
                 if (input.equals("y") || input.equals("yes")) {
                     secInProps = true;
@@ -255,7 +280,8 @@ public class Output {
                         // api key
                         System.out.println("Enter api key or type 0 (zero) to skip: ");
                         token = scanner.next();
-                        if (token.equals("0")) break;
+                        if (token.equals("0"))
+                            break;
                         secTokens.put(numbToSecAuthMapping.get(choice), token);
                         break;
                     // Basic
@@ -264,7 +290,8 @@ public class Output {
                         System.out.println("Enter token consisting of username and password or type 0 (zero) to " +
                                 "skip:" + " ");
                         token = scanner.next();
-                        if (token.equals("0")) break;
+                        if (token.equals("0"))
+                            break;
                         secTokens.put(numbToSecAuthMapping.get(choice), token);
                         break;
                     // Bearer
@@ -272,7 +299,8 @@ public class Output {
                         // access_token
                         System.out.println("Enter access token or type 0 (zero) to skip: ");
                         token = scanner.next();
-                        if (token.equals("0")) break;
+                        if (token.equals("0"))
+                            break;
                         secTokens.put(numbToSecAuthMapping.get(choice), token);
                         break;
                     // No auth needed for requests
@@ -287,7 +315,8 @@ public class Output {
                 }
             }
             System.out.println("Do you want to enter another security schema? Enter yes or y, enter no or n.");
-            System.out.println(yesNo);
+            System.out.println(YES_NO
+    );
 
             choice = scanner.next();
 
@@ -305,7 +334,8 @@ public class Output {
             System.out.println("---------------------Save---------------------");
             System.out.println("Do you want to save the credentials local for further analyses enter yes or y or " +
                     "only" + " " + "use" + " the input only for the next analysis enter any other key.");
-            System.out.println(yesNo + "\n");
+            System.out.println(YES_NO
+     + "\n");
 
             choice = scanner.next();
 
@@ -337,46 +367,73 @@ public class Output {
     }
 
     /**
-     * Pings HTTP URL. This effectively sends a HEAD request and returns <code>true</code> if the server responded.
+     * Check if the URL to the openAPI definition is reachable.
+     * 
+     * @param url URL to the openAPI definition
+     * @return <code>true</code> if the URL is reachable, <code>false</code>
+     *         otherwise
+     */
+    private boolean checkURL(String url) {
+        HttpURLConnection huc;
+        try {
+            huc = (HttpURLConnection) new URL(url).openConnection();
+            huc.setRequestMethod("HEAD");
+            int responseCode = huc.getResponseCode();
+
+            return responseCode != 404;
+
+        } catch (Exception e) {
+            System.err.println("Error while checking URL: " + e.getMessage());
+        }
+
+        return false;
+    }
+
+    /**
+     * Checks if the given path is a valid path to a file and not a dir.
+     * 
+     * @param fileLocation path to the file
+     * @return <code>true</code> if the path is valid, <code>false</code> otherwise
+     */
+    private boolean checkFileLocation(String fileLocation) {
+        File f = new File(fileLocation);
+        return f.exists() && !f.isDirectory();
+    }
+
+    /**
+     * Pings HTTP URL. This effectively sends a HEAD request and returns
+     * <code>true</code> if the server responded.
      *
      * @param url     The HTTP URL to be pinged.
-     * @param timeout The timeout in millis for both the connection timeout and the response read timeout. Note that
+     * @param timeout The timeout in millis for both the connection timeout and the
+     *                response read timeout. Note that
      *                the total timeout is effectively two times the given timeout.
-     * @return <code>true</code> if the given HTTP URL is reachable on a HEAD request within the
-     * given timeout, otherwise <code>false</code>.
+     * @return <code>true</code> if the given HTTP URL is reachable on a HEAD
+     *         request within the
+     *         given timeout, otherwise <code>false</code>.
      */
-    public boolean pingURL(String url, int timeout) {
-        url = url.replaceFirst("^https", "http"); // Otherwise, an exception may be thrown on invalid SSL certificates.
+    private boolean pingURL(String url) {
+        if (!url.isEmpty() && !url.equals("")) {
+            // url = url.replaceFirst("^https", "http"); // Otherwise, an exception may be
+            // thrown on invalid SSL
+            // // certificates.
+            return doUrlCall(url);
+        }
+        return false;
+    }
 
-        BufferedReader br = null;
+    private boolean doUrlCall(String urlPath) {
+
+        InetAddress address;
         try {
-            HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
-            connection.setConnectTimeout(timeout);
-            connection.setReadTimeout(timeout);
-            connection.setRequestMethod("HEAD");
-            connection.setDoOutput(true);
-            int responseCode = connection.getResponseCode();
-            System.out.println("Server responded with: " + responseCode);
-            InputStream inputStream;
-            if (responseCode == 404) {
-
-                System.out.println("response 404");
-                System.out.println(connection.getResponseMessage());
-                inputStream = connection.getInputStream();
-                BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
-
-                StringBuilder response = new StringBuilder();
-                String currentLine;
-
-                while ((currentLine = in.readLine()) != null) response.append(currentLine);
-
-//                in.close();
-
-            }
-            // Server responded
-            return true;
-        } catch (IOException exception) {
-            System.out.println("Exception!!");
+            address = InetAddress.getByName(new URL(urlPath).getHost());
+            String ip = address.getHostAddress();
+            System.out.println("IP: " + ip);
+            boolean reachable = address.isReachable(10000);
+            System.out.println("Reachable: " + reachable);
+            return !ip.isEmpty() && !ip.equals("");
+        } catch (IOException e) {
+            System.err.println("Error while checking URL: " + e.getMessage());
             return false;
         }
     }
