@@ -1,9 +1,6 @@
 {
   "swagger": "2.0",
-  "schemes": [
-    "https",
-    "http"
-  ],
+  "schemes": ["https", "http"],
   "host": "1forge.com",
   "basePath": "/forex-quotes",
   "info": {
@@ -15,9 +12,7 @@
     "description": "Stock and Forex Data and Realtime Quotes",
     "title": "1Forge Finance APIs",
     "version": "0.0.1",
-    "x-apisguru-categories": [
-      "financial"
-    ],
+    "x-apisguru-categories": ["financial"],
     "x-logo": {
       "backgroundColor": "#24292e",
       "url": "https://api.apis.guru/v2/cache/logo/https_1forge.com_assets_images_f-blue.svg"
@@ -31,9 +26,7 @@
     ],
     "x-providerName": "1forge.com"
   },
-  "produces": [
-    "application/json"
-  ],
+  "produces": ["application/json"],
   "paths": {
     "/quotes": {
       "get": {
@@ -44,25 +37,33 @@
         },
         "security": [
           {
-            "OAuth2": [
-              "read"
-            ]
+            "OAuth2": ["read"]
           }
         ],
         "responses": {
           "200": {
+            "schema": {
+              "example": ["EURUSD", "GBPJPY", "AUDUSD"],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
             "description": "A list of quotes"
           },
           "401": {
+            "schema": {
+              "example": ["EURUSD", "GBPJPY", "AUDUSD"],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
             "description": "Unauthorized"
           }
         },
         "summary": "Get quotes for all symbols",
-        "tags": [
-          "forex",
-          "finance",
-          "quotes"
-        ]
+        "tags": ["forex", "finance", "quotes"]
       }
     },
     "/symbols": {
@@ -74,36 +75,33 @@
         },
         "security": [
           {
-            "OAuth2": [
-              "read"
-            ]
+            "OAuth2": ["read"]
           }
         ],
         "responses": {
           "200": {
-            "description": "A list of symbols",
             "schema": {
-              "example": [
-                "EURUSD",
-                "GBPJPY",
-                "AUDUSD"
-              ],
+              "example": ["EURUSD", "GBPJPY", "AUDUSD"],
               "items": {
                 "type": "string"
               },
               "type": "array"
-            }
+            },
+            "description": "A list of symbols"
           },
           "401": {
+            "schema": {
+              "example": ["EURUSD", "GBPJPY", "AUDUSD"],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
             "description": "Unauthorized"
           }
         },
         "summary": "Get a list of symbols for which we provide real-time quotes",
-        "tags": [
-          "forex",
-          "finance",
-          "quotes"
-        ]
+        "tags": ["forex", "finance", "quotes"]
       }
     },
     "/": {
@@ -115,20 +113,14 @@
         },
         "security": [
           {
-            "OAuth2": [
-              "read"
-            ]
+            "OAuth2": ["read"]
           }
         ],
         "responses": {
           "200": {
             "description": "A list of symbols",
             "schema": {
-              "example": [
-                "EURUSD",
-                "GBPJPY",
-                "AUDUSD"
-              ],
+              "example": ["EURUSD", "GBPJPY", "AUDUSD"],
               "items": {
                 "type": "string"
               },
@@ -136,15 +128,18 @@
             }
           },
           "401": {
+            "schema": {
+              "example": ["EURUSD", "GBPJPY", "AUDUSD"],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
             "description": "Unauthorized"
           }
         },
         "summary": "Get a list of symbols for which we provide real-time quotes",
-        "tags": [
-          "forex",
-          "finance",
-          "quotes"
-        ]
+        "tags": ["forex", "finance", "quotes"]
       }
     },
     "/adults/{get_adult_ID}/names": {
@@ -156,36 +151,84 @@
         },
         "security": [
           {
-            "OAuth2": [
-              "read"
-            ]
+            "OAuth2": ["read"]
           }
         ],
         "responses": {
           "200": {
-            "description": "A list of symbols",
             "schema": {
-              "example": [
-                "EURUSD",
-                "GBPJPY",
-                "AUDUSD"
-              ],
+              "example": ["EURUSD", "GBPJPY", "AUDUSD"],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "description": "A list of symbols"
+          },
+          "401": {
+            "schema": {
+              "example": ["EURUSD", "GBPJPY", "AUDUSD"],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "summary": "Get a list of symbols for which we provide real-time quotes",
+        "tags": ["forex", "finance", "quotes"]
+      }
+    },
+    "/movies": {
+      "post": {
+        "description": "List of movies.",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "The user to create.",
+            "schema": {
+              "type": "object",
+              "required": ["userName"],
+              "properties": {
+                "userName": {
+                  "type": "string"
+                },
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "2XX": {
+            "schema": {
+              "example": ["EURUSD", "GBPJPY", "AUDUSD"],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "default": {
+            "schema": {
+              "example": ["EURUSD", "GBPJPY", "AUDUSD"],
               "items": {
                 "type": "string"
               },
               "type": "array"
             }
-          },
-          "401": {
-            "description": "Unauthorized"
           }
         },
-        "summary": "Get a list of symbols for which we provide real-time quotes",
-        "tags": [
-          "forex",
-          "finance",
-          "quotes"
-        ]
+        "summary": "Publish a message to a channel",
+        "tags": ["Publishing"]
       }
     }
   }
