@@ -27,7 +27,7 @@ public class HyphensRule implements IRestRule {
     private static final String TITLE = "Hyphens (-) should be used to improve the readability of URIs";
     private static final RuleCategory RULE_CATEGORY = RuleCategory.URIS;
     private static final RuleSeverity RULE_SEVERITY = RuleSeverity.ERROR;
-    private static final RuleType RULE_TYPE = RuleType.STATIC;
+    private static final List<RuleType> RULE_TYPE = List.of(RuleType.STATIC);
     private static final List<RuleSoftwareQualityAttribute> RULE_SOFTWARE_QUALITY_ATTRIBUTE_LIST =
             List.of(RuleSoftwareQualityAttribute.COMPATIBILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
     private final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -53,7 +53,7 @@ public class HyphensRule implements IRestRule {
     }
 
     @Override
-    public RuleType getRuleType() {
+    public List<RuleType> getRuleType() {
         return HyphensRule.RULE_TYPE;
     }
 

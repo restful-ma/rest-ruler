@@ -24,7 +24,7 @@ public class TunnelingDynamicRule implements IRestRule {
     private static final String TITLE = "GET and POST must not be used to tunnel other request methods";
     private static final RuleCategory RULE_CATEGORY = RuleCategory.HTTP;
     private static final RuleSeverity RULE_SEVERITY = RuleSeverity.CRITICAL;
-    private static final RuleType RULE_TYPE = RuleType.DYNAMIC;
+    private static final List<RuleType> RULE_TYPE = List.of(RuleType.DYNAMIC);
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List.of(RuleSoftwareQualityAttribute.MAINTAINABILITY, RuleSoftwareQualityAttribute.COMPATIBILITY, RuleSoftwareQualityAttribute.FUNCTIONAL_SUITABILITY, RuleSoftwareQualityAttribute.USABILITY);
     private boolean isActive;
 
@@ -52,7 +52,7 @@ public class TunnelingDynamicRule implements IRestRule {
     }
 
     @Override
-    public RuleType getRuleType() {
+    public List<RuleType> getRuleType() {
         return RULE_TYPE;
     }
 

@@ -16,13 +16,16 @@ public class TunnelingRule implements IRestRule {
     private static final String TITLE = "GET and POST must not be used to tunnel other request methods";
     private static final RuleCategory RULE_CATEGORY = RuleCategory.HTTP;
     private static final RuleSeverity RULE_SEVERITY = RuleSeverity.CRITICAL;
-    private static final RuleType RULE_TYPE = RuleType.STATIC;
-    private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List.of(RuleSoftwareQualityAttribute.MAINTAINABILITY, RuleSoftwareQualityAttribute.COMPATIBILITY, RuleSoftwareQualityAttribute.FUNCTIONAL_SUITABILITY, RuleSoftwareQualityAttribute.USABILITY);
+    private static final List<RuleType> RULE_TYPE = List.of(RuleType.STATIC);
+    private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List.of(
+            RuleSoftwareQualityAttribute.MAINTAINABILITY, RuleSoftwareQualityAttribute.COMPATIBILITY,
+            RuleSoftwareQualityAttribute.FUNCTIONAL_SUITABILITY, RuleSoftwareQualityAttribute.USABILITY);
     private boolean isActive;
 
     public TunnelingRule(boolean isActive) {
         this.isActive = isActive;
     }
+
     @Override
     public String getTitle() {
         return TITLE;
@@ -39,7 +42,7 @@ public class TunnelingRule implements IRestRule {
     }
 
     @Override
-    public RuleType getRuleType() {
+    public List<RuleType> getRuleType() {
         return RULE_TYPE;
     }
 
@@ -61,11 +64,11 @@ public class TunnelingRule implements IRestRule {
     @Override
     public List<Violation> checkViolation(OpenAPI openAPI) {
 
-        //TODO: execute CRUD rule and check if CRUD operator matches request Type
+        // TODO: execute CRUD rule and check if CRUD operator matches request Type
 
-        //TODO: check GET RULE and list each violation as own
+        // TODO: check GET RULE and list each violation as own
 
-        //TODO: dynamic rule execution
+        // TODO: dynamic rule execution
 
         return new ArrayList<>();
     }

@@ -16,7 +16,7 @@ public interface IRestRule {
 
     RuleSeverity getSeverityType();
 
-    RuleType getRuleType();
+    List<RuleType> getRuleType();
 
     List<RuleSoftwareQualityAttribute> getRuleSoftwareQualityAttribute();
 

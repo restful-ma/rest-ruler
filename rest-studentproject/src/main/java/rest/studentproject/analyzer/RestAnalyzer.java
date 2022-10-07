@@ -7,9 +7,6 @@ import rest.studentproject.rule.Utility;
 import rest.studentproject.rule.Violation;
 import rest.studentproject.rule.constants.SecuritySchema;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -28,14 +25,6 @@ public class RestAnalyzer {
         this.openAPI = Utility.getOpenAPI(path);
         locMapper = new LOCMapper(openAPI, path);
         locMapper.mapOpenAPIKeysToLOC();
-//        List<Server> servers = swaggerParseResult.getOpenAPI().getServers();
-        // Check if server is available
-//        for (Server server : servers) {
-//            System.out.println(server.getUrl());
-//            System.out.println(server.getVariables());
-//
-//            System.out.println(pingURL(server.getUrl(), 2000));
-//        }
     }
 
     public List<Violation> runAnalyse(List<IRestRule> activeRules, boolean generateReport) {

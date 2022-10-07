@@ -43,7 +43,7 @@ public class Report {
         StringBuilder sbConsoleReport = new StringBuilder();
         sbConsoleReport.append(new Heading("REST API Specification Report", 1)).append("\n");
 
-        //Table heading
+        // Table heading
         Table.Builder mdReport = new Table.Builder().addRow("Line No.", "Line", "Rule Violated", "Category",
                 "Severity", "Rule Type", "Software Quality Attributes", "Improvement Suggestion");
 
@@ -52,7 +52,7 @@ public class Report {
         for (Violation v : violationList) {
             IRestRule rule = v.getRule();
             mdReport.addRow(v.getLineViolation(), v.getKeyViolation(), rule.getTitle(), rule.getCategory(),
-                    rule.getSeverityType(), rule.getRuleType(),
+                    rule.getSeverityType(), rule.getRuleType().toString().replace("[", "").replace("]", ""),
                     rule.getRuleSoftwareQualityAttribute().toString().replace("[", "").replace("]", ""),
                     v.getImprovementSuggestion());
             consoleReport.addRow(v.getLineViolation(), v.getKeyViolation(), rule.getTitle());
@@ -60,22 +60,21 @@ public class Report {
 
         sbConsoleReport.append(consoleReport.build());
 
-        //print to console
+        // print to console
         System.out.println(sbConsoleReport);
 
         try {
-            //get current time
+            // get current time
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy_MM_dd-HH_mm_ss");
             LocalDateTime now = LocalDateTime.now();
 
-
-            //create directory
+            // create directory
             Path path = Path.of(OUTPUT_DIR);
             if (!Files.isDirectory(path)) {
                 path = Files.createDirectory(path);
             }
 
-            //write file
+            // write file
             String filename = "Report_" + dtf.format(now) + ".md";
             Path file = Files.createFile(path.resolve(filename));
             BufferedWriter bw = Files.newBufferedWriter(file);
@@ -83,9 +82,9 @@ public class Report {
             sbMDReport.append(mdReport.build());
             printWriter.print(sbMDReport);
 
-            //notification
+            // notification
             System.out.println("----------------------------------------------");
-            System.out.println("\nIn total " + violationList.size() +" rule violations were found");
+            System.out.println("\nIn total " + violationList.size() + " rule violations were found");
             System.out.println("--> The detailed report can be found here: " + path.toAbsolutePath());
 
             printWriter.close();
