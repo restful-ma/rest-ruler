@@ -22,24 +22,33 @@ class UnauthorizedRuleTest {
     RestAnalyzer restAnalyzer;
     UnauthorizedRule unauthorizedRule;
 
+
+    
     @Test
     @DisplayName("Test that checks if the rule violation is detected for globally and locally defined security.")
-    void checkGlobalAndLocalSec() {
+    void checkStaticGlobalAndLocalSec() {
         for (String path : PATHS_TO_OPENAPI) {
-            List<Violation> violations = runMethodUnderTest(path);
+            List<Violation> violations = runMethodUnderTest(path, false);
             assertEquals(3, violations.size());
         }
     }
 
     @Test
+    @DisplayName("Test that checks if the rule violation is detected in a dynamic analysis.")
+    void checkUnauthorizedDynamicAnalysis(){
+
+    }
+
+    @Test
     @DisplayName("Test that checks if there is no rule violation for the valid OpenAPI definition.")
-    void checkValidOpenAPI() {
-        List<Violation> violations = runMethodUnderTest(PATH_TO_VALIDOPEAPI);
+    void checkStaticValidOpenAPI() {
+        List<Violation> violations = runMethodUnderTest(PATH_TO_VALIDOPEAPI, false);
         assertTrue(violations.isEmpty());
     }
 
-    private List<Violation> runMethodUnderTest(String path) {
+    private List<Violation> runMethodUnderTest(String path, boolean dynamicAnalysis) {
         this.restAnalyzer = new RestAnalyzer(path);
+        RestAnalyzer.dynamicAnalysis = dynamicAnalysis;
         this.unauthorizedRule = new UnauthorizedRule(true);
         return new ArrayList<>(this.restAnalyzer.runAnalyse(List.of(this.unauthorizedRule), false));
     }
