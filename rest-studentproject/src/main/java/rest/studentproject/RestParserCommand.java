@@ -14,7 +14,7 @@ public class RestParserCommand implements Runnable {
             "definition (2.0 or higher; json or yaml)")
     private String path;
 
-    @Option(names = {"-r", "--report"}, description = "generates a report file")
+    @Option(names = {"-o", "--out"}, description = "generates a report/output file")
     private boolean generateReport;
 
     @Option(names = {"-t", "--title"}, description = "generates a report file with a custom title")
