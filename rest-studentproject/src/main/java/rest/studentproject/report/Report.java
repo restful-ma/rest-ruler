@@ -23,6 +23,8 @@ public class Report {
     private static final String OUTPUT_DIR = "out";
     private static Report instance;
     private final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    private String title;
+
 
     public static Report getInstance() {
         if (instance != null) {
@@ -32,11 +34,32 @@ public class Report {
         }
     }
 
+    /**
+     * Interface method of this class allowing a list of Violation objects to be written to file
+     * @param violationList list of Violation objects to be written to file
+     */
     public void generateReport(List<Violation> violationList) {
+        this.title = getTimestamp();
         violationList.sort(Violation.getComparator());
         writeMarkdownReport(violationList);
     }
 
+    /**
+     * Overloaded method allowing to additionally set a custom name for the report file.
+     * This overloaded Interface method of this class allows a list of Violation objects to be written to file
+     * @param violationList List of Violation objects to be written to file
+     * @param title custom name tag for the report file
+     */
+    public void generateReport(List<Violation> violationList, String title) {
+        this.title = title;
+        violationList.sort(Violation.getComparator());
+        writeMarkdownReport(violationList);
+    }
+
+    /**
+     * writes a report file in markdown format containing a table of all collected violations
+     * @param violationList list of Violation Objects to be written to file
+     */
     private void writeMarkdownReport(List<Violation> violationList) {
         StringBuilder sbMDReport = new StringBuilder();
         sbMDReport.append(new Heading("REST API Specification Report", 1)).append("\n");
@@ -64,10 +87,6 @@ public class Report {
         System.out.println(sbConsoleReport);
 
         try {
-            //get current time
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy_MM_dd-HH_mm_ss");
-            LocalDateTime now = LocalDateTime.now();
-
 
             //create directory
             Path path = Path.of(OUTPUT_DIR);
@@ -76,7 +95,7 @@ public class Report {
             }
 
             //write file
-            String filename = "Report_" + dtf.format(now) + ".md";
+            String filename = "Report_" + title + ".md";
             Path file = Files.createFile(path.resolve(filename));
             BufferedWriter bw = Files.newBufferedWriter(file);
             PrintWriter printWriter = new PrintWriter(bw);
@@ -91,5 +110,17 @@ public class Report {
         } catch (IOException e) {
             logger.severe("Error on writing report: " + e.getMessage());
         }
+    }
+
+    /**
+     * generates a String of the current date and time
+     * @return timestamp string
+     */
+    private String getTimestamp(){
+        //get current time
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy_MM_dd-HH_mm_ss");
+        LocalDateTime now = LocalDateTime.now();
+
+        return dtf.format(now);
     }
 }
