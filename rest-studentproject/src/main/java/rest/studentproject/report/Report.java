@@ -13,6 +13,7 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -84,7 +85,7 @@ public class Report {
         sbConsoleReport.append(consoleReport.build());
 
         //print to console
-        System.out.println(sbConsoleReport);
+        logger.info(sbConsoleReport.toString());
 
         try {
 
@@ -103,7 +104,7 @@ public class Report {
             printWriter.print(sbMDReport);
 
             //notification
-            System.out.println("The detailed report can be found here: " + path.toAbsolutePath());
+            logger.log(Level.INFO,"The detailed report can be found here: {0}", path.toAbsolutePath());
 
             printWriter.close();
             bw.close();
