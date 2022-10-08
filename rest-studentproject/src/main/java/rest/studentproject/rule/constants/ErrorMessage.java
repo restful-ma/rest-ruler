@@ -16,6 +16,9 @@ public class ErrorMessage {
     public static final String PLURAL_NAME = "A plural noun should be used for collection or store names";
     public static final String FILE_EXTENSION = "File extensions should not be included in URIs";
     public static final String CONTENT_TYPE = "Content-Type must be used";
+    public static final String TUNNELING = "Possibly wrong HTTP request type used";
+    public static final String VERBPHRASE = " A verb or verb phrase should be used for controller names";
+    public static final String TRAILINGSLASH = "A trailing forward slash '/' was found in the URI";
 
     private ErrorMessage() {
         throw new IllegalStateException("Utility class");

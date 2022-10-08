@@ -13,6 +13,9 @@ public class ImprovementSuggestion {
     public static final String GET_RESOURCE_MISSING_RESPONSE = "Add missing Response for HTTP Code 200";
     public static final String SINGULAR_DOCUMENT_NAME = "Use singular nouns for document names";
     public static final String PLURAL_NAME = "Use plural nouns for collection or store names";
+    public static final String TUNNELING = "Use the appropriate HTTP request type";
+    public static final String VERB_PHRASE = "Use a verb or verb phrase for controller names";
+    public static final String TRAILING_SLASH = "remove trailing forward slash '/' from URI";
 
     private ImprovementSuggestion() {
         throw new IllegalStateException("Utility class");

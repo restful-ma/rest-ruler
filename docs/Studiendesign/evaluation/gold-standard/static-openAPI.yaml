@@ -253,6 +253,49 @@ paths:
                 properties:
                   username:
                     type: string
+  # RULE 1: A trailing forward slash (/) should not be included in URIs
+  /users/{userId}/details/:
+    get:
+      summary: Returns a user permission for ID.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The details of the user to return.
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        "200":
+          description: A users permissions.
+          content:
+            text/plain:
+              schema:
+                type: string
+        "400":
+          description: The specified user ID is invalid (not a number).
+          content:
+            text/plain:
+              schema:
+                type: string
+        "401":
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                type: string
+        "404":
+          description: A user with the specified ID was not found.
+          content:
+            text/plain:
+              schema:
+                type: string
+        default:
+          description: Unexpected error
+          content:
+            text/plain:
+              schema:
+                type: string
   # Rule 28: GET must be used to retrieve a representation of a resource
   # missing resource representation
   /users/{userId}/permissions:
@@ -1270,6 +1313,10 @@ paths:
                     type: string
         "401":
           description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                type: string
         "404":
           description: A cat with the specified ID was not found.
           content:
@@ -1405,7 +1452,14 @@ paths:
       description: "Violates the content-type rule. --> no content defined on 200 responses in the ref"
       response:
         "200":
-          $ref: "components/responses/OkResponse"
+          description: "Successful request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
         "400":
           description: "Bad request"
           content:
@@ -1476,19 +1530,93 @@ paths:
                 properties:
                   username:
                     type: string
+  # RULE 5: A verb or verb phrase should be used for controllerA verb or verb phrase should be used for controller names
+  /animals/{catId}/Food/{foodId}/deliverFood:
+    put:
+      summary: Returns foods for the kids of a catId.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: Returns foods for the kids of a catId.
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        '200':
+          description: A cat permissions.
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: The specified cat ID is invalid (not a number).
+          content:
+            text/plain:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: A cat with the specified ID was not found.
+          content:
+            text/plain:
+              schema:
+                type: string
+        default:
+          description: Unexpected error
+          content:
+            text/plain:
+              schema:
+                type: string
+  /animals/{catId}/Food/{foodId}/removeFood:
+    delete:
+      summary: Returns foods for the kids of a catId.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: Returns foods for the kids of a catId.
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        '200':
+          description: A cat permissions.
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: The specified cat ID is invalid (not a number).
+          content:
+            text/plain:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: A cat with the specified ID was not found.
+          content:
+            text/plain:
+              schema:
+                type: string
+        default:
+          description: Unexpected error
+          content:
+            text/plain:
+              schema:
+                type: string
 components:
   # Define all components here
-  responses:
-    OkResponse:
-      content:
-        application/x-www-form-urlencoded:
-           schema:
-            type: object
-              properties:
-                color:
-                  type: array
-                  items:
-                    type: string
   securitySchemes:
     BasicAuth:
       type: http
