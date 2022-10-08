@@ -1,23 +1,16 @@
 package rest.studentproject.rule.rules;
 
 import io.swagger.v3.oas.models.OpenAPI;
-import org.apache.commons.lang3.tuple.ImmutablePair;
 import rest.studentproject.rule.IRestRule;
 import rest.studentproject.rule.Violation;
 import rest.studentproject.rule.constants.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
-import static rest.studentproject.oxford.dictionary.api.JsonOxfordDictionary.checkIfWordInJson;
-import static rest.studentproject.oxford.dictionary.api.OxfordConstants.PLURAL;
-import static rest.studentproject.oxford.dictionary.api.OxfordConstants.SINGULAR;
-import static rest.studentproject.oxford.dictionary.api.OxfordDictionariesApi.checkWordUsingOxfordDictionariesAPI;
-import static rest.studentproject.rule.Utility.getControlPathSegmentForRule;
-import static rest.studentproject.rule.Utility.getSwitchPathSegment;
+import static rest.studentproject.rule.Utility.*;
+import static rest.studentproject.rule.rules.SingularDocumentNameRule.PLURAL;
+import static rest.studentproject.rule.rules.SingularDocumentNameRule.SINGULAR;
 
 public class PluralNameRule implements IRestRule {
 
@@ -95,25 +88,23 @@ public class PluralNameRule implements IRestRule {
         return violations;
     }
 
-    private Violation getLstViolationsFromPathSegments(String path, String[] pathSegments) {
-        String switchPathSegment = "";
+    private Violation getLstViolationsFromPathSegments(String path, String[] pathSegments){
         String firstPathSegment = "";
-        boolean skipFirstSwitchPathSegmentAssign = true;
         List<String> listPathSegments = new ArrayList<>(List.of(pathSegments));
         listPathSegments.removeAll(Arrays.asList("", null));
+        listPathSegments.removeAll(Arrays.asList(" ", null));
         // Check if a path is starting with a plural or singular word.
-        if (!listPathSegments.isEmpty()) firstPathSegment = listPathSegments.get(0).trim().toLowerCase();
-        // Set the switch based on the firstPathSegment. We need to see if a path has the form
-        // singular/plural/singular.. or plural/singular/plural.. based on the firstPathSegment
-        switchPathSegment = getSwitchPathSegment(pathSegments, switchPathSegment, firstPathSegment);
+        if(!listPathSegments.isEmpty()) firstPathSegment =listPathSegments.get(0).trim().toLowerCase();
+        // Set the switch based on the firstPathSegment. We need to see if a path has the form singular/plural/singular.. or plural/singular/plural.. based on the firstPathSegment
+        String initialToken = getTokenNLP(firstPathSegment);
+        if(initialToken == null) return null;
+        String switchPathSegment = getTokenFromWord(initialToken);
 
         for (String pathSegment : listPathSegments) {
-            if (pathSegment.isEmpty()) continue;
-            // If a pathSegment contains a curly brace, it is a parameter, and we don't need to check it. But we know
-            // that such a pathSegment is automatically singular.
-            // In this case is important to see if the previous switchPathSegment is plural or singular. If was
-            // singular,and we have a pathSegment with curly braces, then we have a violation because
-            // singular/singular path.
+            if(listPathSegments.get(0).equals(pathSegment)) continue;
+            if(pathSegment.isEmpty()) continue;
+            // If a pathSegment contains a curly brace, it is a parameter, and we don't need to check it. But we know that such a pathSegment is automatically singular.
+            // In this case is important to see if the previous switchPathSegment is plural or singular. If was singular,and we have a pathSegment with curly braces, then we have a violation because singular/singular path.
             if (pathSegment.contains("{") && switchPathSegment.equals(SINGULAR)) {
                 return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.SINGULAR_DOCUMENT_NAME
                         , path, ErrorMessage.PLURAL_NAME + WITH_PATH_SEGMENT + pathSegment);
@@ -123,34 +114,16 @@ public class PluralNameRule implements IRestRule {
                 switchPathSegment = SINGULAR;
                 continue;
             }
-            // Check if the jsonDictionary already contained the pathSegment. The return value is a tuple, with a
-            // boolean (true if the word is present) and a string (the word in singular or plural form)
-            ImmutablePair<Boolean, String> isPathSegmentInJson = checkIfWordInJson(pathSegment);
-            // If the word is contained and the form of the word doesn't match the current switchPathSegment then we
-            // have a violation
-            if (Boolean.TRUE.equals(isPathSegmentInJson.getLeft()) && switchPathSegment.equals(isPathSegmentInJson.getRight()) && switchPathSegment.equals(SINGULAR) && !listPathSegments.get(0).equals(pathSegment)) {
-                return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.PLURAL_NAME, path,
-                        ErrorMessage.PLURAL_NAME + WITH_PATH_SEGMENT + pathSegment);
-            } else if (Boolean.TRUE.equals(isPathSegmentInJson.getLeft())) {
-                switchPathSegment = skipFirstSwitchPathSegmentAssign ? switchPathSegment :
-                        getControlPathSegmentForRule(switchPathSegment.equals(PLURAL));
-                skipFirstSwitchPathSegmentAssign = false;
-                continue;
-            }
-
-            // If the word is not contained in the jsonDictionary, we need to check if the word is present in the
-            // OxfordDictionaryAPI
-            // We get a true if the word is singular otherwise a false if it is plural
-            boolean isSingular = checkWordUsingOxfordDictionariesAPI(pathSegment.trim().toLowerCase());
+            // Get singular or plural based on the token
+            String token = getTokenNLP(pathSegment);
+            String currentSwitchPathSegment = getTokenFromWord(token);
+            boolean test = false;
             // If the word is singular but the current switchPathSegment is plural, then we have a violation.
-            if (isSingular && switchPathSegment.equals(SINGULAR) && !listPathSegments.get(0).equals(pathSegment)) {
-                return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.PLURAL_NAME, path,
-                        ErrorMessage.PLURAL_NAME + WITH_PATH_SEGMENT + pathSegment);
+            if(switchPathSegment.equals(SINGULAR) && currentSwitchPathSegment.equals(SINGULAR)) {
+                return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.PLURAL_NAME, path, ErrorMessage.PLURAL_NAME+ WITH_PATH_SEGMENT + pathSegment);
             }
 
-            switchPathSegment = skipFirstSwitchPathSegmentAssign ? switchPathSegment :
-                    getControlPathSegmentForRule(switchPathSegment.equals(PLURAL));
-            skipFirstSwitchPathSegmentAssign = false;
+            switchPathSegment = getControlPathSegmentForRule(switchPathSegment.equals(PLURAL));
         }
         return null;
     }
