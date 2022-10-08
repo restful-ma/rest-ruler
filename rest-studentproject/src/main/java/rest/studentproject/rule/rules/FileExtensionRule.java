@@ -4,6 +4,7 @@ import io.swagger.v3.oas.models.OpenAPI;
 import rest.studentproject.rule.IRestRule;
 import rest.studentproject.rule.Violation;
 import rest.studentproject.rule.constants.*;
+import rest.studentproject.utility.Output;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -19,8 +20,8 @@ public class FileExtensionRule implements IRestRule {
     private static final RuleCategory CATEGORY = RuleCategory.URIS;
     private static final RuleSeverity SEVERITY = RuleSeverity.ERROR;
     private static final List<RuleType> TYPE = List.of(RuleType.STATIC);
-    private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES =
-            List.of(RuleSoftwareQualityAttribute.MAINTAINABILITY);
+    private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List
+            .of(RuleSoftwareQualityAttribute.MAINTAINABILITY);
     private static final List<Violation> violationList = new ArrayList<>();
     private static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
@@ -68,30 +69,33 @@ public class FileExtensionRule implements IRestRule {
     /**
      * Method used to check for any violations of the implemented rule
      *
-     * @param openAPI structured Object containing a representation of a OpenAPI specification
+     * @param openAPI structured Object containing a representation of a OpenAPI
+     *                specification
      * @return List of Violations of the executing Rule
      */
     @Override
     public List<Violation> checkViolation(OpenAPI openAPI) {
         Set<String> paths = new HashSet<>(openAPI.getPaths().keySet());
 
+        int curPath = 1;
+        int totalPaths = paths.size();
         for (String path : paths) {
+            Output.progressPercentage(curPath, totalPaths);
+            curPath++;
             String pathWithoutParameters = path.replaceAll("\\{" + ".*" + "\\}", "").toUpperCase();
-
 
             // Reads file that contains about 838 file extensions
             try (BufferedReader br = new BufferedReader(new FileReader(PATH_TO_FILE_EXTENSIONS))) {
                 String line;
-
                 while ((line = br.readLine()) != null) {
-
                     // Stops when one violation is found --> rest of extensions are not checked
                     if (pathWithoutParameters.endsWith("." + line.toUpperCase())) {
                         violationList.add(new Violation(this, locMapper.getLOCOfPath(path),
-                                "To indicate the format " + "of a message's entity body (" + line + ") rely on the " + "media type inside the Content-Type header.", path, ErrorMessage.FILE_EXTENSION));
+                                "To indicate the format " + "of a message's entity body (" + line + ") rely on the "
+                                        + "media type inside the Content-Type header.",
+                                path, ErrorMessage.FILE_EXTENSION));
                         break;
                     }
-
                 }
             } catch (IOException e) {
                 logger.severe("Error on trying to read the file extension file: " + e.getMessage());

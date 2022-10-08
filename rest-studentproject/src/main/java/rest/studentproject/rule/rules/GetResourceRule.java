@@ -9,6 +9,7 @@ import io.swagger.v3.oas.models.responses.ApiResponses;
 import rest.studentproject.rule.IRestRule;
 import rest.studentproject.rule.Violation;
 import rest.studentproject.rule.constants.*;
+import rest.studentproject.utility.Output;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +80,12 @@ public class GetResourceRule implements IRestRule {
         //collect necessary data
         Paths paths = openAPI.getPaths();
 
+        int curPath = 1;
+        int totalPaths = paths.keySet().size();
         for (Map.Entry<String, PathItem> entry : paths.entrySet()) {
+            Output.progressPercentage(curPath, totalPaths);
+            curPath++;
+            
             String path = entry.getKey();
             PathItem item = entry.getValue();
 

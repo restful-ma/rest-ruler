@@ -175,8 +175,7 @@ public class Output {
                 + " made to resources nor are they saved.");
         System.out.println("If you want to do the dynamic analysis, enter yes or y, if you do not want to do it, " +
                 "enter any other key.");
-        System.out.println(YES_NO
-);
+        System.out.println(YES_NO);
 
         String dynamicAnalysis = scanner.next();
 
@@ -264,8 +263,7 @@ public class Output {
             if (properties.containsKey(keyTokenProps)) {
                 System.out.println("\nFound credentials for this security method in config. Do you want to use them "
                         + "(yes or y) or enter new credentials (no or n)?");
-                System.out.println(YES_NO
-        );
+                System.out.println(YES_NO);
                 String input = scanner.next();
                 if (input.equals("y") || input.equals("yes")) {
                     secInProps = true;
@@ -315,8 +313,7 @@ public class Output {
                 }
             }
             System.out.println("Do you want to enter another security schema? Enter yes or y, enter no or n.");
-            System.out.println(YES_NO
-    );
+            System.out.println(YES_NO);
 
             choice = scanner.next();
 
@@ -332,10 +329,10 @@ public class Output {
         if (!secInProps) {
             System.out.println("\n" + UNDERLINE);
             System.out.println("---------------------Save---------------------");
-            System.out.println("Do you want to save the credentials local for further analyses enter yes or y or " +
-                    "only" + " " + "use" + " the input only for the next analysis enter any other key.");
+            System.out.println(
+                    "Do you want to save the credentials local for further analyses enter yes or y or enter any other key to use the input only for the next analysis.");
             System.out.println(YES_NO
-     + "\n");
+                    + "\n");
 
             choice = scanner.next();
 
@@ -435,6 +432,27 @@ public class Output {
         } catch (IOException e) {
             System.err.println("Error while checking URL: " + e.getMessage());
             return false;
+        }
+    }
+
+    public static void progressPercentage(int remain, int total) {
+        if (remain > total) {
+            throw new IllegalArgumentException();
+        }
+        int maxBareSize = 10; // 10unit for 100%
+        int remainProcent = ((100 * remain) / total) / maxBareSize;
+        char defaultChar = ' ';
+        String icon = "=";
+        String bare = new String(new char[maxBareSize]).replace('\0', defaultChar) + "]";
+        StringBuilder bareDone = new StringBuilder();
+        bareDone.append("[");
+        for (int i = 0; i < remainProcent; i++) {
+            bareDone.append(icon);
+        }
+        String bareRemain = bare.substring(remainProcent, bare.length());
+        System.out.print("\r" + bareDone + bareRemain + " " + remainProcent * 10 + "%");
+        if (remain == total) {
+            System.out.print("\n");
         }
     }
 

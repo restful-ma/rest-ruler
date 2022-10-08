@@ -6,6 +6,7 @@ import io.swagger.v3.oas.models.Paths;
 import rest.studentproject.rule.IRestRule;
 import rest.studentproject.rule.Violation;
 import rest.studentproject.rule.constants.*;
+import rest.studentproject.utility.Output;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +72,11 @@ public class TunnelingRule implements IRestRule {
 
         List<Violation> crudViolations = crudRule.checkViolation(openAPI);
 
+        int curViolation = 1;
+        int totalViolations = crudViolations.size();
         for (Violation crudViolation : crudViolations) {
+            Output.progressPercentage(curViolation, totalViolations);
+            curViolation++;
 
             Violation tunnelingViolation = checkCRUDForTunneling(crudViolation, paths);
 

@@ -47,12 +47,13 @@ public class Utility {
     public static boolean getPathSegmentContained(String word, String filePath) {
         boolean isWordInDictionary = false;
         try (FileReader fileReader = new FileReader(filePath)) {
-            Scanner scanner = new Scanner(fileReader);
-            while (scanner.hasNext()) {
-                String wordFromDictionary = scanner.next();
-                if (word.toLowerCase().contains(wordFromDictionary)) {
-                    isWordInDictionary = true;
-                    break;
+            try (Scanner scanner = new Scanner(fileReader)) {
+                while (scanner.hasNext()) {
+                    String wordFromDictionary = scanner.next();
+                    if (word.toLowerCase().contains(wordFromDictionary)) {
+                        isWordInDictionary = true;
+                        break;
+                    }
                 }
             }
         } catch (Exception e) {

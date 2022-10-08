@@ -4,6 +4,7 @@ import io.swagger.v3.oas.models.OpenAPI;
 import rest.studentproject.rule.IRestRule;
 import rest.studentproject.rule.Violation;
 import rest.studentproject.rule.constants.*;
+import rest.studentproject.utility.Output;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,8 +98,13 @@ public class LowercaseRule implements IRestRule {
 
         if (paths.isEmpty())
             return violations;
+
+        int curPath = 1;
+        int totalPaths = paths.size();
         // Loop through the paths
         for (String path : paths) {
+            Output.progressPercentage(curPath, totalPaths);
+            curPath++;
             if (path.trim().equals(""))
                 continue;
             // Get the path without the curly braces

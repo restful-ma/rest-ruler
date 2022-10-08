@@ -3,12 +3,14 @@ package rest.studentproject.rule.rules;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.PathItem;
+import io.swagger.v3.oas.models.Paths;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.servers.Server;
 import rest.studentproject.rule.IRestRule;
 import rest.studentproject.rule.Utility;
 import rest.studentproject.rule.Violation;
 import rest.studentproject.rule.constants.*;
+import rest.studentproject.utility.Output;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -43,6 +45,7 @@ public class UnauthorizedRule implements IRestRule {
     private boolean isActive;
     private OpenAPI openAPI;
     private HttpURLConnection con;
+    private int totalPaths;
 
     public UnauthorizedRule(boolean isActive) {
         this.isActive = isActive;
@@ -118,9 +121,13 @@ public class UnauthorizedRule implements IRestRule {
      */
     private void dynamicAnalysis() {
         List<Server> servers = this.openAPI.getServers();
+        Paths paths = this.openAPI.getPaths();
 
+        int curPath = paths.size() + 1;
         // Iterate over each defined path
-        for (Map.Entry<String, PathItem> path : this.openAPI.getPaths().entrySet()) {
+        for (Map.Entry<String, PathItem> path : paths.entrySet()) {
+            Output.progressPercentage(curPath, this.totalPaths);
+            curPath++;
 
             // If there is already a violation from static analysis skip this path
             if (checkViolationForPath(path.getKey()))
@@ -137,8 +144,7 @@ public class UnauthorizedRule implements IRestRule {
                     continue;
 
                 // Dynamic analysis is only for GET implemented because else there is the
-                // possibility to
-                // update/delete some resources
+                // possibility to update/delete some resources
                 if (!operation.getKey().equalsIgnoreCase("GET"))
                     continue;
 
@@ -233,8 +239,14 @@ public class UnauthorizedRule implements IRestRule {
     private void staticAnalysis() {
         List<SecurityRequirement> security = this.openAPI.getSecurity();
         boolean globalSec = security != null && !security.isEmpty();
+        Paths paths = this.openAPI.getPaths();
 
-        for (Map.Entry<String, PathItem> path : this.openAPI.getPaths().entrySet()) {
+        int curPath = 1;
+        this.totalPaths = paths.keySet().size() * 2;
+        for (Map.Entry<String, PathItem> path : paths.entrySet()) {
+            Output.progressPercentage(curPath, this.totalPaths);
+            curPath++;
+
             Map<String, Operation> operations = getPathOperations(path.getValue(), globalSec, true);
 
             for (Map.Entry<String, Operation> operation : operations.entrySet()) {

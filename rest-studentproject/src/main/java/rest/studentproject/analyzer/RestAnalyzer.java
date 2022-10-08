@@ -10,16 +10,18 @@ import rest.studentproject.rule.constants.SecuritySchema;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RestAnalyzer {
-    //Singleton
+    // Singleton
     private static final Report report = Report.getInstance();
-    public static LOCMapper locMapper = null;
-    public static Map<SecuritySchema, String> securitySchemas = null;
+    public static LOCMapper locMapper;
+    public static Map<SecuritySchema, String> securitySchemas;
     public static boolean dynamicAnalysis = true;
 
+    private final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     public final OpenAPI openAPI;
-
 
     public RestAnalyzer(String path) {
         this.openAPI = Utility.getOpenAPI(path);
@@ -29,12 +31,18 @@ public class RestAnalyzer {
 
     public List<Violation> runAnalyse(List<IRestRule> activeRules, boolean generateReport) {
         List<Violation> violations = new ArrayList<>();
+        int curRule = 1;
         for (IRestRule rule : activeRules) {
-            if (!rule.getIsActive()) continue;
+            if (!rule.getIsActive())
+                continue;
+            String info = String.format("Rule %d of %d is now checked:%n%s", curRule, activeRules.size(),
+                    rule.getTitle());
+            logger.log(Level.INFO, info);
             List<Violation> test = rule.checkViolation(this.openAPI);
+            curRule++;
             violations.addAll(test);
         }
-        //generates Report
+        // generates Report
         if (generateReport) {
             report.generateReport(violations);
         }

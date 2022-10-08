@@ -1,10 +1,10 @@
 package rest.studentproject.rule.rules;
 
 import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.servers.Server;
 import rest.studentproject.rule.IRestRule;
 import rest.studentproject.rule.Violation;
 import rest.studentproject.rule.constants.*;
+import rest.studentproject.utility.Output;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -21,8 +21,8 @@ public class UnderscoreRule implements IRestRule {
     private static final RuleCategory CATEGORY = RuleCategory.URIS;
     private static final RuleSeverity SEVERITY = RuleSeverity.ERROR;
     private static final List<RuleType> TYPE = List.of(RuleType.STATIC);
-    private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES =
-            List.of(RuleSoftwareQualityAttribute.MAINTAINABILITY);
+    private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List
+            .of(RuleSoftwareQualityAttribute.MAINTAINABILITY);
     private static final List<Violation> violationList = new ArrayList<>();
 
     private boolean isActive;
@@ -67,7 +67,8 @@ public class UnderscoreRule implements IRestRule {
     }
 
     /**
-     * Checks if there is a violation against the underscore rule. All paths and base URLs are checked.
+     * Checks if there is a violation against the underscore rule. All paths and
+     * base URLs are checked.
      *
      * @param openAPI the definition that will be checked against the rule.
      * @return the list of violations.
@@ -75,34 +76,33 @@ public class UnderscoreRule implements IRestRule {
     public List<Violation> checkViolation(OpenAPI openAPI) {
         Set<String> paths = new HashSet<>();
         paths.addAll(openAPI.getPaths().keySet());
-        List<Server> servers = openAPI.getServers();
 
-        // Add server paths to the path list
-        for (Server server : servers) {
-            if (server.getUrl().trim().isEmpty()) continue;
-            paths.add(server.getUrl());
-        }
-
-        // Violate the underscore rule for the path list
+        int curPath = 1;
+        int totalPaths = paths.size();
+        // Validate the underscore rule for the path list
         for (String path : paths) {
-            if (path.trim().isEmpty()) continue;
+            Output.progressPercentage(curPath, totalPaths);
+            curPath++;
+            if (path.trim().isEmpty())
+                continue;
             checkUnderscore(path);
         }
         return violationList;
     }
 
     /**
-     * Checks if the given path contains an underscore. If there is a parameter within the path, it will be deleted.
+     * Checks if the given path contains an underscore. If there is a parameter
+     * within the path, it will be deleted.
      *
      * @param path the path to check if it contains an underscore.
      */
     private void checkUnderscore(String path) {
         String pathWithoutVariable = path.replaceAll("\\{" + ".*" + "\\}", "");
-        if (!pathWithoutVariable.contains("_")) return;
+        if (!pathWithoutVariable.contains("_"))
+            return;
 
         violationList.add(new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.UNDERSCORE, path,
                 ErrorMessage.UNDERSCORE));
-
 
     }
 }
