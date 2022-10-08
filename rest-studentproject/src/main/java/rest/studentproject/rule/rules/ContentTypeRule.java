@@ -10,6 +10,7 @@ import io.swagger.v3.oas.models.responses.ApiResponses;
 import rest.studentproject.rule.IRestRule;
 import rest.studentproject.rule.Violation;
 import rest.studentproject.rule.constants.*;
+import rest.studentproject.utility.Output;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
@@ -94,8 +95,12 @@ public class ContentTypeRule implements IRestRule {
         this.openAPI = openAPI;
         Paths paths = openAPI.getPaths();
 
+        int curPath = 1;
+        int totalPaths = paths.size();
         for (Map.Entry<String, PathItem> path : paths.entrySet()) {
             this.pathName = path.getKey();
+            Output.progressPercentage(curPath, totalPaths);
+            curPath++;
             checkContentType(path.getValue());
         }
         return this.violationList;

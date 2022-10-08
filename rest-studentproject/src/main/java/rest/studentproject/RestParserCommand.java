@@ -22,11 +22,11 @@ public class RestParserCommand implements Runnable {
      * When the user runs a command, this method is called.
      */
     public void run() {
-        // this.path = "https://api.apis.guru/v2/specs/abstractapi.com/geolocation/1.0.0/openapi.json";
+        // this.path = "https://api.apis.guru/v2/specs/ably.io/platform/1.1.0/openapi.json";
         // this.path = "C:\\Users\\manue\\Documents\\Studium\\Master\\2.Semester\\Projektarbeit\\Projektarbeit-Master\\rest-studentproject\\src\\main\\java\\rest\\studentproject\\docs\\Oxford_OpenAPI.json";
-        this.path = "C:\\Users\\manue\\Documents\\Studium\\Master\\2.Semester\\Projektarbeit\\Projektarbeit-Master\\rest-studentproject\\src\\test\\java\\rest\\studentproject\\rule\\contentTypeTest\\InvalidOpenAPIContentTypeRule.json";
+        // this.path = "C:\\Users\\manue\\Documents\\Studium\\Master\\2.Semester\\Projektarbeit\\Projektarbeit-Master\\rest-studentproject\\src\\test\\java\\rest\\studentproject\\rule\\contentTypeTest\\InvalidOpenAPIContentTypeRule.json";
         // this.path = "C:\\Users\\manue\\Documents\\Studium\\Master\\2.Semester\\Projektarbeit\\Projektarbeit-Master\\rest-studentproject\\src\\test\\java\\rest\\studentproject\\validopenapi\\validOpenAPI.json";
-        this.expertMode = false;
+        // this.expertMode = true;
         Output output = new Output();
         if (this.expertMode) output.askActiveRules();
         if (this.path != null) {

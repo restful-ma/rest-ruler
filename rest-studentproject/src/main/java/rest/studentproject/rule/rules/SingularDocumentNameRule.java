@@ -5,6 +5,7 @@ import io.swagger.v3.oas.models.OpenAPI;
 import rest.studentproject.rule.IRestRule;
 import rest.studentproject.rule.Violation;
 import rest.studentproject.rule.constants.*;
+import rest.studentproject.utility.Output;
 
 import java.util.*;
 
@@ -104,7 +105,11 @@ public class SingularDocumentNameRule implements IRestRule {
     }
 
     private List<Violation> getLstViolations(List<Violation> violations, Set<String> paths) {
+        int curPath = 1;
+        int totalPaths = paths.size();
         for (String path : paths) {
+            Output.progressPercentage(curPath, totalPaths);
+            curPath++;
             if (path.trim().equals(""))
                 continue;
             // Get the path without the curly braces

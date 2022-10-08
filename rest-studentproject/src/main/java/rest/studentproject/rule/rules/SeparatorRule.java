@@ -4,7 +4,7 @@ import io.swagger.v3.oas.models.OpenAPI;
 import rest.studentproject.rule.IRestRule;
 import rest.studentproject.rule.Violation;
 import rest.studentproject.rule.constants.*;
-
+import rest.studentproject.utility.Output;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -13,7 +13,8 @@ import java.util.regex.Pattern;
 import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
 
 /**
- * RULE: Forward slash separator (/) must be used to indicate a hierarchical relationship
+ * RULE: Forward slash separator (/) must be used to indicate a hierarchical
+ * relationship
  */
 public class SeparatorRule implements IRestRule {
 
@@ -21,11 +22,11 @@ public class SeparatorRule implements IRestRule {
     static final RuleCategory RULE_CATEGORY = RuleCategory.URIS;
     static final RuleSeverity RULE_SEVERITY = RuleSeverity.CRITICAL;
     static final List<RuleType> RULE_TYPE = List.of(RuleType.STATIC);
-    static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List.of(RuleSoftwareQualityAttribute.MAINTAINABILITY);
+    static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List
+            .of(RuleSoftwareQualityAttribute.MAINTAINABILITY);
 
     boolean isActive;
-    private static char[] separators = {'.', ':', ';', ',', '\\', '#', '/', '-', '?', '='};
-
+    private static char[] separators = { '.', ':', ';', ',', '\\', '#', '/', '-', '?', '=' };
 
     public SeparatorRule(boolean isActive) {
         this.isActive = isActive;
@@ -81,21 +82,25 @@ public class SeparatorRule implements IRestRule {
     public List<Violation> checkSeparator(Set<String> pathList) {
 
         List<Violation> violationList = new ArrayList<>();
-        //expected Pattern
+        // expected Pattern
         Pattern expectedPattern = Pattern.compile("^(\\/((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&=]+))+\\/?$");
 
+        int curPath = 1;
+        int totalPaths = pathList.size();
         for (String path : pathList) {
+            Output.progressPercentage(curPath, totalPaths);
+            curPath++;
 
             Matcher matcher = expectedPattern.matcher(path);
 
             int currentSize = violationList.size();
-            //check if path has expected format
+            // check if path has expected format
             if (!matcher.find()) {
 
-                //find illegal separators
+                // find illegal separators
                 violationList.addAll(findInvalidSeparators(path));
 
-                //unknown case:
+                // unknown case:
                 Violation unknownCase = catchUnknownCase(currentSize, violationList.size(), path);
                 if (unknownCase != null) {
                     violationList.add(unknownCase);
@@ -120,39 +125,40 @@ public class SeparatorRule implements IRestRule {
         // '=' and '-' are unique as they are valid characters in Paths and URLS
         switch (separator) {
             case '.':
-                //escape regex operation characters, otherwise identical to default case
+                // escape regex operation characters, otherwise identical to default case
                 patterns.add("^((\\/|\\.)((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&=]+))+(\\.|\\/)?$");
 
                 break;
             case '\\':
-                //escape regex operation characters, otherwise identical to default case
+                // escape regex operation characters, otherwise identical to default case
                 patterns.add("^((\\/|\\\\)((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&=]+))+(\\\\|\\/)?$");
 
                 break;
             case '?':
-                //escape regex operation characters, otherwise identical to default case
+                // escape regex operation characters, otherwise identical to default case
                 patterns.add("^((\\/|\\?)((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&=]+))+(\\?|\\/)?$");
 
                 break;
             case '=':
                 // starts with '=' but afterwards follows expected pattern
                 patterns.add("^=(((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&]+)\\/?)+$");
-                //case: path includes path variables that allow detection of '=' as a separator
+                // case: path includes path variables that allow detection of '=' as a separator
                 patterns.add("=(\\{[^\\/{}\\(\\)\\[\\]]+\\})");
-                patterns.add("^((\\/|" + separator + ")((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&]+))+(" + separator + "|\\/)?$");
-
+                patterns.add("^((\\/|" + separator + ")((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&]+))+("
+                        + separator + "|\\/)?$");
 
                 break;
             case '-':
                 // starts with '-' but afterwards follows expected pattern
                 patterns.add("^-(((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&=]+)\\/?)+$");
-                //case: path includes path variables that allow detection of '-' as a separator
+                // case: path includes path variables that allow detection of '-' as a separator
                 patterns.add("-(\\{[^\\/{}\\(\\)\\[\\]]+\\})");
 
                 break;
 
             default:
-                patterns.add("^((\\/|" + separator + ")((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&=]+))+(" + separator + "|\\/)?$");
+                patterns.add("^((\\/|" + separator + ")((\\{[^\\/{}\\(\\)\\[\\]]+\\})|[-a-zA-Z0-9@%_\\+~&=]+))+("
+                        + separator + "|\\/)?$");
 
         }
 
@@ -180,9 +186,11 @@ public class SeparatorRule implements IRestRule {
             if (c != '/') {
                 boolean isSeparator = checkForSeparator(c, path);
                 if (isSeparator) {
-                    String suggestion = "replace '" + c + "' with a forward slash '/' to indicate a hierarchical relationship";
+                    String suggestion = "replace '" + c
+                            + "' with a forward slash '/' to indicate a hierarchical relationship";
 
-                    violationList.add(new Violation(this, locMapper.getLOCOfPath(path), suggestion, path, ErrorMessage.SEPARATOR));
+                    violationList.add(new Violation(this, locMapper.getLOCOfPath(path), suggestion, path,
+                            ErrorMessage.SEPARATOR));
 
                 }
             }
@@ -201,11 +209,13 @@ public class SeparatorRule implements IRestRule {
     private Violation catchUnknownCase(int currentSize, int violationListSize, String path) {
 
         if (violationListSize == currentSize) {
-            //check for '?' and '#' as they are illegal in paths
+            // check for '?' and '#' as they are illegal in paths
             if (path.contains("#") || path.contains("?")) {
-                return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.SEPARATOR, path, ErrorMessage.SEPARATOR);
+                return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.SEPARATOR, path,
+                        ErrorMessage.SEPARATOR);
             } else {
-                return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.SEPARATOR_UNKNOWN, path, ErrorMessage.SEPARATOR);
+                return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.SEPARATOR_UNKNOWN, path,
+                        ErrorMessage.SEPARATOR);
             }
 
         }

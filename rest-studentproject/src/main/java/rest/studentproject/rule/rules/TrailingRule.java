@@ -4,6 +4,7 @@ import io.swagger.v3.oas.models.OpenAPI;
 import rest.studentproject.rule.IRestRule;
 import rest.studentproject.rule.Violation;
 import rest.studentproject.rule.constants.*;
+import rest.studentproject.utility.Output;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,15 +14,15 @@ import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
 
 public class TrailingRule implements IRestRule {
 
-
     private static final String TITLE = "GET and POST must not be used to tunnel other request methods";
     private static final RuleCategory RULE_CATEGORY = RuleCategory.HTTP;
     private static final RuleSeverity RULE_SEVERITY = RuleSeverity.CRITICAL;
-    private static final RuleType RULE_TYPE = RuleType.STATIC;
-    private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List.of(RuleSoftwareQualityAttribute.MAINTAINABILITY);
+    private static final List<RuleType> RULE_TYPE = List.of(RuleType.STATIC);
+    private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List
+            .of(RuleSoftwareQualityAttribute.MAINTAINABILITY);
     private boolean isActive;
 
-    public TrailingRule (boolean isActive){
+    public TrailingRule(boolean isActive) {
         this.isActive = isActive;
     }
 
@@ -41,7 +42,7 @@ public class TrailingRule implements IRestRule {
     }
 
     @Override
-    public RuleType getRuleType() {
+    public List<RuleType> getRuleType() {
         return RULE_TYPE;
     }
 
@@ -69,14 +70,20 @@ public class TrailingRule implements IRestRule {
 
     /**
      * searches a Set of path segments for trailing forward slashes '/'
+     * 
      * @param paths set of path strings
      * @return list of Violations for this rule
      */
-    private List<Violation> checkForTrailingSlashes (Set<String> paths){
+    private List<Violation> checkForTrailingSlashes(Set<String> paths) {
         List<Violation> violations = new ArrayList<>();
-        for (String path: paths) {
-            if (path.endsWith("/")){
-                violations.add(new Violation(this,locMapper.getLOCOfPath(path), ImprovementSuggestion.TRAILINGSLASH,path, ErrorMessage.TRAILINGSLASH));
+        int curPath = 1;
+        int totalPaths = paths.size();
+        for (String path : paths) {
+            Output.progressPercentage(curPath, totalPaths);
+            curPath++;
+            if (path.endsWith("/")) {
+                violations.add(new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.TRAILING_SLASH,
+                        path, ErrorMessage.TRAILINGSLASH));
             }
         }
         return violations;

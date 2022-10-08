@@ -85,7 +85,7 @@ public class Report {
             // notification
             System.out.println("----------------------------------------------");
             System.out.println("\nIn total " + violationList.size() + " rule violations were found");
-            System.out.println("--> The detailed report can be found here: " + path.toAbsolutePath());
+            System.out.println("--> The detailed report can be found here: " + path.toAbsolutePath() + "\n");
 
             printWriter.close();
             bw.close();
