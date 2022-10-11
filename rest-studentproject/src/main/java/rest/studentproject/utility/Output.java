@@ -87,13 +87,28 @@ public class Output {
      *
      * @param pathToFile path to the OpenAPI definition to be examined
      */
-    public void startAnalysis(String pathToFile) {
+    public void startAnalysis(String pathToFile, boolean generateReport) {
         // Example: https://api.apis.guru/v2/specs/aiception.com/1.0.0/swagger.json
         // Very long example (just under 20k lines): https://api.apis.guru/v2/specs/amazonaws.com/autoscaling/2011-01-01/openapi.json
         System.out.println("----------------------------------------------\n");
         System.out.println("Begin with the analysis of the file from: " + pathToFile);
 
         RestAnalyzer restAnalyzer = new RestAnalyzer(pathToFile);
-        restAnalyzer.runAnalyse(new ActiveRules().getAllRuleObjects(), true);
+        restAnalyzer.runAnalyse(new ActiveRules().getAllRuleObjects(), generateReport);
+    }
+
+    /**
+     * This method starts the analysis with the given path from the user. Also generates a report with a custom file name
+     * @param pathToFile path to the OpenAPI definition to be examined
+     * @param title file name for report
+     */
+    public void startAnalysis(String pathToFile, String title) {
+        // Example: https://api.apis.guru/v2/specs/aiception.com/1.0.0/swagger.json
+        // Very long example (just under 20k lines): https://api.apis.guru/v2/specs/amazonaws.com/autoscaling/2011-01-01/openapi.json
+        System.out.println("----------------------------------------------\n");
+        System.out.println("Begin with the analysis of the file from: " + pathToFile);
+
+        RestAnalyzer restAnalyzer = new RestAnalyzer(pathToFile);
+        restAnalyzer.runAnalyse(new ActiveRules().getAllRuleObjects(), title);
     }
 }

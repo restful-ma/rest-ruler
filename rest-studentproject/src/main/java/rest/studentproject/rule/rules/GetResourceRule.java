@@ -132,12 +132,12 @@ public class GetResourceRule implements IRestRule {
 
         //Checks if a HTTP 200 response or a default response definition exists
         if (okResponse != null) {
-            if (okResponse.getContent() == null || okResponse.getContent().isEmpty()) {
+            if (okResponse.getContent() == null || okResponse.getContent().isEmpty() && okResponse.get$ref() == null ) {
                 return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.GET_RESOURCE, path,
                         ErrorMessage.GET_RESOURCE);
             }
         } else if (defaultResponse != null) {
-            if (defaultResponse.getContent() == null || defaultResponse.getContent().isEmpty()) {
+            if ((defaultResponse.getContent() == null || defaultResponse.getContent().isEmpty()) && defaultResponse.get$ref() == null) {
                 return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.GET_RESOURCE, path,
                         ErrorMessage.GET_RESOURCE);
             }

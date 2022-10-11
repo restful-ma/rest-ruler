@@ -156,6 +156,33 @@
           "connection"
         ]
       }
+    },
+    "/v1/{connectionID}/location": {
+      "get": {
+        "parameters": [ {
+          "name": "connectionID",
+          "in": "path",
+          "description" : "location of a connection",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "minimum": 1
+          }
+        }
+        ],
+        "responses": {
+          "422": {
+            "$ref": "#/components/responses/InvalidInputResponse"
+          },
+          "default": {
+            "$ref": "#/components/schemas/ConnectionRead"
+          }
+        },
+        "summary": "Create a connection between a source and a destination",
+        "tags": [
+          "connection"
+        ]
+      }
     }
   },
   "components": {
