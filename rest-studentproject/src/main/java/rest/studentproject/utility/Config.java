@@ -42,10 +42,7 @@ public class Config {
         if (!new File(configFilePath).exists()) {
             logger.info("Config file cannot be found. New file is created.");
             File file = new File(configFilePath);
-
-            if (file.getParentFile().mkdirs())
-                logger.severe("Cannot create dir");
-
+            
             try {
                 if (file.createNewFile()) {
                     logger.info("Config file created");
