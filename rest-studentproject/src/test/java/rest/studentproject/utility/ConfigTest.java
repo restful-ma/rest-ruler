@@ -56,16 +56,14 @@ class ConfigTest {
     @Test
     @DisplayName("Test if config file is created")
     void testConfigFileCreation() {
-
-        assertThrows(NullPointerException.class, () -> {
-
-            this.config.getConfig();
-        });
+        this.config.getConfig();
+        Properties props = this.config.getConfig();
+        assertEquals(null, props);
 
         // no config file --> will be created by default and should be empty
         this.curPathConfig = VALID_PATH_TEST_CONFIG;
         createNewConfig();
-        Properties props = this.config.getConfig();
+        props = this.config.getConfig();
         assertTrue(this.file.exists());
         assertTrue(props.isEmpty());
 
