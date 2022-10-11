@@ -13,20 +13,19 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ContentTypeRuleTest {
 
     private static final String PATH_INVALID_OPENAPI = "src/test/java/rest/studentproject/rule/contentTypeTest/InvalidOpenAPIContentTypeRule.json";
+    private static final String VALID_OPENAPI = "src/test/java/rest/studentproject/validopenapi/validOpenAPI.json";
     RestAnalyzer restAnalyzer;
     ContentTypeRule contentTypeRule;
 
     @Test
     @DisplayName("Test that checks if no content type rule violation is detected when there is a correct OpenAPI definition.")
     void validFile() {
-        String path = "src/test/java/rest/studentproject/validopenapi/validOpenAPI.json";
-
-        List<Violation> violations = runMethodUnderTest(path);
+        List<Violation> violations = runMethodUnderTest(VALID_OPENAPI);
         assertEquals(0, violations.size(), "There should be no rule violation for the valid openAPI definition.");
     }
 
     @Test
-    @DisplayName("Test that checks if the 15 crud rule violations are detected. Tested are the request bodies and responses if there is the content type defined.")
+    @DisplayName("Test that checks if the 16 content type rule violations are detected. Tested are the request bodies and responses if there is the content type defined.")
     void invalidFile() {
         List<Violation> violations = runMethodUnderTest(PATH_INVALID_OPENAPI);
         for (Violation violation : violations) {
