@@ -133,15 +133,15 @@ public class Report {
      */
     private String cleanTitle(String string){
         String illegalChar = "[\\#\\%\\&\\{\\}\\\\\\<\\>\\*\\?\\/\\$\\!\\'\\\"\\:\\@\\+\\`\\|=\\s]";
-        String title = string.trim();
-        if (title.length() > 31){
-            title = title.substring(0, 30);
+        String cleanString = string.trim();
+        if (cleanString.length() > 31){
+            cleanString = cleanString.substring(0, 30);
         }
 
         //replace all whitespaces with hyphens
-        title = title.replaceAll("\\s+", "-");
+        cleanString = cleanString.replaceAll("\\s+", "-");
         //remove all illegal characters
-        title = title.replaceAll(illegalChar, "");
-        return title;
+        cleanString = cleanString.replaceAll(illegalChar, "");
+        return cleanString;
     }
 }
