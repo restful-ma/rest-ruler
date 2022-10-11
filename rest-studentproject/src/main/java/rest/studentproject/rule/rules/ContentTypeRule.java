@@ -43,7 +43,7 @@ public class ContentTypeRule implements IRestRule {
     private OpenAPI openAPI;
     private String pathName;
     private boolean isActive;
-    
+
     public ContentTypeRule(boolean isActive) {
         this.isActive = isActive;
     }
@@ -195,7 +195,7 @@ public class ContentTypeRule implements IRestRule {
                 // Check if in responses defined (needs this structure)
                 if (!ref.endsWith("/components/responses/" + refLastIndex)) {
                     this.violationList.add(violation);
-                    return;
+                    continue;
                 }
 
                 // Checks if ref has content type defined. If again ref to another component -->

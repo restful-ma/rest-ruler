@@ -9,7 +9,6 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 /**
  * Maps the keys from the parsed OpenAPI object to the original json or yaml line of code.
@@ -40,7 +39,7 @@ public class LOCMapper {
      */
     public void mapOpenAPIKeysToLOC() {
         boolean isURL = this.filePath.startsWith("http");
-        if (!this.filePath.endsWith("json") && !this.filePath.endsWith("yaml")) {
+        if (!isURL && !this.filePath.endsWith("json") && !this.filePath.endsWith("yaml")) {
             System.err.println("Wrong file format!");
             return;
         }
