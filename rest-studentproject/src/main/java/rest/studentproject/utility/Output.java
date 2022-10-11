@@ -9,17 +9,13 @@ import rest.studentproject.rule.IRestRule;
 import rest.studentproject.rule.Utility;
 import rest.studentproject.rule.constants.SecuritySchema;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.UnknownHostException;
 import java.util.*;
+import java.util.logging.Logger;
 
 import static java.util.Map.entry;
 
@@ -34,6 +30,9 @@ public class Output {
             SecuritySchema.APIKEY), entry("2", SecuritySchema.BASIC), entry("3", SecuritySchema.BEARER));
     private static final String YES_NO = "[yes/no]";
     private String pathToFile = "";
+    private final Scanner scanner = new Scanner(System.in);
+    private final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    private String choice;
 
     /**
      * Method for the expert mode. User will be asked to enable or disable each
@@ -41,8 +40,6 @@ public class Output {
      * config file.
      */
     public void askActiveRules() {
-        Scanner scanner = new Scanner(System.in);
-
         ActiveRules activeRules = new ActiveRules();
         List<IRestRule> activeRuleList = activeRules.getAllRuleObjects();
 
@@ -51,7 +48,7 @@ public class Output {
         System.out.println(activeRuleList.size() + " " + "rules are currently implemented. To customize the rule " +
                 "list" + " " + "start configuration by entering " + "y/yes. To skip the configuration press any key");
 
-        String startConfig = scanner.next().trim();
+        String startConfig = this.scanner.next().trim();
 
         if (startConfig.equals("y") || startConfig.equals("yes")) {
             Map<String, String> config = new HashMap<>();
@@ -72,7 +69,7 @@ public class Output {
                 System.out.println("--> Enable Rule " + currentRuleIndex + " of " + activeRuleList.size() + ": "
                         + currentRule.getTitle() + " [y/n]");
 
-                String userRuleInput = scanner.next().trim().toLowerCase();
+                String userRuleInput = this.scanner.next().trim().toLowerCase();
                 switch (userRuleInput) {
                     case "y":
                     case "yes":
@@ -166,8 +163,6 @@ public class Output {
      * @return true for dynamic analysis; false only static analysis
      */
     public boolean checkDynamicAnalysis() {
-        Scanner scanner = new Scanner(System.in);
-
         System.out.println("\n-----------------INFO ANALYSIS----------------");
         System.out.println("-----------------------------------------------\n");
         System.out.println("Besides the static analysis there is the dynamic analysis for which the credentials for "
@@ -177,7 +172,7 @@ public class Output {
                 "enter any other key.");
         System.out.println(YES_NO);
 
-        String dynamicAnalysis = scanner.next();
+        String dynamicAnalysis = this.scanner.next();
 
         return dynamicAnalysis.equals("y") || dynamicAnalysis.equals("yes");
     }
@@ -195,7 +190,6 @@ public class Output {
         // TODO: Delete all auth
         // TODO: Check syntax of auth input (also not empty)
         // TODO: Wrong auth input
-        Scanner scanner = new Scanner(System.in);
         EnumMap<SecuritySchema, String> secTokens = new EnumMap<>(SecuritySchema.class);
 
         System.out.println("\n----------------AUTHENTICATION----------------");
@@ -206,7 +200,7 @@ public class Output {
         boolean secDefined = secSchemas != null && !secSchemas.isEmpty();
 
         boolean enterMoreSec = true;
-        String choice = "";
+        this.choice = "";
         boolean secInProps = false;
 
         while (enterMoreSec) {
@@ -222,7 +216,7 @@ public class Output {
                 // Add more
                 System.out.println("9 - No authentication needed for requests");
                 System.out.println("0 - Redo whole security input and cancel authentication");
-                choice = scanner.next();
+                this.choice = this.scanner.next();
 
             } else {
                 System.out.println("Found " + secSchemas.size() + " security schemas for given openAPI definition.");
@@ -235,9 +229,9 @@ public class Output {
                     secSchemeMap.put(String.valueOf(selectionNumber), secSchema.getValue().getScheme());
 
                 }
-                choice = scanner.next();
+                this.choice = this.scanner.next();
 
-                if (secSchemeMap.get(choice) == null) {
+                if (secSchemeMap.get(this.choice) == null) {
                     secDefined = false;
                     continue;
                 }
@@ -247,7 +241,7 @@ public class Output {
                             "another method.");
                     continue;
                 }
-                choice = secToNumbAuthMapping.get(SecuritySchema.valueOf(secSchemeMap.get(choice).toUpperCase()));
+                this.choice = secToNumbAuthMapping.get(SecuritySchema.valueOf(secSchemeMap.get(choice).toUpperCase()));
             }
 
             String token = "";
@@ -255,51 +249,53 @@ public class Output {
             Properties properties = new Config().getConfig();
 
             // authTypPathToFile
-            String prefixProps = numbToSecAuthMapping.get(choice) + this.pathToFile;
+            String prefixProps = numbToSecAuthMapping.get(this.choice) + this.pathToFile;
 
             // authTypPathToFileToken
             String keyTokenProps = prefixProps + "token";
 
-            if (properties.containsKey(keyTokenProps)) {
+            if (properties != null && properties.containsKey(keyTokenProps)) {
                 System.out.println("\nFound credentials for this security method in config. Do you want to use them "
                         + "(yes or y) or enter new credentials (no or n)?");
                 System.out.println(YES_NO);
-                String input = scanner.next();
+                String input = this.scanner.next();
                 if (input.equals("y") || input.equals("yes")) {
                     secInProps = true;
-                    secTokens.put(numbToSecAuthMapping.get(choice), properties.getProperty(keyTokenProps));
+                    secTokens.put(numbToSecAuthMapping.get(this.choice), properties.getProperty(keyTokenProps));
                 }
+            } else if (properties == null) {
+                logger.severe("Path to config file is not set correctly --> Contact devs");
             }
 
             if (!secInProps) {
-                switch (choice) {
+                switch (this.choice) {
                     // API Key
                     case "1":
                         // api key
                         System.out.println("Enter api key or type 0 (zero) to skip: ");
-                        token = scanner.next();
+                        token = this.scanner.next();
                         if (token.equals("0"))
                             break;
-                        secTokens.put(numbToSecAuthMapping.get(choice), token);
+                        secTokens.put(numbToSecAuthMapping.get(this.choice), token);
                         break;
                     // Basic
                     case "2":
                         // username and pw
                         System.out.println("Enter token consisting of username and password or type 0 (zero) to " +
                                 "skip:" + " ");
-                        token = scanner.next();
+                        token = this.scanner.next();
                         if (token.equals("0"))
                             break;
-                        secTokens.put(numbToSecAuthMapping.get(choice), token);
+                        secTokens.put(numbToSecAuthMapping.get(this.choice), token);
                         break;
                     // Bearer
                     case "3":
                         // access_token
                         System.out.println("Enter access token or type 0 (zero) to skip: ");
-                        token = scanner.next();
+                        token = this.scanner.next();
                         if (token.equals("0"))
                             break;
-                        secTokens.put(numbToSecAuthMapping.get(choice), token);
+                        secTokens.put(numbToSecAuthMapping.get(this.choice), token);
                         break;
                     // No auth needed for requests
                     case "9":
@@ -315,9 +311,9 @@ public class Output {
             System.out.println("Do you want to enter another security schema? Enter yes or y, enter no or n.");
             System.out.println(YES_NO);
 
-            choice = scanner.next();
+            this.choice = this.scanner.next();
 
-            switch (choice) {
+            switch (this.choice) {
                 case "y":
                 case "yes":
                     break;
@@ -326,6 +322,19 @@ public class Output {
             }
         }
 
+        askSafeSec(secInProps, secTokens);
+
+        this.scanner.close();
+        return secTokens;
+    }
+
+    /**
+     * Asks the user if he wants to save the entered security credentials in the config file.
+     *
+     * @param secInProps true if the security credentials are already in the config file
+     * @param secTokens  the security credentials
+     */
+    private void askSafeSec(boolean secInProps, EnumMap<SecuritySchema, String> secTokens) {
         if (!secInProps) {
             System.out.println("\n" + UNDERLINE);
             System.out.println("---------------------Save---------------------");
@@ -334,15 +343,12 @@ public class Output {
             System.out.println(YES_NO
                     + "\n");
 
-            choice = scanner.next();
+            this.choice = this.scanner.next();
 
-            if (choice.equals("y") || choice.equals("yes")) {
+            if (this.choice.equals("y") || this.choice.equals("yes")) {
                 setSec(secTokens);
             }
         }
-
-        scanner.close();
-        return secTokens;
     }
 
     /**
@@ -411,9 +417,8 @@ public class Output {
      */
     private boolean pingURL(String url) {
         if (!url.isEmpty() && !url.equals("")) {
-            // url = url.replaceFirst("^https", "http"); // Otherwise, an exception may be
-            // thrown on invalid SSL
-            // // certificates.
+            url = url.replaceFirst("^https", "http"); // Otherwise, an exception may be thrown on invalid SSL
+                                                      // certificates.
             return doUrlCall(url);
         }
         return false;

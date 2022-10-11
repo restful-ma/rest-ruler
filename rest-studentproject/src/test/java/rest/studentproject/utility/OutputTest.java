@@ -1,22 +1,16 @@
 package rest.studentproject.utility;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Map;
-import java.util.Properties;
 import java.util.logging.Logger;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import rest.studentproject.rule.constants.SecuritySchema;
 
 public class OutputTest {
     private static final String EMPTY_PATH = "";
@@ -25,19 +19,12 @@ public class OutputTest {
     private static final String EXISTING_FILE_PATH = "src/test/java/rest/studentproject/utility/OutputTest.java";
     private static final String NON_EXISTING_FILE_PATH = "src/test/java/rest/studentproject/utility/OutputTest1.java";
     private static final String DIR_PATH = "src/test/java/rest/studentproject/utility";
-    private static final String VALID_PATH_TEST_CONFIG = "src/test/java/rest/studentproject/utility/testConfig.properties";
-    private static final Map<SecuritySchema, String> VALID_Security_TEST_CONFIG = Map.of(SecuritySchema.BASIC, "token");
     private Output output;
     private final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     @BeforeEach
     public void setUp() {
         this.output = new Output();
-    }
-
-    @AfterEach
-    public void tearDown() {
-
     }
 
     @Test
@@ -106,36 +93,6 @@ public class OutputTest {
                 | InvocationTargetException e) {
             String message = String.format("Error when invoking the pingURL() method: %s", e.getMessage());
             logger.severe(message);
-        }
-    }
-
-    @Test
-    @DisplayName("Test that checks if the security is safed correctly.")
-    void setSec() {
-        Method method;
-        Field path;
-        Config config;
-        try {
-            
-            config = new Config();
-            path = Class.forName(config.getClass().getName()).getDeclaredField("configFilePath");
-            path.setAccessible(true);
-            path.set(config, VALID_PATH_TEST_CONFIG);
-
-            method = this.output.getClass().getDeclaredMethod("setSec", Map.class);
-            method.setAccessible(true);
-            method.invoke(this.output, VALID_Security_TEST_CONFIG);
-
-            Properties props = config.getConfig();
-            assertTrue(props.containsKey("BASICtoken"));
-            assertEquals("token", props.get("BASICtoken"));
-
-            ConfigTest configTest = new ConfigTest();
-            configTest.deleteConfig();
-
-        } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException
-                | ClassNotFoundException | NoSuchMethodException | InvocationTargetException e) {
-            e.printStackTrace();
         }
     }
 }

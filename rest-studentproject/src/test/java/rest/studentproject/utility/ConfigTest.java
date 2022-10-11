@@ -23,16 +23,18 @@ class ConfigTest {
     private static final String TEST_PROPS_ELE = "test";
     private String curPathConfig = "";
     private static final String VALID_PATH_TEST_CONFIG = "src/test/java/rest/studentproject/utility/testConfig.properties";
-    private Config config = new Config();
+    private Config config;
     private File file;
     private final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     @BeforeEach
     public void createNewConfig() {
+        this.config = new Config();
         try {
             Field path = Class.forName(this.config.getClass().getName()).getDeclaredField("configFilePath");
             path.setAccessible(true);
             path.set(this.config, curPathConfig);
+
             this.file = new File(curPathConfig);
         } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException
                 | ClassNotFoundException e) {
