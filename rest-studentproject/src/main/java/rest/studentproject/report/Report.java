@@ -52,7 +52,7 @@ public class Report {
      * @param title custom name tag for the report file
      */
     public void generateReport(List<Violation> violationList, String title) {
-        this.title = title;
+        this.title = cleanTitle(title);
         violationList.sort(Violation.getComparator());
         writeMarkdownReport(violationList);
     }
@@ -123,5 +123,25 @@ public class Report {
         LocalDateTime now = LocalDateTime.now();
 
         return dtf.format(now);
+    }
+
+    /**
+     * cleans up title of any illegal characters for files. Paths have a limit of 256 characters, limiting the length of the filename.
+     * Therefore this method also limits the length of the filename to a recommended length of 31 by shortening the string if needed.
+     * @param string title string to be examined and cleaned
+     * @return cleaned title string
+     */
+    private String cleanTitle(String string){
+        String illegalChar = "[\\#\\%\\&\\{\\}\\\\\\<\\>\\*\\?\\/\\$\\!\\'\\\"\\:\\@\\+\\`\\|=\\s]";
+        String title = string.trim();
+        if (title.length() > 31){
+            title = title.substring(0, 30);
+        }
+
+        //replace all whitespaces with hyphens
+        title = title.replaceAll("\\s+", "-");
+        //remove all illegal characters
+        title = title.replaceAll(illegalChar, "");
+        return title;
     }
 }
