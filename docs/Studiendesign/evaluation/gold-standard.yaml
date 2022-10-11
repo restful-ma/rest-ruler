@@ -30,6 +30,7 @@ schemes:
 #       * /pets/{petName}/add-Location hyphens violation
 #       * /enterprise/locations/germany/federal-states/baden-wuerttemberg plural noun violation
 #       * file extension violation --> auch hyphens, separator violations
+#       * verb rule description
 paths:
   # Define all paths here
   # RULE 19: using other characters instead of forward slash '/'
