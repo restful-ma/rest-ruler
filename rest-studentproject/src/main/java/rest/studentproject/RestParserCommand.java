@@ -14,6 +14,12 @@ public class RestParserCommand implements Runnable {
             "definition (2.0 or higher; json or yaml)")
     private String path;
 
+    @Option(names = {"-o", "--out"}, description = "generates a report/output file")
+    private boolean generateReport;
+
+    @Option(names = {"-t", "--title"}, description = "generates a report file with a custom title")
+    private String title;
+
     public static void main(String[] args) {
         PicocliRunner.run(RestParserCommand.class, args);
     }
@@ -27,7 +33,13 @@ public class RestParserCommand implements Runnable {
         Output output = new Output();
         if (this.expertMode) output.askActiveRules();
         if (this.path != null) {
-            output.startAnalysis(this.path);
+            if (title != null)
+                output.startAnalysis(this.path, title);
+            else if(generateReport)
+                output.startAnalysis(this.path, true);
+            else
+                output.startAnalysis(this.path, false);
+
         }
     }
 }
