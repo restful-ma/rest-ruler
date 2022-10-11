@@ -116,7 +116,7 @@ public class Output {
      *
      * @param pathToFile path to the OpenAPI definition to be examined
      */
-    public void startAnalysis(String pathToFile) {
+    public void startAnalysis(String pathToFile, boolean generateReport) {
 
         if (pathToFile.toLowerCase().startsWith("http") && !checkURL(pathToFile)) {
             System.err.println("The URL is not reachable. Please check the URL and try again.");
@@ -128,6 +128,36 @@ public class Output {
 
         this.pathToFile = pathToFile;
         RestAnalyzer restAnalyzer = new RestAnalyzer(pathToFile);
+
+        checkServer();
+
+        restAnalyzer.runAnalyse(new ActiveRules().getAllRuleObjects(), generateReport);
+    }
+
+    /**
+     * This method starts the analysis with the given path from the user.
+     *
+     * @param pathToFile path to the OpenAPI definition to be examined
+     */
+    public void startAnalysis(String pathToFile, String title) {
+
+        if (pathToFile.toLowerCase().startsWith("http") && !checkURL(pathToFile)) {
+            System.err.println("The URL is not reachable. Please check the URL and try again.");
+            return;
+        } else if (!pathToFile.toLowerCase().startsWith("http") && !checkFileLocation(pathToFile)) {
+            System.err.println("The file is not found. Please check the path to the file and try again.");
+            return;
+        }
+
+        this.pathToFile = pathToFile;
+        RestAnalyzer restAnalyzer = new RestAnalyzer(pathToFile);
+
+        checkServer();
+
+        restAnalyzer.runAnalyse(new ActiveRules().getAllRuleObjects(), title);
+    }
+
+    private void checkServer() {
         boolean checkDynamicAnalysis = checkDynamicAnalysis();
         RestAnalyzer.dynamicAnalysis = checkDynamicAnalysis;
         if (checkDynamicAnalysis) {
@@ -147,14 +177,12 @@ public class Output {
             }
 
         }
-
         // Example: https://api.apis.guru/v2/specs/aiception.com/1.0.0/swagger.json
         // Very long example (just under 20k lines):
         // https://api.apis.guru/v2/specs/amazonaws.com/autoscaling/2011-01-01/openapi.json
         System.out.println("----------------------------------------------\n");
         System.out.println("Begin with the analysis of the file from: " + pathToFile);
         System.out.println("\n----------------------------------------------");
-        restAnalyzer.runAnalyse(new ActiveRules().getAllRuleObjects(), true);
     }
 
     /**
@@ -329,9 +357,11 @@ public class Output {
     }
 
     /**
-     * Asks the user if he wants to save the entered security credentials in the config file.
+     * Asks the user if he wants to save the entered security credentials in the
+     * config file.
      *
-     * @param secInProps true if the security credentials are already in the config file
+     * @param secInProps true if the security credentials are already in the config
+     *                   file
      * @param secTokens  the security credentials
      */
     private void askSafeSec(boolean secInProps, EnumMap<SecuritySchema, String> secTokens) {
