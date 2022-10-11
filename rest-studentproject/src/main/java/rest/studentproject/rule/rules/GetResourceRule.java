@@ -137,7 +137,7 @@ public class GetResourceRule implements IRestRule {
                         ErrorMessage.GET_RESOURCE);
             }
         } else if (defaultResponse != null) {
-            if (defaultResponse.getContent() == null || defaultResponse.getContent().isEmpty() && defaultResponse.get$ref() == null) {
+            if ((defaultResponse.getContent() == null || defaultResponse.getContent().isEmpty()) && defaultResponse.get$ref() == null) {
                 return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.GET_RESOURCE, path,
                         ErrorMessage.GET_RESOURCE);
             }
