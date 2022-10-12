@@ -28,8 +28,6 @@ public class RestParserCommand implements Runnable {
      * When the user runs a command, this method is called.
      */
     public void run() {
-        this.path = "https://api.apis.guru/v2/specs/1forge.com/0.0.1/swagger.json";
-        this.expertMode = false;
         Output output = new Output();
         if (this.expertMode) output.askActiveRules();
         if (this.path != null) {
