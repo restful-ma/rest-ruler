@@ -49,6 +49,8 @@ public class RestAnalyzer {
         //generates Report
         if (generateReport) {
             report.generateReport(violations);
+        }else{
+            report.displayReport(violations);
         }
         return violations;
     }
