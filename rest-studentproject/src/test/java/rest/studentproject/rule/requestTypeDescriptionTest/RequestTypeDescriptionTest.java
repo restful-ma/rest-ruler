@@ -25,7 +25,7 @@ public class RequestTypeDescriptionTest {
 
         List<Violation> violationToTest = runMethodUnderTest(url);
 
-        assertEquals(1, violationToTest.size(),
+        assertEquals(6, violationToTest.size(),
                 "Detection of violations should work.");
     }
 
