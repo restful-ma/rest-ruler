@@ -169,32 +169,24 @@ public class ContentTypeRule implements IRestRule {
             return;
 
         for (Entry<String, ApiResponse> response : responses.entrySet()) {
-            String improvementSuggestion = "Specify content type in " + response.getKey() + " response in " + operation
-                    + " operation, because clients and servers rely on the value of this header to know how to process "
-                    + "the sequence of bytes in the message body.";
-            Violation violation = new Violation(this, locMapper.getLOCOfPath(this.pathName), improvementSuggestion,
-                    this.pathName, ErrorMessage.CONTENT_TYPE);
 
             boolean emptyContent = (response.getValue().getContent() == null
                     || response.getValue().getContent().isEmpty());
 
             // No content and no reference to components defined
-            if (emptyContent && response.getValue().get$ref() == null)
-                this.violationList.add(violation);
+            if (emptyContent && response.getValue().get$ref() == null) {
+                this.violationList.add(getResponseContentTypeViolation(response.getKey(), operation));
+            }
             // No content but ref to components
             else if (emptyContent && response.getValue().get$ref() != null) {
                 // Ref to content type
                 String ref = response.getValue().get$ref();
                 String refLastIndex = ref.substring(ref.lastIndexOf("/") + 1);
 
-                improvementSuggestion = "Define content in refs in /components/responses/" + refLastIndex + " or " +
-                        "directly in the " + response.getKey() + " response in " + operation + " operation.";
-                violation = new Violation(this, locMapper.getLOCOfPath(this.pathName), improvementSuggestion,
-                        this.pathName, ErrorMessage.CONTENT_TYPE);
-
                 // Check if in responses defined (needs this structure)
                 if (!ref.endsWith("/components/responses/" + refLastIndex)) {
-                    this.violationList.add(violation);
+                    this.violationList
+                            .add(getResponseContentTypeRefViolation(refLastIndex, response.getKey(), operation));
                     continue;
                 }
 
@@ -203,10 +195,11 @@ public class ContentTypeRule implements IRestRule {
                 Map<String, ApiResponse> compResponses = this.openAPI.getComponents().getResponses();
 
                 if (compResponses != null)
-                    checkContentTypeInRefs(compResponses, refLastIndex, violation);
+                    checkContentTypeInRefs(compResponses, refLastIndex,
+                            getResponseContentTypeRefViolation(refLastIndex, response.getKey(), operation));
                 else
-                    this.violationList.add(violation);
-
+                    this.violationList
+                            .add(getResponseContentTypeRefViolation(refLastIndex, response.getKey(), operation));
             }
         }
     }
@@ -219,46 +212,34 @@ public class ContentTypeRule implements IRestRule {
      * @param operation   the operation that is checked
      */
     private void examineRequestBody(RequestBody requestBody, String operation) {
-        String improvementSuggestion = "Specify content type in request body in the " + operation
-                + " operation, because clients and servers rely on the value of this header to know how to process the sequence of bytes "
-                + "in" + " the message body.";
-        Violation violation = new Violation(this, locMapper.getLOCOfPath(this.pathName), improvementSuggestion,
-                this.pathName, ErrorMessage.CONTENT_TYPE);
 
-        if (requestBody == null) {
-            this.violationList.add(violation);
+        if (requestBody == null)
             return;
-        }
 
         boolean emptyContent = (requestBody.getContent() == null || requestBody.getContent().isEmpty());
 
         // No content type defined in response body and no ref to components
         if (emptyContent && requestBody.get$ref() == null)
-            this.violationList.add(violation);
+            this.violationList.add(getRequestBodyContentTypeViolation(operation));
         // No content but ref to components
         else if (emptyContent && requestBody.get$ref() != null) {
             // Ref to content type
             String ref = requestBody.get$ref();
             String refLastIndex = ref.substring(ref.lastIndexOf("/") + 1);
 
-            improvementSuggestion = "Define content in refs in /components/requestBodies/" + refLastIndex + " or " +
-                    "directly in the request body in the " + operation + " operation.";
-            violation = new Violation(this, locMapper.getLOCOfPath(this.pathName),
-                    improvementSuggestion,
-                    this.pathName, ErrorMessage.CONTENT_TYPE);
-
             // Check if in request bodies defined (needs this structure)
             if (!ref.endsWith("/components/requestBodies/" + refLastIndex)) {
-                this.violationList.add(violation);
+                this.violationList.add(getRequestBodyContentTypeRefViolation(refLastIndex, operation));
                 return;
             }
 
             // Check if content type defined in components (ref exists)
             Map<String, RequestBody> compRequestBodies = this.openAPI.getComponents().getRequestBodies();
             if (!compRequestBodies.isEmpty())
-                checkContentTypeInRefs(compRequestBodies, refLastIndex, violation);
+                checkContentTypeInRefs(compRequestBodies, refLastIndex,
+                        getRequestBodyContentTypeRefViolation(refLastIndex, operation));
             else
-                this.violationList.add(violation);
+                this.violationList.add(getRequestBodyContentTypeRefViolation(refLastIndex, operation));
         }
     }
 
@@ -299,6 +280,37 @@ public class ContentTypeRule implements IRestRule {
         if (!refFound) {
             this.violationList.add(violation);
         }
+    }
 
+    private Violation getRequestBodyContentTypeViolation(String operation) {
+        String improvementSuggestion = String.format(
+                "Specify content type in request body in the %s operation, because clients and servers rely on the value of this header to know how to process the sequence of bytes in the message body.",
+                operation);
+        return new Violation(this, locMapper.getLOCOfPath(this.pathName), improvementSuggestion,
+                this.pathName, ErrorMessage.CONTENT_TYPE);
+    }
+
+    private Violation getRequestBodyContentTypeRefViolation(String refLastIndex, String operation) {
+        String improvementSuggestion = String.format(
+                "Define content in refs in /components/requestBodies/%s or directly in the request body in the %s operation.",
+                refLastIndex, operation);
+        return new Violation(this, locMapper.getLOCOfPath(this.pathName), improvementSuggestion, this.pathName,
+                ErrorMessage.CONTENT_TYPE);
+    }
+
+    private Violation getResponseContentTypeViolation(String statusCode, String operation) {
+        String improvementSuggestion = String.format(
+                "Specify content type in %s response in %s operation, because clients and servers rely on the value of this header to know how to process the sequence of bytes in the message body.",
+                statusCode, operation);
+        return new Violation(this, locMapper.getLOCOfPath(this.pathName), improvementSuggestion,
+                this.pathName, ErrorMessage.CONTENT_TYPE);
+    }
+
+    private Violation getResponseContentTypeRefViolation(String refLastIndex, String statusCode, String operation) {
+        String improvementSuggestion = String.format(
+                "Define content in refs in /components/responses/%s or directly in the %s response in %s operation.",
+                refLastIndex, statusCode, operation);
+        return new Violation(this, locMapper.getLOCOfPath(this.pathName), improvementSuggestion,
+                this.pathName, ErrorMessage.CONTENT_TYPE);
     }
 }

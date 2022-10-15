@@ -114,7 +114,8 @@ public class Output {
     /**
      * This method starts the analysis with the given path from the user.
      *
-     * @param pathToFile path to the OpenAPI definition to be examined
+     * @param pathToFile     path to the OpenAPI definition to be examined
+     * @param generateReport if true, a report will be generated
      */
     public void startAnalysis(String pathToFile, boolean generateReport) {
 
@@ -138,6 +139,7 @@ public class Output {
      * This method starts the analysis with the given path from the user.
      *
      * @param pathToFile path to the OpenAPI definition to be examined
+     * @param title      title of the report that will be generated
      */
     public void startAnalysis(String pathToFile, String title) {
 
@@ -177,9 +179,6 @@ public class Output {
             }
 
         }
-        // Example: https://api.apis.guru/v2/specs/aiception.com/1.0.0/swagger.json
-        // Very long example (just under 20k lines):
-        // https://api.apis.guru/v2/specs/amazonaws.com/autoscaling/2011-01-01/openapi.json
         System.out.println("----------------------------------------------\n");
         System.out.println("Begin with the analysis of the file from: " + pathToFile);
         System.out.println("\n----------------------------------------------");
