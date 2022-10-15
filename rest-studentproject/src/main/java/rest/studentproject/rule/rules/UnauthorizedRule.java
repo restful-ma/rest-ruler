@@ -30,8 +30,7 @@ import static rest.studentproject.analyzer.RestAnalyzer.*;
  */
 public class UnauthorizedRule implements IRestRule {
 
-    private static final String TITLE = "401 (\"Unauthorized\") must be used when there is a problem with the " +
-            "client's credentials";
+    private static final String TITLE = "401 (\"Unauthorized\") must be used when there is a problem with the client's credentials";
     private static final RuleCategory CATEGORY = RuleCategory.HTTP;
     private static final List<RuleType> TYPE = Arrays.asList(RuleType.STATIC, RuleType.DYNAMIC);
     private static final RuleSeverity SEVERITY = RuleSeverity.CRITICAL;
@@ -108,16 +107,14 @@ public class UnauthorizedRule implements IRestRule {
 
     /**
      * This method runs the dynamic analysis of the unauthorized rule. If there is
-     * no sec defined in the openAPI
-     * definition a request is made with an adapted (last char missing) token to
-     * check if the 401 response is
-     * returned. Limitations:
+     * no sec defined in the openAPI definition a request is made with an adapted
+     * (last char missing) token to check if the 401 response is returned.
+     * Limitations:
      * 1. only GET request methods are included in the analysis --> If sec is
-     * defined by user
-     * but no sec is required for e.g. POST --> resources will be deleted/updated
+     * defined by user but no sec is required for e.g. POST --> resources will be
+     * deleted/updated
      * 2. when the server returns another response code than 401 --> not checked
-     * (maybe implement AI that checks
-     * response message)
+     * (maybe implement AI that checks response message)
      */
     private void dynamicAnalysis() {
         List<Server> servers = this.openAPI.getServers();
@@ -140,12 +137,10 @@ public class UnauthorizedRule implements IRestRule {
             for (Map.Entry<String, Operation> operation : operations.entrySet()) {
 
                 // When 401 is defined in operation there is no violation
-                if (operation.getValue().getResponses().containsKey("401"))
-                    continue;
-
                 // Dynamic analysis is only for GET implemented because else there is the
                 // possibility to update/delete some resources
-                if (!operation.getKey().equalsIgnoreCase("GET"))
+                if (operation.getValue().getResponses().containsKey("401")
+                        || !operation.getKey().equalsIgnoreCase("GET"))
                     continue;
 
                 // Requests for each defined server
