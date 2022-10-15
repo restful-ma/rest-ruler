@@ -16,6 +16,10 @@ public class ErrorMessage {
     public static final String TUNNELING = "Possibly wrong HTTP request type used";
     public static final String VERBPHRASE = " A verb or verb phrase should be used for controller names";
     public static final String TRAILINGSLASH = "A trailing forward slash '/' was found in the URI";
+    public static final String REQUESTTYPE = "Type of the request does not match with the description of the request.";
+    public static final String REQUESTTYPETUNNELINGGET = "This request is performing more than one action. GET request should not be used to tunnel other request.";
+    public static final String REQUESTTYPETUNNELINGPOST = "This request is performing more than one action. POST request should not be used to tunnel other request.";
+
 
     private ErrorMessage() {
         throw new IllegalStateException("Utility class");

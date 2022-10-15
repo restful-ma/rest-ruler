@@ -1,6 +1,9 @@
 package rest.studentproject.rule.rules;
 
+import io.swagger.models.Path;
 import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.Operation;
+import io.swagger.v3.oas.models.PathItem;
 import io.swagger.v3.oas.models.Paths;
 import rest.studentproject.rule.IRestRule;
 import rest.studentproject.rule.Violation;
@@ -8,6 +11,7 @@ import rest.studentproject.rule.constants.*;
 import rest.studentproject.weka.RequestMethodsWekaClassifier;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -72,21 +76,49 @@ public class RequestTypeDescriptionRule implements IRestRule {
         Paths pathsTest = openAPI.getPaths();
 
         if (paths.isEmpty()) return violations;
-        // Loop through the paths
-        for(int i = 0; i < pathsTest.size(); i++){
-            String pathKey = pathsTest.keySet().toArray()[i].toString();
-            // Need to access the description of the path
-            // Give the description to the weka classifier as parameter using the wk.predict(parameter) method
-            // Compare the given request type with the predicted request type
-            // If there is a mismatch, create a violation
-            // For example the request is of type GET but the description is "Create a new user", with the prediction from weka
-            // we should get post as tag and so we have a mismatch between the request type and the description. This is a violation of
-            // GET must be used to retrieve a representation of a resource, here should be use POST.
-            String testToPredictUsingWeka = wt.predict("get cat food");
-            //String description = pathsTest.get(pathKey).getGet().getDescription();
-            boolean test = false;
-        }
-        violations.add(new Violation(this, 0, "TODO", "TODO", "TODO"));
+        pathsTest.values().forEach(pathItem -> {
+            String keyPath = pathsTest.keySet().stream().filter(key -> pathsTest.get(key).equals(pathItem)).findFirst().get();
+            if(pathItem.getGet() != null){
+                String description = pathItem.getGet().getDescription();
+                String result = wt.predict(description);
+                if(result.equals("invalid")){
+                    violations.add(new Violation(this, locMapper.getLOCOfPath(keyPath), ImprovementSuggestion.REQUESTTYPETUNELING, keyPath, ErrorMessage.REQUESTTYPETUNNELINGGET));
+                    return;
+                }
+                if(!result.equals("get")){
+                    violations.add(new Violation(this, locMapper.getLOCOfPath(keyPath), ImprovementSuggestion.REQUESTTYPEGET, keyPath, ErrorMessage.REQUESTTYPE + " Should be of type: " + result));
+                    return;
+                }
+            }
+            if(pathItem.getPost() != null){
+                String description = pathItem.getPost().getDescription();
+                String result = wt.predict(description);
+                if(result.equals("invalid")){
+                    violations.add(new Violation(this, locMapper.getLOCOfPath(keyPath), ImprovementSuggestion.REQUESTTYPETUNELING, keyPath, ErrorMessage.REQUESTTYPETUNNELINGPOST));
+                    return;
+                }
+                if(!result.equals("post")){
+                    violations.add(new Violation(this, locMapper.getLOCOfPath(keyPath), ImprovementSuggestion.REQUESTTYPEPOST, keyPath, ErrorMessage.REQUESTTYPE + " The request should be of type: " + result));
+                    return;
+                }
+            }
+            if(pathItem.getPut() != null){
+                String description = pathItem.getPut().getDescription();
+                String result = wt.predict(description);
+                if(!result.equals("put")){
+                    violations.add(new Violation(this, locMapper.getLOCOfPath(keyPath), ImprovementSuggestion.REQUESTTYPEPUT, keyPath, ErrorMessage.REQUESTTYPE + " The request should be of type: " + result));
+                    return;
+                }
+            }
+            if(pathItem.getDelete() != null){
+                String description = pathItem.getDelete().getDescription();
+                String result = wt.predict(description);
+                if(!result.equals("delete")){
+                    violations.add(new Violation(this,locMapper.getLOCOfPath(keyPath),  ImprovementSuggestion.REQUESTTYPEDELETE, keyPath, ErrorMessage.REQUESTTYPE + " The request should be of type: " + result));
+                    return;
+                }
+            }
+        });
 
         return violations;
     }
