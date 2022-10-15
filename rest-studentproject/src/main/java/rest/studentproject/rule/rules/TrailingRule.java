@@ -15,8 +15,8 @@ import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
 public class TrailingRule implements IRestRule {
 
     private static final String TITLE = "A trailing forward slash (/) should not be included in URIs";
-    private static final RuleCategory RULE_CATEGORY = RuleCategory.HTTP;
-    private static final RuleSeverity RULE_SEVERITY = RuleSeverity.CRITICAL;
+    private static final RuleCategory RULE_CATEGORY = RuleCategory.URIS;
+    private static final RuleSeverity RULE_SEVERITY = RuleSeverity.ERROR;
     private static final List<RuleType> RULE_TYPE = List.of(RuleType.STATIC);
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List
             .of(RuleSoftwareQualityAttribute.MAINTAINABILITY);
