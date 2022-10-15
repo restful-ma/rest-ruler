@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -46,6 +45,8 @@ public class Report {
 
         // Table heading
         Table.Builder consoleReport = new Table.Builder().addRow("Line No.", "Line", "Rule Violated");
+
+        violationList.sort(Violation.getComparator());
 
         //generate Table entries for each violation
         for (Violation v : violationList) {

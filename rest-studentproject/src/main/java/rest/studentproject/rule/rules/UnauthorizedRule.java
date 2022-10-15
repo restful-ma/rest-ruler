@@ -237,7 +237,7 @@ public class UnauthorizedRule implements IRestRule {
         Paths paths = this.openAPI.getPaths();
 
         int curPath = 1;
-        this.totalPaths = paths.keySet().size() * 2;
+        this.totalPaths = dynamicAnalysis ? paths.keySet().size() * 2 : paths.keySet().size();
         for (Map.Entry<String, PathItem> path : paths.entrySet()) {
             Output.progressPercentage(curPath, this.totalPaths);
             curPath++;
