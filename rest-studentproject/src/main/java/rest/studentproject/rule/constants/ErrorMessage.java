@@ -7,12 +7,15 @@ public class ErrorMessage {
     public static final String SEPARATOR = "A forward slash '/' has to be used as a separator";
     public static final String HYPHEN = "Hyphens (-) should be used to improve the readability of URIs";
     public static final String GET_RESOURCE = "GET request is missing a content definition for its response";
-    public static final String GET_RESOURCE_REQUESTBODY = "GET requests do not have a request body";
+    public static final String GET_RESOURCE_REQUEST_BODY = "GET requests do not have a request body";
     public static final String GET_RESOURCE_MISSING_RESPONSE = "Missing Response";
     public static final String CRUD = "CRUD function names should not be used in URIs";
-    public static final String SINGULARDOCUMENTNAME = "A singular noun should be used for document names";
-    public static final String PLURALNAME = "A plural noun should be used for collection or store names";
+    public static final String UNAUTHORIZED =
+            "401 (\"Unauthorized\") must be used when there is a problem with the " + "client's credentials";
+    public static final String SINGULAR_DOCUMENT_NAME = "A singular noun should be used for document names";
+    public static final String PLURAL_NAME = "A plural noun should be used for collection or store names";
     public static final String FILE_EXTENSION = "File extensions should not be included in URIs";
+    public static final String CONTENT_TYPE = "Content-Type must be used";
     public static final String TUNNELING = "Possibly wrong HTTP request type used";
     public static final String VERBPHRASE = " A verb or verb phrase should be used for controller names";
     public static final String TRAILINGSLASH = "A trailing forward slash '/' was found in the URI";

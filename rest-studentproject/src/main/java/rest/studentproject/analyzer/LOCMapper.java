@@ -9,7 +9,6 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 /**
  * Maps the keys from the parsed OpenAPI object to the original json or yaml line of code.
@@ -40,7 +39,7 @@ public class LOCMapper {
      */
     public void mapOpenAPIKeysToLOC() {
         boolean isURL = this.filePath.startsWith("http");
-        if (!this.filePath.endsWith("json") && !this.filePath.endsWith("yaml")) {
+        if (!isURL && !this.filePath.endsWith("json") && !this.filePath.endsWith("yaml")) {
             System.err.println("Wrong file format!");
             return;
         }
@@ -70,11 +69,15 @@ public class LOCMapper {
     private void mapPaths(String line, int currentLine) {
         for (String keyPath : this.openAPI.getPaths().keySet()) {
             // To search for the path in the json file
-            String pathWithQuotes = "\"" + keyPath + "\"";
+            String pathWithDoubleQuotes = "\"" + keyPath + "\"";
+            String pathWithSingleQuotes = "'" + keyPath + "'";
             // To search for the path in the yaml file
             String pathWithColon = keyPath + ":";
+            String pathWithColonAndSingleQuotes = keyPath + "':";
+            String pathWithColonAndDoubleQuotes = keyPath + "\":";
 
-            if (!line.contains(pathWithQuotes) && !line.contains(pathWithColon)) continue;
+            if (!line.contains(pathWithDoubleQuotes) && !line.contains(pathWithSingleQuotes) && !line.contains(pathWithColon) && !line.contains(pathWithColonAndSingleQuotes) && !line.contains(pathWithColonAndDoubleQuotes))
+                continue;
 
             this.pathMap.put(keyPath, currentLine);
         }
