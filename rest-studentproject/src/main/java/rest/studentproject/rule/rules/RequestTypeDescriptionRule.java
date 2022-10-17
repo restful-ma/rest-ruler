@@ -21,9 +21,10 @@ public class RequestTypeDescriptionRule implements IRestRule {
     static final String TITLE = "Description of request should match with the type of the request.";
     static final RuleCategory RULE_CATEGORY = RuleCategory.META;
     static final RuleSeverity RULE_SEVERITY = RuleSeverity.WARNING;
-    static final RuleType RULE_TYPE = RuleType.STATIC;
+    static final List<RuleType> RULE_TYPE = List.of(RuleType.STATIC);
     static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List.of(RuleSoftwareQualityAttribute.MAINTAINABILITY);
-    boolean isActive;
+    private static final String IMPROVEMNT_SUB_STRING = " The request should be of type: ";
+    private boolean isActive;
     final String MODEL = "models/request_model.dat";
 
     public RequestTypeDescriptionRule(boolean isActive) {
@@ -46,7 +47,7 @@ public class RequestTypeDescriptionRule implements IRestRule {
     }
 
     @Override
-    public RuleType getRuleType() {
+    public List<RuleType> getRuleType() {
         return RULE_TYPE;
     }
 
@@ -83,11 +84,9 @@ public class RequestTypeDescriptionRule implements IRestRule {
                 String result = wt.predict(description);
                 if(result.equals("invalid")){
                     violations.add(new Violation(this, locMapper.getLOCOfPath(keyPath), ImprovementSuggestion.REQUESTTYPETUNELING, keyPath, ErrorMessage.REQUESTTYPETUNNELINGGET));
-                    return;
                 }
                 if(!result.equals("get")){
-                    violations.add(new Violation(this, locMapper.getLOCOfPath(keyPath), ImprovementSuggestion.REQUESTTYPEGET, keyPath, ErrorMessage.REQUESTTYPE + " Should be of type: " + result));
-                    return;
+                    violations.add(new Violation(this, locMapper.getLOCOfPath(keyPath),  ImprovementSuggestion.REQUESTTYPEGET + IMPROVEMNT_SUB_STRING + result.toUpperCase(), keyPath, ErrorMessage.REQUESTTYPE));
                 }
             }
             if(pathItem.getPost() != null){
@@ -95,27 +94,23 @@ public class RequestTypeDescriptionRule implements IRestRule {
                 String result = wt.predict(description);
                 if(result.equals("invalid")){
                     violations.add(new Violation(this, locMapper.getLOCOfPath(keyPath), ImprovementSuggestion.REQUESTTYPETUNELING, keyPath, ErrorMessage.REQUESTTYPETUNNELINGPOST));
-                    return;
                 }
                 if(!result.equals("post")){
-                    violations.add(new Violation(this, locMapper.getLOCOfPath(keyPath), ImprovementSuggestion.REQUESTTYPEPOST, keyPath, ErrorMessage.REQUESTTYPE + " The request should be of type: " + result));
-                    return;
+                    violations.add(new Violation(this, locMapper.getLOCOfPath(keyPath), ImprovementSuggestion.REQUESTTYPEPOST + IMPROVEMNT_SUB_STRING + result.toUpperCase(), keyPath, ErrorMessage.REQUESTTYPE));
                 }
             }
             if(pathItem.getPut() != null){
                 String description = pathItem.getPut().getDescription();
                 String result = wt.predict(description);
                 if(!result.equals("put")){
-                    violations.add(new Violation(this, locMapper.getLOCOfPath(keyPath), ImprovementSuggestion.REQUESTTYPEPUT, keyPath, ErrorMessage.REQUESTTYPE + " The request should be of type: " + result));
-                    return;
+                    violations.add(new Violation(this, locMapper.getLOCOfPath(keyPath), ImprovementSuggestion.REQUESTTYPEPUT+ IMPROVEMNT_SUB_STRING + result.toUpperCase(), keyPath, ErrorMessage.REQUESTTYPE ));
                 }
             }
             if(pathItem.getDelete() != null){
                 String description = pathItem.getDelete().getDescription();
                 String result = wt.predict(description);
                 if(!result.equals("delete")){
-                    violations.add(new Violation(this,locMapper.getLOCOfPath(keyPath),  ImprovementSuggestion.REQUESTTYPEDELETE, keyPath, ErrorMessage.REQUESTTYPE + " The request should be of type: " + result));
-                    return;
+                    violations.add(new Violation(this,locMapper.getLOCOfPath(keyPath),  ImprovementSuggestion.REQUESTTYPEDELETE + IMPROVEMNT_SUB_STRING + result.toUpperCase(), keyPath, ErrorMessage.REQUESTTYPE));
                 }
             }
         });
