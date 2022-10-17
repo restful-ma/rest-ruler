@@ -1,0 +1,314 @@
+{
+  "swagger": "2.0",
+  "schemes": [
+    "https"
+  ],
+  "host": "aiception.com",
+  "basePath": "/api/v2.1",
+  "info": {
+    "contact": {
+      "x-twitter": "AIception"
+    },
+    "description": "Here you can play & test & prototype all the endpoints using just your browser! Go ahead!",
+    "title": "AIception Interactive",
+    "version": "1.0.0",
+    "x-apisguru-categories": [
+      "machine_learning"
+    ],
+    "x-logo": {
+      "url": "https://api.apis.guru/v2/cache/logo/https_twitter.com_AIception_profile_image.jpeg"
+    },
+    "x-origin": [
+      {
+        "format": "swagger",
+        "url": "https://aiception.com/static/swagger.json",
+        "version": "2.0"
+      }
+    ],
+    "x-providerName": "aiception.com"
+  },
+  "securityDefinitions": {
+    "HeaderKey": {
+      "description": "The AIO Key is used to restrict or grant access to your data. The key is unique, and you can generate a key per feed, and control it in many different ways. The easiest process is to just use your automatically generated master key. You can access this key right from the right-hand side of your dashboard or from an individual feed page.",
+      "in": "header",
+      "name": "X-AIO-Key",
+      "type": "apiKey"
+    },
+    "HeaderSignature": {
+      "description": "The AIO Signature is an AWS inspired request signature.",
+      "in": "header",
+      "name": "X-AIO-Signature",
+      "type": "apiKey"
+    },
+    "QueryKey": {
+      "description": "The AIO Key is used to restrict or grant access to your data. The key is unique, and you can generate a key per feed, and control it in many different ways. The easiest process is to just use your automatically generated master key. You can access this key right from the right-hand side of your dashboard or from an individual feed page.",
+      "in": "query",
+      "name": "X-AIO-Key",
+      "type": "apiKey"
+    }
+  },
+  "security": [
+    {
+      "HeaderKey": []
+    },
+    {
+      "HeaderSignature": []
+    },
+    {
+      "QueryKey": []
+    }
+  ],
+  "paths": {
+    "/adult": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Creates a new adult.",
+        "parameters": [
+          {
+            "description": "The image to analyze",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "properties": {
+                "async": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "image_url": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "image_url"
+              ]
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Adult succesfully created.",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          },
+          "400": {
+            "description": "Adult could not be created."
+          }
+        },
+        "summary": "Image contains adult? [ image_url -> id ]",
+        "tags": [
+          "vision"
+        ]
+      }
+    },
+    "/parent": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Creates a new parent.",
+        "parameters": [
+          {
+            "description": "The image to analyze",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "properties": {
+                "async": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "image_url": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "image_url"
+              ]
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Parent succesfully created.",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          },
+          "400": {
+            "description": "Task could not be created."
+          },
+          "401": {
+            "description": "Unauthorized."
+          }
+        },
+        "summary": "Image contains parent? [ image_url -> id ]",
+        "tags": [
+          "vision"
+        ]
+      }
+    },
+    "/grandparents": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Creates a new parent.",
+        "parameters": [
+          {
+            "description": "The image to analyze",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "properties": {
+                "async": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "image_url": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "image_url"
+              ]
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Parent succesfully created.",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          },
+          "400": {
+            "description": "Task could not be created."
+          }
+        },
+        "summary": "Image contains parent? [ image_url -> id ]",
+        "tags": [
+          "vision"
+        ]
+      },
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Creates a new parent.",
+        "parameters": [
+          {
+            "description": "The image to analyze",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "properties": {
+                "async": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "image_url": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "image_url"
+              ]
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Parent succesfully created.",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          },
+          "400": {
+            "description": "Task could not be created."
+          }
+        },
+        "summary": "Image contains parent? [ image_url -> id ]",
+        "tags": [
+          "vision"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "AgeAnswer": {
+      "properties": {
+        "max": {
+          "type": "integer"
+        },
+        "min": {
+          "type": "integer"
+        },
+        "score": {
+          "type": "number"
+        }
+      }
+    },
+    "Person": {
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "username"
+      ]
+    },
+    "Persons": {
+      "items": {
+        "$ref": "#/definitions/Person"
+      },
+      "type": "array"
+    },
+    "Task": {
+      "properties": {
+        "answer": {
+          "description": "The answer you are looking for.",
+          "readOnly": true,
+          "type": "number"
+        },
+        "image_url": {
+          "description": "The url of the image that will be processed.",
+          "type": "string"
+        },
+        "this_url": {
+          "description": "Use this url to get this task.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "required": [
+        "image_url"
+      ]
+    }
+  }
+}

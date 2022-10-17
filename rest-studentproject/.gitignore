@@ -15,4 +15,4 @@ production/
 .factorypath
 .class
 bin/
-docs/config.properties
+src/main/java/rest/studentproject/docs/config.properties

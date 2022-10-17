@@ -9,6 +9,7 @@ import io.swagger.v3.oas.models.responses.ApiResponses;
 import rest.studentproject.rule.IRestRule;
 import rest.studentproject.rule.Violation;
 import rest.studentproject.rule.constants.*;
+import rest.studentproject.utility.Output;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ public class GetResourceRule implements IRestRule {
     private static final String TITLE = "GET must be used to retrieve a representation of a resource";
     private static final RuleCategory RULE_CATEGORY = RuleCategory.HTTP;
     private static final RuleSeverity RULE_SEVERITY = RuleSeverity.CRITICAL;
-    private static final RuleType RULE_TYPE = RuleType.STATIC;
+    private static final List<RuleType> RULE_TYPE = List.of(RuleType.STATIC);
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES =
             List.of(RuleSoftwareQualityAttribute.MAINTAINABILITY, RuleSoftwareQualityAttribute.COMPATIBILITY,
                     RuleSoftwareQualityAttribute.FUNCTIONAL_SUITABILITY, RuleSoftwareQualityAttribute.USABILITY);
@@ -53,7 +54,7 @@ public class GetResourceRule implements IRestRule {
     }
 
     @Override
-    public RuleType getRuleType() {
+    public List<RuleType> getRuleType() {
         return RULE_TYPE;
     }
 
@@ -79,7 +80,12 @@ public class GetResourceRule implements IRestRule {
         //collect necessary data
         Paths paths = openAPI.getPaths();
 
+        int curPath = 1;
+        int totalPaths = paths.keySet().size();
         for (Map.Entry<String, PathItem> entry : paths.entrySet()) {
+            Output.progressPercentage(curPath, totalPaths);
+            curPath++;
+            
             String path = entry.getKey();
             PathItem item = entry.getValue();
 
@@ -112,8 +118,8 @@ public class GetResourceRule implements IRestRule {
     private Violation checkForRequestBody(Operation getRequest, String path) {
         if (getRequest.getRequestBody() == null) return null;
         //Get requests should not have a request body
-        return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.GET_RESOURCE_REQUESTBODY, path
-                , ErrorMessage.GET_RESOURCE_REQUESTBODY);
+        return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.GET_RESOURCE_REQUEST_BODY,
+                path, ErrorMessage.GET_RESOURCE_REQUEST_BODY);
     }
 
     /**
@@ -132,12 +138,12 @@ public class GetResourceRule implements IRestRule {
 
         //Checks if a HTTP 200 response or a default response definition exists
         if (okResponse != null) {
-            if (okResponse.getContent() == null || okResponse.getContent().isEmpty()) {
+            if (okResponse.getContent() == null || okResponse.getContent().isEmpty() && okResponse.get$ref() == null ) {
                 return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.GET_RESOURCE, path,
                         ErrorMessage.GET_RESOURCE);
             }
         } else if (defaultResponse != null) {
-            if (defaultResponse.getContent() == null || defaultResponse.getContent().isEmpty()) {
+            if ((defaultResponse.getContent() == null || defaultResponse.getContent().isEmpty()) && defaultResponse.get$ref() == null) {
                 return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.GET_RESOURCE, path,
                         ErrorMessage.GET_RESOURCE);
             }
