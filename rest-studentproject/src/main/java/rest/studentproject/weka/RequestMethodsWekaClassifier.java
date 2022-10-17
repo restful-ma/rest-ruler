@@ -62,18 +62,18 @@ public class RequestMethodsWekaClassifier {
         classAttributeValues.add("delete");
         classAttributeValues.add("invalid");
         Attribute classAttribute = new Attribute("label_type", classAttributeValues);
-
+        
         /**
          * Built the feature vector "wekaAttributes"
          */
         wekaAttributes = new ArrayList<>();
         wekaAttributes.add(classAttribute);
         wekaAttributes.add(attributeText);
-
+        
     }
-
-
-
+    
+    
+    
     /**
      * classify a new message into income or outcome.
      *
@@ -84,16 +84,16 @@ public class RequestMethodsWekaClassifier {
         try {
             // create new Instance for prediction.
             DenseInstance newinstance = new DenseInstance(2);
-
+            
             //weka demand a dataset to be set to new Instance
             Instances newDataset = new Instances("predictiondata", wekaAttributes, 1);
             newDataset.setClassIndex(0);
-
+            
             newinstance.setDataset(newDataset);
-
+            
             // text attribute value set to value to be predicted
             newinstance.setValue(wekaAttributes.get(1), text);
-
+            
             // predict most likely class for the instance
             double pred = classifier.classifyInstance(newinstance);
 
