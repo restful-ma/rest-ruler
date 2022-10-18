@@ -10,10 +10,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -33,6 +33,35 @@ public class Report {
         } else {
             return new Report();
         }
+    }
+
+    /**
+     * This method is used for writing all violations in a presentable way to the console.
+     * @param violationList list of violations to be displayed in console
+     */
+    public void displayReport(List<Violation> violationList){
+        //report content for console
+        StringBuilder sbConsoleReport = new StringBuilder();
+        sbConsoleReport.append(new Heading("REST API Specification Report", 1)).append("\n");
+
+        // Table heading
+        Table.Builder consoleReport = new Table.Builder().addRow("Line No.", "Line", "Rule Violated");
+
+        //generate Table entries for each violation
+        for (Violation v : violationList) {
+            IRestRule rule = v.getRule();
+            consoleReport.addRow(v.getLineViolation(), v.getKeyViolation(), rule.getTitle());
+        }
+        //add Table to console output
+        sbConsoleReport.append(consoleReport.build());
+
+        //print to console
+        System.out.println(sbConsoleReport);
+
+        // notification
+        System.out.println("----------------------------------------------");
+        System.out.println("\nIn total " + violationList.size() + " rule violations were found");
+
     }
 
     /**
@@ -62,55 +91,75 @@ public class Report {
      * @param violationList list of Violation Objects to be written to file
      */
     private void writeMarkdownReport(List<Violation> violationList) {
+        //report content for File
         StringBuilder sbMDReport = new StringBuilder();
         sbMDReport.append(new Heading("REST API Specification Report", 1)).append("\n");
+        //report content for console
         StringBuilder sbConsoleReport = new StringBuilder();
         sbConsoleReport.append(new Heading("REST API Specification Report", 1)).append("\n");
 
-        //Table heading
+        // Table heading
         Table.Builder mdReport = new Table.Builder().addRow("Line No.", "Line", "Rule Violated", "Category",
                 "Severity", "Rule Type", "Software Quality Attributes", "Improvement Suggestion");
 
         Table.Builder consoleReport = new Table.Builder().addRow("Line No.", "Line", "Rule Violated");
 
+        //generate Table entries for each violation
         for (Violation v : violationList) {
             IRestRule rule = v.getRule();
             mdReport.addRow(v.getLineViolation(), v.getKeyViolation(), rule.getTitle(), rule.getCategory(),
-                    rule.getSeverityType(), rule.getRuleType(),
+                    rule.getSeverityType(), rule.getRuleType().toString().replace("[", "").replace("]", ""),
                     rule.getRuleSoftwareQualityAttribute().toString().replace("[", "").replace("]", ""),
                     v.getImprovementSuggestion());
             consoleReport.addRow(v.getLineViolation(), v.getKeyViolation(), rule.getTitle());
         }
+        //add Table to report
+        sbMDReport.append(mdReport.build());
 
+        //add Table to console output
         sbConsoleReport.append(consoleReport.build());
 
         //print to console
-        logger.info(sbConsoleReport.toString());
+        System.out.println(sbConsoleReport);
+
+        // notification
+        System.out.println("----------------------------------------------");
+        System.out.println("\nIn total " + violationList.size() + " rule violations were found");
 
         try {
-
-            //create directory
-            Path path = Path.of(OUTPUT_DIR);
-            if (!Files.isDirectory(path)) {
-                path = Files.createDirectory(path);
-            }
-
-            //write file
-            String filename = "Report_" + title + ".md";
-            Path file = Files.createFile(path.resolve(filename));
-            BufferedWriter bw = Files.newBufferedWriter(file);
-            PrintWriter printWriter = new PrintWriter(bw);
-            sbMDReport.append(mdReport.build());
-            printWriter.print(sbMDReport);
-
-            //notification
-            logger.log(Level.INFO,"The detailed report can be found here: {0}", path.toAbsolutePath());
-
-            printWriter.close();
-            bw.close();
+            writeReportToFile(sbMDReport);
         } catch (IOException e) {
             logger.severe("Error on writing report: " + e.getMessage());
+            e.printStackTrace();
         }
+    }
+
+    private void writeReportToFile(StringBuilder sbMDReport) throws IOException {
+        Path file;
+        //create directory
+        Path path = Path.of(OUTPUT_DIR);
+        if (!Files.isDirectory(path)) {
+            path = Files.createDirectory(path);
+        }
+
+        //write file
+        String filename = "Report_" + title + ".md";
+        if (Files.notExists(path.resolve(filename))){
+            file = Files.createFile(path.resolve(filename));
+        }else{
+            file = path.resolve(filename);
+        }
+
+
+        BufferedWriter bw = Files.newBufferedWriter(file);
+        PrintWriter printWriter = new PrintWriter(bw);
+        printWriter.print(sbMDReport);
+
+        //inform user where file has been written to
+        System.out.println("--> The detailed report can be found here: " + path.toAbsolutePath() + "\n");
+
+        printWriter.close();
+        bw.close();
     }
 
     /**

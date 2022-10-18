@@ -16,7 +16,7 @@ public interface IRestRule {
 
     RuleSeverity getSeverityType();
 
-    RuleType getRuleType();
+    List<RuleType> getRuleType();
 
     List<RuleSoftwareQualityAttribute> getRuleSoftwareQualityAttribute();
 
@@ -26,6 +26,7 @@ public interface IRestRule {
 
     /**
      * Method used to check for any violations of the implemented rule
+     *
      * @param openAPI structured Object containing a representation of a OpenAPI specification
      * @return List of Violations of the executing Rule
      */

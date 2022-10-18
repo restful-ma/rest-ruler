@@ -36,7 +36,7 @@ class GetResourceRuleTest {
         assertFalse(violationList.isEmpty());
         assertEquals(1, violationList.size());
 
-        assertEquals(ErrorMessage.GET_RESOURCE_REQUESTBODY, violationList.get(0).getErrorMessage());
+        assertEquals(ErrorMessage.GET_RESOURCE_REQUEST_BODY, violationList.get(0).getErrorMessage());
     }
 
     @Test

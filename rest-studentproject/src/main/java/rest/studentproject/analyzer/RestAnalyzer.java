@@ -3,20 +3,26 @@ package rest.studentproject.analyzer;
 import io.swagger.parser.OpenAPIParser;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.parser.core.models.SwaggerParseResult;
-
 import rest.studentproject.report.Report;
 import rest.studentproject.rule.IRestRule;
 import rest.studentproject.rule.Violation;
+import rest.studentproject.rule.constants.SecuritySchema;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RestAnalyzer {
-    public static LOCMapper locMapper;
-    private final OpenAPI openAPI;
-    //Singleton
+    // Singleton
     private static final Report report = Report.getInstance();
+    public static LOCMapper locMapper;
+    public static Map<SecuritySchema, String> securitySchemas;
+    public static boolean dynamicAnalysis = true;
 
+    private final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    public final OpenAPI openAPI;
 
     /**
      * Constructor
@@ -43,6 +49,8 @@ public class RestAnalyzer {
         //generates Report
         if (generateReport) {
             report.generateReport(violations);
+        }else{
+            report.displayReport(violations);
         }
         return violations;
     }
@@ -72,9 +80,16 @@ public class RestAnalyzer {
      */
     private List<Violation> runRuleViolationChecks (List<IRestRule> activeRules){
         List<Violation> violations = new ArrayList<>();
+        int curRule = 1;
         for (IRestRule rule : activeRules) {
-            if (!rule.getIsActive()) continue;
-            violations.addAll(rule.checkViolation(this.openAPI));
+            if (!rule.getIsActive())
+                continue;
+            String info = String.format("Rule %d of %d is now checked:%n%s", curRule, activeRules.size(),
+                    rule.getTitle());
+            logger.log(Level.INFO, info);
+            List<Violation> test = rule.checkViolation(this.openAPI);
+            curRule++;
+            violations.addAll(test);
         }
         return violations;
     }
