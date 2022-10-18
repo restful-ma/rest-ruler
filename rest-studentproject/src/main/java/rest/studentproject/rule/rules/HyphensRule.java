@@ -95,22 +95,18 @@ public class HyphensRule implements IRestRule {
     private List<Violation> getLstViolations(List<Violation> violations, Set<String> paths) {
         int curPath = 1;
         int totalPaths = paths.size();
-        SeparatorRule separatorRule = new SeparatorRule(false);
-        List<Violation> separatorListViolation = separatorRule.checkSeparator(paths);
-        if (separatorListViolation.isEmpty()) {
-            for (String path : paths) {
-                Output.progressPercentage(curPath, totalPaths);
-                curPath++;
-                if (path.trim().equals(""))
-                    continue;
-                // Get the path without the curly braces
-                String pathWithoutVariables = path.replaceAll("\\{" + ".*" + "\\}", "");
-                String[] pathSegments = pathWithoutVariables.split("/");
-                // Extract path segments based on / char and check if there are violations
-                Violation violation = getLstViolationsFromPathSegments(path, pathSegments);
-                if (violation != null)
-                    violations.add(violation);
-            }
+        for (String path : paths) {
+            Output.progressPercentage(curPath, totalPaths);
+            curPath++;
+            if (path.trim().equals(""))
+                continue;
+            // Get the path without the curly braces
+            String pathWithoutVariables = path.replaceAll("\\{" + ".*" + "\\}", "");
+            String[] pathSegments = pathWithoutVariables.split("/");
+            // Extract path segments based on / char and check if there are violations
+            Violation violation = getLstViolationsFromPathSegments(path, pathSegments);
+            if (violation != null)
+                violations.add(violation);
         }
         return violations;
     }
@@ -118,6 +114,8 @@ public class HyphensRule implements IRestRule {
     private Violation getLstViolationsFromPathSegments(String path, String[] pathSegments) {
         for (String pathSegment : pathSegments) {
             if (pathSegment.isEmpty())
+                continue;
+            if (pathSegment.contains("\\"))
                 continue;
             boolean isPathFullyContained;
 
