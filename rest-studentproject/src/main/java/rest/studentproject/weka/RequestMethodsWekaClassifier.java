@@ -1,5 +1,7 @@
 package rest.studentproject.weka;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 import weka.classifiers.bayes.NaiveBayesMultinomial;
 import weka.classifiers.meta.FilteredClassifier;
 import weka.core.Attribute;
@@ -80,7 +82,7 @@ public class RequestMethodsWekaClassifier {
      * @param text to be classified.
      * @return a class label (income or outcome )
      */
-    public String predict(String text) {
+    public ImmutablePair<String, Double>  predict(String text) {
         try {
             // create new Instance for prediction.
             DenseInstance newinstance = new DenseInstance(2);
@@ -95,12 +97,18 @@ public class RequestMethodsWekaClassifier {
             newinstance.setValue(wekaAttributes.get(1), text);
             
             // predict most likely class for the instance
-            double pred = classifier.classifyInstance(newinstance);
+            double prediction = classifier.classifyInstance(newinstance);
+            String predictionValue = newDataset.classAttribute().value((int) prediction);
+
+            // Percentage of the prediction
             double[] percentage = classifier.distributionForInstance(newinstance);
-            double test = percentage[(int) pred];
+            double percentageOfPredictedValue = percentage[(int) prediction];
+
+            // Create pair containing the prediction value and the percentage of accuracy
+            ImmutablePair<String, Double> predictionValues = new ImmutablePair<>(predictionValue, percentageOfPredictedValue);
 
             // return original label
-            return newDataset.classAttribute().value((int) pred);
+            return predictionValues;
         } catch (Exception e) {
             LOGGER.warning(e.getMessage());
             return null;

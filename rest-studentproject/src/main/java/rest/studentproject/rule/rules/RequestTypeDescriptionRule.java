@@ -5,6 +5,7 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.PathItem;
 import io.swagger.v3.oas.models.Paths;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import rest.studentproject.rule.IRestRule;
 import rest.studentproject.rule.Violation;
 import rest.studentproject.rule.constants.*;
@@ -81,36 +82,38 @@ public class RequestTypeDescriptionRule implements IRestRule {
             String keyPath = pathsTest.keySet().stream().filter(key -> pathsTest.get(key).equals(pathItem)).findFirst().get();
             if(pathItem.getGet() != null){
                 String description = pathItem.getGet().getDescription();
-                String result = wt.predict(description);
-                if(result.equals("invalid")){
+                ImmutablePair<String, Double> predictionValues = wt.predict(description);
+                boolean percTest = predictionValues.right >= 0.75;
+                if(predictionValues.left.equals("invalid") && (predictionValues.right >= 0.75)){
                     violations.add(new Violation(this, locMapper.getLOCOfPath(keyPath), ImprovementSuggestion.REQUESTTYPETUNELING, keyPath, ErrorMessage.REQUESTTYPETUNNELINGGET));
-                }
-                if(!result.equals("get")){
-                    violations.add(new Violation(this, locMapper.getLOCOfPath(keyPath),  ImprovementSuggestion.REQUESTTYPEGET + IMPROVEMNT_SUB_STRING + result.toUpperCase(), keyPath, ErrorMessage.REQUESTTYPE));
+                }else if(!predictionValues.left.equals("get") && (predictionValues.right >= 0.75)){
+                    violations.add(new Violation(this, locMapper.getLOCOfPath(keyPath),  ImprovementSuggestion.REQUESTTYPEGET + IMPROVEMNT_SUB_STRING + predictionValues.left.toUpperCase(), keyPath, ErrorMessage.REQUESTTYPE));
                 }
             }
             if(pathItem.getPost() != null){
                 String description = pathItem.getPost().getDescription();
-                String result = wt.predict(description);
-                if(result.equals("invalid")){
+                ImmutablePair<String, Double> predictionValues = wt.predict(description);
+                boolean percTest = predictionValues.right >= 0.75;
+                if(predictionValues.left.equals("invalid") && (predictionValues.right >= 0.75)){
                     violations.add(new Violation(this, locMapper.getLOCOfPath(keyPath), ImprovementSuggestion.REQUESTTYPETUNELING, keyPath, ErrorMessage.REQUESTTYPETUNNELINGPOST));
-                }
-                if(!result.equals("post")){
-                    violations.add(new Violation(this, locMapper.getLOCOfPath(keyPath), ImprovementSuggestion.REQUESTTYPEPOST + IMPROVEMNT_SUB_STRING + result.toUpperCase(), keyPath, ErrorMessage.REQUESTTYPE));
+                }else if(!predictionValues.left.equals("post") && (predictionValues.right >= 0.75)){
+                    violations.add(new Violation(this, locMapper.getLOCOfPath(keyPath), ImprovementSuggestion.REQUESTTYPEPOST + IMPROVEMNT_SUB_STRING + predictionValues.left.toUpperCase(), keyPath, ErrorMessage.REQUESTTYPE));
                 }
             }
             if(pathItem.getPut() != null){
                 String description = pathItem.getPut().getDescription();
-                String result = wt.predict(description);
-                if(!result.equals("put")){
-                    violations.add(new Violation(this, locMapper.getLOCOfPath(keyPath), ImprovementSuggestion.REQUESTTYPEPUT+ IMPROVEMNT_SUB_STRING + result.toUpperCase(), keyPath, ErrorMessage.REQUESTTYPE ));
+                ImmutablePair<String, Double> predictionValues = wt.predict(description);
+                boolean percTest = predictionValues.right >= 0.75;
+                if(!predictionValues.left.equals("put") && (predictionValues.right >= 0.75)){
+                    violations.add(new Violation(this, locMapper.getLOCOfPath(keyPath), ImprovementSuggestion.REQUESTTYPEPUT+ IMPROVEMNT_SUB_STRING + predictionValues.left.toUpperCase(), keyPath, ErrorMessage.REQUESTTYPE ));
                 }
             }
             if(pathItem.getDelete() != null){
                 String description = pathItem.getDelete().getDescription();
-                String result = wt.predict(description);
-                if(!result.equals("delete")){
-                    violations.add(new Violation(this,locMapper.getLOCOfPath(keyPath),  ImprovementSuggestion.REQUESTTYPEDELETE + IMPROVEMNT_SUB_STRING + result.toUpperCase(), keyPath, ErrorMessage.REQUESTTYPE));
+                ImmutablePair<String, Double> predictionValues = wt.predict(description);
+                boolean percTest = predictionValues.right >= 0.75;
+                if(!predictionValues.left.equals("delete") && (predictionValues.right >= 0.75)){
+                    violations.add(new Violation(this,locMapper.getLOCOfPath(keyPath),  ImprovementSuggestion.REQUESTTYPEDELETE + IMPROVEMNT_SUB_STRING + predictionValues.left.toUpperCase(), keyPath, ErrorMessage.REQUESTTYPE));
                 }
             }
         });
