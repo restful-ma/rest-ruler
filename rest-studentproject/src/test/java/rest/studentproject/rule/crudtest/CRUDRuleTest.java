@@ -1,4 +1,4 @@
-package rest.studentproject.rule.crudtest;
+package rest.studentproject.rule.crudTest;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
