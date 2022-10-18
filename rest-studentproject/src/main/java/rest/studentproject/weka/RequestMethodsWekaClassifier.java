@@ -96,6 +96,8 @@ public class RequestMethodsWekaClassifier {
 
             // predict most likely class for the instance
             double pred = classifier.classifyInstance(newinstance);
+            double[] percentage = classifier.distributionForInstance(newinstance);
+            double test = percentage[(int) pred];
 
             // return original label
             return newDataset.classAttribute().value((int) pred);
