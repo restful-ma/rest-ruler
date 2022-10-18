@@ -1,11 +1,11 @@
 package rest.studentproject.rule.rules;
 
 import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.servers.Server;
 import rest.studentproject.rule.IRestRule;
 import rest.studentproject.rule.Utility;
 import rest.studentproject.rule.Violation;
 import rest.studentproject.rule.constants.*;
+import rest.studentproject.utility.Output;
 
 import java.util.*;
 
@@ -17,12 +17,12 @@ import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
 public class CRUDRule implements IRestRule {
     private static final String TITLE = "CRUD function names should not be used in URIs";
     private static final RuleCategory CATEGORY = RuleCategory.URIS;
-    private static final RuleType TYPE = RuleType.STATIC;
+    private static final List<RuleType> TYPE = Arrays.asList(RuleType.STATIC);
     private static final RuleSeverity SEVERITY = RuleSeverity.ERROR;
-    private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTE =
-            Arrays.asList(RuleSoftwareQualityAttribute.USABILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
-    private static final String[] CRUD_OPERATIONS = {"get", "post", "delete", "put", "create", "read", "update",
-            "patch", "insert", "select"};
+    private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTE = Arrays
+            .asList(RuleSoftwareQualityAttribute.USABILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
+    private static final String[] CRUD_OPERATIONS = { "get", "post", "delete", "put", "create", "read", "update",
+            "patch", "insert", "select" };
     private static final String PATH_TO_CRUD_DICTIONARY = "src/main/java/rest/studentproject/docs/CRUD_words.txt";
     private final List<Violation> violationList = new ArrayList<>();
     private boolean isActive;
@@ -47,7 +47,7 @@ public class CRUDRule implements IRestRule {
     }
 
     @Override
-    public RuleType getRuleType() {
+    public List<RuleType> getRuleType() {
         return TYPE;
     }
 
@@ -67,7 +67,8 @@ public class CRUDRule implements IRestRule {
     }
 
     /**
-     * Checks if there is a violation against the CRUD rule. All paths and base URLs are checked.
+     * Checks if there is a violation against the CRUD rule. All paths and base URLs
+     * are checked.
      *
      * @param openAPI the definition that will be checked against the rule.
      * @return the list of violations.
@@ -76,23 +77,25 @@ public class CRUDRule implements IRestRule {
     public List<Violation> checkViolation(OpenAPI openAPI) {
         // Duplicate code --> Refactor --> Code is more often used
         Set<String> paths = new HashSet<>(openAPI.getPaths().keySet());
-        List<Server> servers = openAPI.getServers();
 
-        // Add server paths to the path list
-        for (Server server : servers) {
-            if (server.getUrl().trim().isEmpty()) continue;
-            paths.add(server.getUrl());
-        }
-
+        int curPath = 1;
+        int totalPaths = paths.size();
         // Every path is split at each segment
         for (String path : paths) {
-            if (path.trim().isEmpty()) continue;
+            Output.progressPercentage(curPath, totalPaths);
+            curPath++;
+
+            if (path.trim().isEmpty())
+                continue;
+
             String pathWithoutParameters = path.replaceAll("\\{" + ".*" + "\\}", "");
             String[] pathSegments = pathWithoutParameters.split("/");
+
             for (String segment : pathSegments) {
-                // Check if the segment is included in the CRUD dictionary (strings that include CRUD operation
-                // substrings)
-                if (Utility.getPathSegmentContained(segment, PATH_TO_CRUD_DICTIONARY)) continue;
+                // Check if the segment is included in the CRUD dictionary (strings that include
+                // CRUD operation substrings)
+                if (Utility.getPathSegmentContained(segment, PATH_TO_CRUD_DICTIONARY))
+                    continue;
                 // The segment is checked if it contains a CRUD operation
                 checkCRUDInSegment(segment, path);
             }
@@ -110,7 +113,9 @@ public class CRUDRule implements IRestRule {
         for (String crudOperation : CRUD_OPERATIONS) {
             if (segment.toLowerCase().contains(crudOperation)) {
                 this.violationList.add(new Violation(this, locMapper.getLOCOfPath(path), "URIS should not be " +
-                        "used " + "to " + "indicate that a CRUD function (" + crudOperation.toUpperCase() + ") is " + "performed, " + "instead HTTP request methods should be used for this.", path, ErrorMessage.CRUD));
+                        "used " + "to " + "indicate that a CRUD function (" + crudOperation.toUpperCase() + ") is "
+                        + "performed, " + "instead HTTP request methods should be used for this.", path,
+                        ErrorMessage.CRUD));
             }
         }
     }

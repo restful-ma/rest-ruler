@@ -3,17 +3,12 @@ package rest.studentproject.rule.rules;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.Paths;
-import opennlp.tools.postag.POSModel;
-import opennlp.tools.postag.POSTaggerME;
-import opennlp.tools.tokenize.SimpleTokenizer;
 import rest.studentproject.rule.IRestRule;
 import rest.studentproject.rule.Violation;
 import rest.studentproject.rule.constants.*;
+import rest.studentproject.utility.Output;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,11 +22,13 @@ public class VerbPhraseRule implements IRestRule {
     private static final String TITLE = "A verb or verb phrase should be used for controller names";
     private static final RuleCategory RULE_CATEGORY = RuleCategory.URIS;
     private static final RuleSeverity RULE_SEVERITY = RuleSeverity.ERROR;
-    private static final RuleType RULE_TYPE = RuleType.STATIC;
-    private static final List<RuleSoftwareQualityAttribute> RULE_SOFTWARE_QUALITY_ATTRIBUTE_LIST = List.of(RuleSoftwareQualityAttribute.USABILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
+    private static final List<RuleType> RULE_TYPE = List.of(RuleType.STATIC);
+    private static final List<RuleSoftwareQualityAttribute> RULE_SOFTWARE_QUALITY_ATTRIBUTE_LIST = List
+            .of(RuleSoftwareQualityAttribute.USABILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
     public static final String MODELS_EN_POS_MAXENT_BIN = "models/en-pos-maxent.bin";
     private boolean isActive;
     private final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    private int curPath = 1;
 
     public VerbPhraseRule(boolean isActive) {
         this.isActive = isActive;
@@ -53,7 +50,7 @@ public class VerbPhraseRule implements IRestRule {
     }
 
     @Override
-    public RuleType getRuleType() {
+    public List<RuleType> getRuleType() {
         return RULE_TYPE;
     }
 
@@ -80,19 +77,24 @@ public class VerbPhraseRule implements IRestRule {
         // Get the paths from the OpenAPI object
         Set<String> paths = openAPI.getPaths().keySet();
 
-        if (paths.isEmpty()) return violations;
+        if (paths.isEmpty())
+            return violations;
         // Loop through the paths
         return getLstViolations(violations, openApiPaths);
     }
 
     /**
      * Get list of violation for the rule 5 (Verb Phrase Rule)
+     * 
      * @param violations
      * @param paths
      * @return
      */
     private List<Violation> getLstViolations(List<Violation> violations, Paths paths) {
+        int totalPaths = paths.keySet().size();
         paths.forEach((path, pathItem) -> {
+            Output.progressPercentage(this.curPath, totalPaths);
+            this.curPath++;
             if (!path.trim().equals("")) {
                 // Check if the path is of type get or post
                 Operation getOperation = pathItem.getGet();
@@ -102,37 +104,44 @@ public class VerbPhraseRule implements IRestRule {
                 String[] pathSegments = pathWithoutVariables.split("/");
                 // Extract path segments based on / char and check if there are violations
                 Violation violation = getLstViolationsFromPathSegments(path, pathSegments, getOperation, postOperation);
-                if (violation != null) violations.add(violation);
+                if (violation != null)
+                    violations.add(violation);
             }
         });
         return violations;
     }
 
     /**
-     * Get a violation based on the last path segment of a path. If the last part segment is a verb and the request
+     * Get a violation based on the last path segment of a path. If the last part
+     * segment is a verb and the request
      * is not of type GET or POST, then there is a violation.
+     * 
      * @param path
      * @param pathSegments
      * @param getOperation
      * @param postOperation
      * @return
      */
-    private Violation getLstViolationsFromPathSegments(String path, String[] pathSegments, Operation getOperation, Operation postOperation) {
+    private Violation getLstViolationsFromPathSegments(String path, String[] pathSegments, Operation getOperation,
+            Operation postOperation) {
         // Get the last pathSegment which we need to analyze
-        if(pathSegments.length < 1) return null;
-        String lastPathSegment = pathSegments[pathSegments.length-1];
+        if (pathSegments.length < 1)
+            return null;
+        String lastPathSegment = pathSegments[pathSegments.length - 1];
         try {
             // Get the words forming the pathSegment
             List<String> subStringFromPath = splitContiguousWords(lastPathSegment);
             List<String> pathWithoutParameterDictionaryMatching = Arrays.asList(subStringFromPath.get(0).split(" "));
             // Check if the first word is a verb
-            if(pathWithoutParameterDictionaryMatching.get(0).equals("")) return null;
+            if (pathWithoutParameterDictionaryMatching.get(0).equals(""))
+                return null;
 
             String token = getTokenNLP(pathWithoutParameterDictionaryMatching.get(0));
-            // If the first word is a verb but the request is not of type get or post then we have a violation.
+            // If the first word is a verb but the request is not of type get or post then
+            // we have a violation.
             boolean isTokenVerb = token.equals("VBZ") || token.equals("VBP") || token.equals("VB");
             if (isTokenVerb && (getOperation == null && postOperation == null)) {
-                return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.VERBPHRASE, path,
+                return new Violation(this, locMapper.getLOCOfPath(path), ImprovementSuggestion.VERB_PHRASE, path,
                         ErrorMessage.VERBPHRASE);
             }
 
@@ -142,6 +151,4 @@ public class VerbPhraseRule implements IRestRule {
         return null;
     }
 
-
 }
-

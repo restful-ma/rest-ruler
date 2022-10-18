@@ -35,11 +35,12 @@ class LOCMapperTest {
         this.openAPI = new OpenAPIParser().readLocation(jsonURL, null, null).getOpenAPI();
         this.mapper = new LOCMapper(openAPI, jsonURL);
         this.mapper.mapOpenAPIKeysToLOC();
-        assertEquals(38, this.mapper.getLOCOfPath("/quotes"));
-        assertEquals(4, this.mapper.getOpenAPIKeyLOC().get("paths").size());
-        assertEquals(58, this.mapper.getOpenAPIKeyLOC().get("paths").get("/symbols"));
-        assertEquals(89, this.mapper.getOpenAPIKeyLOC().get("paths").get("/"));
-        assertEquals(120, this.mapper.getOpenAPIKeyLOC().get("paths").get("/adults/{get_adult_ID}/names"));
+        assertEquals(31, this.mapper.getLOCOfPath("/quotes"));
+        assertEquals(5, this.mapper.getOpenAPIKeyLOC().get("paths").size());
+        assertEquals(69, this.mapper.getOpenAPIKeyLOC().get("paths").get("/symbols"));
+        assertEquals(107, this.mapper.getOpenAPIKeyLOC().get("paths").get("/"));
+        assertEquals(145, this.mapper.getOpenAPIKeyLOC().get("paths").get("/adults/{get_adult_ID}/names"));
+        assertEquals(183, this.mapper.getOpenAPIKeyLOC().get("paths").get("/movies"));
     }
 
     @Test
