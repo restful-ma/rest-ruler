@@ -57,7 +57,7 @@
     },
     "/symbols": {
       "put": {
-        "description": "Create Symbol List",
+        "description": "Create new symbol list",
         "externalDocs": {
           "description": "Find out more",
           "url": "http://1forge.com/forex-data-api"
@@ -88,7 +88,7 @@
     },
     "/letters": {
       "delete": {
-        "description": "Create Symbol List",
+        "description": "Create a new symbol list",
         "externalDocs": {
           "description": "Find out more",
           "url": "http://1forge.com/forex-data-api"
@@ -119,7 +119,7 @@
     },
     "/food": {
       "post": {
-        "description": "Update Symbol List",
+        "description": "Update a collection of symbols",
         "externalDocs": {
           "description": "Find out more",
           "url": "http://1forge.com/forex-data-api"
@@ -150,7 +150,7 @@
     },
     "/food/truck": {
       "post": {
-        "description": "Create and update symbol List",
+        "description": "Update a collection and then create the symbol List",
         "externalDocs": {
           "description": "Find out more",
           "url": "http://1forge.com/forex-data-api"

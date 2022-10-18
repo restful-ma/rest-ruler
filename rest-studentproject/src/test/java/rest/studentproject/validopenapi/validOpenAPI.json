@@ -182,7 +182,7 @@
     },
     "/movies": {
       "post": {
-        "description": "List of movies.",
+        "description": "Update a list of movies.",
         "consumes": ["application/json"],
         "parameters": [
           {
