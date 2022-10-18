@@ -1,0 +1,1239 @@
+openapi: "3.0"
+info:
+  description: "API definition is the gold standard. For each implemented rule there are rule violations."
+  version: "0.0.1"
+  title: "Gold Standard REST-API Rules"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+servers:
+  - url: https://api.example.com/v_1
+    description: Violates the underscore rule
+  - url: https://api.example.com/v1
+    description: Production server (uses live data)
+  - url: https://sandbox-api.example.com:8443/v1
+    description: Sandbox server (uses test data)
+tags:
+  - name: "URI Rules"
+  - name: "Meta Rules"
+  - name: "Representational Rules"
+  - name: "HTTP Rules"
+  - name: "Client Rules"
+schemes:
+  - "https"
+# Bugs: * $refs werden bei get representations nicht erkannt
+#       * /{primarySchool}/_schools plural noun violation
+#       * SEVERE: Error on checking if a word is contained in a dictionary: Illegal Unicode 
+#         escape sequence near index 2 \users\\permissions (s in users) --> hyphens rule
+#       * /pets/{petName}/Location-States plural noun violation
+#       * /pets/{petName}/Location-States hyphens violation
+#       * /pets/{petName}/add-Location hyphens violation
+#       * /enterprise/locations/germany/federal-states/baden-wuerttemberg plural noun violation
+#       * file extension violation --> auch hyphens, separator violations
+#       * verb rule description
+paths:
+  # Define all paths here
+  # RULE 19: using other characters instead of forward slash '/'
+  .users.{userId}.permissions:
+    get:
+      description: Violates the separator rule (and hyphens) --> should be /users/{userId}/permissions
+      summary: Returns a user permission for ID.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The perimssion of the user to return.
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        "200":
+          description: A users permissions.
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: The specified user ID is invalid (not a number).
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: Unauthorized
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: A user with the specified ID was not found.
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+
+  \users\{userId}\permissions:
+    get:
+      description: Violates the separator rule (and hyphens) --> should be /users/{userId}/permissions
+      summary: Returns a user permission for ID.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The perimssion of the user to return.
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        "200":
+          description: A users permissions.
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: The specified user ID is invalid (not a number).
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: Unauthorized
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: A user with the specified ID was not found.
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  -users-{userId}-permissions:
+    get:
+      description: Violates the separator rule (and hyphens) --> should be /users/{userId}/permissions
+      summary: Returns a user permission for ID.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The perimssion of the user to return.
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        "200":
+          description: A users permissions.
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: The specified user ID is invalid (not a number).
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: Unauthorized
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: A user with the specified ID was not found.
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  \#users\#{userId}\#permissions:
+    get:
+      description: Violates the separator rule (and hyphens) --> should be /users/{userId}/permissions
+      summary: Returns a user permission for ID.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The perimssion of the user to return.
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        "200":
+          description: A users permissions.
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: The specified user ID is invalid (not a number).
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: Unauthorized
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: A user with the specified ID was not found.
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  # RULE 1: A trailing forward slash (/) should not be included in URIs
+  /users/{userId}/details/:
+    get:
+      description: Violates the trailing slash rule --> should be /users/{userId}/details
+      summary: Returns a user permission for ID.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The details of the user to return.
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        "200":
+          description: A users permissions.
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: The specified user ID is invalid (not a number).
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: Unauthorized
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: A user with the specified ID was not found.
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  # Rule 28: GET must be used to retrieve a representation of a resource
+  # missing resource representation
+  /users/{userId}/permissions:
+    get:
+      description: Violates the get representation (and content-type) rule --> 200 response needs the content type
+      summary: Returns a user permission for ID.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The perimssion of the user to return.
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        "200":
+          description: A users permissions.
+        "400":
+          description: The specified user ID is invalid (not a number).
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: Unauthorized
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: A user with the specified ID was not found.
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  /users/{userId}/statuses:
+    get:
+      description: Violates the get representation rule --> 200 response and default response is missing
+      summary: Returns a user permission for ID.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The perimssion of the user to return.
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        "400":
+          description: The specified user ID is invalid (not a number).
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: Unauthorized
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: A user with the specified ID was not found.
+          $ref: "#/components/responses/GenericResponse"
+  # Illegal Request Body
+  /users/{userId}/rules:
+    get:
+      description: Violates the get representation rule --> get operation should not have a request body
+      summary: Returns a user permission for ID.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The perimssion of the user to return.
+          schema:
+            type: string
+            minimum: 1
+      requestBody:
+        content:
+          application/json:
+            examples:
+              basic:
+                "$ref": "#/components/examples/post-createNotificationConfiguration-basic"
+            schema:
+              $ref: "#/components/schemas/CreateNotificationConfigurationRequest"
+      responses:
+        "200":
+          description: A users permissions.
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: The specified user ID is invalid (not a number).
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: Unauthorized
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: A user with the specified ID was not found.
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  # Rule 22: Underscores (_) should not be used in URIs.
+  "/primary_school":
+    get:
+      tag: "URI Rules"
+      description: Violates the underscore rule --> should be /primary-school
+      responses:
+        "200":
+          description: "Successful request"
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: "Bad request"
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: "Unauthorized"
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: "Not Found"
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  "/{primarySchool}/_schools":
+    get:
+      tag: "URI Rules"
+      description: Violates the underscore rule --> should be /{primarySchool}/schools
+      responses:
+        "200":
+          description: "Successful request"
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: "Bad request"
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: "Unauthorized"
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: "Not Found"
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  # Rule 23: Lowercase letters should be preferred in URI paths.
+  "/Pets":
+    get:
+      tag: "URI Rules"
+      description: Violates the lowercase letters rule --> /Pets should be /pets
+      responses:
+        "200":
+          description: "A list of pets"
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: "The specified user ID is invalid (not a number)."
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: "Unauthorized"
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: "A user with the specified ID was not found."
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  "/pets/{petName}/Location-States":
+    get:
+      tag: "URI Rules"
+      description: Violates the lowercase letters rule --> should be /pets/{petName}/locations-states
+      responses:
+        "200":
+          description: "A list of locations states given a pet name"
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: "The specified user ID is invalid (not a number)."
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: "Unauthorized"
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: "A user with the specified ID was not found."
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  "/pets/{petName}/locations/{locationName}/CITIES":
+    get:
+      tag: "URI Rules"
+      description: Violates the lowercase letters rule --> should be /pets/{petName}/locations/{locationName}/cities
+      responses:
+        "200":
+          description: "City where a pet is located"
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: "The specified user ID is invalid (not a number)."
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: "Unauthorized"
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: "A user with the specified ID was not found."
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  "/pets/{petName}/add-Location":
+    get:
+      tag: "URI Rules"
+      description: Violates the lowercase letters rule --> Lshould be /pets/{petName}/add-location (add still bad style)
+      responses:
+        "200":
+          description: "Country where a pet is located"
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: "The specified user ID is invalid (not a number)."
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: "Unauthorized"
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: "A user with the specified ID was not found."
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+        summary: "Country where a pet is located"
+        tags: "pets"
+  # Rule 21: Hyphens (-) should be used to improve the readability of URIs.
+  "/bigpets":
+    get:
+      tag: "URI Rules"
+      description: Violates the hyphens rule --> should be /big-pets
+      responses:
+        "200":
+          description: "Big cats"
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: "The specified user ID is invalid (not a number)."
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: "Unauthorized"
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: "A user with the specified ID was not found."
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  "/small.pets":
+    get:
+      tag: "URI Rules"
+      description: Violates the hyphens (and separator) rule --> should be /small-pets
+      responses:
+        "200":
+          description: "Small cats"
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: "The specified user ID is invalid (not a number)."
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: "Unauthorized"
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: "A user with the specified ID was not found."
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  "/mediumsizepets":
+    get:
+      tag: "URI Rules"
+      description: Violates the hyphens rule --> should be /medium-size-pets
+      responses:
+        "200":
+          description: "Small cats"
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: "The specified user ID is invalid (not a number)."
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: "Unauthorized"
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: "A user with the specified ID was not found."
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  # Rule 27: CRUD function names should not be used in URIs.
+  "/get-school":
+    get:
+      tag: "URI Rules"
+      description: Violates the CRUD rule --> should be /school
+      responses:
+        "200":
+          description: "Successful request"
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: "Bad request"
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: "Unauthorized"
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: "Not Found"
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  "/DELETE-school":
+    delete:
+      tag: "URI Rules"
+      description: "Violates the CRUD (and lowercase) rule --> should be /school"
+      responses:
+        "200":
+          description: "Successful request"
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: "Bad request"
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: "Unauthorized"
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: "Not Found"
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  "/post-apples":
+    post:
+      tag: "URI Rules"
+      description: "Violates the CRUD rule --> should be /apples"
+      requestBody:
+        $ref: "#/components/requestBodies/GenericRequestBody"
+      responses:
+        "200":
+          description: "Successful request"
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: "Bad request"
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: "Unauthorized"
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: "Not Found"
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  "/put-school":
+    put:
+      tag: "URI Rules"
+      description: "Violates the CRUD rule --> should be /school"
+      requestBody:
+        $ref: "#/components/requestBodies/GenericRequestBody"
+      responses:
+        "200":
+          description: "Successful request"
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: "Bad request"
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: "Unauthorized"
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: "Not Found"
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  "/get-schools/delete":
+    delete:
+      tag: "URI Rules"
+      description: "Violates 2 times the CRUD (get and post tunnel) rule."
+      responses:
+        "200":
+          description: "Successful request"
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: "Bad request"
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: "Unauthorized"
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: "Not Found"
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  # Rule 35: 401 (Unauthorized) must be used when there is a problem with the client's credentials
+  "/school":
+    get:
+      tag: "HTTP Rules"
+      description: "Violates the Unauthorized rule."
+      responses:
+        "200":
+          description: "Successful request"
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: "Bad request"
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: "Not Found"
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  # RULE 23: A singular noun should be used for document names
+  /animals/pets/{catid}/foods:
+    get:
+      description: "Violates the singular noun (and plural) rule --> should be /animal/pets/{catid}/foods (plural noun) or /animals/pet/cats/food (singular noun)"
+      summary: Returns foods.
+      parameters:
+        - name: catid
+          in: path
+          required: true
+          description: Food to return.
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        "200":
+          description: Foods for catId.
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: The specified cat ID is invalid (not a number).
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: Unauthorized
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: A cat with the specified ID was not found.
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  /animals/{catId}/kids/foods:
+    get:
+      description: "Violates the singular (and plural) noun rule --> should be /animals/{catId}/kids/food (singular noun)"
+      summary: Returns foods for the kids of a catId.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: Returns foods for the kids of a catId.
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        "200":
+          description: A cat permissions.
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: The specified cat ID is invalid (not a number).
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: Unauthorized
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: A cat with the specified ID was not found.
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  # RULE 24 and 4: A plural noun should be used for collection or store names
+  /animals/pet/{catid}/food:
+    get:
+      description: "Violates the plural noun rule --> should be /animal/pets/{catid}/foods"
+      summary: Returns foods.
+      parameters:
+        - name: catid
+          in: path
+          required: true
+          description: Food to return.
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        "200":
+          description: Foods for catId.
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: The specified cat ID is invalid (not a number).
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: Unauthorized
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: A cat with the specified ID was not found.
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  /animals/{catId}/kids/food/{foodId}:
+    get:
+      description: "Violates the plural noun rule --> should be e.g. /animal/cats/kid/foods/{foodId} (singular noun) or /animals/{catId}/kids/food/categories (plural noun)"
+      summary: Returns foods for the kids of a catId.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: Returns foods for the kids of a catId.
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        "200":
+          description: A cat permissions.
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: The specified cat ID is invalid (not a number).
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: Unauthorized
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: A cat with the specified ID was not found.
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  # Rule 36: File extensions should not be included in URIs
+  "/enterprise/locations/employee/info.json":
+    get:
+      tag: "URI Rules"
+      description: "Violates the file extension (and plural noun, forward slash, hyphens) rule --> should be /enterprise/locations/employee/infos"
+      responses:
+        "200":
+          description: "Successful request"
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: "Bad request"
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: "Unauthorized"
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: "Not Found"
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  "/enterprise/locations/employee/info.JSON":
+    get:
+      tag: "URI Rules"
+      description: "Violates the file extension rule --> should be /enterprise/locations/employee/infos"
+      responses:
+        "200":
+          description: "Successful request"
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: "Bad request"
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: "Unauthorized"
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: "Not Found"
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  # Rule 38: Content-type must be used
+  "/enterprise":
+    get:
+      tag: "Meta Rules"
+      description: "Violates the content-type rule. --> no content defined on 200 response"
+      responses:
+        "200":
+          description: "Successful request"
+        "400":
+          description: "Bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+  "/enterprise/ceos":
+    get:
+      tag: "Meta Rules"
+      description: "Violates the content-type rule. --> empty content defined on 200 response"
+      responses:
+        "200":
+          description: "Successful request"
+          content:
+        "400":
+          description: "Bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+  "/enterprise/employees":
+    get:
+      tag: "Meta Rules"
+      description: "Violates the content-type rule. --> no content defined on 200 response in the ref"
+      responses:
+        "200":
+          description: "Successful request"
+          $ref: "#/components/responses/EmptyContentResponse"
+        "400":
+          description: "Bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+  "/enterprise/employees/team":
+    get:
+      tag: "Meta Rules"
+      description: "Violates the content-type rule. --> empty ref in 200 response"
+      responses:
+        "200":
+          description: "Successful request"
+          $ref: "#/components/responses/EmptyResponse"
+        "400":
+          description: "Bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+  "/enterprise/employees/team/names":
+    get:
+      tag: "Meta Rules"
+      description: "Violates the content-type rule. --> wrong ref path in 200 response"
+      responses:
+        "200":
+          description: "Successful request"
+          $ref: "#/components/response/WrongPathResponse"
+        "400":
+          description: "Bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+  "/enterprise/jobs":
+    get:
+      tag: "Meta Rules"
+      description: "Violates the content-type rule. --> ref does not exist in 200 response"
+      responses:
+        "200":
+          description: "Successful request"
+          $ref: "#/ref/does/not/exist"
+        "400":
+          description: "Bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+  "/enterprise/locations":
+    post:
+      tag: "Meta Rules"
+      description: "Violates the content-type rule. --> missing content type in request body."
+      requestBody:
+        required: true
+      responses:
+        "200":
+          description: "Successful request"
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: "Bad request"
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: "Unauthorized"
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: "Not Found"
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  "/enterprise/locations/germany":
+    post:
+      tag: "Meta Rules"
+      description: "Violates the content-type rule. --> empty content in request body."
+      requestBody:
+        required: true
+        content:
+      responses:
+        "200":
+          description: "Successful request"
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: "Bad request"
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: "Unauthorized"
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: "Not Found"
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  "/enterprise/locations/germany/federal-states":
+    post:
+      tag: "Meta Rules"
+      description: "Violates the content-type rule. --> empty ref in request body."
+      requestBody:
+        required: true
+        $ref: "#/components/requestBodies/EmptyRequestBody"
+      responses:
+        "200":
+          description: "Successful request"
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: "Bad request"
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: "Unauthorized"
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: "Not Found"
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  "/enterprise/locations/germany/federal-states/baden-wuerttemberg":
+    post:
+      tag: "Meta Rules"
+      description: "Violates the content-type rule. --> empty content in ref in request body."
+      requestBody:
+        required: true
+        $ref: "#/components/requestBodies/EmptyContentRequestBody"
+      responses:
+        "200":
+          description: "Successful request"
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: "Bad request"
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: "Unauthorized"
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: "Not Found"
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  "/enterprise/locations/germany/federal-states/bayern":
+    post:
+      tag: "Meta Rules"
+      description: "Violates the content-type rule. --> wrong path to ref in request body."
+      requestBody:
+        required: true
+        $ref: "#/components/requestBody/WrongPathRequestBody"
+      responses:
+        "200":
+          description: "Successful request"
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: "Bad request"
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: "Unauthorized"
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: "Not Found"
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  "/enterprise/locations/germany/federal-states/nrw":
+    post:
+      tag: "Meta Rules"
+      description: "Violates the content-type rule. --> ref does not exist in request body."
+      requestBody:
+        required: true
+        $ref: "#/ref/does/not/exist"
+      responses:
+        "200":
+          description: "Successful request"
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: "Bad request"
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: "Unauthorized"
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: "Not Found"
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  # RULE 5: A verb or verb phrase should be used for controller
+  /animals/{catId}/foods/{foodId}/deliver-food:
+    put:
+      description: "Violates the verb rule --> should be ???"
+      summary: Returns foods for the kids of a catId.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: Returns foods for the kids of a catId.
+          schema:
+            type: string
+            minimum: 1
+      requestBody:
+        $ref: "#/components/requestBodies/GenericRequestBody"
+      responses:
+        "200":
+          description: A cat permissions.
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: The specified cat ID is invalid (not a number).
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: Unauthorized
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: A cat with the specified ID was not found.
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+  /animals/{catId}/foods/{foodId}/remove-food:
+    delete:
+      description: "Violates the verb rule --> should be ???"
+      summary: Returns foods for the kids of a catId.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: Returns foods for the kids of a catId.
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        "200":
+          description: A cat permissions.
+          $ref: "#/components/responses/GenericResponse"
+        "400":
+          description: The specified cat ID is invalid (not a number).
+          $ref: "#/components/responses/GenericResponse"
+        "401":
+          description: Unauthorized
+          $ref: "#/components/responses/GenericResponse"
+        "404":
+          description: A cat with the specified ID was not found.
+          $ref: "#/components/responses/GenericResponse"
+        default:
+          description: Unexpected error
+          $ref: "#/components/responses/GenericResponse"
+components:
+  # Define all components here
+  responses:
+    GenericResponse:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+    EmptyContentResponse:
+      content:
+    EmptyResponse:
+  requestBodies:
+    GenericRequestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              foo:
+                type: string
+    EmptyRequestBody:
+    EmptyContentRequestBody:
+      content:
+  response:
+    WrongPathResponse:
+      content:
+        text/plain:
+          schema:
+            type: string
+  requestBody:
+    WrongPathRequestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              foo:
+                type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+  externalDocs:
+    description: "Find out more about Swagger"
+    url: "http://swagger.io"
+security:
+  - BasicAuth: []
