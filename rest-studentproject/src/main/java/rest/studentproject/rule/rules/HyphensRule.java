@@ -115,7 +115,11 @@ public class HyphensRule implements IRestRule {
         for (String pathSegment : pathSegments) {
             if (pathSegment.isEmpty())
                 continue;
+            if (pathSegment.contains("\\"))
+                continue;
             boolean isPathFullyContained;
+
+
 
             isPathFullyContained = Utility.getPathSegmentMatch(pathSegment, PATH_TO_ENGLISH_DICTIONARY);
 

@@ -140,9 +140,6 @@ public class SingularDocumentNameRule implements IRestRule {
             return null;
         switchPathSegment = getTokenFromWord(initialToken);
 
-        // switchPathSegment = getSwitchPathSegment(pathSegments, switchPathSegment,
-        // firstPathSegment);
-
         for (String pathSegment : listPathSegments) {
             // Skip the first path segment. It was already controlled.
             if (listPathSegments.get(0).equals(pathSegment))
