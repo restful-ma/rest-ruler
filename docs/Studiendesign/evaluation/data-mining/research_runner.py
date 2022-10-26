@@ -17,6 +17,9 @@ with open("apis.csv", "r", encoding="utf8") as f:
         # ignore first line with column descriptions
         f.readline()
         line = f.readline()
+		
+		# for displaying current line number
+        count = 2
 
         while line:
             # prepare datano
@@ -32,11 +35,15 @@ with open("apis.csv", "r", encoding="utf8") as f:
                                      cwd=process_cwd,
                                      input=b'no', capture_output=True)
 
-            print("title: " + title)
+            print( str(count) +  " title: " + title)
+            count += 1
             # process failed to finish
             if process.returncode != 0:
                 failed.append((title, url, process.stderr))
                 line = f.readline()
+				print('Analysis FAILED for: ' + title + ' | ' + url + '\n')
+				print(process.stderr)
+				print('\n')
                 continue
 
 
