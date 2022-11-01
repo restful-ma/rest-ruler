@@ -1,4 +1,4 @@
-openapi: "3.0"
+openapi: "3.0.3"
 info:
   description: "API definition is the gold standard. For each implemented rule there are rule violations."
   version: "0.0.1"
@@ -7,35 +7,17 @@ info:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 servers:
-  - url: https://api.example.com/v_1
-    description: Violates the underscore rule
   - url: https://api.example.com/v1
     description: Production server (uses live data)
   - url: https://sandbox-api.example.com:8443/v1
     description: Sandbox server (uses test data)
-tags:
-  - name: "URI Rules"
-  - name: "Meta Rules"
-  - name: "Representational Rules"
-  - name: "HTTP Rules"
-  - name: "Client Rules"
-schemes:
-  - "https"
-# Bugs: * $refs werden bei get representations nicht erkannt
-#       * /{primarySchool}/_schools plural noun violation
-#       * SEVERE: Error on checking if a word is contained in a dictionary: Illegal Unicode 
-#         escape sequence near index 2 \users\\permissions (s in users) --> hyphens rule
-#       * /pets/{petName}/Location-States plural noun violation
-#       * /pets/{petName}/Location-States hyphens violation
-#       * /pets/{petName}/add-Location hyphens violation
-#       * /enterprise/locations/germany/federal-states/baden-wuerttemberg plural noun violation
-#       * file extension violation --> auch hyphens, separator violations
-#       * verb rule description
 paths:
   # Define all paths here
   # RULE 19: using other characters instead of forward slash '/'
-  .users.{userId}.permissions:
+  /.users.{userId}.permissions:
     get:
+      tags: 
+        - "URI Rules"
       description: Violates the separator rule (and hyphens) --> should be /users/{userId}/permissions
       summary: Returns a user permission for ID.
       parameters:
@@ -63,8 +45,10 @@ paths:
           description: Unexpected error
           $ref: "#/components/responses/GenericResponse"
 
-  \users\{userId}\permissions:
+  /users\{userId}\permissions:
     get:
+      tags: 
+        - "URI Rules"
       description: Violates the separator rule (and hyphens) --> should be /users/{userId}/permissions
       summary: Returns a user permission for ID.
       parameters:
@@ -91,8 +75,10 @@ paths:
         default:
           description: Unexpected error
           $ref: "#/components/responses/GenericResponse"
-  -users-{userId}-permissions:
+  /-users-{userId}-permissions:
     get:
+      tags: 
+        - "URI Rules"
       description: Violates the separator rule (and hyphens) --> should be /users/{userId}/permissions
       summary: Returns a user permission for ID.
       parameters:
@@ -119,8 +105,10 @@ paths:
         default:
           description: Unexpected error
           $ref: "#/components/responses/GenericResponse"
-  \#users\#{userId}\#permissions:
+  /#users\#{userId}\#permissions:
     get:
+      tags: 
+        - "URI Rules"
       description: Violates the separator rule (and hyphens) --> should be /users/{userId}/permissions
       summary: Returns a user permission for ID.
       parameters:
@@ -150,6 +138,8 @@ paths:
   # RULE 1: A trailing forward slash (/) should not be included in URIs
   /users/{userId}/details/:
     get:
+      tags: 
+        - "URI Rules"
       description: Violates the trailing slash rule --> should be /users/{userId}/details
       summary: Returns a user permission for ID.
       parameters:
@@ -180,6 +170,8 @@ paths:
   # missing resource representation
   /users/{userId}/permissions:
     get:
+      tags: 
+        - "HTTP Rules"
       description: Violates the get representation (and content-type) rule --> 200 response needs the content type
       summary: Returns a user permission for ID.
       parameters:
@@ -207,6 +199,8 @@ paths:
           $ref: "#/components/responses/GenericResponse"
   /users/{userId}/statuses:
     get:
+      tags: 
+        - "HTTP Rules"
       description: Violates the get representation rule --> 200 response and default response is missing
       summary: Returns a user permission for ID.
       parameters:
@@ -230,6 +224,8 @@ paths:
   # Illegal Request Body
   /users/{userId}/rules:
     get:
+      tags: 
+        - "HTTP Rules"
       description: Violates the get representation rule --> get operation should not have a request body
       summary: Returns a user permission for ID.
       parameters:
@@ -243,9 +239,6 @@ paths:
       requestBody:
         content:
           application/json:
-            examples:
-              basic:
-                "$ref": "#/components/examples/post-createNotificationConfiguration-basic"
             schema:
               $ref: "#/components/schemas/CreateNotificationConfigurationRequest"
       responses:
@@ -267,7 +260,8 @@ paths:
   # Rule 22: Underscores (_) should not be used in URIs.
   "/primary_school":
     get:
-      tag: "URI Rules"
+      tags: 
+        - "URI Rules"
       description: Violates the underscore rule --> should be /primary-school
       responses:
         "200":
@@ -287,7 +281,8 @@ paths:
           $ref: "#/components/responses/GenericResponse"
   "/{primarySchool}/_schools":
     get:
-      tag: "URI Rules"
+      tags: 
+        - "URI Rules"
       description: Violates the underscore rule --> should be /{primarySchool}/schools
       responses:
         "200":
@@ -308,7 +303,8 @@ paths:
   # Rule 23: Lowercase letters should be preferred in URI paths.
   "/Pets":
     get:
-      tag: "URI Rules"
+      tags: 
+        - "URI Rules"
       description: Violates the lowercase letters rule --> /Pets should be /pets
       responses:
         "200":
@@ -328,7 +324,8 @@ paths:
           $ref: "#/components/responses/GenericResponse"
   "/pets/{petName}/Location-States":
     get:
-      tag: "URI Rules"
+      tags: 
+        - "URI Rules"
       description: Violates the lowercase letters rule --> should be /pets/{petName}/locations-states
       responses:
         "200":
@@ -348,7 +345,8 @@ paths:
           $ref: "#/components/responses/GenericResponse"
   "/pets/{petName}/locations/{locationName}/CITIES":
     get:
-      tag: "URI Rules"
+      tags: 
+        - "URI Rules"
       description: Violates the lowercase letters rule --> should be /pets/{petName}/locations/{locationName}/cities
       responses:
         "200":
@@ -368,7 +366,8 @@ paths:
           $ref: "#/components/responses/GenericResponse"
   "/pets/{petName}/add-Location":
     get:
-      tag: "URI Rules"
+      tags: 
+        - "URI Rules"
       description: Violates the lowercase letters rule --> Lshould be /pets/{petName}/add-location (add still bad style)
       responses:
         "200":
@@ -386,12 +385,11 @@ paths:
         default:
           description: Unexpected error
           $ref: "#/components/responses/GenericResponse"
-        summary: "Country where a pet is located"
-        tags: "pets"
   # Rule 21: Hyphens (-) should be used to improve the readability of URIs.
   "/bigpets":
     get:
-      tag: "URI Rules"
+      tags: 
+        - "URI Rules"
       description: Violates the hyphens rule --> should be /big-pets
       responses:
         "200":
@@ -411,7 +409,8 @@ paths:
           $ref: "#/components/responses/GenericResponse"
   "/small.pets":
     get:
-      tag: "URI Rules"
+      tags: 
+        - "URI Rules"
       description: Violates the hyphens (and separator) rule --> should be /small-pets
       responses:
         "200":
@@ -431,7 +430,8 @@ paths:
           $ref: "#/components/responses/GenericResponse"
   "/mediumsizepets":
     get:
-      tag: "URI Rules"
+      tags: 
+        - "URI Rules"
       description: Violates the hyphens rule --> should be /medium-size-pets
       responses:
         "200":
@@ -452,7 +452,8 @@ paths:
   # Rule 27: CRUD function names should not be used in URIs.
   "/get-school":
     get:
-      tag: "URI Rules"
+      tags: 
+        - "HTTP Rules"
       description: Violates the CRUD rule --> should be /school
       responses:
         "200":
@@ -472,7 +473,8 @@ paths:
           $ref: "#/components/responses/GenericResponse"
   "/DELETE-school":
     delete:
-      tag: "URI Rules"
+      tags: 
+        - "HTTP Rules"
       description: "Violates the CRUD (and lowercase) rule --> should be /school"
       responses:
         "200":
@@ -492,7 +494,8 @@ paths:
           $ref: "#/components/responses/GenericResponse"
   "/post-apples":
     post:
-      tag: "URI Rules"
+      tags: 
+        - "HTTP Rules"
       description: "Violates the CRUD rule --> should be /apples"
       requestBody:
         $ref: "#/components/requestBodies/GenericRequestBody"
@@ -514,7 +517,8 @@ paths:
           $ref: "#/components/responses/GenericResponse"
   "/put-school":
     put:
-      tag: "URI Rules"
+      tags: 
+        - "HTTP Rules"
       description: "Violates the CRUD rule --> should be /school"
       requestBody:
         $ref: "#/components/requestBodies/GenericRequestBody"
@@ -536,7 +540,8 @@ paths:
           $ref: "#/components/responses/GenericResponse"
   "/get-schools/delete":
     delete:
-      tag: "URI Rules"
+      tags: 
+        - "HTTP Rules"
       description: "Violates 2 times the CRUD (get and post tunnel) rule."
       responses:
         "200":
@@ -557,7 +562,8 @@ paths:
   # Rule 35: 401 (Unauthorized) must be used when there is a problem with the client's credentials
   "/school":
     get:
-      tag: "HTTP Rules"
+      tags: 
+        - "HTTP Rules"
       description: "Violates the Unauthorized rule."
       responses:
         "200":
@@ -575,6 +581,8 @@ paths:
   # RULE 23: A singular noun should be used for document names
   /animals/pets/{catid}/foods:
     get:
+      tags: 
+        - "URI Rules"
       description: "Violates the singular noun (and plural) rule --> should be /animal/pets/{catid}/foods (plural noun) or /animals/pet/cats/food (singular noun)"
       summary: Returns foods.
       parameters:
@@ -603,6 +611,8 @@ paths:
           $ref: "#/components/responses/GenericResponse"
   /animals/{catId}/kids/foods:
     get:
+      tags: 
+        - "URI Rules"
       description: "Violates the singular (and plural) noun rule --> should be /animals/{catId}/kids/food (singular noun)"
       summary: Returns foods for the kids of a catId.
       parameters:
@@ -632,6 +642,8 @@ paths:
   # RULE 24 and 4: A plural noun should be used for collection or store names
   /animals/pet/{catid}/food:
     get:
+      tags: 
+        - "URI Rules"
       description: "Violates the plural noun rule --> should be /animal/pets/{catid}/foods"
       summary: Returns foods.
       parameters:
@@ -660,6 +672,8 @@ paths:
           $ref: "#/components/responses/GenericResponse"
   /animals/{catId}/kids/food/{foodId}:
     get:
+      tags: 
+        - "URI Rules"
       description: "Violates the plural noun rule --> should be e.g. /animal/cats/kid/foods/{foodId} (singular noun) or /animals/{catId}/kids/food/categories (plural noun)"
       summary: Returns foods for the kids of a catId.
       parameters:
@@ -686,10 +700,11 @@ paths:
         default:
           description: Unexpected error
           $ref: "#/components/responses/GenericResponse"
-  # Rule 36: File extensions should not be included in URIs
+  # Rule 3: File extensions should not be included in URIs
   "/enterprise/locations/employee/info.json":
     get:
-      tag: "URI Rules"
+      tags: 
+        - "URI Rules"
       description: "Violates the file extension (and plural noun, forward slash, hyphens) rule --> should be /enterprise/locations/employee/infos"
       responses:
         "200":
@@ -709,7 +724,8 @@ paths:
           $ref: "#/components/responses/GenericResponse"
   "/enterprise/locations/employee/info.JSON":
     get:
-      tag: "URI Rules"
+      tags: 
+        - "URI Rules"
       description: "Violates the file extension rule --> should be /enterprise/locations/employee/infos"
       responses:
         "200":
@@ -730,7 +746,8 @@ paths:
   # Rule 38: Content-type must be used
   "/enterprise":
     get:
-      tag: "Meta Rules"
+      tags: 
+        - "Meta Rules"
       description: "Violates the content-type rule. --> no content defined on 200 response"
       responses:
         "200":
@@ -773,7 +790,8 @@ paths:
                     type: string
   "/enterprise/ceos":
     get:
-      tag: "Meta Rules"
+      tags: 
+        - "Meta Rules"
       description: "Violates the content-type rule. --> empty content defined on 200 response"
       responses:
         "200":
@@ -817,7 +835,8 @@ paths:
                     type: string
   "/enterprise/employees":
     get:
-      tag: "Meta Rules"
+      tags: 
+        - "Meta Rules"
       description: "Violates the content-type rule. --> no content defined on 200 response in the ref"
       responses:
         "200":
@@ -861,7 +880,8 @@ paths:
                     type: string
   "/enterprise/employees/team":
     get:
-      tag: "Meta Rules"
+      tags: 
+        - "Meta Rules"
       description: "Violates the content-type rule. --> empty ref in 200 response"
       responses:
         "200":
@@ -905,7 +925,8 @@ paths:
                     type: string
   "/enterprise/employees/team/names":
     get:
-      tag: "Meta Rules"
+      tags: 
+        - "Meta Rules"
       description: "Violates the content-type rule. --> wrong ref path in 200 response"
       responses:
         "200":
@@ -949,7 +970,8 @@ paths:
                     type: string
   "/enterprise/jobs":
     get:
-      tag: "Meta Rules"
+      tags: 
+        - "Meta Rules"
       description: "Violates the content-type rule. --> ref does not exist in 200 response"
       responses:
         "200":
@@ -993,10 +1015,10 @@ paths:
                     type: string
   "/enterprise/locations":
     post:
-      tag: "Meta Rules"
+      tags: 
+        - "Meta Rules"
       description: "Violates the content-type rule. --> missing content type in request body."
       requestBody:
-        required: true
       responses:
         "200":
           description: "Successful request"
@@ -1015,7 +1037,8 @@ paths:
           $ref: "#/components/responses/GenericResponse"
   "/enterprise/locations/germany":
     post:
-      tag: "Meta Rules"
+      tags: 
+        - "Meta Rules"
       description: "Violates the content-type rule. --> empty content in request body."
       requestBody:
         required: true
@@ -1038,7 +1061,8 @@ paths:
           $ref: "#/components/responses/GenericResponse"
   "/enterprise/locations/germany/federal-states":
     post:
-      tag: "Meta Rules"
+      tags: 
+        - "Meta Rules"
       description: "Violates the content-type rule. --> empty ref in request body."
       requestBody:
         required: true
@@ -1061,7 +1085,8 @@ paths:
           $ref: "#/components/responses/GenericResponse"
   "/enterprise/locations/germany/federal-states/baden-wuerttemberg":
     post:
-      tag: "Meta Rules"
+      tags: 
+        - "Meta Rules"
       description: "Violates the content-type rule. --> empty content in ref in request body."
       requestBody:
         required: true
@@ -1084,7 +1109,8 @@ paths:
           $ref: "#/components/responses/GenericResponse"
   "/enterprise/locations/germany/federal-states/bayern":
     post:
-      tag: "Meta Rules"
+      tags: 
+        - "Meta Rules"
       description: "Violates the content-type rule. --> wrong path to ref in request body."
       requestBody:
         required: true
@@ -1107,7 +1133,8 @@ paths:
           $ref: "#/components/responses/GenericResponse"
   "/enterprise/locations/germany/federal-states/nrw":
     post:
-      tag: "Meta Rules"
+      tags: 
+        - "Meta Rules"
       description: "Violates the content-type rule. --> ref does not exist in request body."
       requestBody:
         required: true
@@ -1131,6 +1158,8 @@ paths:
   # RULE 5: A verb or verb phrase should be used for controller
   /animals/{catId}/foods/{foodId}/deliver-food:
     put:
+      tags: 
+        - "URI Rules"
       description: "Violates the verb rule --> should be ???"
       summary: Returns foods for the kids of a catId.
       parameters:
@@ -1161,6 +1190,8 @@ paths:
           $ref: "#/components/responses/GenericResponse"
   /animals/{catId}/foods/{foodId}/remove-food:
     delete:
+      tags: 
+        - "URI Rules"
       description: "Violates the verb rule --> should be ???"
       summary: Returns foods for the kids of a catId.
       parameters:
@@ -1189,8 +1220,15 @@ paths:
           $ref: "#/components/responses/GenericResponse"
 components:
   # Define all components here
+  schemas:
+    CreateNotificationConfigurationRequest:
+      description: Create notification configuration request
+      properties:
+        userId:
+          type: number
   responses:
     GenericResponse:
+      description: A generic content for all responses
       content:
         application/json:
           schema:
@@ -1199,6 +1237,7 @@ components:
               username:
                 type: string
     EmptyContentResponse:
+      description: An empty content for response
       content:
     EmptyResponse:
   requestBodies:
@@ -1232,8 +1271,5 @@ components:
     BasicAuth:
       type: http
       scheme: basic
-  externalDocs:
-    description: "Find out more about Swagger"
-    url: "http://swagger.io"
 security:
   - BasicAuth: []
