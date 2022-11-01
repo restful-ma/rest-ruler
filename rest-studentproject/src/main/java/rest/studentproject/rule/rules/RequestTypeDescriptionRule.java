@@ -83,36 +83,32 @@ public class RequestTypeDescriptionRule implements IRestRule {
             if(pathItem.getGet() != null){
                 String description = pathItem.getGet().getDescription();
                 ImmutablePair<String, Double> predictionValues = wt.predict(description);
-                boolean percTest = predictionValues.right >= 0.75;
-                if(predictionValues.left.equals("invalid") && (predictionValues.right >= 0.75)){
+                if((predictionValues != null && predictionValues.right != null && predictionValues.left != null) && predictionValues.left.equals("invalid") && (predictionValues.right >= 0.75)){
                     violations.add(new Violation(this, locMapper.getLOCOfPath(keyPath), ImprovementSuggestion.REQUESTTYPETUNELING, keyPath, ErrorMessage.REQUESTTYPETUNNELINGGET));
-                }else if(!predictionValues.left.equals("get") && (predictionValues.right >= 0.75)){
+                }else if((predictionValues != null && predictionValues.right != null && predictionValues.left != null) && !predictionValues.left.equals("get") && (predictionValues.right >= 0.75)){
                     violations.add(new Violation(this, locMapper.getLOCOfPath(keyPath),  ImprovementSuggestion.REQUESTTYPEGET + IMPROVEMNT_SUB_STRING + predictionValues.left.toUpperCase(), keyPath, ErrorMessage.REQUESTTYPE));
                 }
             }
             if(pathItem.getPost() != null){
                 String description = pathItem.getPost().getDescription();
                 ImmutablePair<String, Double> predictionValues = wt.predict(description);
-                boolean percTest = predictionValues.right >= 0.75;
-                if(predictionValues.left.equals("invalid") && (predictionValues.right >= 0.75)){
+                if((predictionValues != null && predictionValues.right != null && predictionValues.left != null) && predictionValues.left.equals("invalid") && (predictionValues.right >= 0.75)){
                     violations.add(new Violation(this, locMapper.getLOCOfPath(keyPath), ImprovementSuggestion.REQUESTTYPETUNELING, keyPath, ErrorMessage.REQUESTTYPETUNNELINGPOST));
-                }else if(!predictionValues.left.equals("post") && (predictionValues.right >= 0.75)){
+                }else if((predictionValues != null && predictionValues.right != null && predictionValues.left != null) && !predictionValues.left.equals("post") && (predictionValues.right >= 0.75)){
                     violations.add(new Violation(this, locMapper.getLOCOfPath(keyPath), ImprovementSuggestion.REQUESTTYPEPOST + IMPROVEMNT_SUB_STRING + predictionValues.left.toUpperCase(), keyPath, ErrorMessage.REQUESTTYPE));
                 }
             }
             if(pathItem.getPut() != null){
                 String description = pathItem.getPut().getDescription();
                 ImmutablePair<String, Double> predictionValues = wt.predict(description);
-                boolean percTest = predictionValues.right >= 0.75;
-                if(!predictionValues.left.equals("put") && (predictionValues.right >= 0.75)){
+                if((predictionValues != null && predictionValues.right != null && predictionValues.left != null) && !predictionValues.left.equals("put") && (predictionValues.right >= 0.75)){
                     violations.add(new Violation(this, locMapper.getLOCOfPath(keyPath), ImprovementSuggestion.REQUESTTYPEPUT+ IMPROVEMNT_SUB_STRING + predictionValues.left.toUpperCase(), keyPath, ErrorMessage.REQUESTTYPE ));
                 }
             }
             if(pathItem.getDelete() != null){
                 String description = pathItem.getDelete().getDescription();
                 ImmutablePair<String, Double> predictionValues = wt.predict(description);
-                boolean percTest = predictionValues.right >= 0.75;
-                if(!predictionValues.left.equals("delete") && (predictionValues.right >= 0.75)){
+                if((predictionValues != null && predictionValues.right != null && predictionValues.left != null) && !predictionValues.left.equals("delete") && (predictionValues.right >= 0.75)){
                     violations.add(new Violation(this,locMapper.getLOCOfPath(keyPath),  ImprovementSuggestion.REQUESTTYPEDELETE + IMPROVEMNT_SUB_STRING + predictionValues.left.toUpperCase(), keyPath, ErrorMessage.REQUESTTYPE));
                 }
             }

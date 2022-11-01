@@ -349,7 +349,8 @@ public class Output {
             }
         }
 
-        askSafeSec(secInProps, secTokens);
+        if (!secTokens.isEmpty())
+            askSafeSec(secInProps, secTokens);
 
         this.scanner.close();
         return secTokens;
@@ -460,8 +461,6 @@ public class Output {
             address = InetAddress.getByName(new URL(urlPath).getHost());
             String ip = address.getHostAddress();
             System.out.println("IP: " + ip);
-            boolean reachable = address.isReachable(10000);
-            System.out.println("Reachable: " + reachable);
             return !ip.isEmpty() && !ip.equals("");
         } catch (IOException e) {
             System.err.println("Error while checking URL: " + e.getMessage());
