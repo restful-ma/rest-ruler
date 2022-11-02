@@ -14,10 +14,10 @@ public class RestParserCommand implements Runnable {
             "definition (2.0 or higher; json or yaml)")
     private String path;
 
-    @Option(names = { "-o", "--out" }, description = "generates a report/output file")
+    @Option(names = { "-o", "--out" }, description = "Generates a report/output file")
     private boolean generateReport;
 
-    @Option(names = { "-t", "--title" }, description = "generates a report file with a custom title")
+    @Option(names = { "-t", "--title" }, description = "Generates a report file with a custom title")
     private String title;
 
     public static void main(String[] args) {
@@ -28,6 +28,9 @@ public class RestParserCommand implements Runnable {
      * When the user runs a command, this method is called.
      */
     public void run() {
+        // this.path = "C:\\Users\\manue\\Documents\\Studium\\Master\\2.Semester\\Projektarbeit\\Projektarbeit-Master\\docs\\Studiendesign\\evaluation\\gold-standard.yaml";
+        // this.path = "https://api.apis.guru/v2/specs/microsoft.com/graph/v1.0/openapi.json";
+        // this.generateReport = true;
         Output output = new Output();
         if (this.expertMode)
             output.askActiveRules();
