@@ -47,7 +47,7 @@
             "description": "A list of quotes"
           }
         },
-        "summary": "Get quotes for all symbols",
+        "summary": "Delete quotes for all symbols",
         "tags": [
           "forex",
           "finance",
@@ -78,7 +78,7 @@
             }
           }
         },
-        "summary": "Get a list of symbols for which we provide real-time quotes",
+        "summary": "Create new list of symbols for which we provide real-time quotes",
         "tags": [
           "forex",
           "finance",
@@ -109,7 +109,7 @@
             }
           }
         },
-        "summary": "Get a list of symbols for which we provide real-time quotes",
+        "summary": "Create new list of symbols for which we provide real-time quotes",
         "tags": [
           "forex",
           "finance",
@@ -140,7 +140,7 @@
             }
           }
         },
-        "summary": "Get a list of symbols for which we provide real-time quotes",
+        "summary": "Update a list of symbols for which we provide real-time quotes",
         "tags": [
           "forex",
           "finance",
@@ -171,7 +171,7 @@
             }
           }
         },
-        "summary": "Get a list of symbols for which we provide real-time quotes",
+        "summary": "Update a collection and then create the symbol List",
         "tags": [
           "forex",
           "finance",
@@ -202,7 +202,7 @@
             }
           }
         },
-        "summary": "Get a list of symbols for which we provide real-time quotes",
+        "summary": "Get and delete a symbol list referring to one item.",
         "tags": [
           "forex",
           "finance",
