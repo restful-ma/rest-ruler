@@ -82,23 +82,26 @@ public class FileExtensionRule implements IRestRule {
         for (String path : paths) {
             Output.progressPercentage(curPath, totalPaths);
             curPath++;
-            String pathWithoutParameters = path.replaceAll("\\{" + ".*" + "\\}", "").toUpperCase();
+            String[] segments = path.split("/");
+            for (String segment : segments){
+                String segmentWithoutParameters = segment.replaceAll("\\{" + ".*" + "\\}", "").toUpperCase();
 
-            // Reads file that contains about 838 file extensions
-            try (BufferedReader br = new BufferedReader(new FileReader(PATH_TO_FILE_EXTENSIONS))) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    // Stops when one violation is found --> rest of extensions are not checked
-                    if (pathWithoutParameters.endsWith("." + line.toUpperCase())) {
-                        violationList.add(new Violation(this, locMapper.getLOCOfPath(path),
-                                "To indicate the format " + "of a message's entity body (" + line + ") rely on the "
-                                        + "media type inside the Content-Type header.",
-                                path, ErrorMessage.FILE_EXTENSION));
-                        break;
+                // Reads file that contains about 838 file extensions
+                try (BufferedReader br = new BufferedReader(new FileReader(PATH_TO_FILE_EXTENSIONS))) {
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        // Stops when one violation is found --> rest of extensions are not checked
+                        if (segmentWithoutParameters.endsWith("." + line.toUpperCase())) {
+                            violationList.add(new Violation(this, locMapper.getLOCOfPath(path),
+                                    "To indicate the format " + "of a message's entity body (" + line + ") rely on the "
+                                            + "media type inside the Content-Type header.",
+                                    path, ErrorMessage.FILE_EXTENSION));
+                            break;
+                        }
                     }
+                } catch (IOException e) {
+                    logger.severe("Error on trying to read the file extension file: " + e.getMessage());
                 }
-            } catch (IOException e) {
-                logger.severe("Error on trying to read the file extension file: " + e.getMessage());
             }
         }
         return violationList;
