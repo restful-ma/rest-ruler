@@ -1,6 +1,0 @@
-REST API Specification Report
-=============================
-| Line No. | Line                                         | Rule Violated                                                                           | Category | Severity | Rule Type       | Software Quality Attributes               | Improvement Suggestion                                                               |
-| -------- | -------------------------------------------- | --------------------------------------------------------------------------------------- | -------- | -------- | --------------- | ----------------------------------------- | ------------------------------------------------------------------------------------ |
-| 150      | /realtime-contact-analysis/analysis-segments | 401 ("Unauthorized") must be used when there is a problem with the client's credentials | HTTP     | CRITICAL | STATIC, DYNAMIC | COMPATIBILITY, MAINTAINABILITY, USABILITY | Provide the 401 response in the definition of the path in the operation (here: POST) |
-| 150      | /realtime-contact-analysis/analysis-segments | A plural noun should be used for collection or store names                              | URIS     | ERROR    | STATIC          | USABILITY, MAINTAINABILITY                | Use plural nouns for collection or store names                                       |
