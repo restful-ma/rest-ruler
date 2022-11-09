@@ -1,0 +1,7 @@
+REST API Specification Report
+=============================
+| Line No. | Line       | Rule Violated                                                     | Category | Severity | Rule Type | Software Quality Attributes    | Improvement Suggestion                                                                                                   |
+| -------- | ---------- | ----------------------------------------------------------------- | -------- | -------- | --------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| 33       | /forms     | Description of request should match with the type of the request. | META     | WARNING  | STATIC    | MAINTAINABILITY                | GET must be used to retrieve a representation of a resource a not for other purposes The request should be of type: POST |
+| 100      | /serviceV3 | Hyphens (-) should be used to improve the readability of URIs     | URIS     | ERROR    | STATIC    | COMPATIBILITY, MAINTAINABILITY | Use hyphens to improve the readability of the segments                                                                   |
+| 100      | /serviceV3 | Lowercase letters should be preferred in URI paths                | URIS     | ERROR    | STATIC    | COMPATIBILITY, MAINTAINABILITY | Change uppercase letters to lowercase letters                                                                            |

@@ -11,10 +11,9 @@ Case C: The type identifier is part of the payload, e.g. embedded into a JSON st
 
 2. CRUD function names should not be used in URIs
 Possible violations:
-Case A: POST /registerUser
+Case A: POST /addUser
 Case B: DELETE /delete-user
 Case C: POST /{user-id}/fetch
-Case D: GET /users/search
 
 3. File extensions should not be included in URIs
 Possible violations:
@@ -29,8 +28,8 @@ Case C: GET /users/register?name=john&surname=doe
 
 5. Hyphens (-) should be used to improve the readability of URIs
 Possible violations:
-Case A: /users/{userId}/contact_details
-Case B: /users/john_doe (where "john_doe" is the value of a path parameter {userId})
+Case A: /users/{userId}/contactdetails
+Case B: /users/johndoe (where "john_doe" is the value of a path parameter {userId})
 
 6. Lowercase letters should be preferred in URI paths
 Possible violations:
@@ -70,7 +69,6 @@ Case B: POST /users/{userId} with operation specified in payload
 12. 401 (Unauthorized) must be used when there is a problem with the client credentials
 Possible violations:
 Case A: There is often confusion regarding the proper use of 401 and 403. Therefore, sometimes 403 is used instead of 401 (and vice versa)
-Case B: A response that was returned with 200 - OK but contains an embedded error code 401 in its payload
 Case C: Status code 400 for every kind of client error (including problems with client credentials)
 Case D: Status code 500 for every kind of error
 

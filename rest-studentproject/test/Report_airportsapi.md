@@ -1,0 +1,7 @@
+REST API Specification Report
+=============================
+| Line No. | Line                                 | Rule Violated                                                 | Category | Severity | Rule Type | Software Quality Attributes    | Improvement Suggestion                                 |
+| -------- | ------------------------------------ | ------------------------------------------------------------- | -------- | -------- | --------- | ------------------------------ | ------------------------------------------------------ |
+| 43       | /airportsapi/v1/airports/{icao_code} | A plural noun should be used for collection or store names    | URIS     | ERROR    | STATIC    | USABILITY, MAINTAINABILITY     | Use plural nouns for collection or store names         |
+| 43       | /airportsapi/v1/airports/{icao_code} | A singular noun should be used for document names             | URIS     | ERROR    | STATIC    | USABILITY, MAINTAINABILITY     | Use singular nouns for document names                  |
+| 43       | /airportsapi/v1/airports/{icao_code} | Hyphens (-) should be used to improve the readability of URIs | URIS     | ERROR    | STATIC    | COMPATIBILITY, MAINTAINABILITY | Use hyphens to improve the readability of the segments |
