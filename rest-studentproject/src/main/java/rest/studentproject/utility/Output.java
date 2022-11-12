@@ -438,9 +438,6 @@ public class Output {
      * <code>true</code> if the server responded.
      *
      * @param url     The HTTP URL to be pinged.
-     * @param timeout The timeout in millis for both the connection timeout and the
-     *                response read timeout. Note that
-     *                the total timeout is effectively two times the given timeout.
      * @return <code>true</code> if the given HTTP URL is reachable on a HEAD
      *         request within the
      *         given timeout, otherwise <code>false</code>.
@@ -461,7 +458,7 @@ public class Output {
             address = InetAddress.getByName(new URL(urlPath).getHost());
             String ip = address.getHostAddress();
             System.out.println("IP: " + ip);
-            return !ip.isEmpty() && !ip.equals("");
+            return !ip.isEmpty();
         } catch (IOException e) {
             System.err.println("Error while checking URL: " + e.getMessage());
             return false;
