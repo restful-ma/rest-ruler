@@ -1,0 +1,232 @@
+openapi: 3.0.3
+info:
+  version: 0.1.0
+  title: REST API Rule Violations - Help for Benchmark Creation
+
+paths:
+  # Rule 2
+  /activities/ById/{Id}:
+    get:
+      parameters:
+        - name: Id
+          in: path
+          required: true
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: Successful request
+          
+  # Rule 4
+  /activities/{Id}:
+    get:
+      parameters:
+        - name: Id
+          in: path
+          required: true
+          schema:
+            type: string
+            minimum: 1
+      requestBody:
+        required: true
+        description: Authorization
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        200:
+          description: Successful request
+  
+  # Rule 2
+  /activities/getAll:
+    get:
+      responses:
+        200:
+          description: Array of objects
+  
+  # Rule 2
+  /activities/get-all:
+    get:
+      responses:
+        200:
+          description: Array of objects
+  
+  # Rule 14        
+  /activities/{Id}/mark-as-completed:
+    post:
+      parameters:
+        - name: Id
+          in: path
+          required: true
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: Successful request
+
+  # Rule 12
+  /activities:
+    post:
+      responses:
+        200:
+          description: Successful request
+        403:
+          description: Unauthorized
+        401:
+          description: Forbidden
+
+  # Rule 14
+  /activities/{Id}/participants/{participantId}/add:
+    post:
+      parameters:
+        - name: Id
+          in: path
+          required: true
+          schema:
+            type: string
+            minimum: 1
+        - name: participantId
+          in: path
+          required: true
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: Successful request
+          
+  # Rule 11
+  /activities/{Id}?delete-if-possible={delete-flag}:
+    post:
+      parameters:
+        - name: Id
+          in: path
+          required: true
+          schema:
+            type: string
+            minimum: 1
+        - name: delete-flag
+          in: query
+          required: true
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: Successful request
+          
+  # Rule 10
+  /activities/{Id}/participants/{participantId}/:
+    delete:
+      parameters:
+        - name: Id
+          in: path
+          required: true
+          schema:
+            type: string
+            minimum: 1
+        - name: participantId
+          in: path
+          required: true
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: Successful request
+          
+  # Rule 7
+  /activities/{Id}/participant:
+    get:
+      parameters:
+        - name: Id
+          in: path
+          required: true
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: Array of objects
+          
+  # Rule 8
+  /activities/{Id}/participants/{participantId}-status-{status}:
+    post:
+      parameters:
+        - name: Id
+          in: path
+          required: true
+          schema:
+            type: string
+            minimum: 1
+        - name: participantId
+          in: path
+          required: true
+          schema:
+            type: string
+            minimum: 1
+        - name: Status
+          in: path
+          required: true
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: Successful request
+          
+  # Rule 3
+  /entities.xml:
+    get:
+      responses:
+        200:
+          description: Array of objects
+    post:
+      responses:
+        200:
+          description: Successful request
+        401:
+          description: Unauthorized
+          
+  # Rule 6
+  /ENTITIES/{Id}:
+    get:
+      parameters:
+        - name: Id
+          in: path
+          required: true
+          description: The Id of the entity
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: Entity  object
+        401:
+          description: Unauthorized
+  
+  # Rule 13
+  /entities/{Id}?filter_by_date={date}:
+    get:
+      parameters:
+        - name: Id
+          in: path
+          required: true
+          description: The Id of the entity
+          schema:
+            type: string
+            minimum: 1
+        - name: date
+          in: query
+          description: The date of the entity
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        200:
+          description: Entity  object
+        401:
+          description: Unauthorized
