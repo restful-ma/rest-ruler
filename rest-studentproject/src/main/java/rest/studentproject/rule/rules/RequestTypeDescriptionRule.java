@@ -80,9 +80,9 @@ public class RequestTypeDescriptionRule implements IRestRule {
                 String description = pathItem.getGet().getDescription();
                 String summary = pathItem.getGet().getSummary();
                 if(summary != null && !summary.isEmpty()){
-                   getViolationGetRequest(wt, keyPath, description, ErrorMessage.REQUESTTYPETUNNELINGGET, "get", ImprovementSuggestion.REQUESTTYPEGET, true, violations);
+                   getViolationGetRequest(wt, keyPath, summary, ErrorMessage.REQUESTTYPETUNNELINGGET, "get", ImprovementSuggestion.REQUESTTYPEGET, true, violations);
                 }else if (description != null && !description.isEmpty()){
-                    getViolationGetRequest(wt, keyPath, summary, ErrorMessage.REQUESTTYPETUNNELINGGET, "get", ImprovementSuggestion.REQUESTTYPEGET, true, violations);
+                    getViolationGetRequest(wt, keyPath, description, ErrorMessage.REQUESTTYPETUNNELINGGET, "get", ImprovementSuggestion.REQUESTTYPEGET, true, violations);
                 }
 
             }
@@ -90,27 +90,27 @@ public class RequestTypeDescriptionRule implements IRestRule {
                 String description = pathItem.getPost().getDescription();
                 String summary = pathItem.getPost().getSummary();
                 if(summary != null && !summary.isEmpty()){
-                   getViolationGetRequest(wt, keyPath, description, ErrorMessage.REQUESTTYPETUNNELINGPOST, "post", ImprovementSuggestion.REQUESTTYPEPOST, true, violations);
+                   getViolationGetRequest(wt, keyPath, summary, ErrorMessage.REQUESTTYPETUNNELINGPOST, "post", ImprovementSuggestion.REQUESTTYPEPOST, true, violations);
                 }else if (description != null && !description.isEmpty()){
-                    getViolationGetRequest(wt, keyPath, summary, ErrorMessage.REQUESTTYPETUNNELINGPOST, "post", ImprovementSuggestion.REQUESTTYPEPOST, true, violations);
+                    getViolationGetRequest(wt, keyPath, description, ErrorMessage.REQUESTTYPETUNNELINGPOST, "post", ImprovementSuggestion.REQUESTTYPEPOST, true, violations);
                 }
             }
             if(pathItem.getPut() != null){
                 String description = pathItem.getPut().getDescription();
                 String summary = pathItem.getPut().getSummary();
                 if(summary != null && !summary.isEmpty()){
-                    getViolationGetRequest(wt, keyPath, description, "", "put", ImprovementSuggestion.REQUESTTYPEPUT, false, violations);
-                }else if (description != null && !description.isEmpty()){
                     getViolationGetRequest(wt, keyPath, summary, "", "put", ImprovementSuggestion.REQUESTTYPEPUT, false, violations);
+                }else if (description != null && !description.isEmpty()){
+                    getViolationGetRequest(wt, keyPath, description, "", "put", ImprovementSuggestion.REQUESTTYPEPUT, false, violations);
                 }
             }
             if(pathItem.getDelete() != null){
                 String description = pathItem.getDelete().getDescription();
                 String summary = pathItem.getDelete().getSummary();
                 if(summary != null && !summary.isEmpty()){
-                    getViolationGetRequest(wt, keyPath, description, "", "delete", ImprovementSuggestion.REQUESTTYPEDELETE, false, violations);
+                    getViolationGetRequest(wt, keyPath, summary, "", "delete", ImprovementSuggestion.REQUESTTYPEDELETE, false, violations);
                 }else if (description != null && !description.isEmpty()){
-                   getViolationGetRequest(wt, keyPath, summary, "", "delete", ImprovementSuggestion.REQUESTTYPEDELETE, false, violations);
+                   getViolationGetRequest(wt, keyPath, description, "", "delete", ImprovementSuggestion.REQUESTTYPEDELETE, false, violations);
                 }
             }
         });
