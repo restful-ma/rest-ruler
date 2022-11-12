@@ -1,0 +1,548 @@
+title;x-apisguru-categories;openapiVer;swaggerUrl
+Elastic Load Balancing;['cloud'];3.0.0;https://api.apis.guru/v2/specs/amazonaws.com/elasticloadbalancing/2012-06-01/openapi.json
+Elastic Load Balancing1;['cloud'];3.0.0;https://api.apis.guru/v2/specs/amazonaws.com/elasticloadbalancingv2/2015-12-01/openapi.json
+Amazon Kinesis Analytics;['cloud'];3.0.0;https://api.apis.guru/v2/specs/amazonaws.com/kinesisanalytics/2015-08-14/openapi.json
+Amazon Kinesis Analytics1;['cloud'];3.0.0;https://api.apis.guru/v2/specs/amazonaws.com/kinesisanalyticsv2/2018-05-23/openapi.json
+Amazon Simple Email Service;['cloud'];3.0.0;https://api.apis.guru/v2/specs/amazonaws.com/email/2010-12-01/openapi.json
+Amazon Simple Email Service1;['cloud'];3.0.0;https://api.apis.guru/v2/specs/amazonaws.com/sesv2/2019-09-27/openapi.json
+Appwrite;['developer_tools'];3.0.0;https://api.apis.guru/v2/specs/appwrite.io/client/0.9.3/openapi.json
+Appwrite1;['developer_tools'];3.0.0;https://api.apis.guru/v2/specs/appwrite.io/server/0.9.3/openapi.json
+Azure Addons Resource Provider;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/addons-Addons/2017-05-15/swagger.json
+Azure Addons Resource Provider1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/addons-addons-swagger/2018-03-01/swagger.json
+Azure Alerts Management Service Resource Provider;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/alertsmanagement-AlertsManagement/2019-05-05-preview/swagger.json
+Azure Alerts Management Servi1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/alertsmanagement-SmartDetectorAlertRulesApi/2019-06-01/swagger.json
+ApiManagementClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement/2018-01-01/swagger.json
+ApiManagementClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimapis/2019-12-01-preview/swagger.json
+ApiManagementClient2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimapisByTags/2019-12-01-preview/swagger.json
+ApiManagementClient3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimapiversionsets/2019-12-01-preview/swagger.json
+ApiManagementClient4;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimauthorizationservers/2019-12-01-preview/swagger.json
+ApiManagementClient5;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimbackends/2019-12-01-preview/swagger.json
+ApiManagementClient6;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimcaches/2019-12-01-preview/swagger.json
+ApiManagementClient7;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimcertificates/2019-12-01-preview/swagger.json
+ApiManagementClient8;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimdeployment/2019-12-01-preview/swagger.json
+ApiManagementClient9;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimdiagnostics/2019-12-01-preview/swagger.json
+ApiManagementClient10;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimemailtemplate/2018-06-01-preview/swagger.json
+ApiManagementClient11;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimemailtemplates/2019-12-01-preview/swagger.json
+ApiManagementClient12;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimgroups/2019-12-01-preview/swagger.json
+ApiManagementClient13;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimidentityprovider/2019-12-01-preview/swagger.json
+ApiManagementClient14;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimissues/2019-12-01-preview/swagger.json
+ApiManagementClient15;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimloggers/2019-12-01-preview/swagger.json
+ApiManagementClient16;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimnamedvalues/2019-12-01-preview/swagger.json
+ApiManagementClient17;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimnetworkstatus/2019-12-01-preview/swagger.json
+ApiManagementClient18;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimnotifications/2019-12-01-preview/swagger.json
+ApiManagementClient19;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimopenidconnectproviders/2019-12-01-preview/swagger.json
+ApiManagementClient20;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimpolicies/2019-12-01-preview/swagger.json
+ApiManagementClient21;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimpolicydescriptions/2019-12-01-preview/swagger.json
+ApiManagementClient22;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimpolicysnippets/2019-01-01/swagger.json
+ApiManagementClient23;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimproducts/2019-12-01-preview/swagger.json
+ApiManagementClient24;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimproductsByTags/2019-12-01-preview/swagger.json
+ApiManagementClient25;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimproperties/2019-01-01/swagger.json
+ApiManagementClient26;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimquotas/2019-12-01-preview/swagger.json
+ApiManagementClient27;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimregions/2019-12-01-preview/swagger.json
+ApiManagementClient28;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimreports/2019-12-01-preview/swagger.json
+ApiManagementClient29;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimsubscriptions/2019-12-01-preview/swagger.json
+ApiManagementClient30;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimtagresources/2019-12-01-preview/swagger.json
+ApiManagementClient31;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimtags/2019-12-01-preview/swagger.json
+ApiManagementClient32;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimtenant/2019-12-01-preview/swagger.json
+ApiManagementClient33;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimusers/2019-12-01-preview/swagger.json
+ApiManagementClient34;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/apimanagement-apimversionsets/2018-06-01-preview/swagger.json
+Azure Log Analytics Query Packs;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/applicationinsights-QueryPackQueries_API/2019-09-01-preview/swagger.json
+Azure Log Analytics Query Packs1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/applicationinsights-QueryPacks_API/2019-09-01-preview/swagger.json
+ApplicationInsightsManagementClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/applicationinsights-aiOperations_API/2015-05-01/swagger.json
+ApplicationInsightsManagement1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/applicationinsights-analyticsItems_API/2015-05-01/swagger.json
+ApplicationInsightsManagement2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/applicationinsights-componentAnnotations_API/2015-05-01/swagger.json
+ApplicationInsightsManagement3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/applicationinsights-componentApiKeys_API/2015-05-01/swagger.json
+ApplicationInsightsManagement4;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/applicationinsights-componentContinuousExport_API/2015-05-01/swagger.json
+ApplicationInsightsManagement5;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/applicationinsights-componentFeaturesAndPricing_API/2017-10-01/swagger.json
+ApplicationInsightsManagement6;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/applicationinsights-componentProactiveDetection_API/2018-05-01-preview/swagger.json
+ApplicationInsightsManagement7;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/applicationinsights-componentWorkItemConfigs_API/2015-05-01/swagger.json
+ApplicationInsightsManagement8;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/applicationinsights-components_API/2015-05-01/swagger.json
+ApplicationInsightsManagement9;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/applicationinsights-eaSubscriptionMigration_API/2017-10-01/swagger.json
+ApplicationInsightsManagement10;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/applicationinsights-favorites_API/2015-05-01/swagger.json
+ApplicationInsightsManagemen11;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/applicationinsights-webTestLocations_API/2015-05-01/swagger.json
+ApplicationInsightsManagemen12;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/applicationinsights-webTests_API/2015-05-01/swagger.json
+ApplicationInsightsManagemen13;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/applicationinsights-workbookTemplates_API/2019-10-17-preview/swagger.json
+ApplicationInsightsManagemen14;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/applicationinsights-workbooks_API/2018-06-17-preview/swagger.json
+AuthorizationManagementClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/authorization/2015-07-01/swagger.json
+AuthorizationManagementClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/authorization-authorization-ClassicAdminCalls/2015-07-01/swagger.json
+AuthorizationManagementClient2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/authorization-authorization-DenyAssignmentGetCalls/2018-07-01-preview/swagger.json
+AuthorizationManagementClient3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/authorization-authorization-ElevateAccessCalls/2015-07-01/swagger.json
+AuthorizationManagementClient4;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/authorization-authorization-ProviderOperationsCalls/2018-01-01-preview/swagger.json
+AuthorizationManagementClient5;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/authorization-authorization-RACalls/2017-10-01-preview/swagger.json
+AuthorizationManagementClient6;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/authorization-authorization-RoleAssignmentsCalls/2018-09-01-preview/swagger.json
+AuthorizationManagementClient7;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/authorization-authorization-RoleBasedCalls/2018-01-01-preview/swagger.json
+AuthorizationManagementClient8;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/authorization-authorization-RoleDefinitionsCalls/2018-01-01-preview/swagger.json
+AutomationManagement;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/automation-account/2015-10-31/swagger.json
+AutomationManagement1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/automation-certificate/2015-10-31/swagger.json
+AutomationManagement2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/automation-connection/2015-10-31/swagger.json
+AutomationManagement3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/automation-connectionType/2015-10-31/swagger.json
+AutomationManagement4;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/automation-credential/2015-10-31/swagger.json
+AutomationManagement5;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/automation-dscCompilationJob/2018-01-15/swagger.json
+AutomationManagement6;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/automation-dscConfiguration/2015-10-31/swagger.json
+AutomationManagement7;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/automation-dscNode/2018-01-15/swagger.json
+AutomationManagement8;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/automation-dscNodeConfiguration/2018-01-15/swagger.json
+AutomationManagement9;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/automation-dscNodeCounts/2018-01-15/swagger.json
+AutomationManagement10;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/automation-hybridRunbookWorkerGroup/2015-10-31/swagger.json
+AutomationManagement11;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/automation-job/2017-05-15-preview/swagger.json
+AutomationManagement12;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/automation-jobSchedule/2015-10-31/swagger.json
+AutomationManagement13;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/automation-linkedWorkspace/2015-10-31/swagger.json
+AutomationManagement14;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/automation-module/2015-10-31/swagger.json
+AutomationManagement15;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/automation-python2package/2018-06-30/swagger.json
+AutomationManagement16;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/automation-runbook/2018-06-30/swagger.json
+AutomationManagement17;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/automation-schedule/2015-10-31/swagger.json
+AutomationManagement18;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/automation-sourceControl/2017-05-15-preview/swagger.json
+AutomationManagement19;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/automation-sourceControlSyncJob/2017-05-15-preview/swagger.json
+AutomationManagement20;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/automation-sourceControlSyncJobStreams/2017-05-15-preview/swagger.json
+AutomationManagement21;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/automation-variable/2015-10-31/swagger.json
+AutomationManagement22;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/automation-watcher/2015-10-31/swagger.json
+Update Management;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/automation-softwareUpdateConfiguration/2017-05-15-preview/swagger.json
+Update Management1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/automation-softwareUpdateConfigurationMachineRun/2017-05-15-preview/swagger.json
+Update Management2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/automation-softwareUpdateConfigurationRun/2017-05-15-preview/swagger.json
+DeploymentAdminClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-ActionPlan/2019-01-01/swagger.json
+DeploymentAdminClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-ActionPlanOperation/2019-01-01/swagger.json
+DeploymentAdminClient2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-Deployment/2019-01-01/swagger.json
+DeploymentAdminClient3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-FileContainer/2019-01-01/swagger.json
+DeploymentAdminClient4;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-ProductDeployment/2019-01-01/swagger.json
+DeploymentAdminClient5;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-ProductPackage/2019-01-01/swagger.json
+DeploymentAdminClient6;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-ProductSecret/2019-01-01/swagger.json
+AzureBridgeAdminClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-Activation/2016-01-01/swagger.json
+AzureBridgeAdminClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-AzureBridge/2016-01-01/swagger.json
+AzureBridgeAdminClient2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-DownloadedProduct/2016-01-01/swagger.json
+AzureBridgeAdminClient3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-Product/2016-01-01/swagger.json
+BackupManagementClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-Backup/2018-09-01/swagger.json
+BackupManagementClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-BackupLocations/2018-09-01/swagger.json
+BackupManagementClient2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-Backups/2018-09-01/swagger.json
+CommerceManagementClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-Commerce/2015-06-01-preview/swagger.json
+CommerceManagementClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-CommerceAdmin/2015-06-01-preview/swagger.json
+FabricAdminClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-ApplicationOperationResults/2016-05-01/swagger.json
+FabricAdminClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-ComputeOperationResults/2016-05-01/swagger.json
+FabricAdminClient2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-Drive/2019-05-01/swagger.json
+FabricAdminClient3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-EdgeGateway/2016-05-01/swagger.json
+FabricAdminClient4;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-EdgeGatewayPool/2016-05-01/swagger.json
+FabricAdminClient5;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-Fabric/2016-05-01/swagger.json
+FabricAdminClient6;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-FabricLocation/2016-05-01/swagger.json
+FabricAdminClient7;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-FileShare/2016-05-01/swagger.json
+FabricAdminClient8;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-InfraRole/2016-05-01/swagger.json
+FabricAdminClient9;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-InfraRoleInstance/2016-05-01/swagger.json
+FabricAdminClient10;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-IpPool/2016-05-01/swagger.json
+FabricAdminClient11;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-LogicalNetwork/2016-05-01/swagger.json
+FabricAdminClient12;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-LogicalSubnet/2016-05-01/swagger.json
+FabricAdminClient13;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-MacAddressPool/2016-05-01/swagger.json
+FabricAdminClient14;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-NetworkOperationResults/2016-05-01/swagger.json
+FabricAdminClient15;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-Operations/2016-05-01/swagger.json
+FabricAdminClient16;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-ScaleUnit/2016-05-01/swagger.json
+FabricAdminClient17;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-ScaleUnitNode/2016-05-01/swagger.json
+FabricAdminClient18;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-SlbMuxInstance/2016-05-01/swagger.json
+FabricAdminClient19;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-StorageOperationResults/2016-05-01/swagger.json
+FabricAdminClient20;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-StoragePool/2016-05-01/swagger.json
+FabricAdminClient21;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-StorageSubSystem/2018-10-01/swagger.json
+FabricAdminClient22;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-StorageSystem/2016-05-01/swagger.json
+FabricAdminClient23;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-Volume/2019-05-01/swagger.json
+SubscriptionsManagementClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-AcquiredPlan/2015-11-01/swagger.json
+SubscriptionsManagementClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-DelegatedProvider/2015-11-01/swagger.json
+SubscriptionsManagementClient2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-DelegatedProviderOffer/2015-11-01/swagger.json
+SubscriptionsManagementClient3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-DirectoryTenant/2015-11-01/swagger.json
+SubscriptionsManagementClient4;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-Location/2015-11-01/swagger.json
+SubscriptionsManagementClient5;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-Manifest/2015-11-01/swagger.json
+SubscriptionsManagementClient6;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-OfferDelegation/2015-11-01/swagger.json
+SubscriptionsManagementClient7;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-Plan/2015-11-01/swagger.json
+SubscriptionsManagementClient8;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-Quota/2015-11-01/swagger.json
+ComputeDiskAdminManagementClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-DiskMigrationJobs/2018-07-30-preview/swagger.json
+ComputeDiskAdminManagementCli1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-Disks/2018-07-30-preview/swagger.json
+GalleryManagementClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-Gallery/2015-04-01/swagger.json
+GalleryManagementClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-GalleryItem/2015-04-01/swagger.json
+InfrastructureInsightsManagementClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-Alert/2016-05-01/swagger.json
+InfrastructureInsightsManagem1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-InfrastructureInsights/2016-05-01/swagger.json
+InfrastructureInsightsManagem2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-RegionHealth/2016-05-01/swagger.json
+InfrastructureInsightsManagem3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-ResourceHealth/2016-05-01/swagger.json
+InfrastructureInsightsManagem4;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-ServiceHealth/2016-05-01/swagger.json
+NetworkAdminManagementClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-LoadBalancers/2015-06-15/swagger.json
+NetworkAdminManagementClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-Network/2015-06-15/swagger.json
+NetworkAdminManagementClient2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-PublicIpAddresses/2015-06-15/swagger.json
+NetworkAdminManagementClient3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-VirtualNetworks/2015-06-15/swagger.json
+Compute Admin Client;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-Compute/2015-12-01-preview/swagger.json
+Compute Admin Client1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-PlatformImages/2015-12-01-preview/swagger.json
+Compute Admin Client2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-Quotas/2018-02-09/swagger.json
+Compute Admin Client3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-VMExtensions/2015-12-01-preview/swagger.json
+SubscriptionClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-Offer/2015-11-01/swagger.json
+SubscriptionClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-Subscriptions/2015-11-01/swagger.json
+SubscriptionClient2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/resources-subscriptions/2019-11-01/swagger.json
+SubscriptionClient3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/subscription-operations/2018-03-01-preview/swagger.json
+SubscriptionClient4;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/subscription-subscriptions/2020-01-01/swagger.json
+UpdateAdminClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-Update/2016-05-01/swagger.json
+UpdateAdminClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-UpdateLocations/2016-05-01/swagger.json
+UpdateAdminClient2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-UpdateRuns/2016-05-01/swagger.json
+StorageManagementClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-acquisitions/2019-08-08-preview/swagger.json
+StorageManagementClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-blobServices/2015-12-01-preview/swagger.json
+StorageManagementClient2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-containers/2015-12-01-preview/swagger.json
+StorageManagementClient3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-farms/2015-12-01-preview/swagger.json
+StorageManagementClient4;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-queueServices/2015-12-01-preview/swagger.json
+StorageManagementClient5;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-quotas/2019-08-08-preview/swagger.json
+StorageManagementClient6;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-shares/2015-12-01-preview/swagger.json
+StorageManagementClient7;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-storage/2019-08-08-preview/swagger.json
+StorageManagementClient8;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-storageaccounts/2019-08-08-preview/swagger.json
+StorageManagementClient9;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-tableServices/2015-12-01-preview/swagger.json
+StorageManagementClient10;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/storage/2019-06-01/swagger.json
+StorageManagementClient11;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/storage-blob/2019-06-01/swagger.json
+StorageManagementClient12;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/storage-file/2019-06-01/swagger.json
+StorageManagementClient13;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/storage-managementpolicy/2018-03-01-preview/swagger.json
+AzureStack Azure Bridge Client;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azurestack-CustomerSubscription/2017-06-01/swagger.json
+AzureStack Azure Bridge Client1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azurestack-Product/2017-06-01/swagger.json
+Azure Stack Azure Bridge Client;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azurestack-AzureStack/2017-06-01/swagger.json
+Azure Stack Azure Bridge Client1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azurestack-Registration/2017-06-01/swagger.json
+BlueprintClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/blueprint-assignmentOperation/2018-11-01-preview/swagger.json
+BlueprintClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/blueprint-blueprintAssignment/2018-11-01-preview/swagger.json
+BlueprintClient2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/blueprint-blueprintDefinition/2018-11-01-preview/swagger.json
+ComputeManagementClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/compute/2019-07-01/swagger.json
+ComputeManagementClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/compute-skus/2019-04-01/swagger.json
+ContainerRegistryManagementClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/containerregistry/2019-12-01-preview/swagger.json
+ContainerRegistryManagementCl1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/containerregistry-containerregistry_build/2019-06-01-preview/swagger.json
+ContainerRegistryManagementCl2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/containerregistry-containerregistry_scopemap/2019-05-01-preview/swagger.json
+ContainerServiceClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/compute-containerService/2017-01-31/swagger.json
+ContainerServiceClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/containerservice-containerService/2017-07-01/swagger.json
+ContainerServiceClient2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/containerservice-location/2019-08-01/swagger.json
+ContainerServiceClient3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/containerservice-managedClusters/2020-01-01/swagger.json
+ContainerServiceClient4;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/containerservice-openShiftManagedClusters/2019-09-30-preview/swagger.json
+ContainerServiceClient5;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/containerservices-containerService/2017-07-01/swagger.json
+ContainerServiceClient6;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/containerservices-location/2017-09-30/swagger.json
+ContainerServiceClient7;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/containerservices-managedClusters/2018-08-01-preview/swagger.json
+ContainerServiceClient8;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/containerservices-openShiftManagedClusters/2018-09-30-preview/swagger.json
+Cosmos DB;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/cosmos-db/2019-12-12/swagger.json
+Cosmos DB1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/cosmos-db-privateEndpointConnection/2019-08-01-preview/swagger.json
+Cosmos DB2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/cosmos-db-privateLinkResources/2019-08-01-preview/swagger.json
+DataBoxEdgeManagementClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/databoxedge/2019-08-01/swagger.json
+DataBoxEdgeManagementClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/edgegateway/2019-03-01/swagger.json
+GuestConfiguration;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/guestconfiguration/2018-11-20/swagger.json
+GuestConfiguration1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/guestconfiguration-guestconfiguration_NotImplemented/2018-06-30-preview/swagger.json
+HDInsightManagementClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/hdinsight-applications/2018-06-01-preview/swagger.json
+HDInsightManagementClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/hdinsight-capabilities/2015-03-01-preview/swagger.json
+HDInsightManagementClient2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/hdinsight-cluster/2018-06-01-preview/swagger.json
+HDInsightManagementClient3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/hdinsight-configurations/2018-06-01-preview/swagger.json
+HDInsightManagementClient4;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/hdinsight-extensions/2018-06-01-preview/swagger.json
+HDInsightManagementClient5;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/hdinsight-locations/2018-06-01-preview/swagger.json
+HDInsightManagementClient6;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/hdinsight-operations/2018-06-01-preview/swagger.json
+HDInsightManagementClient7;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/hdinsight-scriptActions/2018-06-01-preview/swagger.json
+KeyVaultManagementClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/azsadmin-KeyVault/2017-02-01-preview/swagger.json
+KeyVaultManagementClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/keyvault-providers/2019-09-01/swagger.json
+KeyVaultManagementClient2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/keyvault-secrets/2019-09-01/swagger.json
+MariaDBManagementClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/mariadb/2018-06-01-preview/swagger.json
+MariaDBManagementClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/mariadb-DataEncryptionKeys/2020-01-01-privatepreview/swagger.json
+MariaDBManagementClient2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/mariadb-PerformanceRecommendations/2018-06-01/swagger.json
+MariaDBManagementClient3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/mariadb-PrivateEndpointConnections/2018-06-01-privatepreview/swagger.json
+MariaDBManagementClient4;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/mariadb-PrivateLinkResources/2018-06-01-privatepreview/swagger.json
+MariaDBManagementClient5;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/mariadb-QueryPerformanceInsights/2018-06-01/swagger.json
+Azure Media Services;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/mediaservices-AccountFilters/2018-07-01/swagger.json
+Azure Media Services1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/mediaservices-Accounts/2018-07-01/swagger.json
+Azure Media Services2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/mediaservices-Assets/2018-06-01-preview/swagger.json
+Azure Media Services3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/mediaservices-AssetsAndAssetFilters/2018-07-01/swagger.json
+Azure Media Services4;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/mediaservices-ContentKeyPolicies/2018-07-01/swagger.json
+Azure Media Services5;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/mediaservices-Encoding/2018-07-01/swagger.json
+Azure Media Services6;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/mediaservices-MediaGraphs/2019-09-01-preview/swagger.json
+Azure Media Services7;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/mediaservices-StreamingPoliciesAndStreamingLocators/2018-07-01/swagger.json
+Azure Media Services8;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/mediaservices-streamingservice/2019-05-01-preview/swagger.json
+Mixed Reality;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/mixedreality/2019-02-28-preview/swagger.json
+Mixed Reality1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/mixedreality-proxy/2019-12-02-preview/swagger.json
+Mixed Reality2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/mixedreality-remote-rendering/2019-12-02-preview/swagger.json
+Mixed Reality3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/mixedreality-spatial-anchors/2019-12-02-preview/swagger.json
+MonitorManagementClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/monitor-activityLogs_API/2015-04-01/swagger.json
+MonitorManagementClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/monitor-alertRulesIncidents_API/2016-03-01/swagger.json
+MonitorManagementClient2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/monitor-alertRules_API/2016-03-01/swagger.json
+MonitorManagementClient3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/monitor-autoscale_API/2015-04-01/swagger.json
+MonitorManagementClient4;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/monitor-baseline_API/2018-09-01/swagger.json
+MonitorManagementClient5;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/monitor-calculateBaseline_API/2018-09-01/swagger.json
+MonitorManagementClient6;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/monitor-diagnosticsSettingsCategories_API/2017-05-01-preview/swagger.json
+MonitorManagementClient7;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/monitor-diagnosticsSettings_API/2017-05-01-preview/swagger.json
+MonitorManagementClient8;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/monitor-eventCategories_API/2015-04-01/swagger.json
+MonitorManagementClient9;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/monitor-logProfiles_API/2016-03-01/swagger.json
+MonitorManagementClient10;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/monitor-metricAlert_API/2018-03-01/swagger.json
+MonitorManagementClient11;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/monitor-metricBaselines_API/2019-03-01/swagger.json
+MonitorManagementClient12;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/monitor-metricDefinitions_API/2018-01-01/swagger.json
+MonitorManagementClient13;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/monitor-metricNamespaces_API/2017-12-01-preview/swagger.json
+MonitorManagementClient14;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/monitor-metrics_API/2018-01-01/swagger.json
+MonitorManagementClient15;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/monitor-operations_API/2015-04-01/swagger.json
+MonitorManagementClient16;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/monitor-serviceDiagnosticsSettings_API/2016-09-01/swagger.json
+MonitorManagementClient17;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/monitor-subscriptionDiagnosticsSettings_API/2017-05-01-preview/swagger.json
+MonitorManagementClient18;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/monitor-tenantActivityLogs_API/2015-04-01/swagger.json
+MySQLManagementClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/mysql/2017-12-01-preview/swagger.json
+MySQLManagementClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/mysql-DataEncryptionKeys/2020-01-01-privatepreview/swagger.json
+MySQLManagementClient2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/mysql-PerformanceRecommendations/2018-06-01/swagger.json
+MySQLManagementClient3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/mysql-PrivateEndpointConnections/2018-06-01-privatepreview/swagger.json
+MySQLManagementClient4;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/mysql-PrivateLinkResources/2018-06-01-privatepreview/swagger.json
+MySQLManagementClient5;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/mysql-QueryPerformanceInsights/2018-06-01/swagger.json
+NetworkManagementClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network/2016-06-01/swagger.json
+NetworkManagementClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-applicationGateway/2019-08-01/swagger.json
+NetworkManagementClient2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-applicationSecurityGroup/2019-08-01/swagger.json
+NetworkManagementClient3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-availableDelegations/2019-08-01/swagger.json
+NetworkManagementClient4;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-availableServiceAliases/2019-08-01/swagger.json
+NetworkManagementClient5;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-azureFirewall/2019-08-01/swagger.json
+NetworkManagementClient6;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-azureFirewallFqdnTag/2019-08-01/swagger.json
+NetworkManagementClient7;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-bastionHost/2019-08-01/swagger.json
+NetworkManagementClient8;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-checkDnsAvailability/2019-08-01/swagger.json
+NetworkManagementClient9;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-ddosCustomPolicy/2019-08-01/swagger.json
+NetworkManagementClient10;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-ddosProtectionPlan/2019-08-01/swagger.json
+NetworkManagementClient11;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-endpointService/2019-08-01/swagger.json
+NetworkManagementClient12;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-expressRouteCircuit/2019-08-01/swagger.json
+NetworkManagementClient13;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-expressRouteGateway/2019-08-01/swagger.json
+NetworkManagementClient14;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-expressRoutePort/2019-08-01/swagger.json
+NetworkManagementClient15;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-firewallPolicy/2019-08-01/swagger.json
+NetworkManagementClient16;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-interfaceEndpoint/2019-02-01/swagger.json
+NetworkManagementClient17;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-ipGroups/2019-11-01/swagger.json
+NetworkManagementClient18;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-loadBalancer/2019-08-01/swagger.json
+NetworkManagementClient19;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-natGateway/2019-08-01/swagger.json
+NetworkManagementClient20;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-networkInterface/2018-01-01/swagger.json
+NetworkManagementClient21;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-networkProfile/2019-08-01/swagger.json
+NetworkManagementClient22;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-networkSecurityGroup/2019-08-01/swagger.json
+NetworkManagementClient23;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-networkWatcher/2019-11-01/swagger.json
+NetworkManagementClient24;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-networkWatcherConnectionMonitorV1/2019-06-01/swagger.json
+NetworkManagementClient25;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-operation/2019-08-01/swagger.json
+NetworkManagementClient26;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-privateEndpoint/2019-08-01/swagger.json
+NetworkManagementClient27;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-privateLinkService/2019-08-01/swagger.json
+NetworkManagementClient28;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-publicIpAddress/2019-08-01/swagger.json
+NetworkManagementClient29;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-publicIpPrefix/2019-08-01/swagger.json
+NetworkManagementClient30;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-routeFilter/2019-08-01/swagger.json
+NetworkManagementClient31;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-routeTable/2019-08-01/swagger.json
+NetworkManagementClient32;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-serviceCommunity/2019-08-01/swagger.json
+NetworkManagementClient33;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-serviceEndpointPolicy/2019-08-01/swagger.json
+NetworkManagementClient34;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-serviceTags/2019-08-01/swagger.json
+NetworkManagementClient35;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-usage/2019-08-01/swagger.json
+NetworkManagementClient36;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-virtualNetwork/2019-08-01/swagger.json
+NetworkManagementClient37;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-virtualNetworkGateway/2019-08-01/swagger.json
+NetworkManagementClient38;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-virtualNetworkTap/2019-08-01/swagger.json
+NetworkManagementClient39;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-virtualRouter/2019-11-01/swagger.json
+NetworkManagementClient40;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-vmssNetworkInterface/2018-10-01/swagger.json
+NetworkManagementClient41;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/network-vmssPublicIpAddress/2018-10-01/swagger.json
+Azure Log Analytics;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/operationalinsights-Clusters/2019-08-01-preview/swagger.json
+Azure Log Analytics1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/operationalinsights-OperationalInsights/2019-08-01-preview/swagger.json
+Azure Log Analytics2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/operationalinsights-swagger/2017-10-01/swagger.json
+PostgreSQLManagementClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/postgresql/2017-12-01-preview/swagger.json
+PostgreSQLManagementClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/postgresql-DataEncryptionKeys/2020-01-01-privatepreview/swagger.json
+PostgreSQLManagementClient2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/postgresql-PrivateEndpointConnections/2018-06-01-privatepreview/swagger.json
+PostgreSQLManagementClient3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/postgresql-PrivateLinkResources/2018-06-01-privatepreview/swagger.json
+iotDpsClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/deviceprovisioningservices-iotdps/2018-01-22/swagger.json
+iotDpsClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/provisioningservices-iotdps/2017-11-15/swagger.json
+RecoveryServicesClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/recoveryservices-registeredidentities/2016-06-01/swagger.json
+RecoveryServicesClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/recoveryservices-replicationusages/2016-06-01/swagger.json
+RecoveryServicesClient2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/recoveryservices-vaults/2016-06-01/swagger.json
+RecoveryServicesClient3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/recoveryservices-vaultusages/2016-06-01/swagger.json
+RecoveryServicesBackupClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/recoveryservices-backup/2016-12-01/swagger.json
+RecoveryServicesBackupClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/recoveryservicesbackup/2016-06-01/swagger.json
+RecoveryServicesBackupClient2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/recoveryservicesbackup-backupManagement/2016-12-01/swagger.json
+RecoveryServicesBackupClient3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/recoveryservicesbackup-bms/2019-06-15/swagger.json
+RecoveryServicesBackupClient4;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/recoveryservicesbackup-jobs/2017-07-01/swagger.json
+RecoveryServicesBackupClient5;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/recoveryservicesbackup-operations/2016-08-10/swagger.json
+RecoveryServicesBackupClient6;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/recoveryservicesbackup-registeredIdentities/2016-06-01/swagger.json
+Azure Reservation;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/reservations/2019-04-01/swagger.json
+Azure Reservation1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/reservations-quota/2019-07-19-preview/swagger.json
+Microsoft.ResourceHealth;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/resourcehealth/2017-07-01/swagger.json
+Microsoft.ResourceHealth1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/resourcehealth-ResourceHealth/2018-07-01-preview/swagger.json
+Management Groups;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/managementgroups-management/2019-11-01/swagger.json
+Management Groups1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/resources-management/2017-08-31-preview/swagger.json
+PolicyClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/resources-policy/2016-04-01/swagger.json
+PolicyClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/resources-policyAssignments/2019-09-01/swagger.json
+PolicyClient2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/resources-policyDefinitions/2019-09-01/swagger.json
+PolicyClient3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/resources-policySetDefinitions/2019-09-01/swagger.json
+Security Center;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security/2017-08-01-preview/swagger.json
+Security Center1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-adaptiveNetworkHardenings/2015-06-01-preview/swagger.json
+Security Center2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-advancedThreatProtectionSettings/2019-01-01/swagger.json
+Security Center3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-alerts/2019-01-01/swagger.json
+Security Center4;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-allowedConnections/2015-06-01-preview/swagger.json
+Security Center5;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-applicationWhitelistings/2015-06-01-preview/swagger.json
+Security Center6;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-assessmentMetadata/2020-01-01/swagger.json
+Security Center7;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-assessments/2020-01-01/swagger.json
+Security Center8;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-autoProvisioningSettings/2017-08-01-preview/swagger.json
+Security Center9;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-automations/2019-01-01-preview/swagger.json
+Security Center10;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-complianceResults/2017-08-01/swagger.json
+Security Center11;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-compliances/2017-08-01-preview/swagger.json
+Security Center12;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-deviceSecurityGroups/2019-08-01/swagger.json
+Security Center13;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-discoveredSecuritySolutions/2015-06-01-preview/swagger.json
+Security Center14;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-externalSecuritySolutions/2015-06-01-preview/swagger.json
+Security Center15;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-informationProtectionPolicies/2017-08-01-preview/swagger.json
+Security Center16;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-iotSecuritySolutionAnalytics/2019-08-01/swagger.json
+Security Center17;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-iotSecuritySolutions/2019-08-01/swagger.json
+Security Center18;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-jitNetworkAccessPolicies/2015-06-01-preview/swagger.json
+Security Center19;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-locations/2015-06-01-preview/swagger.json
+Security Center20;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-operations/2015-06-01-preview/swagger.json
+Security Center21;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-pricings/2018-06-01/swagger.json
+Security Center22;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-regulatoryCompliance/2019-01-01-preview/swagger.json
+Security Center23;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-securityContacts/2017-08-01-preview/swagger.json
+Security Center24;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-serverVulnerabilityAssessments/2019-01-01-preview/swagger.json
+Security Center25;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-subAssessments/2019-01-01-preview/swagger.json
+Security Center26;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-tasks/2015-06-01-preview/swagger.json
+Security Center27;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-topologies/2015-06-01-preview/swagger.json
+Security Center28;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/security-workspaceSettings/2017-08-01-preview/swagger.json
+ServiceBusManagementClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/servicebus/2017-04-01/swagger.json
+ServiceBusManagementClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/servicebus-servicebus-preview/2018-01-01-preview/swagger.json
+ServiceFabricManagementClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/servicefabric-application/2019-06-01-preview/swagger.json
+ServiceFabricManagementClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/servicefabric-cluster/2019-06-01-preview/swagger.json
+SqlManagementClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-DatabaseSchema/2018-06-01-preview/swagger.json
+SqlManagementClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-DatabaseSecurityAlertPolicies/2018-06-01-preview/swagger.json
+SqlManagementClient2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-FailoverDatabases/2018-06-01-preview/swagger.json
+SqlManagementClient3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-FailoverElasticPools/2018-06-01-preview/swagger.json
+SqlManagementClient4;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-ManagedBackupShortTermRetention/2017-03-01-preview/swagger.json
+SqlManagementClient5;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-ManagedDatabaseSchema/2018-06-01-preview/swagger.json
+SqlManagementClient6;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-ManagedDatabaseSecurityAlertPolicies/2017-03-01-preview/swagger.json
+SqlManagementClient7;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-ManagedInstanceEncryptionProtectors/2017-10-01-preview/swagger.json
+SqlManagementClient8;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-ManagedInstanceKeys/2017-10-01-preview/swagger.json
+SqlManagementClient9;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-ManagedInstanceTdeCertificates/2017-10-01-preview/swagger.json
+SqlManagementClient10;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-ManagedInstanceVulnerabilityAssessments/2018-06-01-preview/swagger.json
+SqlManagementClient11;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-ManagedRestorableDroppedDatabaseBackupShortTermRetenion/2017-03-01-preview/swagger.json
+SqlManagementClient12;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-ManagedServerSecurityAlertPolicy/2017-03-01-preview/swagger.json
+SqlManagementClient13;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-PrivateEndpointConnections/2018-06-01-preview/swagger.json
+SqlManagementClient14;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-PrivateLinkResources/2018-06-01-preview/swagger.json
+SqlManagementClient15;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-ServerAzureADAdministrators/2018-06-01-preview/swagger.json
+SqlManagementClient16;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-ServerVulnerabilityAssessments/2018-06-01-preview/swagger.json
+SqlManagementClient17;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-TdeCertificates/2017-10-01-preview/swagger.json
+SqlManagementClient18;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-WorkloadClassifiers/2019-06-01-preview/swagger.json
+SqlManagementClient19;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-WorkloadGroups/2019-06-01-preview/swagger.json
+SqlManagementClient20;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-advisors/2015-05-01-preview/swagger.json
+SqlManagementClient21;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-blobAuditing/2017-03-01-preview/swagger.json
+SqlManagementClient22;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-blobAuditingPolicies/2015-05-01-preview/swagger.json
+SqlManagementClient23;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-cancelOperations/2017-10-01-preview/swagger.json
+SqlManagementClient24;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-cancelPoolOperations/2017-10-01-preview/swagger.json
+SqlManagementClient25;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-capabilities/2018-06-01-preview/swagger.json
+SqlManagementClient26;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-dataWarehouseUserActivities/2017-03-01-preview/swagger.json
+SqlManagementClient27;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-databaseAutomaticTuning/2015-05-01-preview/swagger.json
+SqlManagementClient28;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-databaseVulnerabilityAssessmentBaselines/2017-03-01-preview/swagger.json
+SqlManagementClient29;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-databaseVulnerabilityAssessmentScans/2017-10-01-preview/swagger.json
+SqlManagementClient30;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-databaseVulnerabilityAssessments/2017-03-01-preview/swagger.json
+SqlManagementClient31;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-databases/2019-06-01-preview/swagger.json
+SqlManagementClient32;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-elasticPools/2017-10-01-preview/swagger.json
+SqlManagementClient33;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-encryptionProtectors/2015-05-01-preview/swagger.json
+SqlManagementClient34;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-failoverGroups/2015-05-01-preview/swagger.json
+SqlManagementClient35;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-firewallRules/2015-05-01-preview/swagger.json
+SqlManagementClient36;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-instanceFailoverGroups/2017-10-01-preview/swagger.json
+SqlManagementClient37;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-instancePools/2018-06-01-preview/swagger.json
+SqlManagementClient38;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-jobs/2017-03-01-preview/swagger.json
+SqlManagementClient39;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-longTermRetention/2017-03-01-preview/swagger.json
+SqlManagementClient40;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-managedDatabaseSensitivityLabels/2018-06-01-preview/swagger.json
+SqlManagementClient41;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-managedDatabaseVulnerabilityAssesmentRuleBaselines/2017-10-01-preview/swagger.json
+SqlManagementClient42;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-managedDatabaseVulnerabilityAssessmentScans/2017-10-01-preview/swagger.json
+SqlManagementClient43;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-managedDatabaseVulnerabilityAssessments/2017-10-01-preview/swagger.json
+SqlManagementClient44;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-managedDatabases/2019-06-01-preview/swagger.json
+SqlManagementClient45;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-managedInstanceAdministrators/2017-03-01-preview/swagger.json
+SqlManagementClient46;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-managedInstanceOperations/2018-06-01-preview/swagger.json
+SqlManagementClient47;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-managedInstances/2018-06-01-preview/swagger.json
+SqlManagementClient48;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-operations/2015-05-01-preview/swagger.json
+SqlManagementClient49;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-recoverableManagedDatabases/2017-10-01-preview/swagger.json
+SqlManagementClient50;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-renameDatabase/2017-03-01-preview/swagger.json
+SqlManagementClient51;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-restorableDroppedManagedDatabases/2017-03-01-preview/swagger.json
+SqlManagementClient52;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-restorePoints/2017-03-01-preview/swagger.json
+SqlManagementClient53;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-sensitivityLabels/2018-06-01-preview/swagger.json
+SqlManagementClient54;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-serverAutomaticTuning/2017-03-01-preview/swagger.json
+SqlManagementClient55;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-serverDnsAliases/2017-03-01-preview/swagger.json
+SqlManagementClient56;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-serverKeys/2015-05-01-preview/swagger.json
+SqlManagementClient57;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-serverOperations/2019-06-01-preview/swagger.json
+SqlManagementClient58;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-serverSecurityAlertPolicies/2017-03-01-preview/swagger.json
+SqlManagementClient59;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-servers/2019-06-01-preview/swagger.json
+SqlManagementClient60;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-shortTermRetentionPolicies/2017-10-01-preview/swagger.json
+SqlManagementClient61;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-syncAgents/2015-05-01-preview/swagger.json
+SqlManagementClient62;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-syncGroups/2015-05-01-preview/swagger.json
+SqlManagementClient63;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-syncMembers/2015-05-01-preview/swagger.json
+SqlManagementClient64;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-tableAuditing/2014-04-01/swagger.json
+SqlManagementClient65;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-usages/2018-06-01-preview/swagger.json
+SqlManagementClient66;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-virtualNetworkRules/2015-05-01-preview/swagger.json
+SqlManagementClient67;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-virtualclusters/2015-05-01-preview/swagger.json
+Azure SQL Database;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-checkNameAvailability/2014-04-01/swagger.json
+Azure SQL Database1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-deprecated/2014-04-01/swagger.json
+Azure SQL Database2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-geoBackupPolicies/2014-04-01/swagger.json
+Azure SQL Database3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-metrics/2014-04-01/swagger.json
+Azure SQL Database4;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-queries/2014-04-01/swagger.json
+Azure SQL Database5;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-recommendedElasticPools/2014-04-01/swagger.json
+Azure SQL Database6;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-recommendedElasticPoolsDecoupled/2014-04-01/swagger.json
+Azure SQL Database7;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-serverCommunicationLinks/2014-04-01/swagger.json
+Azure SQL Database8;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-serviceObjectives/2014-04-01/swagger.json
+Azure SQL Database9;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/sql-sql.core/2014-04-01/swagger.json
+StreamAnalyticsManagementClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/streamanalytics-functions/2016-03-01/swagger.json
+StreamAnalyticsManagementClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/streamanalytics-inputs/2016-03-01/swagger.json
+StreamAnalyticsManagementClient2;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/streamanalytics-outputs/2016-03-01/swagger.json
+StreamAnalyticsManagementClient3;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/streamanalytics-streamingjobs/2016-03-01/swagger.json
+StreamAnalyticsManagementClient4;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/streamanalytics-subscriptions/2016-03-01/swagger.json
+StreamAnalyticsManagementClient5;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/streamanalytics-transformations/2016-03-01/swagger.json
+TrafficManagerManagementClient;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/trafficmanager/2018-04-01/swagger.json
+TrafficManagerManagementClient1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/trafficmanager-trafficmanageranalytics/2017-09-01-preview/swagger.json
+Visual Studio Projects Resource Provider Client;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/visualstudio-PipelineTemplates/2018-08-01-preview/swagger.json
+Visual Studio Projects Resour1;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/visualstudio-Projects/2018-08-01-preview/swagger.json
+Account API;['ecommerce'];3.0.0;https://api.apis.guru/v2/specs/api.ebay.com/sell-account/v1.6.3/openapi.json
+Account API1;['ecommerce'];3.0.0;https://api.apis.guru/v2/specs/ebay.com/sell-account/v1.6.3/openapi.json
+Account API2;[];3.0.2;https://api.apis.guru/v2/specs/nexmo.com/account/1.0.4/openapi.json
+Account API3;[];3.0.0;https://api.apis.guru/v2/specs/vonage.com/account/1.11.8/openapi.json
+ Seller Service Metrics API ;['ecommerce'];3.0.0;https://api.apis.guru/v2/specs/api.ebay.com/sell-analytics/1.2.0/openapi.json
+ Seller Service Metrics API 1;['ecommerce'];3.0.0;https://api.apis.guru/v2/specs/ebay.com/sell-analytics/1.2.0/openapi.json
+Compliance API;['ecommerce'];3.0.0;https://api.apis.guru/v2/specs/api.ebay.com/sell-compliance/1.4.1/openapi.json
+Compliance API1;['ecommerce'];3.0.0;https://api.apis.guru/v2/specs/ebay.com/sell-compliance/1.4.1/openapi.json
+Fun Generators API;['text'];2.0;https://api.apis.guru/v2/specs/fungenerators.com/qrcode/1.5/swagger.json
+Fun Generators API1;['text'];3.0.0;https://api.apis.guru/v2/specs/fungenerators.com/riddle/1.5/openapi.json
+Fun Generators API2;['text'];2.0;https://api.apis.guru/v2/specs/fungenerators.com/trivia/1.5/swagger.json
+GitHub v3 REST API;['collaboration', 'developer_tools'];3.0.3;https://api.apis.guru/v2/specs/github.com/1.1.4/openapi.json
+GitHub v3 REST API1;['collaboration', 'developer_tools'];3.0.3;https://api.apis.guru/v2/specs/github.com/api.github.com/1.1.4/openapi.json
+GitHub v3 REST API2;['collaboration', 'developer_tools'];3.0.3;https://api.apis.guru/v2/specs/github.com/ghes-2.18/1.1.4/openapi.json
+GitHub v3 REST API3;['collaboration', 'developer_tools'];3.0.3;https://api.apis.guru/v2/specs/github.com/ghes-2.19/1.1.4/openapi.json
+GitHub v3 REST API4;['collaboration', 'developer_tools'];3.0.3;https://api.apis.guru/v2/specs/github.com/ghes-2.20/1.1.4/openapi.json
+GitHub v3 REST API5;['collaboration', 'developer_tools'];3.0.3;https://api.apis.guru/v2/specs/github.com/ghes-2.21/1.1.4/openapi.json
+GitHub v3 REST API6;['collaboration', 'developer_tools'];3.0.3;https://api.apis.guru/v2/specs/github.com/ghes-2.22/1.1.4/openapi.json
+GitHub v3 REST API7;['collaboration', 'developer_tools'];3.0.3;https://api.apis.guru/v2/specs/github.com/ghes-3.0/1.1.4/openapi.json
+GitHub v3 REST API8;['collaboration', 'developer_tools'];3.0.3;https://api.apis.guru/v2/specs/github.com/ghes-3.1/1.1.4/openapi.json
+Drive Activity API;['analytics', 'media'];3.0.0;https://api.apis.guru/v2/specs/googleapis.com/appsactivity/v1/openapi.json
+Drive Activity API1;['analytics', 'media'];3.0.0;https://api.apis.guru/v2/specs/googleapis.com/driveactivity/v2/openapi.json
+Content API for Shopping;['analytics', 'media'];3.0.0;https://api.apis.guru/v2/specs/googleapis.com/content/v2.1/openapi.json
+Content API for Shopping1;['analytics', 'media'];3.0.0;https://api.apis.guru/v2/specs/googleapis.com/shoppingcontent/v2/openapi.json
+Cloud SQL Admin API;['analytics', 'media'];3.0.0;https://api.apis.guru/v2/specs/googleapis.com/sql/v1beta4/openapi.json
+Cloud SQL Admin API1;['analytics', 'media'];3.0.0;https://api.apis.guru/v2/specs/googleapis.com/sqladmin/v1/openapi.json
+eNanoMapper database;['open_data'];3.0.0;https://api.apis.guru/v2/specs/ideaconsult.net/enanomapper/4.0.0/openapi.json
+eNanoMapper database1;['open_data'];3.0.0;https://api.apis.guru/v2/specs/ideaconsult.net/nanoreg/4.0.0/openapi.json
+import.io;['tools'];2.0;https://api.apis.guru/v2/specs/import.io/data/1.0/swagger.json
+import.io1;['tools'];2.0;https://api.apis.guru/v2/specs/import.io/extraction/1.0/swagger.json
+import.io2;['tools'];2.0;https://api.apis.guru/v2/specs/import.io/rss/1.0/swagger.json
+import.io3;['tools'];2.0;https://api.apis.guru/v2/specs/import.io/run/1.0/swagger.json
+import.io4;['tools'];2.0;https://api.apis.guru/v2/specs/import.io/schedule/1.0/swagger.json
+;['customer_relation'];3.0.0;https://api.apis.guru/v2/specs/drchrono.com/v4 (Hunt Valley)/openapi.json
+1;['location'];3.0.0;https://api.apis.guru/v2/specs/ipinfodb.com/1.0.0/openapi.json
+2;['hosting'];3.0.0;https://api.apis.guru/v2/specs/ote-godaddy.com/abuse/1.0.0/openapi.json
+3;['hosting'];3.0.0;https://api.apis.guru/v2/specs/ote-godaddy.com/aftermarket/1.0.0/openapi.json
+4;['hosting'];3.0.0;https://api.apis.guru/v2/specs/ote-godaddy.com/agreements/1.0.0/openapi.json
+5;['hosting'];3.0.0;https://api.apis.guru/v2/specs/ote-godaddy.com/certificates/1.0.0/openapi.json
+6;['hosting'];3.0.0;https://api.apis.guru/v2/specs/ote-godaddy.com/countries/1.0.0/openapi.json
+7;['hosting'];3.0.0;https://api.apis.guru/v2/specs/ote-godaddy.com/domains/1.0.0/openapi.json
+8;['hosting'];3.0.0;https://api.apis.guru/v2/specs/ote-godaddy.com/orders/1.0.0/openapi.json
+9;['hosting'];3.0.0;https://api.apis.guru/v2/specs/ote-godaddy.com/shoppers/1.0.0/openapi.json
+10;['hosting'];3.0.0;https://api.apis.guru/v2/specs/ote-godaddy.com/subscriptions/1.0.0/openapi.json
+Computer Vision Client;['developer_tools', 'cloud'];3.0.0;https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-ComputerVision/2.1/openapi.json
+Computer Vision Client1;['developer_tools', 'cloud'];3.0.0;https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-Ocr/2.1/openapi.json
+Conversation API;[];3.0.0;https://api.apis.guru/v2/specs/nexmo.com/conversation/2.0.1/openapi.json
+Conversation API1;[];3.0.0;https://api.apis.guru/v2/specs/nexmo.com/conversation.v2/1.0.1/openapi.json
+Numbers API;['open_data'];3.0.0;https://api.apis.guru/v2/specs/math.tools/1.5/openapi.json
+Numbers API1;[];3.0.0;https://api.apis.guru/v2/specs/nexmo.com/numbers/1.0.20/openapi.json
+Numbers API2;['entertainment'];2.0;https://api.apis.guru/v2/specs/whapi.com/numbers/2.0/swagger.json
+SMS API;['developer_tools'];3.0.0;https://api.apis.guru/v2/specs/apideck.com/sms/8.66.1/openapi.json
+SMS API1;[];3.0.0;https://api.apis.guru/v2/specs/nexmo.com/sms/1.0.11/openapi.json
+Books API;['analytics', 'media'];3.0.0;https://api.apis.guru/v2/specs/googleapis.com/books/v1/openapi.json
+Books API1;['media', 'open_data'];3.0.0;https://api.apis.guru/v2/specs/nytimes.com/books_api/3.0.0/openapi.json
+OnSched API;['collaboration'];3.0.1;https://api.apis.guru/v2/specs/onsched.com/consumer/v1/openapi.json
+OnSched API1;['collaboration'];3.0.1;https://api.apis.guru/v2/specs/onsched.com/setup/v1/openapi.json
+Redeal Analytics API;['analytics'];3.0.0;https://api.apis.guru/v2/specs/redeal.io/1.0.0/openapi.json
+Redeal Analytics API1;['analytics'];3.0.0;https://api.apis.guru/v2/specs/redeal.io/analytics/1.0.0/openapi.json
+Seldon External API;['machine_learning'];3.0.0;https://api.apis.guru/v2/specs/seldon.local/core/0.1/openapi.json
+Seldon External API1;['machine_learning'];3.0.0;https://api.apis.guru/v2/specs/seldon.local/engine/0.1/openapi.json
+Seldon External API2;['machine_learning'];3.0.0;https://api.apis.guru/v2/specs/seldon.local/wrapper/0.1/openapi.json
+Twilio - Chat;['telecom', 'messaging'];3.0.1;https://api.apis.guru/v2/specs/twilio.com/twilio_chat_v1/1.35.0/openapi.json
+Twilio - Chat1;['telecom', 'messaging'];3.0.1;https://api.apis.guru/v2/specs/twilio.com/twilio_chat_v2/1.35.0/openapi.json
+Twilio - Chat2;['telecom', 'messaging'];3.0.1;https://api.apis.guru/v2/specs/twilio.com/twilio_chat_v3/1.35.0/openapi.json
+Twilio - Ip_messaging;['telecom', 'messaging'];3.0.1;https://api.apis.guru/v2/specs/twilio.com/twilio_ip_messaging_v1/1.35.0/openapi.json
+Twilio - Ip_messaging1;['telecom', 'messaging'];3.0.1;https://api.apis.guru/v2/specs/twilio.com/twilio_ip_messaging_v2/1.35.0/openapi.json
+Twilio - Pricing;['telecom', 'messaging'];3.0.1;https://api.apis.guru/v2/specs/twilio.com/twilio_pricing_v1/1.35.0/openapi.json
+Twilio - Pricing1;['telecom', 'messaging'];3.0.1;https://api.apis.guru/v2/specs/twilio.com/twilio_pricing_v2/1.35.0/openapi.json
+Twilio - Studio;['telecom', 'messaging'];3.0.1;https://api.apis.guru/v2/specs/twilio.com/twilio_studio_v1/1.35.0/openapi.json
+Twilio - Studio1;['telecom', 'messaging'];3.0.1;https://api.apis.guru/v2/specs/twilio.com/twilio_studio_v2/1.35.0/openapi.json
+Twilio - Lookups;['telecom', 'messaging'];3.0.1;https://api.apis.guru/v2/specs/twilio.com/twilio_lookups_v1/1.35.0/openapi.json
+Twilio - Lookups1;['telecom', 'messaging'];3.0.1;https://api.apis.guru/v2/specs/twilio.com/twilio_lookups_v2/1.35.0/openapi.json
+Api Documentation;['security'];2.0;https://api.apis.guru/v2/specs/faceidentity-beta.azurewebsites.net/1.0/swagger.json
+Api Documentation1;['security'];2.0;https://api.apis.guru/v2/specs/uscann.net/1.0/swagger.json
+Api Documentation2;['open_data'];3.0.0;https://api.apis.guru/v2/specs/vaccinationstatus.azurewebsites.net/athena/1.0/openapi.json
+Api Documentation3;['open_data'];3.0.0;https://api.apis.guru/v2/specs/vaccinationstatus.azurewebsites.net/brasil/1.0/openapi.json
+Api Documentation4;['open_data'];3.0.0;https://api.apis.guru/v2/specs/vaccinationstatus.azurewebsites.net/india/1.0/openapi.json
+Api Documentation5;['open_data'];3.0.0;https://api.apis.guru/v2/specs/vaccinationstatus.azurewebsites.net/paraguay/1.0/openapi.json
+Api Documentation6;['open_data'];3.0.0;https://api.apis.guru/v2/specs/vaccinationstatus.azurewebsites.net/peru/1.0/openapi.json
+Reports API;[];3.0.0;https://api.apis.guru/v2/specs/nexmo.com/reports/2.2.2/openapi.json
+Reports API1;[];3.0.0;https://api.apis.guru/v2/specs/vonage.com/reports/1.0.1/openapi.json
+BatchService;['cloud'];2.0;https://api.apis.guru/v2/specs/azure.com/batch-BatchService/2019-08-01.10.0/swagger.json
+BatchService1;['cloud'];2.0;https://api.apis.guru/v2/specs/windows.net/batch-BatchService/2018-08-01.7.0/swagger.json
