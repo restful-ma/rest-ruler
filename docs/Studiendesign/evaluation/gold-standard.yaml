@@ -279,11 +279,19 @@ paths:
         default:
           description: Unexpected error
           $ref: "#/components/responses/GenericResponse"
-  /{primarySchool}/_schools:
+  /_schools/{primary_school_id}:
     get:
       tags: 
         - URI Rules
       description: Violates the underscore rule --> should be /{primarySchool}/schools
+      parameters:
+        - in: path
+          name: primary_school_id
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: The primary school id
       responses:
         200:
           description: Successful request
@@ -327,6 +335,13 @@ paths:
       tags: 
         - URI Rules
       description: Violates the lowercase letters rule --> should be /pets/{petName}/locations-states
+      parameters:
+        - in: path
+          name: petName
+          required: true
+          schema:
+            type: string
+          description: The pet name
       responses:
         200:
           description: A list of locations states given a pet name
@@ -348,6 +363,19 @@ paths:
       tags: 
         - URI Rules
       description: Violates the lowercase letters rule --> should be /pets/{petName}/locations/{locationName}/cities
+      parameters:
+        - in: path
+          name: petName
+          required: true
+          schema:
+            type: string
+          description: The pet name
+        - in: path
+          name: locationName
+          required: true
+          schema:
+            type: string
+          description: The location name
       responses:
         200:
           description: City where a pet is located
@@ -369,6 +397,13 @@ paths:
       tags: 
         - URI Rules
       description: Violates the lowercase letters rule --> Lshould be /pets/{petName}/add-location (add still bad style)
+      parameters:
+        - in: path
+          name: petName
+          required: true
+          schema:
+            type: string
+          description: The pet name
       responses:
         200:
           description: Country where a pet is located
@@ -616,13 +651,13 @@ paths:
       description: Violates the singular (and plural) noun rule --> should be /animals/{catId}/kids/food (singular noun)
       summary: Returns foods for the kids of a catId.
       parameters:
-        - name: userId
-          in: path
+        - in: path
+          name: catId
           required: true
-          description: Returns foods for the kids of a catId.
           schema:
-            type: string
+            type: integer
             minimum: 1
+          description: The cat id
       responses:
         200:
           description: A cat permissions.
@@ -677,13 +712,20 @@ paths:
       description: Violates the plural noun rule --> should be e.g. /animal/cats/kid/foods/{foodId} (singular noun) or /animals/{catId}/kids/food/categories (plural noun)
       summary: Returns foods for the kids of a catId.
       parameters:
-        - name: userId
-          in: path
+        - in: path
+          name: catId
           required: true
-          description: Returns foods for the kids of a catId.
           schema:
-            type: string
+            type: integer
             minimum: 1
+          description: The cat id
+        - in: path
+          name: foodId
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: The food id
       responses:
         200:
           description: A cat permissions.
@@ -754,40 +796,16 @@ paths:
           description: Successful request
         400:
           description: Bad request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  username:
-                    type: string
+          $ref: "#/components/responses/GenericResponse"
         401:
           description: Unauthorized
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  username:
-                    type: string
+          $ref: "#/components/responses/GenericResponse"
         404:
           description: Not Found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  username:
-                    type: string
+          $ref: "#/components/responses/GenericResponse"
         default:
           description: Unexpected error
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  username:
-                    type: string
+          $ref: "#/components/responses/GenericResponse"
   /enterprise/ceos:
     get:
       tags: 
@@ -799,40 +817,16 @@ paths:
           content:
         400:
           description: Bad request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  username:
-                    type: string
+          $ref: "#/components/responses/GenericResponse"
         401:
           description: Unauthorized
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  username:
-                    type: string
+          $ref: "#/components/responses/GenericResponse"
         404:
           description: Not Found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  username:
-                    type: string
+          $ref: "#/components/responses/GenericResponse"
         default:
           description: Unexpected error
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  username:
-                    type: string
+          $ref: "#/components/responses/GenericResponse"
   /enterprise/employees:
     get:
       tags: 
@@ -844,40 +838,16 @@ paths:
           $ref: "#/components/responses/EmptyContentResponse"
         400:
           description: Bad request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  username:
-                    type: string
+          $ref: "#/components/responses/GenericResponse"
         401:
           description: Unauthorized
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  username:
-                    type: string
+          $ref: "#/components/responses/GenericResponse"
         404:
           description: Not Found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  username:
-                    type: string
+          $ref: "#/components/responses/GenericResponse"
         default:
           description: Unexpected error
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  username:
-                    type: string
+          $ref: "#/components/responses/GenericResponse"
   /enterprise/employees/team:
     get:
       tags: 
@@ -889,40 +859,16 @@ paths:
           $ref: "#/components/responses/EmptyResponse"
         400:
           description: Bad request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  username:
-                    type: string
+          $ref: "#/components/responses/GenericResponse"
         401:
           description: Unauthorized
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  username:
-                    type: string
+          $ref: "#/components/responses/GenericResponse"
         404:
           description: Not Found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  username:
-                    type: string
+          $ref: "#/components/responses/GenericResponse"
         default:
           description: Unexpected error
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  username:
-                    type: string
+          $ref: "#/components/responses/GenericResponse"
   /enterprise/employees/team/names:
     get:
       tags: 
@@ -934,40 +880,16 @@ paths:
           $ref: "#/components/response/WrongPathResponse"
         400:
           description: Bad request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  username:
-                    type: string
+          $ref: "#/components/responses/GenericResponse"
         401:
           description: Unauthorized
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  username:
-                    type: string
+          $ref: "#/components/responses/GenericResponse"
         404:
           description: Not Found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  username:
-                    type: string
+          $ref: "#/components/responses/GenericResponse"
         default:
           description: Unexpected error
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  username:
-                    type: string
+          $ref: "#/components/responses/GenericResponse"
   /enterprise/jobs:
     get:
       tags: 
@@ -979,40 +901,16 @@ paths:
           $ref: "#/ref/does/not/exist"
         400:
           description: Bad request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  username:
-                    type: string
+          $ref: "#/components/responses/GenericResponse"
         401:
           description: Unauthorized
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  username:
-                    type: string
+          $ref: "#/components/responses/GenericResponse"
         404:
           description: Not Found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  username:
-                    type: string
+          $ref: "#/components/responses/GenericResponse"
         default:
           description: Unexpected error
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  username:
-                    type: string
+          $ref: "#/components/responses/GenericResponse"
   /enterprise/locations:
     post:
       tags: 
@@ -1163,13 +1061,20 @@ paths:
       description: Violates the verb rule
       summary: Returns foods for the kids of a catId.
       parameters:
-        - name: userId
-          in: path
+        - in: path
+          name: catId
           required: true
-          description: Returns foods for the kids of a catId.
           schema:
-            type: string
+            type: integer
             minimum: 1
+          description: The cat id
+        - in: path
+          name: foodId
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: The food id
       requestBody:
         $ref: "#/components/requestBodies/GenericRequestBody"
       responses:
@@ -1195,13 +1100,20 @@ paths:
       description: Violates the verb rule
       summary: Returns foods for the kids of a catId.
       parameters:
-        - name: userId
-          in: path
+        - in: path
+          name: catId
           required: true
-          description: Returns foods for the kids of a catId.
           schema:
-            type: string
+            type: integer
             minimum: 1
+          description: The cat id
+        - in: path
+          name: foodId
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: The food id
       responses:
         200:
           description: A cat permissions.
