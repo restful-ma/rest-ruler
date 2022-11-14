@@ -39,10 +39,10 @@ skip_files = 0
 
 
 # define path to jar here
-path_to_jar = "C:\\Users\\manue\\Documents\\Studium\\Master\\2.Semester\\Forschungsprojekt\\Projektarbeit-Master\\rest-studentproject\\build\\libs\\rest-studentproject-0.1-all.jar"
+path_to_jar = "~/Projektarbeit-Master/rest-studentproject/build/libs/rest-studentproject-0.1-all.jar"
 
 # '~/Projektarbeit-Master/rest-studentproject/'
-process_cwd = "C:\\Users\\manue\\Documents\\Studium\\Master\\2.Semester\\Forschungsprojekt\\Projektarbeit-Master\\rest-studentproject"
+process_cwd = ""
 
 with open("apis.csv", "r", encoding="utf8") as f:
     if f.readable():
@@ -83,7 +83,6 @@ with open("apis.csv", "r", encoding="utf8") as f:
                 input=b"no",
                 capture_output=True,
             )
-
             # process failed to finish
             if process.returncode != 0:
                 failed.append((title, url, process.stderr))
@@ -102,7 +101,8 @@ with open("apis.csv", "r", encoding="utf8") as f:
 
             line = f.readline()
 
-with open("out.csv", "w", encoding="utf8") as outputFile:
+
+with open("final_round/apis_out.csv", "w", encoding="utf8") as outputFile:
     outputFile.write("title | number of Violations found\n")
     for key, value in statistic.items():
         outputFile.write(key + " | " + str(value) + "\n")
@@ -111,7 +111,7 @@ with open("out.csv", "w", encoding="utf8") as outputFile:
     outputFile.write("failed to read following OpenAPI definitions\n")
     outputFile.write("title | url | print trace \n")
     for item in failed:
-        outputFile.write(item[0] + " | " + item[1] + " | " + item[2] + "\n")
+        outputFile.write(str(item[0]) + " | " + str(item[1]) + " | " + str(item[2]) + "\n")
     outputFile.write("---------------------------------------------------\n")
     outputFile.write("total APIs failed to read: " + str(len(failed)) + "\n")
     outputFile.write("---------------------------------------------------\n")
