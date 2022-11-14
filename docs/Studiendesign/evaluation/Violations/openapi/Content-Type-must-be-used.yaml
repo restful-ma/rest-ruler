@@ -1,0 +1,152 @@
+openapi: 3.0.3
+info:
+  description: This is an OpenAPI definition file which contains violations of the rule 'Underscores (_) should not be used in URIs' created by experts.
+  version: 0.1.0
+  title: Example OpenAPI Definition File
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: https://api.example.com/v1
+    description: Production server (uses live data)
+  - url: https://sandbox-api.example.com:8443/v1
+    description: Sandbox server (uses test data)
+paths:
+  # Justus (+1 violation)
+  /customers:
+    get:
+      tags:
+        - customer management
+      description: Returns a list of all customers
+      summary: Get all customers
+      responses:
+        200:
+          description: Array of customer objects
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Customer"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  # Sebastian (+1 violation) + Timo Pfaff + Ana Franco da Silva
+  /users:
+    post:
+      tags:
+        - user management
+      description: List of all users in a system
+      summary: List of users
+      requestBody:
+        description: An user object
+      responses:
+        200:
+          description: Successfully created an user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  # Sebastian (+1 violation)
+  /users/{id}:
+    get:
+      tags:
+        - user management
+      description: Returns an specific user identified via ID
+      summary: Return specific user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the user
+      responses:
+        200:
+          description: User object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  # Timo Pfaff (+3 violation)
+  /queues:
+    get:
+      tags:
+        - Queue management
+      description: Returns a list of all queues
+      summary: Get all queues
+      responses:
+        200:
+          description: Array of queues objects
+        401:
+          description: Unauthorized
+        default:
+          description: Unexpected error
+components:
+  schemas:
+    Customer:
+      description: A customer of the system
+      type: object
+      properties:
+        customerId:
+          type: number
+        customerName:
+          type: string
+        email:
+          type: string
+    User:
+      description: A user of the system
+      type: object
+      properties:
+        userId:
+          type: number
+        userName:
+          type: string
+        email:
+          type: string
+    GenericResponse:
+      description: A generic response object with a message attribute
+      type: object
+      properties:
+        message:
+          type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
+security:
+  - BasicAuth: []
