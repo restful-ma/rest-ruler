@@ -69,8 +69,8 @@ Case B: POST /users/{userId} with operation specified in payload
 12. 401 (Unauthorized) must be used when there is a problem with the client credentials
 Possible violations:
 Case A: There is often confusion regarding the proper use of 401 and 403. Therefore, sometimes 403 is used instead of 401 (and vice versa)
-Case C: Status code 400 for every kind of client error (including problems with client credentials)
-Case D: Status code 500 for every kind of error
+Case B: Status code 400 for every kind of client error (including problems with client credentials)
+Case C: Status code 500 for every kind of error
 
 13. Underscores (_) should not be used in URIs
 Possible violations:
