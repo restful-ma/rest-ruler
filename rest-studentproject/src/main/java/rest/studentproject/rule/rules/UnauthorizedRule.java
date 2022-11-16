@@ -37,7 +37,8 @@ public class UnauthorizedRule implements IRestRule {
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTE = Arrays.asList(
             RuleSoftwareQualityAttribute.COMPATIBILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY,
             RuleSoftwareQualityAttribute.USABILITY);
-    private static final List<String> OPERATION_METHOD_NAMES = List.of("getGet", "getPut", "getPost", "getDelete");
+    private static final List<String> OPERATION_METHOD_NAMES = List.of("getGet", "getPut", "getPost", "getDelete",
+            "getPatch");
     private static final String OPERATION_METHOD_SECURITY = "getSecurity";
     private final List<Violation> violationList = new ArrayList<>();
     private final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
