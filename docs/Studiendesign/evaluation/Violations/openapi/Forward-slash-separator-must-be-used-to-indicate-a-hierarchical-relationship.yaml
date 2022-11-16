@@ -12,46 +12,7 @@ servers:
   - url: https://sandbox-api.example.com:8443/v1
     description: Sandbox server (uses test data)
 paths:
-  /{user-id}/users:
-    get:
-      tags:
-        - kotstein
-      description: Returns the details of a user identified via ID
-      summary: Get a specific user
-      parameters:
-        - name: user-id
-          in: path
-          required: true
-          description: The ID of the user
-          schema:
-            type: string
-            minimum: 1
-      responses:
-        200:
-          description: User object
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/User"
-        401:
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        404:
-          description: A user with the specified ID was not found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        default:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-  /users.{userId}.cv.place-of-birth:
+  /{userId}/users:
     get:
       tags:
         - kotstein
@@ -90,20 +51,19 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
-  # hierachie
-  /employees/{employee-id}/company/teams:
+  /users.{userId}.cv.place-of-birth:
     get:
       tags:
-        - silva
-      description: Returns the details of a user identified via ID
-      summary: Get a specific user
+        - kotstein
+      description: Returns the details of place of birth for a user identified via ID
+      summary: Get a specific birth location
       parameters:
-        - name: employee-id
+        - name: userId
           in: path
           required: true
           description: The ID of the user
           schema:
-            type: number
+            type: string
             minimum: 1
       responses:
         200:
@@ -111,7 +71,47 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/User"
+                $ref: "#/components/schemas/BirthLocation"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        404:
+          description: A user with the specified ID was not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  # hierachie
+  /employees/{employee-id}/company/teams:
+    get:
+      tags:
+        - silva
+      description: Returns the details of a employee identified via ID
+      summary: Get a specific employee
+      parameters:
+        - name: employee-id
+          in: path
+          required: true
+          description: The ID of the employee
+          schema:
+            type: number
+            minimum: 1
+      responses:
+        200:
+          description: Employee object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Employee"
         401:
           description: Unauthorized
           content:
@@ -156,13 +156,18 @@ paths:
           schema:
             type: string
             minimum: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParticipantStatus'    
       responses:
         200:
           description: User object
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/User"
+                $ref: "#/components/schemas/ParticipantStatus"
         401:
           description: Unauthorized
           content:
@@ -194,11 +199,11 @@ paths:
             minimum: 1
       responses:
         200:
-          description: User object
+          description: Case object
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/User"
+                $ref: "#/components/schemas/Case"
         401:
           description: Unauthorized
           content:
@@ -261,12 +266,12 @@ paths:
       tags:
         - bogner
       description: Returns the details of a employees identified via ID
-      summary: Get a specific user
+      summary: Get a specific department
       parameters:
         - name: id
           in: path
           required: true
-          description: The ID of the user
+          description: The ID of the department
           schema:
             type: number
             minimum: 1
@@ -276,7 +281,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/User"
+                $ref: "#/components/schemas/Department"
         401:
           description: Unauthorized
           content:
@@ -295,21 +300,21 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
-  /departments\{did}\employees\{eid}:
+  /departments\{departmentId}\employees\{employeeId}:
     get:
       tags:
         - bogner
       description: Returns the details of a employees identified via ID
       summary: Get a specific user
       parameters:
-        - name: did
+        - name: departmentId
           in: path
           required: true
           description: The ID of the department
           schema:
             type: number
             minimum: 1
-        - name: eid
+        - name: employeeId
           in: path
           required: true
           description: The ID of the employee
@@ -318,11 +323,11 @@ paths:
             minimum: 1
       responses:
         200:
-          description: User object
+          description: Employee object
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/User"
+                $ref: "#/components/schemas/Employee"
         401:
           description: Unauthorized
           content:
@@ -378,6 +383,56 @@ components:
   schemas:
     User:
       description: A user of the system
+      type: object
+      properties:
+        userId:
+          type: number
+        userName:
+          type: string
+        email:
+          type: string
+    BirthLocation:
+      description: A user of the system with their birth location
+      type: object
+      properties:
+        userId:
+          type: number
+        name:
+          type: string
+        placeOfBirth:
+          type: string
+    ParticipantStatus:
+      description: status of a participant 
+      type: object
+      properties:
+        participantId:
+          type: number
+        activityId:
+          type: number
+        currentStatus:
+          type: string
+    Case: 
+      description: A high priority case
+      type: object
+      properties:
+        caseId:
+          type: number
+        name:
+          type: string
+        description:
+          type: string
+    Department:
+      description: a department
+      type: object
+      properties:
+        departmentNo:
+          type: number
+        location:
+          type: string
+        headOfDepart:
+          type: string
+    Employee:
+      description: A employee of a department
       type: object
       properties:
         userId:

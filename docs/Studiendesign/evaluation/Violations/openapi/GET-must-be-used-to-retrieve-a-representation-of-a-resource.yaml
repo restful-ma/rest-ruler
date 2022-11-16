@@ -58,14 +58,14 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
-  /users/{user-id}/search:
+  /users/{userId}/search:
     post:
       tags:
         - kotstein
-      description: Creates a new user with details
-      summary: Create a new user
+      description: search for a user with given user ID
+      summary: retrieve user by ID
       parameters: 
-        - name: user-id
+        - name: userId
           in: path
           required: true
           description: The ID of the user who should be retrieved
@@ -73,7 +73,7 @@ paths:
             type: number
             minimum: 1
       requestBody:
-        description: Details of the new user
+        description: Details of the user
         required: true
         content:
           application/json:
@@ -108,8 +108,8 @@ paths:
     get:
       tags:
         - kotstein
-      description: Returns a list of all users
-      summary: Get all users
+      description: creates a new user with name and surname defined by query
+      summary: create user
       parameters: 
         - name: name
           in: query
@@ -127,13 +127,11 @@ paths:
             minimum: 1
       responses:
         200:
-          description: Array of user objects
+          description: registered user
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/User"
+                $ref: "#/components/schemas/User"
         401:
           description: Unauthorized
           content:
@@ -146,14 +144,14 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
-  /getUser/{user-id}:
+  /getUser/{userId}:
    post:
       tags:
         - silva
-      description: Creates a new user with details
-      summary: Create a new user
+      description: retrieves a user with given user ID
+      summary: retrieve user by ID
       parameters: 
-        - name: user-id
+        - name: userId
           in: path
           required: true
           description: The ID of the user who should be retrieved
@@ -196,8 +194,8 @@ paths:
    post:
       tags:
         - silva
-      description: Creates a new user with details
-      summary: Create a new user
+      description: retrieves a user with given user ID
+      summary: retrieve user by ID
       parameters: 
         - name: id
           in: query
@@ -207,7 +205,7 @@ paths:
             type: number
             minimum: 1
       requestBody:
-        description: Details of the new user
+        description: Details of the user
         required: true
         content:
           application/json:
@@ -264,9 +262,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/User"
+                $ref: "#/components/schemas/Activity"
         401:
           description: Unauthorized
           content:
@@ -391,6 +387,14 @@ components:
         category:
           type: string
         published:
+          type: string
+    Activity:
+      description: A user of the system
+      type: object
+      properties:
+        id:
+          type: number
+        name:
           type: string
     GenericResponse:
       description: A generic response object with a message attribute
