@@ -119,8 +119,6 @@ public class HyphensRule implements IRestRule {
                 continue;
             boolean isPathFullyContained;
 
-
-
             isPathFullyContained = Utility.getPathSegmentMatch(pathSegment, PATH_TO_ENGLISH_DICTIONARY);
 
             if (isPathFullyContained)

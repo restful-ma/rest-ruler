@@ -169,6 +169,9 @@ public class ContentTypeRule implements IRestRule {
             return;
 
         for (Entry<String, ApiResponse> response : responses.entrySet()) {
+            if (response.getKey().equals("204")) {
+                continue;
+            }
 
             boolean emptyContent = (response.getValue().getContent() == null
                     || response.getValue().getContent().isEmpty());
