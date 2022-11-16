@@ -257,14 +257,15 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
-  /retrieveUser/{user-id}:
+
+  /retrieveUser/{userId}:
     post:
       tags:
         - silva
       description: Creates a new user with details
       summary: Create a new user
       parameters:
-        - name: user-id
+        - name: userId
           in: path
           required: true
           description: The ID of the user
@@ -334,7 +335,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/GenericResponse"
+                $ref: "#/components/schemas/Activity"
         400:
           description: The specified user details are invalid
           content:
@@ -374,7 +375,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/GenericResponse"
+                $ref: "#/components/schemas/User"
         400:
           description: The specified user details are invalid
           content:
@@ -427,7 +428,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
-  # changed to a get request as post operatio  would make this entry valid
+  # changed to a get request as post operation would make this entry valid
   /currentUser/{id}:
     get:
       tags:
@@ -494,7 +495,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/User"
+                $ref: "#/components/schemas/Employer"
         401:
           description: Unauthorized
           content:
@@ -539,7 +540,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/User"
+                $ref: "#/components/schemas/Employer"
         401:
           description: Unauthorized
           content:
@@ -584,7 +585,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/User"
+                $ref: "#/components/schemas/Employer"
         401:
           description: Unauthorized
           content:
@@ -615,6 +616,24 @@ components:
         userName:
           type: string
         email:
+          type: string
+    Employer:
+      description: A user of the system
+      type: object
+      properties:
+        userId:
+          type: number
+        userName:
+          type: string
+        email:
+          type: string    
+    Activity:
+      description: A user of the system
+      type: object
+      properties:
+        id:
+          type: number
+        name:
           type: string
     GenericResponse:
       description: A generic response object with a message attribute
