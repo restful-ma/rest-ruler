@@ -217,7 +217,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
-
   /houses-{houseId}-rooms:                    
     post:
       tags:
