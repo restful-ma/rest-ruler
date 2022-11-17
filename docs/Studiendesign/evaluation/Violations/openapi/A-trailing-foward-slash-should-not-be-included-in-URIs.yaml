@@ -54,13 +54,11 @@ paths:
               $ref: '#/components/schemas/User'     
       responses:
         200:
-          description: Array of user objects
+          description: OK
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/User"
+                $ref: "#/components/schemas/User"
         201:
           description: creation Successful
           content:
@@ -141,7 +139,7 @@ paths:
             minimum: 1
       responses:
         200:
-          description: success
+          description: successful deletion
           content:
             application/json:
               schema:
@@ -153,7 +151,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
         404:
-          description: A user with the specified ID was not found
+          description: A participant or an activity with the specified ID was not found
           content:
             application/json:
               schema:
@@ -178,7 +176,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/User"
+                  $ref: "#/components/schemas/Case"
         401:
           description: Unauthorized
           content:
@@ -231,6 +229,16 @@ components:
           type: string
         email:
           type: string
+    Case:
+      description: a specific use case for a feature
+      type: object
+      properties:
+        caseDescription: 
+          type: string
+        creationDate: 
+          type: string
+        id: 
+          type: number
     GenericResponse:
       description: A generic response object with a message attribute
       type: object
