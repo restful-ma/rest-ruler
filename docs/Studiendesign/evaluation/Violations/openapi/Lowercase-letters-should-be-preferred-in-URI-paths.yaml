@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  description: This is an OpenAPI definition file which contains violations of the rule 'A verb or verb phrase should be used for controller names' created by experts.
+  description: This is an OpenAPI definition file which contains violations of the rule 'Underscores (_) should not be used in URIs' created by experts.
   version: 0.1.0
   title: Example OpenAPI Definition File
   license:
@@ -16,9 +16,17 @@ paths:
   /ToDos/{id}:
     get:
       tags:
-        - Todos
-      description: Returns a todo
+        - todo
+      description: Returns a todo identified via ID
       summary: Return todo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the todo
+          schema:
+            type: string
+            minimum: 1
       responses:
         200:
           description: Todo object
@@ -39,19 +47,40 @@ paths:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
   # Justus (+1 violation)
-  /gameStores/{sid}/videoGames/{gid}:
+  /gameStores/{storeId}/videoGames/{gameId}:
     post:
       tags:
-        - create videogame
-      description: Create new videogame object
-      summary: Create new videogame object
+        - game store
+      description: Creates a video game with an ID in a game store identified via ID
+      summary: Create mail address
+      parameters:
+        - name: storeId
+          in: path
+          required: true
+          description: The ID of the store
+          schema:
+            type: string
+            minimum: 1
+        - name: gameId
+          in: path
+          required: true
+          description: The ID of the video game
+          schema:
+            type: string
+            minimum: 1
+      requestBody:
+        description: A video game object
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VideoGame"
       responses:
         200:
-          description: Species object
+          description: OK
           content:
-            application/json:
+            text/plain:
               schema:
-                $ref: "#/components/schemas/Videogame"
+                type: string
         401:
           description: Unauthorized
           content:
@@ -65,12 +94,20 @@ paths:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
   # Sebastian (+1 violation)
-  /V1/users/{userId}/CV:
+  /Users/{userId}/CV:
     get:
       tags:
-        - CV
-      description: Returns Cv
-      summary: Return cv
+        - user management
+      description: Returns a CV for an user identified via ID
+      summary: Return todo
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The ID of the user
+          schema:
+            type: string
+            minimum: 1
       responses:
         200:
           description: CV object
@@ -90,12 +127,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
-  # Ana Franco Da Silva  (+1 violation)
+  # Ana Franco da Silva (+1 violation)
   /users/1/myIssues/13:
     get:
       tags:
-        - Issue items
-      description: Returns issue
+        - user management
+      description: Returns issue 13 from user 1
       summary: Return issue
       responses:
         200:
@@ -116,13 +153,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
-  # Lukas (+1 violation)
+  # Lukas Mohs (+1 violation)
   /ENTITIES/{Id}:
     get:
       tags:
-        - Entities items
-      description: Returns an entities
-      summary: Get entities
+        - entity
+      description: Returns entity identified via ID
+      summary: Return issue
       parameters:
         - name: Id
           in: path
@@ -133,11 +170,11 @@ paths:
             minimum: 1
       responses:
         200:
-          description: Entities object
+          description: Entity object
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Entities"
+                $ref: "#/components/schemas/Entity"
         401:
           description: Unauthorized
           content:
@@ -150,7 +187,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
-  # Oliver (+1 violation)
+  # Oliver Kopp (+1 violation)
   /PremiumUsers/{userId}:
     get:
       tags:
@@ -178,50 +215,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
-        404:
-          description: A user with the specified ID was not found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        default:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-  # Pfaff (+1 violation)
-  /Servers/{serverId}:
-    get:
-      description: Lowercase letters should be preferred in URI paths
-      summary: Get a specific Server
-      parameters:
-        - name: serverId
-          in: path
-          required: true
-          description: The ID of the server
-          schema:
-            type: string
-            minimum: 1
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Server"
-        401:
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        404:
-          description: A server with the specified ID was not found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
         default:
           description: Unexpected error
           content:
@@ -230,64 +223,64 @@ paths:
                 $ref: "#/components/schemas/GenericResponse"
 components:
   schemas:
+    User:
+      description: A user of the system
+      type: object
+      properties:
+        userId:
+          type: number
+        userName:
+          type: string
+        email:
+          type: string
     Todo:
       description: A Todo
       type: object
       properties:
-        todoId:
+        number:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+    VideoGame:
+      description: A video game
+      type: object
+      properties:
+        articleNumber:
+          type: integer
+        name:
+          type: string
+        price:
           type: number
-        todoName:
-          type: string
-        todoDescription:
-          type: string
     CV:
-      description: CV object
+      description: A CV
       type: object
       properties:
-        CVIds:
-          type: integer
-        count:
-          type: integer
-    Videogame:
-      description: Videogame object
-      type: object
-      properties:
-        videoGameIds:
-          type: integer
-        count:
-          type: integer
+        name:
+          type: string
+        address:
+          type: string
+        titele:
+          type: string
     Issue:
-      description: Issue object
+      description: A issue from a user
       type: object
       properties:
-        issueIds:
+        number:
           type: integer
-        count:
-          type: integer
-    Entities:
-      description: Entities object
-      type: object
-      properties:
-        entitiesIds:
-          type: integer
-        code:
+        title:
           type: string
-    User:
-      description: User object
-      type: object
-      properties:
-        userIds:
-          type: integer
-        size:
+        comment:
           type: string
-    Server:
-      description: Server object
+    Entity:
+      description: A Entity
       type: object
       properties:
-        serverIds:
+        id:
           type: integer
-        serverSize:
-          type: integer
+        title:
+          type: string
     GenericResponse:
       description: A generic response object with a message attribute
       type: object
