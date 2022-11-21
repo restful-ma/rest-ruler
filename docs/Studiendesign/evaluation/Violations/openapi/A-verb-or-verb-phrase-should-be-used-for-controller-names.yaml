@@ -1,0 +1,32 @@
+openapi: 3.0.3
+info:
+  description: This is an OpenAPI definition file which contains violations of the rule 'A verb or verb phrase should be used for controller names' created by experts.
+  version: 0.1.0
+  title: Example OpenAPI Definition File
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: https://api.example.com/v1
+    description: Production server (uses live data)
+  - url: https://sandbox-api.example.com:8443/v1
+    description: Sandbox server (uses test data)
+paths:
+
+components:
+  schemas:
+    GenericResponse:
+      description: A generic response object with a message attribute
+      type: object
+      properties:
+        message:
+          type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
+security:
+  - BasicAuth: []
