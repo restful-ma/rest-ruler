@@ -1,0 +1,10 @@
+REST API Specification Report
+=============================
+| Line No. | Line                                         | Rule Violated                                              | Category | Severity | Rule Type | Software Quality Attributes | Improvement Suggestion                         |
+| -------- | -------------------------------------------- | ---------------------------------------------------------- | -------- | -------- | --------- | --------------------------- | ---------------------------------------------- |
+| 16       | /users/1/present                             | A plural noun should be used for collection or store names | URIS     | ERROR    | STATIC    | USABILITY, MAINTAINABILITY  | Use plural nouns for collection or store names |
+| 16       | /users/1/present                             | A singular noun should be used for document names          | URIS     | ERROR    | STATIC    | USABILITY, MAINTAINABILITY  | Use singular nouns for document names          |
+| 42       | /users/1/permit                              | A plural noun should be used for collection or store names | URIS     | ERROR    | STATIC    | USABILITY, MAINTAINABILITY  | Use plural nouns for collection or store names |
+| 42       | /users/1/permit                              | A singular noun should be used for document names          | URIS     | ERROR    | STATIC    | USABILITY, MAINTAINABILITY  | Use singular nouns for document names          |
+| 68       | /animals/{catId}/foods/{foodId}/deliver-food | A verb or verb phrase should be used for controller names  | URIS     | ERROR    | STATIC    | USABILITY, MAINTAINABILITY  | Use a verb or verb phrase for controller names |
+| 109      | /animals/{catId}/foods/{foodId}/remove-food  | A verb or verb phrase should be used for controller names  | URIS     | ERROR    | STATIC    | USABILITY, MAINTAINABILITY  | Use a verb or verb phrase for controller names |

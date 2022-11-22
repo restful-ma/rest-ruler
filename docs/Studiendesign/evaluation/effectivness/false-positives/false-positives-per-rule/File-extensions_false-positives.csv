@@ -1,0 +1,19 @@
+,File name,Path,Rule,false-positive,true-positive
+0,api.datumbox.com,/1.0/CommercialDetection.json,File extensions should not be included in URIs,0,1
+1,api.datumbox.com,/1.0/DocumentSimilarity.json,File extensions should not be included in URIs,0,1
+2,api.datumbox.com,/1.0/EducationalDetection.json,File extensions should not be included in URIs,0,1
+3,api.datumbox.com,/1.0/KeywordExtraction.json,File extensions should not be included in URIs,0,1
+4,api.datumbox.com,/1.0/LanguageDetection.json,File extensions should not be included in URIs,0,1
+5,api.datumbox.com,/1.0/SpamDetection.json,File extensions should not be included in URIs,0,1
+6,api.datumbox.com,/1.0/TextExtraction.json,File extensions should not be included in URIs,0,1
+7,SqlManagementClient382,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/backupShortTermRetentionPolicies,File extensions should not be included in URIs,1,0
+8,SqlManagementClient382,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/backupShortTermRetentionPolicies/{policyName},File extensions should not be included in URIs,1,0
+9,Azure SQL Database364,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/metricDefinitions,File extensions should not be included in URIs,1,0
+10,Azure SQL Database364,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/metrics,File extensions should not be included in URIs,1,0
+11,Azure SQL Database364,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/elasticPools/{elasticPoolName}/metricDefinitions,File extensions should not be included in URIs,1,0
+12,Azure SQL Database364,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/elasticPools/{elasticPoolName}/metrics,File extensions should not be included in URIs,1,0
+13,CallFire API Documentation,/calls/recordings/{id}.mp3,File extensions should not be included in URIs,0,1
+14,CallFire API Documentation,/campaigns/sounds/{id}.mp3,File extensions should not be included in URIs,0,1
+15,,,,,
+16,,,Total violations,Total false positives,Total true positives
+17,,,15,6,9
