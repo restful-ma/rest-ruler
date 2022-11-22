@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  description: This is an OpenAPI definition file which contains violations of the rule 'Underscores (_) should not be used in URIs' created by experts.
+  description: This is an OpenAPI definition file which contains violations of the rule 'A verb or verb phrase should be used for controller names' created by experts.
   version: 0.1.0
   title: Example OpenAPI Definition File
   license:
@@ -13,61 +13,19 @@ servers:
     description: Sandbox server (uses test data)
 paths:
   # Justus (+1 violation)
-  /retrieve-order/{id}:
-    get:
+  /customer:
+    post:
       tags:
-        - order management
-      description: Returns an order
-      summary: Return order
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: The ID of the customer
-          schema:
-            type: string
-            minimum: 1
+        - customer management
+      description: Create new customer object
+      summary: Create customer
       responses:
         200:
-          description: Order object
+          description: Customer object
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Order"
-        401:
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        default:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-  # Justus + Ana Franco da Silva (+1 violation)
-  /get-order/{id}:
-    get:
-      tags:
-        - order management
-      description: Returns an order
-      summary: Return order
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: The ID of the customer
-          schema:
-            type: string
-            minimum: 1
-      responses:
-        200:
-          description: Order object
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Order"
+                $ref: "#/components/schemas/Customer"
         401:
           description: Unauthorized
           content:
@@ -81,53 +39,27 @@ paths:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
   # Justus (+1 violation)
-  /fetch-orders:
-    get:
-      tags:
-        - order management
-      description: Returns an order
-      summary: Return order
-      responses:
-        200:
-          description: Order object
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Order"
-        401:
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        default:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-  # Justus + Ana Franco da Silva (+1 violation)
-  /delete-order/{id}:
+  /message/{id}:
     delete:
       tags:
-        - order management
-      description: Deletes a specific order identified via ID
-      summary: Delete a specific order
+        - message management
+      description: Delete a message given an id
+      summary: Delete Message
       parameters:
         - name: id
           in: path
           required: true
-          description: The ID of the user who should be deleted
+          description: The ID of a message
           schema:
             type: string
             minimum: 1
       responses:
         200:
-          description: Successfully deleted user
+          description: Message object
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/GenericResponse"
+                $ref: "#/components/schemas/Message"
         401:
           description: Unauthorized
           content:
@@ -140,86 +72,28 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
-  # Sebastian (+1 violation)
-  /add-user:
-    post:
+  # Justus (+1 violation)
+  /article/{id}:
+    put:
       tags:
-        - user management
-      description: Creates an user
-      summary: Create an user
-      requestBody:
-        description: An user object
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/User"
-      responses:
-        200:
-          description: Successfully created an user
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        401:
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        default:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-  # Sebastian (+1 violation)
-  /delete-user:
-    delete:
-      tags:
-        - user management
-      description: Deletes an user
-      summary: Delete an user
-      responses:
-        200:
-          description: Successfully deleted user
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        401:
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        default:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-  # Sebastian (+1 violation)
-  /{id}/fetch:
-    get:
-      tags:
-        - order management
-      description: Returns an specific order identified via ID
-      summary: Return specific order
+        - trousers management
+      description: Update article information given an id
+      summary: Update article value
       parameters:
         - name: id
           in: path
           required: true
-          description: The ID of the user
+          description: The ID of a message
           schema:
             type: string
             minimum: 1
       responses:
         200:
-          description: Order object
+          description: Article object
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Order"
+                $ref: "#/components/schemas/Article"
         401:
           description: Unauthorized
           content:
@@ -232,196 +106,336 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
-  # Lukas Mohs (+1 violation)
-  /orders/get-all:
+  # Sebastian (+1 violation)
+  /user/{userId}:
     get:
       tags:
-        - order management
-      description: Returns a list of orders
-      summary: Returns list of orders
+        - information of items management
+      description: Returns user details
+      summary: Return user
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The ID of a user
+          schema:
+            type: string
+            minimum: 1
       responses:
         200:
-          description: Array of order objects
+          description: Information object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Information"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  # Sebastian (+1 violation)
+  /information/{informationId}:
+    get:
+      tags:
+        - information items
+      description: Returns information object
+      summary: Return information object
+      parameters:
+        - name: informationId
+          in: path
+          required: true
+          description: The ID of an information
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: Information object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Information"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  # Sebastian (+1 violation)
+  /information-item/{informationId}:
+    get:
+      tags:
+        - information items
+      description: Returns information object
+      summary: Return information object
+      parameters:
+        - name: informationId
+          in: path
+          required: true
+          description: The ID of an information
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: Information object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Information"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  # Ana Franco Da Silva (+1 violation)
+  /user/1/my-issues/13:
+    get:
+      tags:
+        - issue items
+      description: Returns a specific issue
+      summary: Get specific issue
+      responses:
+        200:
+          description: Issue object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Issue"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  # Ana Franco Da Silva (+1 violation)
+  /offspring/1:
+    get:
+      tags:
+        - offspring items
+      description: Returns a specific offspring
+      summary: Get specific offspring
+      responses:
+        200:
+          description: Offspring object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Offspring"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  # Ana Franco Da Silva (+1 violation)
+  /species/1:
+    get:
+      tags:
+        - species items
+      description: Returns a specific species
+      summary: Get specific species
+      responses:
+        200:
+          description: Species object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Species"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  # Ana Franco Da Silva (+1 violation)
+  /crossroads/1:
+    get:
+      tags:
+        - crossroad items
+      description: Returns a specific crossroad
+      summary: Get specific crossroad
+      responses:
+        200:
+          description: Crossroad object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Crossroad"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  # Lukas (+1 violation)
+  /activities/{Id}/participant:
+    get:
+      tags:
+        - participant items
+      description: Returns a participant
+      summary: Get participant
+      parameters:
+        - name: Id
+          in: path
+          required: true
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: Participant object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Participant"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  # Oliver (+1 violation)
+  /case/high-priority/{caseId}:
+    get:
+      tags:
+        - case items
+      description: Returns a high prio case 
+      summary: Get high prio case 
+      parameters:
+        - name: caseId
+          in: path
+          required: true
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: High prio case object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Case"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  # Oliver (+1 violation)
+  /cases-high-prio/{caseId}:
+    get:
+      tags:
+        - case item
+      description: Returns a high prio case 
+      summary: get high prio case 
+      parameters:
+        - name: caseId
+          in: path
+          required: true
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: High prio case object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Case"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  # Pfaff (+1 violation)
+  /store/{storeId}/books:
+    get:
+      tags:
+        - book item
+      description: Get all books from a specific store out of a collection of stores
+      summary: Get list of books
+      parameters:
+        - name: storeId
+          in: path
+          required: true
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: List of books object
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Order"
+                  $ref: "#/components/schemas/Book"
         401:
           description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        default:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-  # Oliver Kopp (+1 violation)
-  /users/{id}/delete:
-    delete:
-      tags:
-        - user management
-      description: Deletes an user
-      summary: Delete an user
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: The ID of the user who should be deleted
-          schema:
-            type: string
-            minimum: 1
-      responses:
-        200:
-          description: Successfully deleted user
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        401:
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        default:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-  # Timo Pfaff (+1 violation)
-  /queues/{queueId}/purge-queue:
-    delete:
-      tags:
-        - queue management
-      description: Delete all messages in a queue identified via ID
-      summary: Delete all messages in a queue
-      parameters:
-        - name: queueId
-          in: path
-          required: true
-          description: The ID of the queue
-          schema:
-            type: string
-            minimum: 1
-      responses:
-        200:
-          description: Successfully deleted messages in queue
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        401:
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        default:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-  # Maik Betka (+1 violation)
-  /users/create:
-    post:
-      tags:
-        - user management
-      description: Creates an user
-      summary: Create an user
-      requestBody:
-        description: An user object
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/User"
-      responses:
-        200:
-          description: Successfully created an user
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        401:
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        default:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-  # Maik Betka (+1 violation)
-  /create-user/{id}:
-    post:
-      tags:
-        - user management
-      description: Creates an user
-      summary: Create an user
-      requestBody:
-        description: An user object
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/User"
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: The ID of the user
-          schema:
-            type: string
-            minimum: 1
-      responses:
-        200:
-          description: Successfully created an user
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        401:
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        default:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-  # Maik Betka (+1 violation)
-  /users/put:
-    put:
-      tags:
-        - user management
-      description: Updates the details of an user
-      summary: Update an user
-      requestBody:
-        description: User object
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/User"
-      responses:
-        200:
-          description: Successful request
-          content:
-            text/plain:
-              schema:
-                type: string
-        400:
-          description: Client error including problems with client credentials
           content:
             application/json:
               schema:
@@ -434,26 +448,96 @@ paths:
                 $ref: "#/components/schemas/GenericResponse"
 components:
   schemas:
-    User:
-      description: A user of the system
+    Customer:
+      description: A customer
       type: object
       properties:
-        userId:
+        customerId:
           type: number
-        userName:
+        customerName:
           type: string
-        email:
+        customerDescription:
           type: string
-    Order:
-      description: A order from a customer
+    Book:
+      description: A book
       type: object
       properties:
-        articleNumber:
-          type: integer
-        count:
-          type: integer
-        price:
+        bookId:
           type: number
+        bookName:
+          type: string
+    Message:
+      description: A message
+      type: object
+      properties:
+        messageIds:
+          type: integer
+        messageContent:
+          type: string
+    Article:
+      description: Article object
+      type: object
+      properties:
+        articleIds:
+          type: integer
+        articleDescription:
+          type: string
+    Information:
+      description: Information object
+      type: object
+      properties:
+        informationIds:
+          type: integer
+        informationCount:
+          type: integer
+    Issue:
+      description: Issue object
+      type: object
+      properties:
+        issueIds:
+          type: integer
+        issueNumber:
+          type: string
+    Offspring:
+      description: Offspring object
+      type: object
+      properties:
+        offspringIds:
+          type: integer
+        offspringName:
+          type: string
+    Species:
+      description: Species object
+      type: object
+      properties:
+        speciesIds:
+          type: integer
+        speciesName:
+          type: string
+    Crossroad:
+      description: Crossroad object
+      type: object
+      properties:
+        crossroadIds:
+          type: integer
+        crossroadName:
+          type: string
+    Participant:
+      description: Participant object
+      type: object
+      properties:
+        participantIds:
+          type: integer
+        participantName:
+          type: string
+    Case:
+      description: Case object
+      type: object
+      properties:
+        casetIds:
+          type: integer
+        caseName:
+          type: string
     GenericResponse:
       description: A generic response object with a message attribute
       type: object

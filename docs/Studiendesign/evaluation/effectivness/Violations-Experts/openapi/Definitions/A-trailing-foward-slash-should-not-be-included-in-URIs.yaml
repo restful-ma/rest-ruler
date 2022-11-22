@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  description: This is an OpenAPI definition file which contains violations of the rule '401 (Unauthorized) must be used when there is a problem with the client credentials' created by experts.
+  description: This is an example OpenAPI definition file.
   version: 0.1.0
   title: Example OpenAPI Definition File
   license:
@@ -12,11 +12,13 @@ servers:
   - url: https://sandbox-api.example.com:8443/v1
     description: Sandbox server (uses test data)
 paths:
-  # Justus (+1 violation)
-  /users:
+  /users/:
     get:
       tags:
-        - user management
+        - kotstein
+        - silva
+        - bogner
+        - betka
       description: Returns a list of all users
       summary: Get all users
       responses:
@@ -28,17 +30,58 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/User"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
         default:
           description: Unexpected error
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
-  # Sebastian (+3 violations) + Timo Pfaff for put operation + Maik Betka for delete
-  /users/{userId}:
+    post:
+      tags:
+        - bogner
+      description: Create user
+      summary: Create new user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'     
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        201:
+          description: creation Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'                 
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+   
+  /users/{userId}/:
     get:
       tags:
-        - user management
+        - kotstein
       description: Returns the details of a user identified via ID
       summary: Get a specific user
       parameters:
@@ -56,46 +99,14 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/User"
-        403:
+        401:
           description: Unauthorized
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
-        default:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-    put:
-      tags:
-        - user management
-      description: Updates the details of a specific user identified via ID
-      summary: Update a specific user
-      parameters:
-        - name: userId
-          in: path
-          required: true
-          description: The ID of the user
-          schema:
-            type: string
-            minimum: 1
-      requestBody:
-        description: User object
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/User"
-      responses:
-        200:
-          description: Successful request
-          content:
-            text/plain:
-              schema:
-                type: string
-        400:
-          description: Client error including problems with client credentials
+        404:
+          description: A user with the specified ID was not found
           content:
             application/json:
               schema:
@@ -106,28 +117,40 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
+  /activities/{Id}/participants/{participantId}/:
     delete:
       tags:
-        - user management
-      description: Deletes a specific user identified via ID
-      summary: Delete a specific user
+        - mohs
+      description: Delete participant from a activity
+      summary: Removes participant from activity
       parameters:
-        - name: userId
+        - name: Id
           in: path
           required: true
-          description: The ID of the user who should be deleted
+          schema:
+            type: string
+            minimum: 1
+        - name: participantId
+          in: path
+          required: true
           schema:
             type: string
             minimum: 1
       responses:
         200:
-          description: Successfully deleted user
+          description: successful deletion
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
-        500:
-          description: Error, including problems with client credentials 
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        404:
+          description: A participant or an activity with the specified ID was not found
           content:
             application/json:
               schema:
@@ -138,41 +161,22 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
-  # Lukas Mohs + Sebastiona (+1 violation)
-  /users/{userId}/mails:
-    post:
+  /example-cases/:
+    get:
       tags:
-        - user management
-      description: Creates e-mail address of a user that is identified by an ID
-      summary: Create mail address
-      parameters:
-        - name: userId
-          in: path
-          required: true
-          description: The ID of the user
-          schema:
-            type: string
-            minimum: 1
-      requestBody:
-        description: A mail object
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Mail"
+        - kopp
+      description: Returns a list of all cases
+      summary: Get all cases
       responses:
         200:
-          description: Mail object
-          content:
-            text/plain:
-              schema:
-                type: string
-        401:
-          description: Forbidden
+          description: Array of user objects
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/GenericResponse"
-        403:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Case"
+        401:
           description: Unauthorized
           content:
             application/json:
@@ -184,36 +188,21 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
-  # Ana Franco da Silva (+1 violation)
-  /users/{userId}/locations:
-    post:
+  /files/:                    
+    delete:
       tags:
-        - user management
-      description: Creates location of a user that is identified by an ID
-      summary: Create location
-      parameters:
-        - name: userId
-          in: path
-          required: true
-          description: The ID of the user
-          schema:
-            type: string
-            minimum: 1
-      requestBody:
-        description: A location object
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Location"
+        - pfaff
+      description: Delete all files in the system
+      summary: Delete all files
       responses:
         200:
-          description: Location object
+          description: OK
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-        404:
-          description: Not found, including problems with client credentials 
+                $ref: "#/components/schemas/GenericResponse"
+        401:
+          description: Unauthorized
           content:
             application/json:
               schema:
@@ -223,7 +212,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/GenericResponse"
+                $ref: "#/components/schemas/GenericResponse"    
 components:
   schemas:
     User:
@@ -236,28 +225,16 @@ components:
           type: string
         email:
           type: string
-    Mail:
-      description: A mail address from a user
+    Case:
+      description: a specific use case for a feature
       type: object
       properties:
-        userId:
-          type: number
-        address:
+        caseDescription: 
           type: string
-        primary:
-          type: boolean 
-    Location:
-      description: A location from a user
-      type: object
-      properties:
-        userId:
-          type: number
-        street:
+        creationDate: 
           type: string
-        houseNumber:
-          type: integer 
-        postalCode:
-          type: integer
+        id: 
+          type: number
     GenericResponse:
       description: A generic response object with a message attribute
       type: object

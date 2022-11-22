@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  description: This is an example OpenAPI definition file.
+  description: This is an OpenAPI definition file which contains violations of the rule 'Underscores (_) should not be used in URIs' created by experts.
   version: 0.1.0
   title: Example OpenAPI Definition File
   license:
@@ -11,215 +11,147 @@ servers:
     description: Production server (uses live data)
   - url: https://sandbox-api.example.com:8443/v1
     description: Sandbox server (uses test data)
-paths: 
-  /users/{user-id}/fetch:
-    post:
-      tags:
-        - kotstein
-      description: Creates a new user with details
-      summary: Create a new user
-      parameters: 
-        - name: user-id
-          in: path
-          required: true
-          description: The ID of the user who should be retrieved
-          schema:
-            type: number
-            minimum: 1
-      requestBody:
-        description: Details of the new user
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/User"
-      responses:
-        200:
-          description: Successful request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/User"
-        400:
-          description: The specified user details are invalid
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        401:
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        default:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-  /users/{userId}/search:
-    post:
-      tags:
-        - kotstein
-      description: search for a user with given user ID
-      summary: retrieve user by ID
-      parameters: 
-        - name: userId
-          in: path
-          required: true
-          description: The ID of the user who should be retrieved
-          schema:
-            type: number
-            minimum: 1
-      requestBody:
-        description: Details of the user
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/User"
-      responses:
-        200:
-          description: Successful request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/User"
-        400:
-          description: The specified user details are invalid
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        401:
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        default:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-  /users/register:
+paths:
+  # Justus (+1 violation)
+  /videogames/{id}:
     get:
       tags:
-        - kotstein
-      description: creates a new user with name and surname defined by query
-      summary: create user
-      parameters: 
-        - name: name
-          in: query
-          required: true
-          description: The ID of the user who should be deleted
-          schema:
-            type: string
-            minimum: 1
-        - name: surname
-          in: query
-          required: true
-          description: The ID of the user who should be deleted
-          schema:
-            type: string
-            minimum: 1
-      responses:
-        200:
-          description: registered user
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/User"
-        401:
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        default:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-  /getUser/{userId}:
-   post:
-      tags:
-        - silva
-      description: retrieves a user with given user ID
-      summary: retrieve user by ID
-      parameters: 
-        - name: userId
-          in: path
-          required: true
-          description: The ID of the user who should be retrieved
-          schema:
-            type: number
-            minimum: 1
-      requestBody:
-        description: Details of the new user
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/User"
-      responses:
-        200:
-          description: Successful request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/User"
-        400:
-          description: The specified user details are invalid
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        401:
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        default:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-  /retrieveUser:
-   post:
-      tags:
-        - silva
-      description: retrieves a user with given user ID
-      summary: retrieve user by ID
-      parameters: 
+        - video games
+      description: Returns an video game identified via ID
+      summary: Return video game
+      parameters:
         - name: id
-          in: query
+          in: path
           required: true
-          description: The ID of the user who should be retrieved
+          description: The ID of the videeo game
           schema:
-            type: number
+            type: string
             minimum: 1
-      requestBody:
-        description: Details of the user
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/User"
       responses:
         200:
-          description: Successful request
+          description: Video game object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VideoGame"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  # Justus (+1 violation)
+  /weatherstations:
+    get:
+      tags:
+        - weather stations
+      description: Returns a list of weather stations
+      summary: Return weather stations
+      responses:
+        200:
+          description: Weather station object
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/WeatherStation"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  # Justus (+1 violation)
+  /databaseservers/{id}:
+    delete:
+      tags:
+        - database server
+      description: Deletes a database server identified via ID
+      summary: Delete database server
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the database server
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: Successfully deleted database server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  # Sebastian (+1 violation)
+  /users/{userId}/contactdetails:
+    get:
+      tags:
+        - user management
+      description: Returns the contact details of a user of a system identified via ID
+      summary: Return contact details
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The ID of the user
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: User object
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/User"
-        400:
-          description: The specified user details are invalid
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  # Sebastian (+1 violation)
+  /users/johndoe:
+    delete:
+      tags:
+        - user management
+      description: Delete user john doe
+      summary: Delete user
+      responses:
+        200:
+          description: Successfully deleted user
           content:
             application/json:
               schema:
@@ -236,33 +168,20 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
-  /activities/{Id}:
+  # Ana Franco da Silva (+1 violation)
+  /users/1/myissues/13:
     get:
       tags:
-        - mohs
-      description: Creates a new user with details
-      summary: Create a new user
-      parameters:
-        - name: Id
-          in: path
-          required: true
-          schema:
-            type: string
-            minimum: 1
-      requestBody:
-        required: true
-        description: Authorization
-        content:
-          text/plain:
-            schema:
-              type: string
+        - user management
+      description: Returns issue 13 from user 1
+      summary: Return issue
       responses:
         200:
-          description: Array of user objects
+          description: Issue object
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Activity"
+                $ref: "#/components/schemas/Issue"
         401:
           description: Unauthorized
           content:
@@ -275,35 +194,30 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
-  /orders/{orderId}:                
-    put:
+  # Oliver Kopp (+1 violation)
+  /premiumusers/{userId}:
+    get:
       tags:
-        - pfaff
-      description: GET must be used to retrieve a representation of a resource
-      summary: Get a specific order
+        - user management
+      description: Returns premium user identified via ID
+      summary: Return user
       parameters:
-        - name: orderId
+        - name: userId
           in: path
           required: true
-          description: The ID of the Order
+          description: The ID of the user
           schema:
             type: string
             minimum: 1
       responses:
         200:
-          description: Successful request
+          description: User object
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Order"
+                $ref: "#/components/schemas/User"
         401:
           description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenericResponse"
-        404:
-          description: A order with the specified ID was not found
           content:
             application/json:
               schema:
@@ -314,28 +228,24 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
-  /search-publications:
-    post:
+  # Timo Pfaff (+1 violation)
+  /university+of+stuttgart/students/{studentId}:
+    delete:
       tags:
-        - bogner
-      description: A common antipattern is using POST for search queries to have more convenient search parameters in the body instead of as (GET) request parameters
-      summary: Create a new user
-      requestBody:
-        description: Details of the new user
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/User"
+        - student management
+      description: Deletes student of the University of Stuttgart identified via ID
+      summary: Delete student
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          description: The ID of the user
+          schema:
+            type: string
+            minimum: 1
       responses:
         200:
-          description: Successful request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Publication"
-        400:
-          description: The specified user details are invalid
+          description: Successfully deleted student
           content:
             application/json:
               schema:
@@ -352,8 +262,32 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
-  
-
+  # Maik Betka (+1 violation)
+  /blogs/firstnamesurname/mytitles:
+    delete:
+      tags:
+        - blog
+      description: Deletes titles from a blog from a user
+      summary: Delete titles
+      responses:
+        200:
+          description: Successfully deleted titles
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
 components:
   schemas:
     User:
@@ -366,35 +300,41 @@ components:
           type: string
         email:
           type: string
-    Order:
-      description: An order
+    Issue:
+      description: A issue from a user
       type: object
       properties:
-        orderId:
-          type: number
-        paymentMethod:
-          type: string
-        item:
-          type: string  
-    Publication:
-      description: a Publication
-      type: object
-      properties:
+        number:
+          type: integer
         title:
           type: string
-        id:
-          type: number
-        category:
+        comment:
           type: string
-        published:
-          type: string
-    Activity:
-      description: A user of the system
+    VideoGame:
+      description: A video game
       type: object
       properties:
-        id:
-          type: number
+        articleNumber:
+          type: integer
         name:
+          type: string
+        price:
+          type: number
+    WeatherStation:
+      description: A weather station
+      type: object
+      properties:
+        location:
+          type: string
+        name:
+          type: string
+    DatabaseServer:
+      description: A database server
+      type: object
+      properties:
+        location:
+          type: string
+        ip:
           type: string
     GenericResponse:
       description: A generic response object with a message attribute
@@ -402,12 +342,10 @@ components:
       properties:
         message:
           type: string
-
   securitySchemes:
     BasicAuth:
       type: http
       scheme: basic
-
 externalDocs:
   description: "Find out more about Swagger"
   url: "http://swagger.io"

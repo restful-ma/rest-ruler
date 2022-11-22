@@ -1,0 +1,223 @@
+,File name,Path,Rule,false-positive,true-positive
+0,DataBoxEdgeManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/bandwidthSchedules/{name},Content-Type must be used,0,1
+1,DataBoxEdgeManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/bandwidthSchedules/{name},Content-Type must be used,0,1
+2,DataBoxEdgeManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/bandwidthSchedules/{name},Content-Type must be used,0,1
+3,DataBoxEdgeManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/installUpdates,Content-Type must be used,0,1
+4,DataBoxEdgeManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/orders/default,Content-Type must be used,0,1
+5,DataBoxEdgeManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/securitySettings/default/update,Content-Type must be used,0,1
+6,DataBoxEdgeManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/shares/{name},Content-Type must be used,0,1
+7,DataBoxEdgeManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/shares/{name},Content-Type must be used,0,1
+8,DataBoxEdgeManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/storageAccounts/{storageAccountName}/containers/{containerName},Content-Type must be used,0,1
+9,DataBoxEdgeManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/triggers/{name},Content-Type must be used,0,1
+10,DataBoxEdgeManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/users/{name},Content-Type must be used,0,1
+11,IntuneResourceManagementClient,/providers/Microsoft.Intune/locations/{hostName}/androidPolicies/{policyName},Content-Type must be used,0,1
+12,IntuneResourceManagementClient,/providers/Microsoft.Intune/locations/{hostName}/androidPolicies/{policyName}/apps/{appName},Content-Type must be used,0,1
+13,IntuneResourceManagementClient,/providers/Microsoft.Intune/locations/{hostName}/androidPolicies/{policyName}/groups/{groupId},Content-Type must be used,0,1
+14,IntuneResourceManagementClient,/providers/Microsoft.Intune/locations/{hostName}/iosPolicies/{policyName},Content-Type must be used,0,1
+15,IntuneResourceManagementClient,/providers/Microsoft.Intune/locations/{hostName}/iosPolicies/{policyName}/apps/{appName},Content-Type must be used,0,1
+16,IntuneResourceManagementClient,/providers/Microsoft.Intune/locations/{hostName}/iosPolicies/{policyName}/groups/{groupId},Content-Type must be used,0,1
+17,IntuneResourceManagementClient,/providers/Microsoft.Intune/locations/{hostName}/iosPolicies/{policyName}/groups/{groupId},Content-Type must be used,0,1
+18,NetworkManagementClient251,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/routeFilters/{routeFilterName},Content-Type must be used,0,1
+19,NetworkManagementClient251,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/routeFilters/{routeFilterName},Content-Type must be used,0,1
+20,NetworkManagementClient251,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/routeFilters/{routeFilterName},Content-Type must be used,0,1
+21,NetworkManagementClient251,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/routeFilters/{routeFilterName}/routeFilterRules/{ruleName},Content-Type must be used,0,1
+22,NetworkManagementClient251,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/routeFilters/{routeFilterName}/routeFilterRules/{ruleName},Content-Type must be used,0,1
+23,NetworkManagementClient251,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/routeFilters/{routeFilterName}/routeFilterRules/{ruleName},Content-Type must be used,0,1
+24,Azure Media Services193,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices/{accountName}/mediaGraphs/{mediaGraphName},Content-Type must be used,0,1
+25,Azure Media Services193,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices/{accountName}/mediaGraphs/{mediaGraphName},Content-Type must be used,0,1
+26,Azure Media Services193,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices/{accountName}/mediaGraphs/{mediaGraphName},Content-Type must be used,0,1
+27,Azure Media Services193,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices/{accountName}/mediaGraphs/{mediaGraphName}/start,Content-Type must be used,0,1
+28,Azure Media Services193,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices/{accountName}/mediaGraphs/{mediaGraphName}/start,Content-Type must be used,0,1
+29,Azure Media Services193,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices/{accountName}/mediaGraphs/{mediaGraphName}/stop,Content-Type must be used,0,1
+30,Azure Media Services193,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaServices/{accountName}/mediaGraphs/{mediaGraphName}/stop,Content-Type must be used,0,1
+31,Xero Files API,/Files/{FileId},Content-Type must be used,0,1
+32,Xero Files API,/Files/{FileId}/Associations/{ObjectId},Content-Type must be used,0,1
+33,Xero Files API,/Folders/{FolderId},Content-Type must be used,0,1
+34,1Password Connect,/vaults/{vaultUuid}/items/{itemUuid},Content-Type must be used,0,1
+35,api.datumbox.com,/1.0/AdultContentDetection.json,Content-Type must be used,0,1
+36,api.datumbox.com,/1.0/CommercialDetection.json,Content-Type must be used,0,1
+37,api.datumbox.com,/1.0/GenderDetection.json,Content-Type must be used,0,1
+38,api.datumbox.com,/1.0/KeywordExtraction.json,Content-Type must be used,0,1
+39,api.datumbox.com,/1.0/LanguageDetection.json,Content-Type must be used,0,1
+40,api.datumbox.com,/1.0/ReadabilityAssessment.json,Content-Type must be used,0,1
+41,SqlManagementClient382,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/backupShortTermRetentionPolicies,Content-Type must be used,0,1
+42,SqlManagementClient382,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/backupShortTermRetentionPolicies/{policyName},Content-Type must be used,0,1
+43,SqlManagementClient382,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/backupShortTermRetentionPolicies/{policyName},Content-Type must be used,0,1
+44,SqlManagementClient382,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/backupShortTermRetentionPolicies/{policyName},Content-Type must be used,0,1
+45,SqlManagementClient382,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/backupShortTermRetentionPolicies/{policyName},Content-Type must be used,0,1
+46,SqlManagementClient382,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/backupShortTermRetentionPolicies/{policyName},Content-Type must be used,0,1
+47,Buy Marketing API,/merchandised_product,Content-Type must be used,0,1
+48,Buy Marketing API,/merchandised_product,Content-Type must be used,0,1
+49,Buy Marketing API,/merchandised_product,Content-Type must be used,0,1
+50,Buy Marketing API,/merchandised_product/get_also_bought_products,Content-Type must be used,0,1
+51,Buy Marketing API,/merchandised_product/get_also_bought_products,Content-Type must be used,0,1
+52,Buy Marketing API,/merchandised_product/get_also_bought_products,Content-Type must be used,0,1
+53,Buy Marketing API,/merchandised_product/get_also_bought_products,Content-Type must be used,0,1
+54,Buy Marketing API,/merchandised_product/get_also_viewed_products,Content-Type must be used,0,1
+55,Buy Marketing API,/merchandised_product/get_also_viewed_products,Content-Type must be used,0,1
+56,Buy Marketing API,/merchandised_product/get_also_viewed_products,Content-Type must be used,0,1
+57,Buy Marketing API,/merchandised_product/get_also_viewed_products,Content-Type must be used,0,1
+58,NetworkManagementClient237,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/interfaceEndpoints/{interfaceEndpointName},Content-Type must be used,0,1
+59,NetworkManagementClient237,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/interfaceEndpoints/{interfaceEndpointName},Content-Type must be used,0,1
+60,NetworkManagementClient237,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/interfaceEndpoints/{interfaceEndpointName},Content-Type must be used,0,1
+61,NetworkManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways/{applicationGatewayName}/stop,Content-Type must be used,0,1
+62,NetworkManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits/{circuitName},Content-Type must be used,0,1
+63,NetworkManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits/{circuitName}/authorizations,Content-Type must be used,0,1
+64,NetworkManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkSecurityGroups/{networkSecurityGroupName},Content-Type must be used,0,1
+65,ApiManagementClient38,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/tenant/{accessName},Content-Type must be used,0,1
+66,ApiManagementClient53,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/tenant/{accessName}/regeneratePrimaryKey,Content-Type must be used,0,1
+67,ApiManagementClient56,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/tenant/{accessName}/regenerateSecondaryKey,Content-Type must be used,0,1
+68,ApiManagementClient60,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/tenant/{configurationName}/deploy,Content-Type must be used,0,1
+69,ApplicationInsightsManagementClient42,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.insights/components/{resourceName}/{scopePath}/item,Content-Type must be used,0,1
+70,Postman API,/apis,Content-Type must be used,0,1
+71,Postman API,/collections/fork/{collection_uid},Content-Type must be used,0,1
+72,Postman API,/collections/merge,Content-Type must be used,0,1
+73,Postman API,/webhooks,Content-Type must be used,0,1
+74,Azure Migrate Hub,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{migrateProjectName},Content-Type must be used,0,1
+75,Azure Migrate Hub,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{migrateProjectName}/solutions/{solutionName},Content-Type must be used,0,1
+76,Azure Migrate Hub,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{migrateProjectName}/solutions/{solutionName}/cleanupData,Content-Type must be used,0,1
+77,NPR Sponsorship Service,/v2/ads,Content-Type must be used,0,1
+78,NPR Sponsorship Service,/v2/ads,Content-Type must be used,0,1
+79,Handwrytten API,/auth/authorization ,Content-Type must be used,0,1
+80,Handwrytten API,/auth/changePassword ,Content-Type must be used,0,1
+81,Handwrytten API,/auth/logout  ,Content-Type must be used,0,1
+82,Handwrytten API,/cards/list,Content-Type must be used,0,1
+83,Compute Admin Client122,/subscriptions/{subscriptionId}/providers/Microsoft.Compute.Admin/locations/{location}/artifactTypes/platformImage/publishers/{publisher}/offers/{offer}/skus/{sku}/versions/{version},Content-Type must be used,0,1
+84,OnSched API Utility,/{planId},Content-Type must be used,0,1
+85,ContainerServiceClient162,	/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/containerServices/{containerServiceName},Content-Type must be used,0,1
+86,ContainerServiceClient162,	/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/containerServices/{containerServiceName},Content-Type must be used,0,1
+87,Amazon AppConfig,/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/hostedconfigurationversions/{VersionNumber},Content-Type must be used,0,1
+88,Amazon AppConfig,/tags/{ResourceArn}#tagKeys,Content-Type must be used,0,1
+89,Amazon AppConfig,/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/validators#configuration_version,Content-Type must be used,0,1
+90,LogicAppsManagementClient,	/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/connectionGateways/{connectionGatewayName},Content-Type must be used,0,1
+91,LogicAppsManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/connections/{connectionName},Content-Type must be used,0,1
+92,LogicAppsManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/connections/{connectionName},Content-Type must be used,0,1
+93,ApplicationInsightsManagementClient54,	/subscriptions/{subscriptionId}/resourceGroup/{resourceGroupName}/providers/microsoft.insights/workbooktemplates/{resourceName},Content-Type must be used,0,1
+94,ApplicationInsightsManagementClient54,	/subscriptions/{subscriptionId}/resourceGroup/{resourceGroupName}/providers/microsoft.insights/workbooktemplates/{resourceName},Content-Type must be used,0,1
+95,Amazon Kinesis,/#X-Amz-Target=Kinesis_20131202.AddTagsToStream,Content-Type must be used,0,1
+96,Amazon Kinesis,/#X-Amz-Target=Kinesis_20131202.CreateStream,Content-Type must be used,0,1
+97,Amazon Kinesis,/#X-Amz-Target=Kinesis_20131202.DescribeStreamConsumer,Content-Type must be used,0,1
+98,GoToWebinar,/accounts/{accountKey}/webinars,Content-Type must be used,0,1
+99,GoToWebinar,/accounts/{accountKey}/webinars,Content-Type must be used,0,1
+100,GoToWebinar,/organizers/{organizerKey}/historicalWebinars,Content-Type must be used,0,1
+101,GoToWebinar,/organizers/{organizerKey}/historicalWebinars,Content-Type must be used,0,1
+102,GoToWebinar,/organizers/{organizerKey}/upcomingWebinars,Content-Type must be used,0,1
+103,GoToWebinar,	/organizers/{organizerKey}/webinars,Content-Type must be used,0,1
+104,GoToWebinar,	/organizers/{organizerKey}/webinars,Content-Type must be used,0,1
+105,GoToWebinar,/organizers/{organizerKey}/webinars/{webinarKey},Content-Type must be used,0,1
+106,GoToWebinar,/organizers/{organizerKey}/webinars/{webinarKey},Content-Type must be used,0,1
+107,GoToWebinar,/organizers/{organizerKey}/webinars/{webinarKey},Content-Type must be used,0,1
+108,GoToWebinar,/organizers/{organizerKey}/webinars/{webinarKey},Content-Type must be used,0,1
+109,GoToWebinar,/organizers/{organizerKey}/webinars/{webinarKey}/attendees,Content-Type must be used,0,1
+110,GoToWebinar,	/organizers/{organizerKey}/webinars/{webinarKey}/audio,Content-Type must be used,0,1
+111,GoToWebinar,	/organizers/{organizerKey}/webinars/{webinarKey}/coorganizers,Content-Type must be used,0,1
+112,GoToWebinar,/organizers/{organizerKey}/webinars/{webinarKey}/coorganizers/{coorganizerKey}/resendInvitation,Content-Type must be used,0,1
+113,GoToWebinar,/organizers/{organizerKey}/webinars/{webinarKey}/coorganizers/{coorganizerKey}/resendInvitation,Content-Type must be used,0,1
+114,GoToWebinar,/organizers/{organizerKey}/webinars/{webinarKey}/coorganizers/{coorganizerKey}/resendInvitation,Content-Type must be used,0,1
+115,GoToWebinar,/organizers/{organizerKey}/webinars/{webinarKey}/panelists,Content-Type must be used,0,1
+116,GoToWebinar,/organizers/{organizerKey}/webinars/{webinarKey}/panelists,Content-Type must be used,0,1
+117,GoToWebinar,/organizers/{organizerKey}/webinars/{webinarKey}/panelists,Content-Type must be used,0,1
+118,GoToWebinar,	/organizers/{organizerKey}/webinars/{webinarKey}/panelists/{panelistKey}/resendInvitation,Content-Type must be used,0,1
+119,GoToWebinar,	/organizers/{organizerKey}/webinars/{webinarKey}/panelists/{panelistKey}/resendInvitation,Content-Type must be used,0,1
+120,GoToWebinar,	/organizers/{organizerKey}/webinars/{webinarKey}/registrants,Content-Type must be used,0,1
+121,GoToWebinar,/organizers/{organizerKey}/webinars/{webinarKey}/registrants/{registrantKey},Content-Type must be used,0,1
+122,GoToWebinar,/organizers/{organizerKey}/webinars/{webinarKey}/sessions/{sessionKey}/attendees/{registrantKey}/polls,Content-Type must be used,0,1
+123,GoToWebinar,	/organizers/{organizerKey}/webinars/{webinarKey}/sessions/{sessionKey}/performance,Content-Type must be used,0,1
+124,GoToWebinar,	/organizers/{organizerKey}/webinars/{webinarKey}/sessions/{sessionKey}/questions,Content-Type must be used,0,1
+125,GoToWebinar,	/organizers/{organizerKey}/webinars/{webinarKey}/sessions/{sessionKey}/surveys,Content-Type must be used,0,1
+126,Account and Transaction API Specification,/account-access-consents,Content-Type must be used,0,1
+127,Account and Transaction API Specification,/account-access-consents,Content-Type must be used,0,1
+128,Account and Transaction API Specification,/accounts/{AccountId},Content-Type must be used,0,1
+129,Account and Transaction API Specification,/accounts/{AccountId}/balances,Content-Type must be used,1,0
+130,Account and Transaction API Specification,/accounts/{AccountId}/balances,Content-Type must be used,0,1
+131,Account and Transaction API Specification,/accounts/{AccountId}/balances,Content-Type must be used,0,1
+132,Account and Transaction API Specification,/accounts/{AccountId}/beneficiaries,Content-Type must be used,0,1
+133,Account and Transaction API Specification,/accounts/{AccountId}/parties,Content-Type must be used,0,1
+134,Account and Transaction API Specification,/accounts/{AccountId}/party,Content-Type must be used,0,1
+135,Account and Transaction API Specification,/accounts/{AccountId}/product,Content-Type must be used,0,1
+136,Account and Transaction API Specification,/accounts/{AccountId}/product,Content-Type must be used,0,1
+137,Account and Transaction API Specification,/accounts/{AccountId}/scheduled-payments,Content-Type must be used,0,1
+138,Account and Transaction API Specification,/accounts/{AccountId}/standing-orders,Content-Type must be used,0,1
+139,Account and Transaction API Specification,/accounts/{AccountId}/statements/{StatementId}/transactions,Content-Type must be used,1,0
+140,Account and Transaction API Specification,/accounts/{AccountId}/transactions,Content-Type must be used,1,0
+141,Account and Transaction API Specification,/balances,Content-Type must be used,0,1
+142,Account and Transaction API Specification,/beneficiaries,Content-Type must be used,0,1
+143,Account and Transaction API Specification,/direct-debits,Content-Type must be used,1,0
+144,Account and Transaction API Specification,/direct-debits,Content-Type must be used,0,1
+145,Account and Transaction API Specification,/offers,Content-Type must be used,0,1
+146,Account and Transaction API Specification,/party,Content-Type must be used,0,1
+147,Account and Transaction API Specification,/products,Content-Type must be used,1,0
+148,Account and Transaction API Specification,/products,Content-Type must be used,0,1
+149,Account and Transaction API Specification,/scheduled-payments,Content-Type must be used,0,1
+150,Account and Transaction API Specification,/scheduled-payments,Content-Type must be used,0,1
+151,Account and Transaction API Specification,/scheduled-payments,Content-Type must be used,0,1
+152,Account and Transaction API Specification,/standing-orders,Content-Type must be used,1,0
+153,Account and Transaction API Specification,/statements,Content-Type must be used,0,1
+154,Account and Transaction API Specification,/statements,Content-Type must be used,0,1
+155,Account and Transaction API Specification,/transactions,Content-Type must be used,0,1
+156,Apacta,/forms/{form_id},Content-Type must be used,0,1
+157,Apacta,/wall_posts/{wall_post_id}/wall_comments,Content-Type must be used,0,1
+158,API for the COVID-19 Tracking QR Code Signin Server,/changePassword,Content-Type must be used,0,1
+159,API for the COVID-19 Tracking QR Code Signin Server,/logout,Content-Type must be used,0,1
+160,API for the COVID-19 Tracking QR Code Signin Server,/signin/{signinId},Content-Type must be used,0,1
+161,API for the COVID-19 Tracking QR Code Signin Server,/user/{userId},Content-Type must be used,0,1
+162,API for the COVID-19 Tracking QR Code Signin Server,/verifyPasswordChange,Content-Type must be used,0,1
+163,AppConfigurationManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppConfiguration/configurationStores/{configStoreName},Content-Type must be used,0,1
+164,AppConfigurationManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppConfiguration/configurationStores/{configStoreName}/privateEndpointConnections/{privateEndpointConnectionName},Content-Type must be used,0,1
+165,AppConfigurationManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppConfiguration/configurationStores/{configStoreName}/privateEndpointConnections/{privateEndpointConnectionName},Content-Type must be used,0,1
+166,Azure Resource Graph Query,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ResourceGraph/queries/{resourceName},Content-Type must be used,0,1
+167,Azure Resource Graph Query,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ResourceGraph/queries/{resourceName},Content-Type must be used,0,1
+168,BioLink API,/association/between/{subject}/{object},Content-Type must be used,1,0
+169,BioLink API,/bioentity/genotype/{id}/diseases,Content-Type must be used,1,0
+170,BioLink API,/bioentity/publication/{id}/diseases,Content-Type must be used,1,0
+171,BioLink API,/bioentity/publication/{id}/models,Content-Type must be used,1,0
+172,BioLink API,/graph/edges/from/{id},Content-Type must be used,1,0
+173,BioLink API,/nlp/annotate/,Content-Type must be used,0,1
+174,BioLink API,/sim/compare,Content-Type must be used,1,0
+175,BioLink API,/variation/set/archive/{year}/{month}/{day},Content-Type must be used,1,0
+176,Cosmos DB170,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName},Content-Type must be used,0,1
+177,Cosmos DB170,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName},Content-Type must be used,0,1
+178,Cosmos DB170,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName},Content-Type must be used,0,1
+179,Healthcare,/api/articles{mediaTypeExtension},Content-Type must be used,0,1
+180,Healthcare,/api/blog{mediaTypeExtension},Content-Type must be used,0,1
+181,Healthcare,/api/glossary{mediaTypeExtension},Content-Type must be used,0,1
+182,Healthcare,/api/states{mediaTypeExtension},Content-Type must be used,0,1
+183,Healthcare,/api/topics{mediaTypeExtension},Content-Type must be used,0,1
+184,Healthcare,/blog/{pageName}{mediaTypeExtension},Content-Type must be used,0,1
+185,Healthcare,/es/blog/{pageName}{mediaTypeExtension},Content-Type must be used,0,1
+186,Healthcare,/es/{pageName}{mediaTypeExtension},Content-Type must be used,0,1
+187,Healthcare,/es/{stateName}{mediaTypeExtension},Content-Type must be used,0,1
+188,Healthcare,/glossary/{pageName}{mediaTypeExtension},Content-Type must be used,0,1
+189,Healthcare,/question/{pageName}{mediaTypeExtension},Content-Type must be used,0,1
+190,IoTSpacesClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTSpaces/Graph/{resourceName},Content-Type must be used,0,1
+191,IoTSpacesClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTSpaces/Graph/{resourceName},Content-Type must be used,0,1
+192,IoTSpacesClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTSpaces/Graph/{resourceName},Content-Type must be used,0,1
+193,IoTSpacesClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTSpaces/Graph/{resourceName},Content-Type must be used,0,1
+194,KustoManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName},Content-Type must be used,0,1
+195,KustoManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/dataConnections/{dataConnectionName},Content-Type must be used,0,1
+196,KustoManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/dataConnections/{dataConnectionName},Content-Type must be used,0,1
+197,KustoManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/dataConnections/{dataConnectionName},Content-Type must be used,0,1
+198,KustoManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/detachFollowerDatabases,Content-Type must be used,0,1
+199,KustoManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/principalAssignments/{principalAssignmentName},Content-Type must be used,0,1
+200,KustoManagementClient,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/stop,Content-Type must be used,0,1
+201,NetworkManagementClient245,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/connectionMonitors/{connectionMonitorName},Content-Type must be used,0,1
+202,NetworkManagementClient245,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/connectionMonitors/{connectionMonitorName},Content-Type must be used,0,1
+203,NetworkManagementClient245,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/connectionMonitors/{connectionMonitorName}/start,Content-Type must be used,0,1
+204,NetworkManagementClient245,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/connectionMonitors/{connectionMonitorName}/start,Content-Type must be used,0,1
+205,NetworkManagementClient245,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/connectionMonitors/{connectionMonitorName}/stop,Content-Type must be used,0,1
+206,NetworkManagementClient245,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/connectionMonitors/{connectionMonitorName}/stop,Content-Type must be used,0,1
+207,Pricing API,/get-full-pricing/outbound/{type},Content-Type must be used,0,1
+208,Pricing API,/get-full-pricing/outbound/{type},Content-Type must be used,0,1
+209,Pricing API,/get-prefix-pricing/outbound/{type},Content-Type must be used,0,1
+210,Pricing API,/get-prefix-pricing/outbound/{type},Content-Type must be used,0,1
+211,Pricing API,/get-pricing/outbound/{type},Content-Type must be used,0,1
+212,Pricing API,/get-pricing/outbound/{type},Content-Type must be used,0,1
+213,ServiceBusManagementClient313,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName},Content-Type must be used,0,1
+214,ServiceBusManagementClient313,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName},Content-Type must be used,0,1
+215,ServiceBusManagementClient313,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName},Content-Type must be used,0,1
+216,ServiceBusManagementClient313,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName},Content-Type must be used,0,1
+217,ServiceBusManagementClient313,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName},Content-Type must be used,0,1
+218,ServiceBusManagementClient313,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/ipfilterrules/{ipFilterRuleName},Content-Type must be used,0,1
+219,,,,,
+220,,,Total violations,Total false positives,Total true positives
+221,,,219,13,206

@@ -41,12 +41,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
   # Sebastian (+1 violation) + Timo Pfaff + Ana Franco da Silva
-  /users:
+  /user:
     post:
       tags:
         - user management
-      description: List of all users in a system
-      summary: List of users
+      description: Create user in a system
+      summary: Create user
       requestBody:
         description: An user object
       responses:
