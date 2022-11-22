@@ -125,11 +125,13 @@ paths:
       summary: Return shirts
       responses:
         200:
-          description: Shirt object
+          description: Shirt list object
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Shirt"
+                type: array
+                items:
+                  $ref: "#/components/schemas/Shirt"
         401:
           description: Unauthorized
           content:
@@ -151,11 +153,13 @@ paths:
       summary: Get jeans
       responses:
         200:
-          description: Jeans object
+          description: Jeans list object
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Jeans"
+                type: array
+                items:
+                  $ref: "#/components/schemas/Jeans"
         401:
           description: Unauthorized
           content:
@@ -177,11 +181,13 @@ paths:
       summary: Get leggings
       responses:
         200:
-          description: Leggings object
+          description: Leggings list object
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Leggings"
+                type: array
+                items:
+                  $ref: "#/components/schemas/Leggings"
         401:
           description: Unauthorized
           content:
@@ -203,11 +209,13 @@ paths:
       summary: Get details case
       responses:
         200:
-          description: Details object
+          description: Details list object
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Details"
+                type: array
+                items:
+                  $ref: "#/components/schemas/Details"
         401:
           description: Unauthorized
           content:
@@ -226,7 +234,7 @@ paths:
       tags:
         - Admin items
       description: Returns list of admins
-      summary: get the admin of a specific database
+      summary: Get the admin of a specific database
       parameters:
         - name: databaseId
           in: path
