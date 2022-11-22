@@ -16,8 +16,8 @@ paths:
     post:
       tags:
         - kotstein
-      description: Get a new user with details
-      summary: Get a new user
+      description: Get a user with details
+      summary: Get a user
       parameters: 
         - name: user-id
           in: path
