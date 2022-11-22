@@ -12,6 +12,87 @@ servers:
   - url: https://sandbox-api.example.com:8443/v1
     description: Sandbox server (uses test data)
 paths:
+  # RULE 5: A verb or verb phrase should be used for controller
+  /animals/{catId}/foods/{foodId}/deliver-food:
+    put:
+      tags:
+        - food delivery
+      description: Deliver food to cat
+      summary: Deliver food to cat
+      parameters:
+        - in: path
+          name: catId
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: The cat id
+        - in: path
+          name: foodId
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: The food id
+      responses:
+        200:
+          description: Successfully delivered food to cat
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  /animals/{catId}/foods/{foodId}/remove-food:
+    delete:
+      tags:
+        - food removal
+      description: Remove a food from a cat
+      summary: Remove food
+      parameters:
+        - in: path
+          name: catId
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: The cat id
+        - in: path
+          name: foodId
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: The food id
+      responses:
+        200:
+          description: Successfully removed food from a cat
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
 
 components:
   schemas:

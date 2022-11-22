@@ -34,9 +34,7 @@ noun phrase path segment."
 * Check every pathSegment which are generated from the split of the path using the "/" as delimiter. If the pathSegment is a
   collection or store name, it should be plural. If it is not plural, it is a violation.
 * The structure of a path is normally as follows: singular/plural/singular.. or plural/singular/plural.. . If we have a path with singular/singular then we have a violation.
-* For each pathSegment is being checked if the word is singular or plural. For this we have two different sources.
-* The first one is a JsonDictionary which contains all singular and plural words populated from previous scanner of different apis.
-* The second one is a list of words which are not in the dictionary. For these words we use the OxfordDictionaryApi.
+* For each pathSegment is being checked if the word is singular or plural. For this taks we are using OpenNLP, an Apache library, which is able to detect if a word is singular or plural.
 * 
 ### What is not checked
 
