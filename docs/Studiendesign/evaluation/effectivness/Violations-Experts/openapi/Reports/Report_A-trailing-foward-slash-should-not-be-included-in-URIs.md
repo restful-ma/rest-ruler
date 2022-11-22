@@ -1,9 +1,6 @@
 REST API Specification Report
 =============================
-| Line No. | Line                                           | Rule Violated                                               | Category | Severity | Rule Type | Software Quality Attributes | Improvement Suggestion                     |
-| -------- | ---------------------------------------------- | ----------------------------------------------------------- | -------- | -------- | --------- | --------------------------- | ------------------------------------------ |
-| 15       | /users/                                        | A trailing forward slash (/) should not be included in URIs | URIS     | ERROR    | STATIC    | MAINTAINABILITY             | remove trailing forward slash '/' from URI |
-| 81       | /users/{userId}/                               | A trailing forward slash (/) should not be included in URIs | URIS     | ERROR    | STATIC    | MAINTAINABILITY             | remove trailing forward slash '/' from URI |
-| 121      | /activities/{Id}/participants/{participantId}/ | A trailing forward slash (/) should not be included in URIs | URIS     | ERROR    | STATIC    | MAINTAINABILITY             | remove trailing forward slash '/' from URI |
-| 165      | /example-cases/                                | A trailing forward slash (/) should not be included in URIs | URIS     | ERROR    | STATIC    | MAINTAINABILITY             | remove trailing forward slash '/' from URI |
-| 193      | /files/                                        | A trailing forward slash (/) should not be included in URIs | URIS     | ERROR    | STATIC    | MAINTAINABILITY             | remove trailing forward slash '/' from URI |
+| Line No. | Line             | Rule Violated                                               | Category | Severity | Rule Type | Software Quality Attributes | Improvement Suggestion                     |
+| -------- | ---------------- | ----------------------------------------------------------- | -------- | -------- | --------- | --------------------------- | ------------------------------------------ |
+| 15       | /users/          | A trailing forward slash (/) should not be included in URIs | URIS     | ERROR    | STATIC    | MAINTAINABILITY             | remove trailing forward slash '/' from URI |
+| 47       | /users/{userId}/ | A trailing forward slash (/) should not be included in URIs | URIS     | ERROR    | STATIC    | MAINTAINABILITY             | remove trailing forward slash '/' from URI |
