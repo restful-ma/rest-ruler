@@ -212,9 +212,9 @@ paths:
   /user/1/my-issues/13:
     get:
       tags:
-        - Issue items
+        - issue items
       description: Returns a specific issue
-      summary: get specific issue
+      summary: Get specific issue
       responses:
         200:
           description: Issue object
@@ -238,9 +238,9 @@ paths:
   /offspring/1:
     get:
       tags:
-        - Offspring items
+        - offspring items
       description: Returns a specific offspring
-      summary: get specific offspring
+      summary: Get specific offspring
       responses:
         200:
           description: Offspring object
@@ -264,9 +264,9 @@ paths:
   /species/1:
     get:
       tags:
-        - Species items
+        - species items
       description: Returns a specific species
-      summary: get specific species
+      summary: Get specific species
       responses:
         200:
           description: Species object
@@ -290,9 +290,9 @@ paths:
   /crossroads/1:
     get:
       tags:
-        - Crossroad items
+        - crossroad items
       description: Returns a specific crossroad
-      summary: get specific crossroad
+      summary: Get specific crossroad
       responses:
         200:
           description: Crossroad object
@@ -316,9 +316,9 @@ paths:
   /activities/{Id}/participant:
     get:
       tags:
-        - Participant items
+        - participant items
       description: Returns a participant
-      summary: get participant
+      summary: Get participant
       parameters:
         - name: Id
           in: path
@@ -349,7 +349,7 @@ paths:
   /case/high-priority/{caseId}:
     get:
       tags:
-        - Case items
+        - case items
       description: Returns a case high prio
       summary: get case high prio
       parameters:
@@ -382,7 +382,7 @@ paths:
   /cases-high-prio/{caseId}:
     get:
       tags:
-        - Case item
+        - case item
       description: Returns a case high prio
       summary: get case high prio
       parameters:
@@ -415,7 +415,7 @@ paths:
   /store/{storeId}/books:
     get:
       tags:
-        - Book item
+        - book item
       description: Get all books from a specific store out of a collection of stores
       summary: Get list of books
       parameters:
@@ -431,7 +431,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Book"
+                type: array
+                items:
+                  $ref: "#/components/schemas/Book"
         401:
           description: Unauthorized
           content:
