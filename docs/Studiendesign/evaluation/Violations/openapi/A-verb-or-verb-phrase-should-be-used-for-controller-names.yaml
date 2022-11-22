@@ -12,7 +12,59 @@ servers:
   - url: https://sandbox-api.example.com:8443/v1
     description: Sandbox server (uses test data)
 paths:
-  # RULE 5: A verb or verb phrase should be used for controller
+  # Ana Franco Da Silva (+1 violation)
+  /users/1/present:
+    put:
+      tags:
+        - presence
+      description: Check the presence of a user
+      summary: Check presence
+      responses:
+        200:
+          description: Successfully checked presence
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  # Ana Franco Da Silva (+1 violation)
+  /users/1/permit:
+    put:
+      tags:
+        - permission
+      description: Permit a user
+      summary: Permit a user
+      responses:
+        200:
+          description: Successfully permit a user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  # RULE 14: A verb or verb phrase should be used for controller (+1 violation)
   /animals/{catId}/foods/{foodId}/deliver-food:
     put:
       tags:
@@ -53,6 +105,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GenericResponse"
+  # RULE 14: A verb or verb phrase should be used for controller (+1 violation)
   /animals/{catId}/foods/{foodId}/remove-food:
     delete:
       tags:
