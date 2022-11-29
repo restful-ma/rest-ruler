@@ -836,3 +836,4 @@ Z64
 ZIP
 ZRX
 ZS
+heic

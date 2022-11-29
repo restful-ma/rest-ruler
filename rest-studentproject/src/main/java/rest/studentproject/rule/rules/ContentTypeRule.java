@@ -4,6 +4,7 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.PathItem;
 import io.swagger.v3.oas.models.Paths;
+import io.swagger.v3.oas.models.parameters.Parameter;
 import io.swagger.v3.oas.models.parameters.RequestBody;
 import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.responses.ApiResponses;
@@ -17,6 +18,8 @@ import java.util.*;
 import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.github.fge.jsonpatch.Patch;
 
 import static rest.studentproject.analyzer.RestAnalyzer.locMapper;
 
@@ -101,6 +104,8 @@ public class ContentTypeRule implements IRestRule {
             this.pathName = path.getKey();
             Output.progressPercentage(curPath, totalPaths);
             curPath++;
+            List<Parameter> parameters = path.getValue().getParameters();
+            checkParameter(parameters, "path");
             checkContentType(path.getValue());
         }
         return this.violationList;
@@ -124,18 +129,25 @@ public class ContentTypeRule implements IRestRule {
 
         ApiResponses responses;
         RequestBody requestBody;
+        List<Parameter> parameters;
 
         if (getOp != null) {
             responses = getOp.getResponses();
+            parameters = getOp.getParameters();
+            checkParameter(parameters, GET_OPERATION + "-operation");
             examineResponses(responses, GET_OPERATION);
         }
 
         if (deleteOp != null) {
+            parameters = deleteOp.getParameters();
+            checkParameter(parameters, DELETE_OPERATION + "-operation");
             responses = deleteOp.getResponses();
             examineResponses(responses, DELETE_OPERATION);
         }
 
         if (postOp != null) {
+            parameters = postOp.getParameters();
+            checkParameter(parameters, POST_OPERATION + "-operation");
             responses = postOp.getResponses();
             examineResponses(responses, POST_OPERATION);
             requestBody = postOp.getRequestBody();
@@ -143,6 +155,8 @@ public class ContentTypeRule implements IRestRule {
         }
 
         if (putOp != null) {
+            parameters = putOp.getParameters();
+            checkParameter(parameters, PUT_OPERATION + "-operation");
             responses = putOp.getResponses();
             examineResponses(responses, PUT_OPERATION);
             requestBody = putOp.getRequestBody();
@@ -150,6 +164,8 @@ public class ContentTypeRule implements IRestRule {
         }
 
         if (patchOp != null) {
+            parameters = patchOp.getParameters();
+            checkParameter(parameters, PATCH_OPERATION + "-operation");
             responses = patchOp.getResponses();
             examineResponses(responses, PATCH_OPERATION);
             requestBody = patchOp.getRequestBody();
@@ -246,6 +262,44 @@ public class ContentTypeRule implements IRestRule {
         }
     }
 
+    private void checkParameter(List<Parameter> paramters, String pathLevel) {
+        if (paramters == null)
+            return;
+        for (Parameter parameter : paramters) {
+            if (parameter == null)
+                return;
+
+            boolean emptyContent = (parameter.getSchema() == null);
+
+            if (emptyContent && parameter.get$ref() == null) {
+                this.violationList.add(getParameterContentTypeViolation(pathLevel));
+            } else if (emptyContent && parameter.get$ref() != null) {
+                // Ref to content type
+                String ref = parameter.get$ref();
+                String refLastIndex = ref.substring(ref.lastIndexOf("/") + 1);
+
+                // Check if in request bodies defined (needs this structure)
+                if (!ref.endsWith("/parameters/" + refLastIndex)) {
+                    System.out.println("ref err: " + ref);
+                    this.violationList.add(getParameterContentTypeRefViolation(refLastIndex,
+                            pathLevel));
+                    return;
+                }
+
+                // Check if content type defined in components (ref exists)
+                Map<String, Parameter> compParameters = this.openAPI.getComponents().getParameters();
+                if (!compParameters.isEmpty())
+                    checkSchemaInRefs(compParameters, refLastIndex,
+                            getParameterContentTypeRefViolation(refLastIndex, pathLevel));
+                else {
+                    System.out.println("ref err ende: " + ref);
+                    this.violationList.add(getParameterContentTypeRefViolation(refLastIndex,
+                            pathLevel));
+                }
+            }
+        }
+    }
+
     /**
      * Checks if the ref has a content type defined.
      *
@@ -272,6 +326,8 @@ public class ContentTypeRule implements IRestRule {
 
                 // Check comp.getValue().getContent() is null or empty (second term)
                 if (content == null || (boolean) content.getClass().getMethod("isEmpty").invoke(content)) {
+                    System.out.println("ref err ganz ende: " + refLastIndex);
+                    System.out.println("ref value: " + comp.getValue());
                     this.violationList.add(violation);
                 }
             } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
@@ -285,6 +341,63 @@ public class ContentTypeRule implements IRestRule {
         }
     }
 
+    /**
+     * Checks if the ref has a content type defined.
+     *
+     * @param component        ApiResponse or RequestBody component of openAPI
+     *                         definition
+     * @param refLastIndex     the last index of the ref (../xyz)
+     * @param violationContent the violation that is added if no content type is
+     *                         defined
+     */
+    private void checkSchemaInRefs(Map<String, ?> component, String refLastIndex, Violation violation) {
+        boolean refFound = false;
+        for (Entry<String, ?> comp : component.entrySet()) {
+            // Ref found --> further checks if content type defined
+            if (comp.getKey().equals(refLastIndex))
+                refFound = true;
+            else
+                continue;
+
+            Object schema;
+            Object value = comp.getValue();
+            try {
+                // Call comp.getValue().getContent()
+                schema = value.getClass().getMethod("getSchema").invoke(value);
+
+                // Check comp.getValue().getContent() is null or empty (second term)
+                if (schema == null) {
+                    System.out.println("ref err ganz ende: " + refLastIndex);
+                    System.out.println("ref value: " + comp.getValue());
+                    this.violationList.add(violation);
+                }
+            } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
+                    | NoSuchMethodException | SecurityException e) {
+                logger.log(Level.SEVERE, "Exception when accessing the content in refs: {0}", e.getMessage());
+            }
+        }
+        // Ref not found --> Invalid ref path defined in response or request body
+        if (!refFound) {
+            this.violationList.add(violation);
+        }
+    }
+
+    private Violation getParameterContentTypeViolation(String pathLevel) {
+        String improvementSuggestion = String.format(
+                "Specify content type of parameter in the %s, because clients and servers rely on the value of this header to know how to process the sequence of bytes in the message body.",
+                pathLevel);
+        return new Violation(this, locMapper.getLOCOfPath(this.pathName), improvementSuggestion, this.pathName,
+                ErrorMessage.CONTENT_TYPE);
+    }
+
+    private Violation getParameterContentTypeRefViolation(String refLastIndex, String pathLevel) {
+        String improvementSuggestion = String.format(
+                "Define content of path parameters in refs in /parameters/%s or directly in the path in the %s operation.",
+                refLastIndex, pathLevel);
+        return new Violation(this, locMapper.getLOCOfPath(this.pathName), improvementSuggestion, this.pathName,
+                ErrorMessage.CONTENT_TYPE);
+    }
+
     private Violation getRequestBodyContentTypeViolation(String operation) {
         String improvementSuggestion = String.format(
                 "Specify content type in request body in the %s operation, because clients and servers rely on the value of this header to know how to process the sequence of bytes in the message body.",
@@ -295,7 +408,7 @@ public class ContentTypeRule implements IRestRule {
 
     private Violation getRequestBodyContentTypeRefViolation(String refLastIndex, String operation) {
         String improvementSuggestion = String.format(
-                "Define content in refs in /components/requestBodies/%s or directly in the request body in the %s operation.",
+                "Define content of request bodies in refs in /requestBodies/%s or directly in the request body in the %s operation.",
                 refLastIndex, operation);
         return new Violation(this, locMapper.getLOCOfPath(this.pathName), improvementSuggestion, this.pathName,
                 ErrorMessage.CONTENT_TYPE);
@@ -311,7 +424,7 @@ public class ContentTypeRule implements IRestRule {
 
     private Violation getResponseContentTypeRefViolation(String refLastIndex, String statusCode, String operation) {
         String improvementSuggestion = String.format(
-                "Define content in refs in /components/responses/%s or directly in the %s response in %s operation.",
+                "Define content of responses in refs in /responses/%s or directly in the %s response in %s operation.",
                 refLastIndex, statusCode, operation);
         return new Violation(this, locMapper.getLOCOfPath(this.pathName), improvementSuggestion,
                 this.pathName, ErrorMessage.CONTENT_TYPE);

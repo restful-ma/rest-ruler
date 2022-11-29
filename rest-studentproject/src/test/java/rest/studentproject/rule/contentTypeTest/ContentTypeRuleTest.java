@@ -25,13 +25,13 @@ public class ContentTypeRuleTest {
     }
 
     @Test
-    @DisplayName("Test that checks if the 16 content type rule violations are detected. Tested are the request bodies and responses if there is the content type defined.")
+    @DisplayName("Test that checks if the 20 content type rule violations are detected. Tested are the path parameters, request bodies and responses, if there is the content type defined.")
     void invalidFile() {
         List<Violation> violations = runMethodUnderTest(PATH_INVALID_OPENAPI);
         for (Violation violation : violations) {
             System.out.println(violation);
         }
-        assertEquals(16, violations.size(), "There should be 16 rule violations.");
+        assertEquals(20, violations.size(), "There should be 20 rule violations.");
     }
 
     private List<Violation> runMethodUnderTest(String url) {

@@ -16,6 +16,9 @@ import java.net.InetAddress;
 import java.net.URL;
 import java.util.*;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+
+import org.apache.commons.lang3.EnumUtils;
 
 import static java.util.Map.entry;
 
@@ -24,7 +27,7 @@ import static java.util.Map.entry;
  */
 public class Output {
     private static final String UNDERLINE = "----------------------------------------------";
-    private static final Map<SecuritySchema, String> secToNumbAuthMapping = Map.ofEntries(
+    private static final Map<Secu9ritySchema, String> secToNumbAuthMapping = Map.ofEntries(
             entry(SecuritySchema.APIKEY, "1"), entry(SecuritySchema.BASIC, "2"), entry(SecuritySchema.BEARER, "3"));
     private static final Map<String, SecuritySchema> numbToSecAuthMapping = Map.ofEntries(entry("1",
             SecuritySchema.APIKEY), entry("2", SecuritySchema.BASIC), entry("3", SecuritySchema.BEARER));
@@ -164,15 +167,19 @@ public class Output {
         RestAnalyzer.dynamicAnalysis = checkDynamicAnalysis;
         if (checkDynamicAnalysis) {
             OpenAPI openAPI = Utility.getOpenAPI(pathToFile);
+            boolean foundRunningServer = false;
             for (Server server : openAPI.getServers()) {
                 String url = server.getUrl();
                 System.out.println("Ping server: " + server.getUrl());
                 if (!pingURL(url)) {
                     System.out.println("Server is not responding: " + url);
                     System.out.println("Make sure the server is running or delete it from the openAPI definition.");
-                    System.out.println("--> Skip dynamic analysis.");
-                    RestAnalyzer.dynamicAnalysis = false;
-                }
+                } else
+                    foundRunningServer = true;
+            }
+            if (!foundRunningServer) {
+                System.out.println("--> Skip dynamic analysis.");
+                RestAnalyzer.dynamicAnalysis = false;
             }
             if (RestAnalyzer.dynamicAnalysis) {
                 RestAnalyzer.securitySchemas = askAuth(openAPI);
@@ -223,8 +230,13 @@ public class Output {
         System.out.println(UNDERLINE);
 
         Map<String, SecurityScheme> secSchemas = openAPI.getComponents().getSecuritySchemes();
+        Set<String> secSchemaNames = new HashSet<>();
+        for (SecurityScheme secSchema : secSchemas.values())
+            secSchemaNames.add(secSchema.getType().toString());
 
-        boolean secDefined = secSchemas != null && !secSchemas.isEmpty();
+        System.out.println(secSchemaNames);
+
+        boolean secDefined = secSchemaNames != null && !secSchemaNames.isEmpty();
 
         boolean enterMoreSec = true;
         this.choice = "";
@@ -246,14 +258,15 @@ public class Output {
                 this.choice = this.scanner.next();
 
             } else {
-                System.out.println("Found " + secSchemas.size() + " security schemas for given openAPI definition.");
+                System.out.println("Found " + secSchemaNames.size()
+                        + " security schemas for given openAPI definition.");
                 System.out.println("\nChoose the authentication method (number) to get/set the credentials or enter"
                         + " " + "any " + "other " + "key to select other security methods:");
 
                 int selectionNumber = 0;
-                for (Map.Entry<String, SecurityScheme> secSchema : secSchemas.entrySet()) {
-                    System.out.println(++selectionNumber + " - " + secSchema.getValue().getScheme());
-                    secSchemeMap.put(String.valueOf(selectionNumber), secSchema.getValue().getScheme());
+                for (String secSchema : secSchemaNames) {
+                    System.out.println(++selectionNumber + " - " + secSchema);
+                    secSchemeMap.put(String.valueOf(selectionNumber), secSchema);
 
                 }
                 this.choice = this.scanner.next();
@@ -263,7 +276,11 @@ public class Output {
                     continue;
                 }
 
-                if (!secToNumbAuthMapping.containsKey(SecuritySchema.valueOf(secSchemeMap.get(choice).toUpperCase()))) {
+                boolean secSchemaSupported = EnumUtils.isValidEnum(SecuritySchema.class,
+                        secSchemeMap.get(choice).toUpperCase());
+
+                if (!secSchemaSupported || !secToNumbAuthMapping
+                        .containsKey(SecuritySchema.valueOf(secSchemeMap.get(choice).toUpperCase()))) {
                     System.out.println("We currently do not support this kind of authentication. Please select " +
                             "another method.");
                     continue;
@@ -311,8 +328,10 @@ public class Output {
                         System.out.println("Enter token consisting of username and password or type 0 (zero) to " +
                                 "skip:" + " ");
                         token = this.scanner.next();
-                        if (token.equals("0"))
+                        if (token.equals("0")) {
+                            System.out.println("No token entered; skipping.");
                             break;
+                        }
                         secTokens.put(numbToSecAuthMapping.get(this.choice), token);
                         break;
                     // Bearer
@@ -437,7 +456,7 @@ public class Output {
      * Pings HTTP URL. This effectively sends a HEAD request and returns
      * <code>true</code> if the server responded.
      *
-     * @param url     The HTTP URL to be pinged.
+     * @param url The HTTP URL to be pinged.
      * @return <code>true</code> if the given HTTP URL is reachable on a HEAD
      *         request within the
      *         given timeout, otherwise <code>false</code>.
