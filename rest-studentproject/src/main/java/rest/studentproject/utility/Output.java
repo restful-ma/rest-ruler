@@ -16,7 +16,6 @@ import java.net.InetAddress;
 import java.net.URL;
 import java.util.*;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.EnumUtils;
 
@@ -27,7 +26,7 @@ import static java.util.Map.entry;
  */
 public class Output {
     private static final String UNDERLINE = "----------------------------------------------";
-    private static final Map<Secu9ritySchema, String> secToNumbAuthMapping = Map.ofEntries(
+    private static final Map<SecuritySchema, String> secToNumbAuthMapping = Map.ofEntries(
             entry(SecuritySchema.APIKEY, "1"), entry(SecuritySchema.BASIC, "2"), entry(SecuritySchema.BEARER, "3"));
     private static final Map<String, SecuritySchema> numbToSecAuthMapping = Map.ofEntries(entry("1",
             SecuritySchema.APIKEY), entry("2", SecuritySchema.BASIC), entry("3", SecuritySchema.BEARER));
