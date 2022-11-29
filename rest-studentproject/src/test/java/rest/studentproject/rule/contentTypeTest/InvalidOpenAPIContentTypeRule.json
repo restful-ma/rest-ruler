@@ -15,7 +15,9 @@
     "description": "The [REST API specification](https://www.ably.io/documentation/rest-api) for Ably.",
     "title": "Platform API",
     "version": "1.1.0",
-    "x-apisguru-categories": ["cloud"],
+    "x-apisguru-categories": [
+      "cloud"
+    ],
     "x-logo": {
       "url": "https://api.apis.guru/v2/cache/logo/https_twitter.com_ablyrealtime_profile_image"
     },
@@ -64,7 +66,10 @@
             "in": "query",
             "name": "by",
             "schema": {
-              "enum": ["value", "id"],
+              "enum": [
+                "value",
+                "id"
+              ],
               "type": "string"
             }
           }
@@ -126,14 +131,16 @@
           }
         },
         "summary": "Enumerate all active channels of the application",
-        "tags": ["Status"]
+        "tags": [
+          "Status"
+        ]
       },
       "parameters": [
         {
-          "$ref": "#/components/parameters/versionHeader"
+          "$ref": "#/components/parameters/channelId"
         },
         {
-          "$ref": "#/components/parameters/responseFormat"
+          "$ref": "#/components/parameters/channelId"
         }
       ]
     },
@@ -156,14 +163,16 @@
           }
         },
         "summary": "Get metadata of a channel",
-        "tags": ["Status"]
+        "tags": [
+          "Status"
+        ]
       },
       "parameters": [
         {
-          "$ref": "#/components/parameters/versionHeader"
+          "$ref": "#/components/parameters/channelId"
         },
         {
-          "$ref": "#/components/parameters/responseFormat"
+          "$ref": "#/components/parameters/channelId"
         }
       ]
     },
@@ -176,16 +185,16 @@
             "$ref": "#/components/parameters/channelId"
           },
           {
-            "$ref": "#/components/parameters/filterStart"
+            "$ref": "#/components/parameters/channelId"
           },
           {
-            "$ref": "#/components/parameters/filterLimit"
+            "$ref": "#/components/parameters/channelId"
           },
           {
-            "$ref": "#/components/parameters/filterEnd"
+            "$ref": "#/components/parameters/channelId"
           },
           {
-            "$ref": "#/components/parameters/filterDirection"
+            "$ref": "#/components/parameters/channelId"
           }
         ],
         "responses": {
@@ -194,14 +203,16 @@
           }
         },
         "summary": "Get message history for a channel",
-        "tags": ["History"]
+        "tags": [
+          "History"
+        ]
       },
       "parameters": [
         {
-          "$ref": "#/components/parameters/versionHeader"
+          "$ref": "#/components/parameters/channelId"
         },
         {
-          "$ref": "#/components/parameters/responseFormat"
+          "$ref": "#/components/parameters/channelId"
         }
       ],
       "post": {
@@ -246,7 +257,9 @@
           }
         },
         "summary": "Publish a message to a channel",
-        "tags": ["Publishing"]
+        "tags": [
+          "Publishing"
+        ]
       }
     },
     "/channels/{channel_id}/presence": {
@@ -298,14 +311,16 @@
           }
         },
         "summary": "Get presence of a channel",
-        "tags": ["Status"]
+        "tags": [
+          "Status"
+        ]
       },
       "parameters": [
         {
-          "$ref": "#/components/parameters/versionHeader"
+          "$ref": "#/components/parameters/channelId"
         },
         {
-          "$ref": "#/components/parameters/responseFormat"
+          "$ref": "#/components/parameters/channelId"
         }
       ]
     },
@@ -318,16 +333,16 @@
             "$ref": "#/components/parameters/channelId"
           },
           {
-            "$ref": "#/components/parameters/filterStart"
+            "$ref": "#/components/parameters/channelId"
           },
           {
-            "$ref": "#/components/parameters/filterLimit"
+            "$ref": "#/components/parameters/channelId"
           },
           {
-            "$ref": "#/components/parameters/filterEnd"
+            "$ref": "#/components/parameters/channelId"
           },
           {
-            "$ref": "#/components/parameters/filterDirection"
+            "$ref": "#/components/parameters/channelId"
           }
         ],
         "responses": {
@@ -345,24 +360,26 @@
           }
         },
         "summary": "Get presence history of a channel",
-        "tags": ["History"]
+        "tags": [
+          "History"
+        ]
       },
       "parameters": [
         {
-          "$ref": "#/components/parameters/versionHeader"
+          "$ref": "#/components/parameters/channelId"
         },
         {
-          "$ref": "#/components/parameters/responseFormat"
+          "$ref": "#/components/parameters/channelId"
         }
       ]
     },
     "/keys/{keyName}/requestToken": {
       "parameters": [
         {
-          "$ref": "#/components/parameters/versionHeader"
+          "$ref": "#/components/parameters/channelId"
         },
         {
-          "$ref": "#/components/parameters/responseFormat"
+          "$ref": "#/components/parameters/channelId"
         }
       ],
       "post": {
@@ -370,7 +387,7 @@
         "operationId": "requestAccessToken",
         "parameters": [
           {
-            "$ref": "#/components/parameters/key_name"
+            "$ref": "#/components/parameters/channelId"
           }
         ],
         "requestBody": {
@@ -378,8 +395,13 @@
             "application/json": {
               "example": {
                 "capability": {
-                  "channel1": ["publish", "subscribe"],
-                  "wildcard:channels:*": ["publish"]
+                  "channel1": [
+                    "publish",
+                    "subscribe"
+                  ],
+                  "wildcard:channels:*": [
+                    "publish"
+                  ]
                 },
                 "keyName": "YourKey.Name",
                 "timestamp": "1559124196551"
@@ -407,7 +429,9 @@
           }
         },
         "summary": "Request an access token",
-        "tags": ["Authentication"]
+        "tags": [
+          "Authentication"
+        ]
       }
     },
     "/push/channelSubscriptions": {
@@ -449,7 +473,9 @@
           }
         },
         "summary": "Delete a registered device's update token",
-        "tags": ["Push"]
+        "tags": [
+          "Push"
+        ]
       },
       "get": {
         "description": "Get a list of push notification subscriptions to channels.",
@@ -506,14 +532,16 @@
           }
         },
         "summary": "List channel subscriptions",
-        "tags": ["Push"]
+        "tags": [
+          "Push"
+        ]
       },
       "parameters": [
         {
-          "$ref": "#/components/parameters/versionHeader"
+          "$ref": "#/components/parameters/channelId"
         },
         {
-          "$ref": "#/components/parameters/responseFormat"
+          "$ref": "#/components/parameters/channelId"
         }
       ],
       "post": {
@@ -640,7 +668,9 @@
           }
         },
         "summary": "Subscribe a device to a channel",
-        "tags": ["Push"]
+        "tags": [
+          "Push"
+        ]
       }
     },
     "/push/channels": {
@@ -682,24 +712,26 @@
           }
         },
         "summary": "List all channels with at least one subscribed device",
-        "tags": ["Push"]
+        "tags": [
+          "Push"
+        ]
       },
       "parameters": [
         {
-          "$ref": "#/components/parameters/versionHeader"
+          "$ref": "#/components/parameters/channelId"
         },
         {
-          "$ref": "#/components/parameters/responseFormat"
+          "$ref": "#/components/parameters/channelId"
         }
       ]
     },
     "/push/deviceRegistrations": {
       "parameters": [
         {
-          "$ref": "#/components/parameters/versionHeader"
+          "$ref": "#/components/parameters/channelId"
         },
         {
-          "$ref": "#/components/parameters/responseFormat"
+          "$ref": "#/components/parameters/channelId"
         }
       ],
       "post": {
@@ -740,15 +772,17 @@
         }
       },
       "summary": "Register a device for receiving push notifications",
-      "tags": ["Push"]
+      "tags": [
+        "Push"
+      ]
     },
     "/push/deviceRegistrations/{device_id}": {
       "parameters": [
         {
-          "$ref": "#/components/parameters/versionHeader"
+          "$ref": "#/components/parameters/channelId"
         },
         {
-          "$ref": "#/components/parameters/responseFormat"
+          "$ref": "#/components/parameters/channelId"
         }
       ],
       "patch": {
@@ -756,7 +790,7 @@
         "operationId": "patchPushDeviceDetails",
         "parameters": [
           {
-            "$ref": "#/components/parameters/deviceId"
+            "$ref": "#/components/parameters/channelId"
           }
         ],
         "requestBody": {},
@@ -770,14 +804,16 @@
           }
         },
         "summary": "Update a device registration",
-        "tags": ["Push"]
+        "tags": [
+          "Push"
+        ]
       },
       "put": {
         "description": "Device registrations can be upserted (the existing registration is replaced entirely) with a PUT operation. Only clientId, metadata and push.recipient are mutable.",
         "operationId": "putPushDeviceDetails",
         "parameters": [
           {
-            "$ref": "#/components/parameters/deviceId"
+            "$ref": "#/components/parameters/channelId"
           }
         ],
         "requestBody": {
@@ -809,16 +845,18 @@
           }
         },
         "summary": "Update a device registration",
-        "tags": ["Push"]
+        "tags": [
+          "Push"
+        ]
       }
     },
     "/push/publish": {
       "parameters": [
         {
-          "$ref": "#/components/parameters/versionHeader"
+          "$ref": "#/components/parameters/channelId"
         },
         {
-          "$ref": "#/components/parameters/responseFormat"
+          "$ref": "#/components/parameters/channelId"
         }
       ],
       "post": {
@@ -836,16 +874,18 @@
           }
         },
         "summary": "Publish a push notification to device(s)",
-        "tags": ["Push"]
+        "tags": [
+          "Push"
+        ]
       }
     },
     "/push/asdf": {
       "parameters": [
         {
-          "$ref": "#/components/parameters/versionHeader"
+          "$ref": "#/components/parameters/channelId"
         },
         {
-          "$ref": "#/components/parameters/responseFormat"
+          "$ref": "#/components/parameters/channelId"
         }
       ],
       "post": {
@@ -863,16 +903,18 @@
           }
         },
         "summary": "Publish a push notification to device(s)",
-        "tags": ["Push"]
+        "tags": [
+          "Push"
+        ]
       }
     },
     "/push/qwert": {
       "parameters": [
         {
-          "$ref": "#/components/parameters/versionHeader"
+          "$ref": "#/components/parameters/channelId"
         },
         {
-          "$ref": "#/components/parameters/responseFormat"
+          "$ref": "#/components/parameters/channelId"
         }
       ],
       "post": {
@@ -890,16 +932,18 @@
           }
         },
         "summary": "Publish a push notification to device(s)",
-        "tags": ["Push"]
+        "tags": [
+          "Push"
+        ]
       }
     },
     "/push/yxcv": {
       "parameters": [
         {
-          "$ref": "#/components/parameters/versionHeader"
+          "$ref": "#/components/parameters/channelId"
         },
         {
-          "$ref": "#/components/parameters/responseFormat"
+          "$ref": "#/components/parameters/channelId"
         }
       ],
       "post": {
@@ -917,16 +961,18 @@
           }
         },
         "summary": "Publish a push notification to device(s)",
-        "tags": ["Push"]
+        "tags": [
+          "Push"
+        ]
       }
     },
     "/push/1234": {
       "parameters": [
         {
-          "$ref": "#/components/parameters/versionHeader"
+          "$ref": "#/components/parameters/channelId"
         },
         {
-          "$ref": "#/components/parameters/responseFormat"
+          "$ref": "#/components/parameters/channelId"
         }
       ],
       "post": {
@@ -944,7 +990,69 @@
           }
         },
         "summary": "Publish a push notification to device(s)",
-        "tags": ["Push"]
+        "tags": [
+          "Push"
+        ]
+      }
+    },
+    "/push/12345": {
+      "parameters": [
+        {
+          "in": "query",
+          "name": "dashboard",
+          "required": true
+        }
+      ],
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "dashboard",
+            "required": true
+          }
+        ],
+        "description": "A convenience endpoint to deliver a push notification payload to a single device or set of devices identified by their client identifier.",
+        "operationId": "publishPushNotificationToDevices",
+        "responses": {
+          "2XX": {
+            "$ref": "#/components/responses/Error"
+          },
+          "default": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Publish a push notification to device(s)",
+        "tags": [
+          "Push"
+        ]
+      }
+    },
+    "/push/123456": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/deviceId"
+        }
+      ],
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/deviceId"
+          }
+        ],
+        "description": "A convenience endpoint to deliver a push notification payload to a single device or set of devices identified by their client identifier.",
+        "operationId": "publishPushNotificationToDevices",
+        "responses": {
+          "2XX": {
+            "$ref": "#/components/responses/Error"
+          },
+          "default": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "summary": "Publish a push notification to device(s)",
+        "tags": [
+          "Push"
+        ]
       }
     }
   },
@@ -980,29 +1088,29 @@
     },
     "parameters": {
       "channelId": {
-        "description": "The [Channel's ID](https://www.ably.io/documentation/rest/channels).",
         "in": "path",
-        "name": "channel_id",
-        "required": true,
+        "name": "id",
         "schema": {
-          "type": "string"
-        }
+          "type": "integer"
+        },
+        "required": true,
+        "description": "The user ID."
       },
       "deviceId": {
         "description": "Device's ID.",
         "in": "path",
         "name": "device_id",
-        "required": true,
-        "schema": {
-          "type": "string"
-        }
+        "required": true
       },
       "filterDirection": {
         "in": "query",
         "name": "direction",
         "schema": {
           "default": "backwards",
-          "enum": ["forwards", "backwards"],
+          "enum": [
+            "forwards",
+            "backwards"
+          ],
           "type": "string"
         }
       },
@@ -1043,7 +1151,12 @@
         "in": "query",
         "name": "format",
         "schema": {
-          "enum": ["json", "jsonp", "msgpack", "html"],
+          "enum": [
+            "json",
+            "jsonp",
+            "msgpack",
+            "html"
+          ],
           "type": "string"
         }
       },
@@ -1210,7 +1323,9 @@
             "$ref": "#/components/schemas/ChannelStatus"
           }
         },
-        "required": ["channelId"],
+        "required": [
+          "channelId"
+        ],
         "type": "object"
       },
       "ChannelStatus": {
@@ -1224,7 +1339,9 @@
             "$ref": "#/components/schemas/Occupancy"
           }
         },
-        "required": ["isActive"],
+        "required": [
+          "isActive"
+        ],
         "type": "object"
       },
       "DeviceDetails": {
@@ -1260,7 +1377,10 @@
           },
           "platform": {
             "description": "Platform of the push device.",
-            "enum": ["ios", "android"],
+            "enum": [
+              "ios",
+              "android"
+            ],
             "type": "string"
           },
           "push.recipient": {
@@ -1268,7 +1388,11 @@
           },
           "push.state": {
             "description": "the current state of the push device.",
-            "enum": ["Active", "Failing", "Failed"],
+            "enum": [
+              "Active",
+              "Failing",
+              "Failed"
+            ],
             "readOnly": true,
             "type": "string"
           }
@@ -1405,7 +1529,13 @@
         "properties": {
           "action": {
             "description": "The event signified by a PresenceMessage.",
-            "enum": ["ABSENT", "PRESENT", "ENTER", "LEAVE", "UPDATE"],
+            "enum": [
+              "ABSENT",
+              "PRESENT",
+              "ENTER",
+              "LEAVE",
+              "UPDATE"
+            ],
             "readOnly": true,
             "type": "string"
           },
@@ -1504,7 +1634,11 @@
           },
           "transportType": {
             "description": "Defines which push platform is being used.",
-            "enum": ["apns", "fcm", "gcm"],
+            "enum": [
+              "apns",
+              "fcm",
+              "gcm"
+            ],
             "type": "string"
           }
         },
@@ -1522,7 +1656,9 @@
                 "type": "string"
               }
             },
-            "required": ["mac"],
+            "required": [
+              "mac"
+            ],
             "type": "object"
           }
         ]
@@ -1557,7 +1693,10 @@
           "capability": {
             "description": "The [capabilities](https://www.ably.io/documentation/core-features/authentication#capabilities-explained) (i.e. a set of channel names/namespaces and, for each, a set of operations) which should be a subset of the set of capabilities associated with the key specified in keyName.",
             "example": {
-              "channel1": ["publish", "subscribe"]
+              "channel1": [
+                "publish",
+                "subscribe"
+              ]
             },
             "type": "object"
           },
@@ -1579,7 +1718,12 @@
             "type": "integer"
           }
         },
-        "required": ["keyName", "capability", "timestamp", "nonce"],
+        "required": [
+          "keyName",
+          "capability",
+          "timestamp",
+          "nonce"
+        ],
         "type": "object"
       }
     },

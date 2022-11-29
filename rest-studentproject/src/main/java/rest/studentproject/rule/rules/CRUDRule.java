@@ -22,7 +22,7 @@ public class CRUDRule implements IRestRule {
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTE = Arrays
             .asList(RuleSoftwareQualityAttribute.USABILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
     private static final String[] CRUD_OPERATIONS = { "get", "post", "delete", "put", "create", "read", "update",
-            "patch", "insert", "select" };
+            "patch", "insert", "select", "fetch", "purge", "retrieve", "add" };
     private static final String PATH_TO_CRUD_DICTIONARY = "src/main/java/rest/studentproject/docs/CRUD_words.txt";
     private final List<Violation> violationList = new ArrayList<>();
     private boolean isActive;
