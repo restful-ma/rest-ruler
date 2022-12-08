@@ -116,8 +116,5 @@ def analyse_false_positive_per_rule():
         ) as file:
             violation_rules.to_csv(file, encoding="utf-8")
 
-
-# def print_diagramm():
-
 analyse_false_positive_per_rule()
 analyse_false_positive_total()

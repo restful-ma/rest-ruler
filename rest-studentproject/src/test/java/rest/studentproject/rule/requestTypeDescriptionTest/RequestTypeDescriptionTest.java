@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import rest.studentproject.analyzer.RestAnalyzer;
 import rest.studentproject.rule.Violation;
 import rest.studentproject.rule.rules.RequestTypeDescriptionRule;
-import rest.studentproject.rule.rules.VerbPhraseRule;
 
 import java.net.MalformedURLException;
 import java.util.List;
@@ -16,7 +15,6 @@ public class RequestTypeDescriptionTest {
     RequestTypeDescriptionRule requestTypeDescriptionRuleTest;
     RestAnalyzer restAnalyzer;
 
-    //TODO: Tests need to be changed with false request type and mismatching description
     @Test
     @DisplayName("Detect if a path segment contains a violation regarding the store or collection name")
     void checkViolationOnInvalidRESTFile2Violations() throws MalformedURLException {
@@ -25,7 +23,7 @@ public class RequestTypeDescriptionTest {
 
         List<Violation> violationToTest = runMethodUnderTest(url);
 
-        assertEquals(4, violationToTest.size(),
+        assertEquals(8, violationToTest.size(),
                 "Detection of violations should work.");
     }
 

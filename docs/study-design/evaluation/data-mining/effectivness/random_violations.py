@@ -1,9 +1,9 @@
 import random
 
 # TODO: Set count of rows of violations (with the lines at the beginning)
-max_rows = 159
+max_rows = 0
 # TODO: Set count of violations to be randomly selected
-selcet_rows = 30
+selcet_rows = 0
 
 
 # ------------------ Do not change anything below this line ------------------
