@@ -42,7 +42,7 @@ noun phrase path segment."
 ### Future work
 
 * Dynamic analysis will check the parameter input if it is plural or singular
-
+* If a path segment is composed of more than one word, then we need to only take the last one into consideration
 ## Source
 
 [1] https://www.oreilly.com/library/view/rest-api-design/9781449317904/

@@ -43,7 +43,7 @@ a space or hyphen in English, you should use a hyphen in a URI.
 
 ### Future work
 
-* None
+* Use a bigger dictionary with a caching possibility to improve performance and precision.
 
 
 ## Source
