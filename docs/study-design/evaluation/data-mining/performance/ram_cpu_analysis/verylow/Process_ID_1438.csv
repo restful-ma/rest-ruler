@@ -1,0 +1,6 @@
+java.exe,85.86343864113006,0.5366464915070629,<bound method Process.cpu_percent of psutil.Process(pid=9504, name='java.exe', status='running', started='16:00:35')>
+java.exe,86.42971415999675,0.5401857134999797,<bound method Process.cpu_percent of psutil.Process(pid=9504, name='java.exe', status='running', started='16:00:35')>
+java.exe,89.66284127785045,0.5603927579865653,<bound method Process.cpu_percent of psutil.Process(pid=9504, name='java.exe', status='running', started='16:00:35')>
+java.exe,96.26301202139794,0.6023134076729376,<bound method Process.cpu_percent of psutil.Process(pid=9504, name='java.exe', status='running', started='16:00:35')>
+java.exe,99.09821580166964,0.6194355897467783,<bound method Process.cpu_percent of psutil.Process(pid=9504, name='java.exe', status='running', started='16:00:35')>
+java.exe,107.07198729706269,0.6701564670912139,<bound method Process.cpu_percent of psutil.Process(pid=9504, name='java.exe', status='running', started='16:00:35')>

@@ -1,0 +1,1896 @@
+file_name,file_size
+ API Client.json,158.5498046875
+ Seller Service Metrics API .json,71.4306640625
+1Forge Finance APIs.json,2.7197265625
+1Password Connect.json,80.4296875
+"500,000+ Recipe and Grocery List API (v2).json",282.79296875
+Abusive Experience Report API.json,12.6943359375
+Accelerated Mobile Pages (AMP) URL API.json,11.4482421875
+Access Analyzer.json,321.8720703125
+Access Approval API.json,46.0078125
+Access Context Manager API.json,59.2666015625
+Account and Transaction API Specification - UK.json,542.7568359375
+Account and Transaction API Specification.json,906.92578125
+Account API.json,268.6455078125
+"Accountants General, Tripura.json",63.900390625
+Accounting API.json,562.060546875
+Accounting.json,379.9912109375
+Accounts API.json,48.9912109375
+ACE Provisioning ManagementPartner.json,24.63671875
+Acko General Insurance Limited.json,68.623046875
+Active Documentation for v1.json,32.14453125
+Ad Exchange Buyer API II.json,347.6416015625
+Ad Exchange Buyer API.json,227.31640625
+Ad Experience Report API.json,14.1083984375
+Adafruit IO REST API.json,151.86328125
+ADHybridHealthService.json,437.3291015625
+Admin SDK API.json,83.033203125
+AdMob API.json,73.427734375
+Adobe Experience Manager (AEM) API.json,137.3603515625
+AdSense Host API.json,105.3544921875
+AdSense Management API.json,158.3056640625
+Advicent.FactFinderService.json,443.8984375
+AdvisorManagementClient.json,77.109375
+Adyen BinLookup API.json,40.861328125
+Adyen Checkout API.json,921.0947265625
+Adyen Checkout Utility Service.json,5.2763671875
+Adyen for Platforms,0.0
+Adyen Payment API.json,385.08203125
+Adyen Payout API.json,268.3173828125
+Adyen Recurring API.json,50.1904296875
+Adyen Test Cards API.json,13.8330078125
+Afterbanks API.json,17.2978515625
+AGCO API.json,1044.447265625
+"agentOS Api V2, Customer Login Call Group.json",88.189453125
+"agentOS API V3, Diary Call Group.json",37.603515625
+"agentOS API V3, Maintenance Call Group.json",7.955078125
+Agricultural Scientists Recruitment Board.json,59.9638671875
+AI Platform Training & Prediction API.json,258.2490234375
+AIception Interactive.json,17.708984375
+AIIMS Mangalagiri.json,60.33203125
+AIIMS Rishikesh.json,59.4111328125
+"AIIMS, Patna.json",60.3701171875
+Airbyte Configuration API.json,162.25390625
+Airports API v2.json,15.0078125
+airportsapi.json,2.5
+Akeneo PIM REST API.json,2231.869140625
+Alexa For Business.json,655.2822265625
+AltoroJ REST API.json,22.55859375
+Amazon API Gateway.json,975.3759765625
+Amazon AppConfig.json,233.9658203125
+Amazon Appflow.json,382.5146484375
+Amazon AppIntegrations Service.json,70.6796875
+Amazon AppStream.json,434.6572265625
+Amazon Athena.json,288.451171875
+Amazon Augmented AI Runtime.json,52.0146484375
+Amazon Chime SDK Identity.json,139.1123046875
+Amazon Chime SDK Messaging.json,290.5908203125
+Amazon Chime.json,1575.3193359375
+Amazon CloudDirectory.json,874.0263671875
+Amazon CloudFront.json,1025.8662109375
+Amazon CloudHSM.json,155.849609375
+Amazon CloudSearch Domain.json,75.4013671875
+Amazon CloudSearch.json,386.1767578125
+Amazon CloudWatch Application Insights.json,234.4599609375
+Amazon CloudWatch Events.json,513.583984375
+Amazon CloudWatch Logs.json,342.279296875
+Amazon CloudWatch.json,631.6962890625
+Amazon CodeGuru Profiler.json,231.302734375
+Amazon CodeGuru Reviewer.json,203.2060546875
+Amazon Cognito Identity Provider.json,1162.78515625
+Amazon Cognito Identity.json,213.0009765625
+Amazon Cognito Sync.json,155.4462890625
+Amazon Comprehend.json,656.9658203125
+Amazon Connect Contact Lens.json,32.4287109375
+Amazon Connect Customer Profiles.json,440.5556640625
+Amazon Connect Participant Service.json,93.9189453125
+Amazon Connect Service.json,986.9501953125
+Amazon Data Lifecycle Manager.json,122.4267578125
+Amazon Detective.json,118.517578125
+Amazon DevOps Guru.json,278.1943359375
+Amazon DocumentDB with MongoDB compatibility.json,908.4287109375
+Amazon DynamoDB Accelerator (DAX).json,208.2021484375
+Amazon DynamoDB Streams.json,76.8935546875
+Amazon DynamoDB.json,771.1708984375
+Amazon EC2 Container Registry.json,326.654296875
+Amazon EC2 Container Service.json,901.853515625
+Amazon Elastic  Inference.json,55.5751953125
+Amazon Elastic Block Store.json,85.1259765625
+Amazon Elastic Compute Cloud.json,8098.3056640625
+Amazon Elastic Container Registry Public.json,224.5498046875
+Amazon Elastic File System.json,252.57421875
+Amazon Elastic Kubernetes Service.json,441.7958984375
+Amazon Elastic Transcoder.json,450.955078125
+Amazon ElastiCache.json,1371.8193359375
+Amazon Elasticsearch Service.json,531.134765625
+Amazon EMR Containers.json,144.904296875
+Amazon EMR.json,597.9970703125
+Amazon EventBridge.json,513.583984375
+Amazon Forecast Query Service.json,20.1748046875
+Amazon Forecast Service.json,383.060546875
+Amazon Fraud Detector.json,506.224609375
+Amazon FSx.json,452.92578125
+Amazon GameLift.json,1140.0146484375
+Amazon Glacier.json,307.9052734375
+Amazon GuardDuty.json,527.9677734375
+Amazon HealthLake.json,128.21484375
+Amazon Honeycode.json,199.119140625
+Amazon ImportExport Snowball.json,252.125
+Amazon Inspector.json,382.9775390625
+Amazon Interactive Video Service.json,221.162109375
+Amazon Kinesis Analytics.json,469.8427734375
+Amazon Kinesis Firehose.json,315.4287109375
+Amazon Kinesis Video Signaling Channels.json,30.123046875
+Amazon Kinesis Video Streams Archived Media.json,149.2841796875
+Amazon Kinesis Video Streams Media.json,30.5419921875
+Amazon Kinesis Video Streams.json,197.0673828125
+Amazon Kinesis.json,271.8828125
+Amazon Lex Model Building Service.json,553.09375
+Amazon Lex Model Building V2.json,812.2529296875
+Amazon Lex Runtime Service.json,121.83984375
+Amazon Lex Runtime V2.json,100.3291015625
+Amazon Lightsail.json,1646.3251953125
+Amazon Location Service.json,545.5380859375
+Amazon Lookout for Equipment.json,241.1962890625
+Amazon Lookout for Metrics.json,309.7978515625
+Amazon Lookout for Vision.json,191.3349609375
+Amazon Machine Learning.json,360.58984375
+Amazon Macie 2.json,740.4970703125
+Amazon Macie.json,60.27734375
+Amazon Managed Blockchain.json,287.0234375
+Amazon Mechanical Turk.json,330.228515625
+Amazon MemoryDB.json,360.6767578125
+Amazon Mobile Analytics.json,19.482421875
+Amazon Neptune.json,1182.912109375
+Amazon OpenSearch Service.json,527.775390625
+Amazon Personalize Events.json,35.423828125
+Amazon Personalize Runtime.json,36.375
+Amazon Personalize.json,432.08203125
+Amazon Pinpoint Email Service.json,398.56640625
+Amazon Pinpoint SMS and Voice Service.json,66.236328125
+Amazon Pinpoint.json,1558.083984375
+Amazon Polly.json,123.455078125
+Amazon Prometheus Service.json,62.9775390625
+Amazon QLDB Session.json,41.9228515625
+Amazon QLDB.json,185.8857421875
+Amazon QuickSight.json,1435.6669921875
+Amazon Redshift.json,1903.267578125
+Amazon Rekognition.json,728.69921875
+Amazon Relational Database Service.json,2929.197265625
+Amazon Route 53 Domains.json,264.9892578125
+Amazon Route 53 Resolver.json,590.7646484375
+Amazon Route 53.json,735.380859375
+Amazon S3 on Outposts.json,38.080078125
+Amazon Sagemaker Edge Manager.json,26.6591796875
+Amazon SageMaker Feature Store Runtime.json,42.865234375
+Amazon SageMaker Runtime.json,32.7255859375
+Amazon SageMaker Service.json,2699.4189453125
+Amazon Simple Email Service.json,735.2177734375
+Amazon Simple Notification Service.json,544.517578125
+Amazon Simple Queue Service.json,390.837890625
+Amazon Simple Storage Service.json,1139.5322265625
+Amazon Simple Systems Manager (SSM).json,1773.3916015625
+Amazon Simple Workflow Service.json,627.4541015625
+Amazon SimpleDB.json,139.00390625
+Amazon Textract.json,141.5810546875
+Amazon Timestream Query.json,44.2138671875
+Amazon Timestream Write.json,133.373046875
+Amazon Transcribe Service.json,416.8564453125
+Amazon Translate.json,155.533203125
+Amazon WorkDocs.json,391.2060546875
+Amazon WorkLink.json,258.6064453125
+Amazon WorkMail Message Flow.json,23.126953125
+Amazon WorkMail.json,458.564453125
+Amazon WorkSpaces.json,427.5771484375
+AmazonApiGatewayManagementApi.json,21.107421875
+AmazonApiGatewayV2.json,886.734375
+AmazonMQ.json,305.8818359375
+AmazonMWAA.json,148.0107421875
+AmazonNimbleStudio.json,461.05859375
+AmplifyBackend.json,321.154296875
+Analytics Hub API.json,82.0791015625
+Analytics Reporting API.json,89.9677734375
+Anchore Engine API Server.json,343.2177734375
+"Andaman Law College, Andaman & Nicobar.json",59.416015625
+Android Device Provisioning Partner API.json,119.2646484375
+Android Management API.json,270.974609375
+Annunciator content API.json,14.9814453125
+Anomaly Detector Client.json,143.1015625
+Anomaly Finder Client.json,53.681640625
+"Antyodaya Saral Haryana, Haryana.json",59.4443359375
+Apacta.json,344.3603515625
+API Discovery Service.json,36.6279296875
+API docs  logoraisr.com.json,48.0703125
+Api Documentation.json,13.8046875
+API Endpoints.json,48.8701171875
+API for the COVID-19 Tracking QR Code Signin Server..json,32.4541015625
+API for the Settlement Currency Rate converter.json,17.697265625
+API Gateway API.json,57.3427734375
+API iSendPro.json,93.259765625
+API Keys API.json,46.7353515625
+API Reference,0.0
+API v1.0.0.json,408.0986328125
+API V1.json,25.8759765625
+api.clarify.io.json,101.5341796875
+api.datumbox.com.json,18.423828125
+api.ecota.co v2.json,135.25390625
+API.json,119.50390625
+api.video.json,334.6357421875
+"Api2Pdf - PDF Generation, Powered by AWS Lambda.json",33.4765625
+Apicurio Registry API [v2].json,157.0205078125
+ApiDapp.json,65.279296875
+Apigee API.json,707.83984375
+Apigee Registry API.json,147.73046875
+ApiManagementClient.json,179.4345703125
+APIMATIC API Transformer.json,4.0595703125
+APIs.guru.json,10.6484375
+APOD.json,3.794921875
+App Center Client.json,4148.5751953125
+App Engine Admin API.json,287.3349609375
+App Store Connect API.json,1704.482421875
+AppConfigurationManagementClient.json,114.6416015625
+Application API.json,80.37890625
+Application Auto Scaling.json,253.6533203125
+Application Insights Data Plane.json,357.4560546875
+Application Integration API.json,495.97265625
+Application Migration Service.json,265.26953125
+ApplicationClient.json,119.4541015625
+ApplicationInsightsManagementClient.json,41.0986328125
+AppPlatformManagementClient.json,184.96875
+Apps Script API.json,111.9970703125
+AppServiceCertificateOrders API Client.json,150.96875
+AppServiceEnvironments API Client.json,1169.0419921875
+AppServicePlans API Client.json,516.4521484375
+AppVeyor REST API.json,244.5009765625
+Appwrite.json,339.64453125
+Archive API.json,9.9130859375
+Area120 Tables API.json,68.12890625
+ART19 Content API Documentation.json,308.41015625
+Article Rewriter and Article Extractor API.json,9.37109375
+Article Search API.json,14.72265625
+Artifact Registry API.json,117.5830078125
+Artifact.json,62.8544921875
+Asana.json,691.208984375
+"Assam State Board of Secondary Education, Assam.json",60.5185546875
+Assured Workloads API.json,81.921875
+Asynchronous Speech-To-Text API Documentation.json,119.767578125
+ATM Locator API.json,51.5400390625
+Atmosphere API.json,27.3525390625
+ATS API.json,174.0166015625
+AttestationClient.json,27.828125
+Auckland Museum API.json,13.2197265625
+Audit API.json,31.1025390625
+Authentication.json,4.50390625
+Authentiq API.json,39.25390625
+Authentiq Connect API.json,35.7626953125
+AuthorizationManagementClient.json,78.1298828125
+Authorized Buyers Marketplace API.json,181.3779296875
+Authorized Partner API Specification.json,209.92578125
+Auto Scaling.json,1007.2646484375
+Automata Market Intelligence API.json,33.0234375
+AutomationManagement.json,128.7919921875
+AutomationManagementClient.json,43.5068359375
+AutoSuggest Client.json,41.080078125
+Available API endpoints.json,63.611328125
+Avaza API Documentation.json,310.6865234375
+Aviation Radiation API.json,77.3642578125
+AviationData.Systems Airports API V1.json,19.2890625
+AWS Amplify.json,369.7802734375
+AWS App Mesh.json,585.177734375
+AWS App Runner.json,225.9013671875
+AWS Application Cost Profiler.json,61.291015625
+AWS Application Discovery Service.json,258.470703125
+AWS AppSync.json,410.091796875
+AWS Audit Manager.json,460.6201171875
+AWS Auto Scaling Plans.json,111.7119140625
+AWS Backup.json,593.2705078125
+AWS Batch.json,452.3564453125
+AWS Budgets.json,223.623046875
+AWS Certificate Manager Private Certificate Authority.json,271.203125
+AWS Certificate Manager.json,155.1201171875
+AWS Cloud Map.json,297.865234375
+AWS Cloud9.json,130.8193359375
+AWS CloudFormation.json,1331.353515625
+AWS CloudHSM V2.json,146.548828125
+AWS CloudTrail.json,257.2412109375
+AWS CodeBuild.json,526.17578125
+AWS CodeCommit.json,1093.3125
+AWS CodeDeploy.json,559.0498046875
+AWS CodePipeline.json,433.5302734375
+AWS CodeStar connections.json,89.404296875
+AWS CodeStar Notifications.json,122.3125
+AWS CodeStar.json,162.7744140625
+AWS Comprehend Medical.json,213.419921875
+AWS Compute Optimizer.json,291.234375
+AWS Config.json,858.705078125
+AWS Cost and Usage Report Service.json,37.966796875
+AWS Cost Explorer Service.json,479.6708984375
+AWS Data Exchange.json,221.4140625
+AWS Data Pipeline.json,169.005859375
+AWS Database Migration Service.json,776.4560546875
+AWS DataSync.json,316.259765625
+AWS Device Farm.json,721.4267578125
+AWS Direct Connect.json,475.2412109375
+AWS Directory Service.json,568.203125
+AWS EC2 Instance Connect.json,26.9755859375
+AWS Elastic Beanstalk.json,723.0087890625
+AWS Elemental MediaConvert.json,1425.798828125
+AWS Elemental MediaLive.json,1347.302734375
+AWS Elemental MediaPackage VOD.json,202.0859375
+AWS Elemental MediaPackage.json,344.58203125
+AWS Elemental MediaStore Data Plane.json,41.9345703125
+AWS Elemental MediaStore.json,139.74609375
+AWS Fault Injection Simulator.json,135.0078125
+AWS Global Accelerator.json,408.7568359375
+AWS Glue DataBrew.json,433.44921875
+AWS Glue.json,1659.26953125
+AWS Greengrass.json,520.529296875
+AWS Ground Station.json,222.3505859375
+AWS Health APIs and Notifications.json,162.51171875
+AWS Identity and Access Management.json,2340.8837890625
+AWS ImportExport.json,131.13671875
+AWS IoT 1-Click Devices Service.json,85.0615234375
+AWS IoT 1-Click Projects Service.json,108.1015625
+AWS IoT Analytics.json,400.2314453125
+AWS IoT Core Device Advisor.json,107.3671875
+AWS IoT Data Plane.json,63.453125
+AWS IoT Events Data.json,139.69140625
+AWS IoT Events.json,335.251953125
+AWS IoT Fleet Hub.json,61.9619140625
+AWS IoT Greengrass V2.json,279.5849609375
+AWS IoT Jobs Data Plane.json,56.0869140625
+AWS IoT Secure Tunneling.json,55.69921875
+AWS IoT SiteWise.json,657.3017578125
+AWS IoT Things Graph.json,282.9775390625
+AWS IoT Wireless.json,469.861328125
+AWS IoT.json,2231.869140625
+AWS Key Management Service.json,631.4580078125
+AWS Lake Formation.json,213.4677734375
+AWS Lambda.json,610.7529296875
+AWS License Manager.json,471.173828125
+AWS Marketplace Catalog Service.json,92.84765625
+AWS Marketplace Commerce Analytics.json,33.5205078125
+AWS Marketplace Entitlement Service.json,24.263671875
+AWS MediaConnect.json,447.4990234375
+AWS MediaTailor.json,278.6396484375
+AWS Migration Hub Config.json,36.1376953125
+AWS Migration Hub.json,179.490234375
+AWS Mobile.json,78.458984375
+AWS Network Firewall.json,363.5908203125
+AWS Network Manager.json,308.1640625
+AWS OpsWorks CM.json,191.5546875
+AWS OpsWorks.json,662.2041015625
+AWS Organizations.json,604.0810546875
+AWS Outposts.json,86.4619140625
+AWS Performance Insights.json,66.126953125
+AWS Price List Service.json,43.5166015625
+AWS Proton.json,501.35546875
+AWS RDS DataService.json,103.294921875
+AWS Resource Access Manager.json,285.3837890625
+AWS Resource Groups Tagging API.json,95.9091796875
+AWS Resource Groups.json,211.671875
+AWS RoboMaker.json,717.162109375
+AWS Route53 Recovery Control Config.json,169.43359375
+AWS Route53 Recovery Readiness.json,245.0048828125
+AWS S3 Control.json,513.9775390625
+AWS Savings Plans.json,124.1083984375
+AWS Secrets Manager.json,295.7919921875
+AWS Security Token Service.json,277.3818359375
+AWS SecurityHub.json,1590.8505859375
+AWS Server Migration Service.json,315.583984375
+AWS Service Catalog App Registry.json,147.9619140625
+AWS Service Catalog.json,781.3798828125
+AWS Shield.json,259.978515625
+AWS Signer.json,184.443359375
+AWS Single Sign-On Admin.json,283.076171875
+AWS Single Sign-On.json,38.2822265625
+AWS Snow Device Management.json,128.9228515625
+AWS SSO Identity Store.json,48.4833984375
+AWS SSO OIDC.json,47.6787109375
+AWS Step Functions.json,258.3583984375
+AWS Storage Gateway.json,783.6396484375
+AWS Support.json,150.236328125
+AWS Systems Manager Incident Manager Contacts.json,251.90234375
+AWS Systems Manager Incident Manager.json,314.6455078125
+AWS Transfer Family.json,387.6162109375
+AWS WAF Regional.json,873.8916015625
+AWS WAF.json,842.8271484375
+AWS WAFV2.json,626.544921875
+AWS Well-Architected Tool.json,276.259765625
+AWS X-Ray.json,352.986328125
+AWSKendraFrontendService.json,647.638671875
+AWSMarketplace Metering.json,60.4384765625
+AWSServerlessApplicationRepository.json,212.865234375
+Axesso Api.json,14.7548828125
+Azure Action Groups.json,86.3427734375
+Azure Activity Log Alerts.json,46.521484375
+Azure Addons Resource Provider.json,26.2373046875
+Azure Alerts Management Service Resource Provider.json,168.7373046875
+Azure Bot Service.json,175.6943359375
+Azure CDN WebApplicationFirewallManagement.json,130.275390625
+Azure Data Catalog Resource Provider.json,37.83203125
+Azure Data Lake Storage.json,127.564453125
+Azure Data Migration Service Resource Provider.json,323.080078125
+Azure Dedicated HSM Resource Provider.json,48.099609375
+Azure DevOps.json,64.1982421875
+Azure Enterprise Knowledge Graph Service.json,35.29296875
+Azure IoT Central.json,146.6064453125
+Azure Location Based Services Resource Provider.json,51.1552734375
+Azure Log Analytics - Operations Management.json,70.9365234375
+Azure Log Analytics Query Packs.json,42.33984375
+Azure Log Analytics.json,33.7958984375
+Azure Machine Learning Datastore Management Client.json,36.7490234375
+Azure Machine Learning Model Management Service.json,142.3916015625
+Azure Machine Learning Workspaces.json,298.1845703125
+Azure Maps Resource Provider.json,114.9169921875
+Azure Media Services.json,48.6513671875
+Azure Metrics.json,12.03125
+Azure Migrate Hub.json,184.087890625
+Azure Migrate V2.json,403.490234375
+Azure ML Commitment Plans Management Client.json,41.78125
+Azure ML Web Services Management Client.json,131.73046875
+Azure Monitor Private Link Scopes.json,86.859375
+Azure Reservation.json,160.7265625
+Azure Resource Graph Query.json,26.8544921875
+Azure Resource Graph.json,69.705078125
+Azure SQL Database API spec.json,22.7392578125
+Azure SQL Database Backup Long Term Retention Policy.json,21.8447265625
+Azure SQL Database Backup.json,30.140625
+Azure SQL Database Datamasking Policies and Rules.json,49.5546875
+Azure SQL Database disaster recovery configurations.json,34.1044921875
+Azure SQL Database ImportExport spec.json,49.7275390625
+Azure SQL Database replication links.json,27.9111328125
+Azure SQL Database.json,10.1708984375
+Azure SQL Server API spec.json,13.8203125
+Azure SQL Server Backup Long Term Retention Vault.json,19.4892578125
+Azure Stack Azure Bridge Client.json,40.1494140625
+azureactivedirectory.json,33.783203125
+AzureAnalysisServices.json,79.25390625
+AzureBridgeAdminClient.json,524.6826171875
+AzureDataManagementClient.json,74.7138671875
+AzureDeploymentManager.json,209.3427734375
+AzureDigitalTwinsManagementClient.json,91.9111328125
+AzureStack Azure Bridge Client.json,82.09765625
+Background Removal API.json,57.279296875
+Backup for GKE API.json,160.0107421875
+BackupManagementClient.json,54.4375
+Bajaj Allianz General Insurance Company Ltd. (BAGIC).json,86.84765625
+Bajaj Allianz Life Insurance Company Ltd.json,59.8896484375
+Balance Platform Transfers API.json,44.4912109375
+Bandsintown API.json,11.6416015625
+Barcode API.json,12.900390625
+Bare Metal Solution API.json,176.0400390625
+Batch API.json,128.26953125
+BatchAI.json,274.43359375
+BatchManagement.json,366.2666015625
+BatchService.json,1078.6357421875
+BBC iPlayer Business Layer.json,137.3701171875
+BBC Nitro API.json,355.537109375
+BC Data Catalogue API.json,33.6728515625
+BC Geographical Names Web Service - REST API.json,73.8701171875
+BC Gov News API Service 1.0.json,82.3486328125
+BC Laws.json,20.783203125
+BC Route Planner REST API.json,173.46875
+Beanstream Payments.json,76.5322265625
+BeezUP Merchant API .json,1198.34375
+Benefits Intake.json,84.1552734375
+Betfair,0.0
+Betriebsstellen.json,7.0537109375
+Bets API.json,66.9853515625
+BeyondCorp API.json,192.89453125
+Bhagavad Gita API.json,29.251953125
+Bharti AXA General Insurance Company Ltd..json,77.5751953125
+Big Red Cloud API.json,462.96875
+BigQuery API.json,464.70703125
+BigQuery Connection API.json,55.6259765625
+BigQuery Data Transfer API.json,101.9736328125
+BigQuery Reservation API.json,79.0068359375
+"Bihar State Board of School Examination, Bihar.json",66.2607421875
+"Biju Patnaik University Of Technology, Odisha.json",59.8759765625
+BikeWise API v2.json,16.125
+Bill Payment Validator.json,9.1591796875
+Billbee API.json,266.5078125
+BillingManagementClient.json,686.615234375
+Billingo API v3.json,169.216796875
+Bills API.json,101.65234375
+BIN Lookup API.json,6.1884765625
+Binary Authorization API.json,70.0029296875
+BioLink API.json,783.765625
+Bitbucket API.json,1640.1083984375
+Blazemeter API Explorer.json,21.4599609375
+BlockchainManagementClient.json,112.8056640625
+Blogger API.json,154.8828125
+BlueprintClient.json,206.5869140625
+bng2latlong.json,5.140625
+"Board of Ayurvedic and Unani Systems of Medicine, Himachal Pradesh, Himachal Pradesh.json",64.1875
+"BOARD OF HIGHER SECONDARY EXAMINATION, KERALA, Kerala.json",60.6591796875
+"Board of Vocational Higher Secondary Examinations, Kerala.json",60.6494140625
+Books API.json,330.5810546875
+Botify API.json,144.9814453125
+Box Platform API.json,1626.529296875
+Brain Web API.json,224.5361328125
+brainbi.json,20.7412109375
+Braket.json,88.4619140625
+Branch Locator API.json,77.814453125
+BrandLovers Marketplace API V1.json,145.8662109375
+Braze Endpoints.json,123.1845703125
+bridgedb webservices.json,68.2119140625
+Browse API.json,282.54296875
+Browshot API.json,75.86328125
+Budgea API Documentation.json,603.76953125
+Bufferapp.json,111.6083984375
+Bulk Data Storage System Services.json,21.4013671875
+Bulk WHOIS API.json,12.150390625
+BulkSMS JSON REST API.json,93.7548828125
+Bungie.Net API.json,2065.7412109375
+bunq API.json,2672.8037109375
+Bus Route and Stop Methods.json,763.173828125
+Business Profile Performance API.json,25.5166015625
+Business Registries.json,174.2294921875
+Buy Marketing API.json,32.5703125
+Calendar API.json,227.4736328125
+Call Control API.json,19.0986328125
+CallFire API Documentation.json,667.0693359375
+CalorieNinjas.json,2.8466796875
+Cambase.io.json,72.01171875
+Campaign Manager 360 API.json,1214.23828125
+Canada Holidays API.json,40.9052734375
+Car Configurator.json,109.23828125
+Car Registration API.json,2.5517578125
+CarbonDoomsDay.json,8.125
+Catalog API.json,46.4833984375
+Catalog Inventory.json,107.8056640625
+CBB v3 Scores.json,59.73046875
+CBB v3 Stats.json,109.4560546875
+CdnManagementClient.json,363.03125
+Cenit IO - REST API Specification.json,46.1865234375
+Central Board of Secondary Education.json,133.853515625
+Certificate Authority API.json,178.9462890625
+Certificate Manager API.json,99.673828125
+CertificateRegistrationProvider API Client.json,33.5029296875
+Certificates API Client.json,64.447265625
+CFB v3 Scores.json,70.0087890625
+Chaingateway.io.json,103.1767578125
+Channel 4 API.json,171.0791015625
+ChannelShipper & Royal Mail Public API.json,42.8583984375
+Charity API.json,25.6357421875
+Checks API.json,1845.3896484375
+"Chhattisgarh State Board of Secondary Education, Chhattisgarh.json",65.6533203125
+Chitkara University.json,59.890625
+Cholamandalam MS General Insurance Company Ltd..json,63.9755859375
+Chomp Food Database API Documentation.json,59.61328125
+Chrome Management API.json,143.072265625
+Chrome Policy API.json,109.84765625
+Chrome UX Report API.json,20.490234375
+Chrome Verified Access API.json,15.8701171875
+CircleCI REST API.json,53.2685546875
+CIS Automotive API.json,140.19921875
+CISCE.json,85.1162109375
+Cisco PSIRT openVuln API.json,25.81640625
+City Context.json,14.0498046875
+City of Surrey Open511 API.json,8.859375
+City of Surrey Traffic Loop Count API..json,4.8447265625
+CitySDK Linked Data.json,34.6650390625
+"Civil Supplies Department, Kerala.json",59.5400390625
+ClearBlade API.json,506.5126953125
+Clever-Cloud API.json,364.24609375
+ClickMeter API.json,441.21484375
+ClickSend REST API v3.json,1182.4912109375
+Climate FieldView Platform APIs.json,141.5595703125
+climateKuul live.json,84.92578125
+Cloud Asset API.json,103.8515625
+Cloud AutoML API.json,293.2275390625
+Cloud Bigtable Admin API.json,207.53125
+Cloud Billing API.json,49.9873046875
+Cloud Billing Budget API.json,41.4111328125
+Cloud Build API.json,128.4150390625
+Cloud Channel API.json,285.505859375
+Cloud Composer API.json,105.033203125
+Cloud Data Fusion API.json,113.9814453125
+Cloud Data Loss Prevention (DLP) API.json,372.6884765625
+Cloud Dataplex API.json,267.62890625
+Cloud Dataproc API.json,331.435546875
+Cloud Datastore API.json,45.27734375
+Cloud Debugger API.json,76.7802734375
+Cloud Deployment Manager V2 API.json,245.703125
+Cloud DNS API.json,272.9794921875
+Cloud Document AI API.json,374.3076171875
+Cloud Domains API.json,154.46875
+Cloud Filestore API.json,127.8212890625
+Cloud Firestore API.json,62.94140625
+Cloud Functions API.json,127.19921875
+Cloud Healthcare API.json,511.876953125
+Cloud Identity API.json,256.1455078125
+Cloud Identity-Aware Proxy API.json,30.962890625
+Cloud IDS API.json,73.8388671875
+Cloud IoT API.json,111.64453125
+Cloud Key Management Service (KMS) API.json,211.9892578125
+Cloud Life Sciences API.json,79.1572265625
+Cloud Logging API.json,256.2060546875
+Cloud Memorystore for Memcached API.json,108.669921875
+Cloud Monitoring API.json,135.9306640625
+Cloud Natural Language API.json,62.994140625
+Cloud OS Login API.json,35.75390625
+Cloud Private Catalog Producer.json,102.4189453125
+Cloud Private Catalog.json,29.05859375
+Cloud PubSub API.json,91.6376953125
+Cloud Resource Manager API.json,169.998046875
+Cloud Run Admin API.json,178.8037109375
+Cloud Runtime Configuration API.json,84.0029296875
+Cloud Scheduler API.json,69.197265625
+Cloud Search API.json,838.4541015625
+Cloud Shell API.json,44.169921875
+Cloud Source Repositories API.json,73.6708984375
+Cloud Spanner API.json,363.0087890625
+Cloud Speech-to-Text API.json,26.8623046875
+Cloud SQL Admin API.json,311.6669921875
+Cloud Storage for Firebase API.json,25.74609375
+Cloud Storage JSON API.json,154.6181640625
+Cloud Talent Solution API.json,189.390625
+Cloud Tasks API.json,127.1796875
+Cloud Testing API.json,114.9560546875
+Cloud Text-to-Speech API.json,25.2021484375
+Cloud Tool Results API.json,242.83984375
+Cloud TPU API.json,82.220703125
+Cloud Trace API.json,25.4921875
+Cloud Translation API.json,112.4453125
+Cloud Video Intelligence API.json,255.5517578125
+Cloud Vision API.json,412.6943359375
+Cloud-RF API.json,42.3876953125
+Clubhouse API.json,91.4794921875
+Cnab Online.json,16.609375
+Co-WIN Certificate API.json,3.3818359375
+CodeArtifact.json,376.8916015625
+CodeScan API.json,8.4365234375
+CognitiveServicesManagementClient.json,233.962890625
+College Football Data API.json,246.65234375
+Commerce API.json,24.6142578125
+CommerceManagementClient.json,16.935546875
+Common Service Centre (CSC).json,59.888671875
+Commons Votes API.json,31.1669921875
+Community API.json,80.41015625
+CompanyAPI.json,45.029296875
+Compliance API.json,48.923828125
+Compute Admin Client.json,36.7451171875
+Compute Engine API.json,5343.142578125
+ComputeDiskAdminManagementClient.json,140.8798828125
+ComputeManagementClient.json,1002.0126953125
+ComputeManagementConvenienceClient.json,16.671875
+Computer Vision Client.json,112.4453125
+Computer Vision.json,130.0458984375
+ConfigCat Public Management API.json,286.8544921875
+Confirmation of Funds API Specification.json,47.083984375
+Conjur.json,168.927734375
+Connector API.json,112.9619140625
+Connectors API.json,62.2255859375
+ConsumptionManagementClient.json,500.1630859375
+Contact Center AI Insights API.json,180.4228515625
+Container Analysis API.json,279.4140625
+ContainerInstanceManagementClient.json,134.8125
+ContainerRegistryManagementClient.json,154.66796875
+ContainerServiceClient.json,51.7158203125
+Content API for Shopping.json,1085.939453125
+Content Moderator Client.json,197.6015625
+contentwarehouse API.json,5415.9013671875
+Contract.fit API.json,18.98828125
+Contribly.json,104.4306640625
+Control API v1.json,285.8056640625
+Conversation API.json,86.736328125
+CORE API v2.json,87.9462890625
+Coronavirus API.json,14.501953125
+Corrently.io.json,75.365234375
+Cosmos DB.json,520.3662109375
+CostManagementClient.json,567.25390625
+COVID-19 data API.json,56.73828125
+COVID19 Stats.json,12.8154296875
+"CPCT-MAPIT, Madhya Pradesh.json",60.0322265625
+Credas API.json,285.705078125
+Crediwatch's Covid APIs.json,18.96875
+CRM API.json,433.669921875
+CRM cards.json,53.7333984375
+CROssBAR Data API.json,90.2509765625
+Crossbrowsertesting.com Screenshot Comparisons API.json,14.6875
+Crucible.json,76.5283203125
+CS,0.0
+Custom Behavioral Events API.json,10.0537109375
+Custom Image Search Client.json,189.3916015625
+Custom Search API.json,106.4267578125
+Custom Search Client.json,39.1630859375
+Custom Vision Prediction Client.json,67.5419921875
+Custom Vision Training Client.json,346.7744140625
+Custom Workflow Actions.json,123.4482421875
+Customer Lockbox.json,43.4287109375
+Customer Support.json,169.94140625
+CustomerInsightsManagementClient.json,450.8955078125
+customproviders.json,61.7294921875
+CyCAT.org API.json,10.26953125
+D7SMS.json,8.9052734375
+Dados Abertos - API.json,9.16015625
+DaniWeb Connect API.json,305.2880859375
+Data API.json,100.84375
+Data Labeling API.json,311.951171875
+Data pipelines API.json,67.427734375
+Data2CRM.API.json,1457.146484375
+Database Migration API.json,136.63671875
+Database Threat Detection Policy APIs.json,24.4267578125
+DataBoxEdgeManagementClient.json,423.291015625
+DataBoxManagementClient.json,347.9755859375
+DatabricksClient.json,59.4267578125
+DataFactoryManagementClient.json,633.265625
+Dataflow API.json,459.91796875
+Dataflow Kit Web Scraper.json,106.033203125
+DataLakeAnalyticsAccountManagementClient.json,196.2431640625
+DataLakeAnalyticsCatalogManagementClient.json,277.841796875
+DataLakeAnalyticsJobManagementClient.json,125.6328125
+DataLakeStoreAccountManagementClient.json,160.3115234375
+DataLakeStoreFileSystemManagementClient.json,96.94140625
+Dataproc Metastore API.json,147.990234375
+DataShareManagementClient.json,410.1875
+Datastream API.json,155.1201171875
+Daymet Single Pixel Extraction Tool API.json,13.5400390625
+Deal API.json,58.08984375
+Dealer.json,27.48046875
+Debian Code Search.json,11.9716796875
+Deed API.json,11.5234375
+Deep Art Effects.json,12.6064453125
+DeletedWebApps API Client.json,30.1513671875
+"Department of Agricultural Marketing, Karnataka.json",59.0732421875
+Department of Empowerment of Persons with Disabilities.json,64.36328125
+"Department of Food and Civil Supplies Himachal Pradesh, Himachal Pradesh.json",59.109375
+"Department of Food, Public Distribution & Consumer Affairs (PDS), Jharkhand.json",60.3935546875
+"Department of IT and BT, Karnataka.json",65.5791015625
+"Department of IT and Communication, Arunachal Pradesh.json",60.1962890625
+"Department of Labour, Govt of Punjab, Punjab.json",68.5390625
+"Department of Legal Metrology, Uttar Pradesh.json",73.080078125
+Department of Pension and Pensioners Welfare.json,60.5
+"Department of Registration & Stamps, Maharashtra.json",59.8447265625
+"Department of Sainik Welfare, Puducherry.json",59.9580078125
+departureboard.io API.json,43.5693359375
+DeploymentAdminClient.json,48.5078125
+DeploymentScriptsClient.json,64.0166015625
+DEV API (beta).json,212.93359375
+DeviceServices.json,43.794921875
+DevSpacesManagement.json,49.1416015625
+DevTestLabsClient.json,652.3427734375
+Diagnostics API Client.json,340.03125
+Dialogflow API.json,790.0849609375
+DigiLocker Issuer APIs.json,29.4775390625
+Digital Asset Links API.json,40.640625
+DigitalNZ API.json,45.7919921875
+DigitalOcean API.json,2060.0048828125
+"Directorate of Economics and Statistics Cum Chief Registrar, Rajasthan, Rajasthan.json",70.251953125
+"Directorate of Information Technology, Government of Tripura, Tripura.json",136.587890625
+"Directorate of Municipal Administration, Karnataka.json",71.576171875
+Discourse API Documentation.json,685.9970703125
+Discovery API.json,136.0849609375
+Discovery Market Research.json,9.7802734375
+DiskResourceProviderClient.json,157.892578125
+Dispatch API.json,37.1376953125
+Display & Video 360 API.json,1102.5166015625
+DLx.json,49.0908203125
+DnsManagementClient.json,193.59765625
+Doc Converter.json,3.1875
+Docker Engine API.json,760.86328125
+DocuSign REST API.json,4074.275390625
+Domain Services Resource Provider.json,86.0380859375
+DomainRegistrationProvider API Client.json,27.2724609375
+Domains API Client.json,117.7099609375
+Domains RDAP API.json,34.431640625
+Domains-Index API.json,41.48828125
+Domains.json,23.5625
+DoubleClick Bid Manager API.json,132.8408203125
+"Dr. A. P. J. Abdul Kalam Technical University, Lucknow, Uttar Pradesh.json",66.619140625
+"Dr. B.R. Ambedkar Institute of Technology,Andaman & Nicobar Islands.json",60.1748046875
+"Dr. Babasaheb Ambedkar Research & Training Institute, Maharashtra.json",59.4150390625
+DRACOON API.json,4014.9814453125
+drchrono.json,1550.7490234375
+Drive Activity API.json,23.0283203125
+Drive API.json,321.32421875
+Drive Labels API.json,158.5126953125
+DriveBC's Open511 API.json,12.6025390625
+DropX.json,19.404296875
+dweet.io.json,19.916015625
+DynamicDocs.json,10.544921875
+Dynamics Telemetry.json,10.818359375
+EasyPDFServer.json,2.4931640625
+eBay Finances API.json,103.45703125
+EC2 Image Builder.json,669.12109375
+Ecosystem API.json,66.0625
+ecwid.json,231.6416015625
+"eDistrict Andaman & Nicobar Islands, Andaman & Nicobar.json",105.3515625
+"eDistrict Chandigarh, Chandigarh.json",73.1796875
+"eDistrict Himachal Pradesh, Himachal Pradesh.json",188.751953125
+"eDistrict Kerala, Kerala.json",196.677734375
+"eDistrict Odisha ServicePlus, Odisha.json",91.7578125
+"eDistrict Odisha, Odisha.json",106.556640625
+"eDistrict Uttar Pradesh, Uttar Pradesh.json",106.896484375
+eDRV API.json,143.4921875
+Einstein Vision and Einstein Language.json,145.6591796875
+Elastic Load Balancing.json,608.24609375
+elmah.io API.json,90.3896484375
+Email Activity (beta).json,2192.265625
+Employees' Provident Fund Organization.json,68.8310546875
+eNanoMapper database.json,77.201171875
+Engagement.ManagementClient.json,178.193359375
+EngagementFabric.json,81.19140625
+Enode API.json,97.7509765625
+Enterobase-API.json,120.7275390625
+Enterprise License Manager API.json,36.1220703125
+Entertainment Express API.json,2.2265625
+Entity Search Client.json,59.6484375
+Error Reporting API.json,53.7138671875
+Erskine May API.json,38.1357421875
+"eService (eDistrict), Arunachal Pradesh.json",84.9560546875
+ESG Rating Data.json,3.84765625
+Essential Contacts API.json,34.4775390625
+Etherpad API.json,540.0615234375
+EtMDB REST API v1.json,32.4970703125
+ETSI GS MEC 010-2 - Part 2,0.0
+EU BON UTIS.json,18.2236328125
+Europeana Search & Record API.json,31.162109375
+EVE Swagger Interface.json,2534.7275390625
+EVEMarketer Marketstat API.json,19.333984375
+Event Notification API Specification - TPP Endpoints.json,9.642578125
+Eventarc API.json,79.779296875
+EventGridManagementClient.json,287.806640625
+EventHub2018PreviewManagementClient.json,270.66015625
+EventHubManagementClient.json,395.5234375
+Events API.json,19.2109375
+Ex Libris APIs.json,136.7568359375
+ExaVault.json,710.0302734375
+ExchangeRate-API.json,4.8203125
+Execution Service.json,42.775390625
+ExpressRouteCrossConnection REST APIs.json,84.3291015625
+Extension API.json,17.0322265625
+External Accounts API.json,53.1953125
+Extpose.json,4.869140625
+Exude API Service.json,5.7216796875
+FabricAdminClient.json,17.4794921875
+Face Client.json,313.5703125
+Fact Check Tools API.json,38.779296875
+Facts API.json,34.0078125
+Fahrplan-Free.json,15.0830078125
+Fake identity generation API.json,26.5263671875
+Faretrotter Travel API.json,16.4423828125
+FaSta - Station Facilities Status.json,13.072265625
+FastAPI.json,25.2041015625
+FeatureClient.json,19.9453125
+Feed API.json,212.6259765625
+Figshare API.json,479.236328125
+File storage API.json,228.67578125
+Files.com API.json,1338.728515625
+Files.json,95.1826171875
+FinSpace Public API.json,44.5927734375
+FinSpace User Environment Management service.json,75.0693359375
+Fire Financial Services Business API.json,216.9482421875
+Firebase App Check API.json,132.1015625
+Firebase Cloud Messaging API.json,42.181640625
+Firebase Cloud Messaging Data API.json,21.6630859375
+Firebase Dynamic Links API.json,57.3505859375
+Firebase Hosting API.json,111.8525390625
+Firebase Management API.json,158.619140625
+Firebase ML API.json,33.9169921875
+Firebase Realtime Database API.json,37.330078125
+Firebase Rules API.json,65.84375
+FireBrowse Beta API.json,196.3154296875
+Firewall Management Service.json,326.6728515625
+Fisheye Crucible.json,71.8369140625
+FishEye.json,21.130859375
+Fitbit Plus API.json,385.28125
+Fitness API.json,155.2607421875
+Flat API.json,378.8095703125
+Flickr API Schema.json,119.103515625
+Flight Offers Search.json,157.26171875
+Flinkster_API_NG.json,44.3232421875
+"Food and Supplies Department, Haryana.json",59.396484375
+"Food, Civil Supplies and Consumer Affairs Department, Karnataka.json",59.841796875
+Football Prediction API.json,23.458984375
+Form Recognizer Client.json,65.82421875
+FORTNITE REST API.json,55.494140625
+Frankie Financial API.json,413.9208984375
+FraudLabs Pro Fraud Detection.json,15.96484375
+FraudLabs Pro SMS Verification.json,7.2421875
+FRC Events.json,15.1298828125
+Freesound.json,10.6767578125
+FrontDoorManagementClient.json,230.9169921875
+Fulfillment API.json,266.0556640625
+Fulfillment.com APIv2.json,143.216796875
+Fun Generators API.json,24.958984375
+FunTranslations API.json,79.123046875
+FunTranslations Braille API.json,19.8681640625
+Furkot Trips.json,7.716796875
+Future Generali Total Insurance Solutions.json,77.6533203125
+GalleryManagementClient.json,268.390625
+Game Services API.json,70.166015625
+GameSparks Game Details API.json,162.3828125
+Gateway REST API.json,63.09765625
+Gateway.json,298.421875
+Gauhati University.json,60.208984375
+"Geetanjali University, Udaipur.json",60.2822265625
+Geneea Natural Language Processing.json,42.2998046875
+"General Administration Department, Bihar.json",97.3984375
+Genomics API.json,79.4306640625
+Geocoder REST API.json,115.1123046875
+GeoDataSource Location Search.json,3.5205078125
+GeoDB Cities API.json,116.7431640625
+geodesystems.com,0.0
+Geographic API.json,10.6494140625
+Geomag API.json,11.2958984375
+GeoMark Web Service REST API.json,36.8388671875
+Georg API.json,10.140625
+Getty Images.json,450.8935546875
+Giphy API.json,49.5380859375
+Gisgraphy webservices.json,82.1865234375
+Gitea API..json,633.37109375
+GitHub v3 REST API.json,4618.587890625
+Gitlab.json,759.6435546875
+GKE Hub API.json,114.2548828125
+GlobalWineScore API Documentation.json,19.158203125
+Gmail API.json,324.08984375
+Gmail Postmaster Tools API.json,30.435546875
+"GMCH, Chandigarh.json",59.90234375
+Go Digit General Insurance Ltd..json,73.548828125
+"Goa State Board of Secondary and Higher Secondary Education, Goa.json",59.73828125
+"Goa Water Resources Department, Goa.json",68.90234375
+Golf v2.json,65.7255859375
+goog.io  Unoffical Google Search API.json,917.2060546875
+Google Analytics Admin API.json,288.5556640625
+Google Analytics API.json,463.71875
+Google Analytics Data API.json,119.251953125
+Google Chat API.json,144.88671875
+Google Civic Information API.json,94.974609375
+Google Classroom API.json,328.830078125
+Google Cloud Data Catalog API.json,150.701171875
+Google Cloud Deploy API.json,183.7978515625
+Google Cloud Memorystore for Redis API.json,95.4365234375
+Google Cloud Support API.json,83.5380859375
+Google Docs API.json,245.20703125
+Google Forms API.json,101.1982421875
+Google Home.json,246.08203125
+Google Mirror.json,241.66015625
+Google My Business API.json,531.275390625
+Google OAuth2 API.json,15.9677734375
+Google Pay Passes API.json,483.6572265625
+Google Play Android Developer API.json,450.287109375
+Google Play Custom App Publishing API.json,11.44140625
+Google Play Developer Reporting API.json,72.6240234375
+Google Play EMM API.json,336.6025390625
+Google Play Game Management.json,65.6474609375
+Google Play Game Services Publishing API.json,48.4501953125
+Google Play Game Services.json,196.61328125
+Google Play Integrity API.json,17.4609375
+Google Search Console API.json,74.599609375
+Google Sheets API.json,431.1494140625
+Google Site Verification API.json,23.5712890625
+Google Slides API.json,235.220703125
+Google Vault API.json,159.07421875
+Google Workspace Alert Center API.json,107.2958984375
+Google Workspace Reseller API.json,96.9296875
+Google+ API.json,100.1240234375
+GoToMeeting.json,105.193359375
+GoToTraining.json,60.26953125
+GoToWebinar.json,136.93359375
+GOV.UK Pay API.json,103.5361328125
+GraphHopper Directions API.json,380.8349609375
+GraphRbacManagementClient.json,239.294921875
+Gravity API.json,10.984375
+"Greater Chennai Corporation, Tamil Nadu.json",64.041015625
+Greenwire Public API.json,20.33203125
+groov View Public API.json,28.2578125
+"Groundwater Wells, Aquifers and Registry API.json",129.3857421875
+Groups Migration API.json,9.5556640625
+Groups Settings API.json,37.189453125
+Growth Services.json,140.1845703125
+Guest Diagnostic Settings Association.json,25.904296875
+Guest Diagnostic Settings.json,30.923828125
+GuestConfiguration.json,77.3388671875
+"Gujarat Vidyapith, Ahmedabad.json",60.2763671875
+HackathonWatch.json,4.38671875
+HanaManagementClient.json,123.357421875
+Handwrytten API.json,89.5078125
+Hardware Sentry TrueSight Presentation Server REST API.json,123.1611328125
+"Haryana State Board of School Education, Haryana.json",64.72265625
+"Haryana State Board of Technical Education, Haryana.json",59.9306640625
+hashlookup CIRCL API.json,5.84765625
+HDInsightJobManagementClient.json,68.89453125
+HDInsightManagementClient.json,60.01953125
+Health Data Consent Manager.json,135.041015625
+Health ID Service.json,242.5185546875
+Health Repository Provider Specifications for HIP.json,198.46875
+Health Repository Provider Specifications for HIU.json,205.0537109375
+Healthcare.json,50.9658203125
+HealthcareApisClient.json,69.916015625
+HERE Network Positioning API v2.json,76.7626953125
+HERE Tracking.json,4329.6845703125
+hetras Booking API Version 0.json,244.478515625
+hetras Hotel API Version 0.json,174.947265625
+Hetzner Cloud API.json,2113.333984375
+HHS Media Services API.json,168.3359375
+High Performance Building Database.json,6.52734375
+Highways England API.json,30.154296875
+"Himachal Pradesh Board of School Education, Himachal Pradesh.json",65.5263671875
+"Himachal Pradesh Department of Revenue, Himachal Pradesh.json",118.515625
+"Himachal Pradesh Takniki Shiksha Board Dharamshala, Himachal Pradesh.json",59.5244140625
+HomeGraph API.json,40.5498046875
+House of Commons Oral and Written Questions API.json,73.404296875
+"HP Staff Selection Commission - HPSSC - Himachal Pradesh, Himachal Pradesh.json",59.8818359375
+"HP Swasthya Bima Yojna Society, Himachal Pradesh.json",59.1962890625
+HRIS API.json,326.689453125
+httpbin.org.json,58.5517578125
+Hubhopper Partner Integration API(s) - Production.json,27.7529296875
+HubSpot Events API.json,16.9140625
+HybridComputeManagementClient.json,119.623046875
+HybridDataManagementClient.json,299.435546875
+Hydra Movies.json,3.677734375
+HyperDrive.json,28.8251953125
+IAM Service Account Credentials API.json,29.5517578125
+IBKR 3rd Party Web API.json,100.1142578125
+IBM Containers API.json,260.8974609375
+ICICI Lombard GIC Ltd..json,86.8505859375
+ICICI Prudential Life Insurance Company Ltd.json,59.40234375
+ID4i API.json,772.1171875
+Idea Hub API.json,30.7451171875
+IdealPostcodes API.json,116.5185546875
+IdealSpot GeoData.json,388.560546875
+Identity and Access Management (IAM) API.json,42.64453125
+Identity API.json,19.0947265625
+Identity Toolkit API.json,158.8056640625
+IllumiDesk.json,411.2119140625
+Image Moderation.json,2.3984375
+Image Search Client.json,599.5732421875
+Image-Charts.json,130.041015625
+import.io.json,13.6572265625
+Importer-Exporter Details API.json,20.1962890625
+Incidents.json,27.1640625
+Income Tax Department.json,85.1669921875
+Indexing API.json,14.4677734375
+Indian Navy (INS Valsura).json,64.9072265625
+Infermedica API.json,75.306640625
+Influx OSS API Service.json,727.3701171875
+InfrastructureInsightsManagementClient.json,28.751953125
+Ink Recognizer Client.json,137.251953125
+Instagram API.json,74.12890625
+InstanceMetadataClient.json,43.6494140625
+Institute of Company Secretaries of India.json,64.416015625
+Intel Product Catalogue Service.json,45.064453125
+Interzoid City Data Standardization API.json,4.35546875
+Interzoid Convert Currency Rate API.json,5.408203125
+Interzoid Country Data Standardization API.json,4.3203125
+Interzoid Get Address Match Similarity Key API.json,4.4541015625
+Interzoid Get Area Code API.json,4.751953125
+Interzoid Get Area Code From Number API.json,4.8642578125
+Interzoid Get City Match Similarity Key API.json,4.423828125
+Interzoid Get Company Name Match Similarity Key API.json,4.4658203125
+Interzoid Get Country Match Similarity Key API.json,4.46875
+Interzoid Get Currency Rate API.json,5.025390625
+Interzoid Get Email Information API.json,6.0146484375
+Interzoid Get Full Name Match Similarity Key API.json,4.6630859375
+Interzoid Get Full Name Parsed Match Similarity Key API.json,5.2021484375
+Interzoid Get Global Phone Number Information API.json,5.6884765625
+Interzoid Get Global Time API.json,6.4453125
+Interzoid Get Weather By Zip Code API.json,5.62109375
+Interzoid Get Weather City API.json,5.962890625
+Interzoid Global Page Load Performance API.json,5.4501953125
+Interzoid State Data Standardization API.json,4.6083984375
+Interzoid Zip Code Detailed Info API.json,6.4462890625
+IntuneResourceManagementClient.json,87.443359375
+Inventory Management.json,154.126953125
+IoE² IoT API - to create end-user applications.json,162.7880859375
+iotDpsClient.json,127.6318359375
+iotHubClient.json,248.5126953125
+IoTSpacesClient.json,46.001953125
+IoTVAS API.json,36.3447265625
+IP geolocation API.json,9.484375
+IP2Location IP Geolocation.json,8.712890625
+IP2Proxy Proxy Detection.json,4.021484375
+IP2WHOIS Domain Lookup.json,4.142578125
+ipTwist.json,4.212890625
+iQualify Management API.json,279.66015625
+ISBNdb API.json,24.9814453125
+Issuing,0.0
+Item API.json,26.2392578125
+Item Feed Service.json,142.1962890625
+IX-API.json,964.8349609375
+Jawaharlal Nehru Rajkeeya Mahavidyalaya.json,59.779296875
+"Jaypee University Of Information Technology, Waknaghat (H. P.).json",60.3232421875
+Jellyfin API.json,2379.2060546875
+"Jharkhand State Board (Jharkhand Academic Council), Jharkhand.json",76.10546875
+"Jharsewa (eDistrict), Jharkhand.json",111.763671875
+JIRA 7.6.1.json,287.255859375
+Jirafe Events.json,30.69921875
+"Joint Entrance Examination Council, Uttar Pradesh, Uttar Pradesh.json",60.2890625
+Jokes One API.json,35.26953125
+journy.io API docs.json,226.6279296875
+JSON storage.json,11.8369140625
+Jumpseller API.json,403.36328125
+Just Eat UK.json,1603.0478515625
+"Karnataka Department of Transport, Karnataka.json",123.4326171875
+"Karnataka Industrial Areas Development Board, Karnataka.json",97.302734375
+"Karnataka Secondary Education Examination Board, Karnataka.json",60.2197265625
+"Karnataka State Board (Department of Pre University Education), Karnataka.json",60.609375
+"KERALA PUBLIC SERVICE COMMISSION, Kerala.json",60.1796875
+"Kerala State Board of Public Examinations, Kerala.json",60.546875
+Keycloak Admin REST API.json,460.5537109375
+KeyServ.json,43.427734375
+KeyVaultClient.json,534.6943359375
+KeyVaultManagementClient.json,7.8037109375
+Knowledge Graph Search API.json,11.291015625
+koomalooma Partner API.json,8.60546875
+Kotak Mahindra General Insurance Company Ltd..json,85.0869140625
+"Krishna Kanta Handique State Open University (KKHSOU), Assam.json",59.9345703125
+Kubernetes Engine API.json,469.373046875
+Kubernetes.json,4699.9501953125
+KustoManagementClient.json,268.513671875
+KYC API Documentation.json,179.1318359375
+"Labour Employment, Skill Development and Entrepreneurship, Mizoram.json",59.78515625
+"Labour Resource Department, Bihar.json",87.4560546875
+Labs64 NetLicensing RESTful API Test Center.json,147.4296875
+LambdaTest Screenshots API Documentation.json,49.08203125
+Language Identification (Prediction).json,2.52734375
+Language Understanding Intelligent Service (LUIS) Endpoint API for running predictions and extracting user intentions and entities from utterances..json,23.244140625
+LanguageTool API.json,29.8818359375
+LaunchDarkly REST API.json,250.638671875
+Lead API.json,142.9345703125
+Learnifier.json,95.2255859375
+"LetMC Api V2, Basic (Tier 2).json",148.2509765625
+"LetMC Api V2, Free (Tier 1).json",137.181640625
+"LetMC Api V3, reporting.json",26.3662109375
+LGTM API specification.json,153.8720703125
+LH Partner API.json,71.841796875
+LH Public API.json,58.8701171875
+Library Agent API.json,25.443359375
+LibreTranslate.json,13.30078125
+Life Insurance Corporation of India.json,60.2294921875
+link.fish API.json,56.3251953125
+Linode API.json,1235.732421875
+Listen API,0.0
+Listing API.json,28.201171875
+Local Search Client.json,71.0126953125
+Local Services API.json,34.87890625
+Locations API.json,53.912109375
+Locations.json,20.5654296875
+LogicAppsManagementClient.json,141.5615234375
+LogicManagementClient.json,1145.4892578125
+Logistics API.json,67.6123046875
+Loket.nl API.json,17767.134765625
+LoL v3 Projections.json,26.71484375
+LoL v3 Scores.json,54.166015625
+LoL v3 Stats.json,108.9013671875
+Lords Votes API.json,31.671875
+LotaData.json,40.5556640625
+LUIS Authoring Client.json,822.09375
+LUIS Programmatic.json,572.515625
+Lumminary API.json,111.921875
+Lyft.json,90.7158203125
+M-Bus HTTPD API.json,17.9775390625
+Machine Learning Compute Management Client.json,104.599609375
+Machine Learning Workspaces Management Client.json,45.849609375
+"Madhya Pradesh Medical Science University, Jabalpur M.P., Madhya Pradesh.json",65.4697265625
+Magento B2B.json,2288.560546875
+Maharashtra Council of Indian Medicine.json,65.392578125
+"Maharashtra State Board of Secondary and Higher Secondary Education, Maharashtra.json",78.751953125
+MailboxValidator Disposable Email Checker.json,3.8046875
+MailboxValidator Email Validation.json,3.796875
+MailboxValidator Free Email Checker.json,3.5380859375
+Mailscript.json,123.8193359375
+Mailsquad.json,25.869140625
+MaintenanceManagementClient.json,86.7509765625
+Managed Service for Microsoft Active Directory API.json,186.759765625
+Managed Streaming for Kafka Connect.json,188.3779296875
+Managed Streaming for Kafka.json,361.6328125
+ManagedLabsClient.json,221.671875
+ManagedNetworkManagementClient.json,121.9912109375
+ManagedServiceIdentityClient.json,34.11328125
+ManagedServicesClient.json,64.9296875
+Management Groups.json,97.119140625
+ManagementLinkClient.json,16.6357421875
+ManagementLockClient.json,43.2841796875
+Manav Rachna International Institute of Research & Studies.json,60.34375
+Mandrill.json,196.923828125
+Manufacturer Center API.json,56.91015625
+Maps.json,54.931640625
+MariaDBManagementClient.json,242.1669921875
+Marketcheck APIs.json,484.86328125
+Marketing API.json,555.3974609375
+Marketing Events Extension.json,84.904296875
+Marketplace RP Service.json,30.95703125
+MarketplaceOrdering.Agreements.json,29.4521484375
+MasterCard ABU API.json,15.087890625
+MasterCard Bin Table Listing.json,3.783203125
+Mastodon API.json,13.6923828125
+MATCH API.json,79.927734375
+Max Life Insurance Co. Ltd..json,60.2060546875
+MDES Customer Service.json,117.8212890625
+Meark Enterprise Pvt. Ltd..json,60.16015625
+Medcorder Nearby Doctor API.json,5.11328125
+Media API.json,16.4150390625
+MediaServicesManagementClient.json,57.14453125
+Medium.com - Unofficial API Spec.json,28.3037109375
+"Meghalaya Board of School Education, Tura, Meghalaya.json",64.68359375
+Members API.json,166.5478515625
+Meraki Dashboard API.json,2550.8720703125
+Merchant Identifier API V2.json,10.765625
+Meshery API..json,264.962890625
+Messages API.json,146.8583984375
+Metadata API.json,74.265625
+Metadata.json,254.6005859375
+MetaPub.json,47.373046875
+Miataru.json,22.94140625
+Microsoft Insights.json,75.494140625
+Microsoft NetApp.json,141.5009765625
+Microsoft Storage Sync.json,334.0771484375
+Microsoft.ResourceHealth.json,97.02734375
+Microsoft.Support.json,206.462890625
+MicrosoftSerialConsoleClient.json,17.1318359375
+Migrate to Virtual Machines API.json,204.2900390625
+MIMIC REST API.json,628.81640625
+Ministry of Petroleum and Natural Gas (HPCL).json,61.00390625
+Ministry of Petroleum and Natural Gas (IOCL).json,63.20703125
+Ministry of Petroleum and Natural Gas(BPCL).json,59.4638671875
+Ministry of Road Transport and Highways.json,141.330078125
+Ministry of Skill Development And Entrepreneurship.json,59.685546875
+Mist API.json,3633.154296875
+Mixed Reality.json,48.3134765625
+"Mizoram Police, Mizoram.json",59.3857421875
+Mizoram State Board of School education.json,74.4677734375
+ML Team Account Management Client.json,94.8193359375
+MLB v3 Play-by-Play.json,25.6904296875
+MLB v3 Projections.json,64.869140625
+MLB v3 RotoBaller Articles.json,10.99609375
+MLB v3 RotoBaller Premium News.json,9.3115234375
+MLB v3 Scores.json,95.6240234375
+MLB v3 Stats.json,172.5361328125
+Mobility API.json,8.36328125
+Mon-voyage-pas-cher.com Public API.json,74.685546875
+MonitorManagementClient.json,26.91796875
+Moon by Ai Weiwei & Olafur Eliasson.json,5.53125
+Most Popular API.json,30.6982421875
+MotaWord API.json,499.0185546875
+"Motor Vehicle Department, Kerala.json",123.9287109375
+"Motor Vehicle Department, Maharashtra.json",123.93359375
+"Motor Vehicle Department, Nagaland.json",123.849609375
+"Motor Vehicle Department, Odisha.json",123.8447265625
+Movie Reviews API.json,16.474609375
+Mtaa API Documentation.json,10.078125
+Musixmatch API.json,100.41796875
+My Business Account Management API.json,52.666015625
+My Business Business Calls API.json,22.974609375
+My Business Business Information API.json,113.142578125
+My Business Lodging API.json,247.1865234375
+My Business Notifications API.json,11.9130859375
+My Business Place Actions API.json,27.3935546875
+My Business Q&A API.json,32.7001953125
+My Business Verifications API.json,48.1669921875
+MySQLManagementClient.json,257.021484375
+Name Generation API.json,7.7578125
+NamSor API v2.json,202.916015625
+NASCAR v2.json,25.6669921875
+National e-Governance Division.json,59.423828125
+National Health Authority.json,60.2998046875
+National Institute of Electronics and Information Technology.json,59.9404296875
+National Institute of Open Schooling.json,84.291015625
+National Institute Of Technology Arunachal Pradesh.json,60.20703125
+"National Institute of Technology, Patna.json",60.28125
+National Insurance Company Ltd..json,104.435546875
+National Skill Development Corporation (NSDC).json,65.314453125
+Native Ads Publisher API.json,15.8291015625
+NaviPlan API.json,316.1474609375
+NBA Stats API.json,272.2841796875
+NBA v3 Play-by-Play.json,18.16796875
+NBA v3 Projections.json,46.791015625
+NBA v3 RotoBaller Articles.json,8.9482421875
+NBA v3 RotoBaller Premium News.json,9.3115234375
+NBA v3 Scores.json,80.798828125
+NBA v3 Stats.json,134.7353515625
+NCERT.json,60.109375
+Neblio REST API Suite.json,149.537109375
+Negotiation API.json,38.6025390625
+NeoWs - (Near Earth Object Web Service).json,30.8701171875
+Net API.json,19.212890625
+Netatmo.json,120.03515625
+NetBox API.json,1763.248046875
+Netlify's API documentation.json,155.181640625
+Network Connectivity API.json,109.4384765625
+Network Management API.json,130.443359375
+Network Security API.json,102.642578125
+Network Services API.json,194.87890625
+NetworkAdminManagementClient.json,13.8115234375
+NetworkExperiments.json,97.7890625
+NetworkManagementClient.json,340.97265625
+Neutrino API.json,222.4013671875
+New India Assurance Co. Ltd..json,91.900390625
+News Search Client.json,119.12890625
+Nexmo Application API.json,28.052734375
+Nexmo Conversion API.json,8.1611328125
+nextAuth API.json,97.447265625
+NFL v3 Play-by-Play.json,40.42578125
+NFL v3 Projections.json,124.8779296875
+NFL v3 RotoBaller Articles.json,8.9482421875
+NFL v3 RotoBaller Premium News.json,11.107421875
+NFL v3 Scores.json,249.033203125
+NFL v3 Stats.json,516.54296875
+nFusion Solutions Market Data API v1.json,93.0986328125
+NHL v3 Play-by-Play.json,20.6484375
+NHL v3 Projections.json,34.876953125
+NHL v3 Scores.json,79.37890625
+NHL v3 Stats.json,133.140625
+nic.at Domainfinder API Documentation.json,4.16796875
+NIESBUD.json,59.7666015625
+NLPCloud.json,13.5498046875
+Noosh API application.json,1100.7177734375
+Nordigen Account Information Services API.json,43.12109375
+Notebooks API.json,254.9638671875
+NotificationHubsManagementClient.json,219.306640625
+Notion API - Public Beta.json,480.3994140625
+NOWPayments API.json,53.349609375
+NPR Authorization Service.json,43.21875
+NPR Identity Service.json,29.1923828125
+NPR Listening Service.json,82.2529296875
+NPR Sponsorship Service.json,34.0546875
+NPR Station Finder Service.json,46.2392578125
+NSIDC Web Service Documentation Index.json,15.9658203125
+Ntropy Transaction API.json,23.392578125
+Number Insight API.json,97.228515625
+Numbers API.json,71.4892578125
+OAuthService.json,16.62890625
+obono RKSV API.json,54.2197265625
+ocrapi.json,111.8984375
+ODN API.json,52.9248046875
+ODWeather.json,18.80859375
+OMDb.json,10.7109375
+On-Demand Scanning API.json,129.046875
+OnSched API Utility.json,2.775390625
+OnSched API.json,215.5693359375
+OOXML Automation.json,530.3125
+Open Banking - Payments initiation service.json,112.0986328125
+Open Build Service API.json,419.291015625
+Open Data API.json,898.2373046875
+Open Policy Agent (OPA) REST API.json,71.314453125
+Open Skills API.json,26.6318359375
+Open States API v3.json,89.7724609375
+Open Targets Platform REST API.json,53.5849609375
+OpenALPR CarCheck API.json,24.9306640625
+OpenAPI Generator Online.json,14.9033203125
+OpenAPI space.json,30.728515625
+OpenAQ.json,292.0849609375
+OpenCage Geocoder.json,13.5546875
+OpenChannel Market API.json,248.3125
+opendatasoft.json,87.5546875
+OpenFEC.json,1606.306640625
+OpenFIGI API.json,20.8818359375
+OpenFinTech.io.json,102.953125
+OpenTrials API.json,63.68359375
+OpenUV - Global Real-Time UV Index Forecast API.json,17.5537109375
+OPTIMADE API.json,253.4091796875
+Orbit API.json,156.1884765625
+Orders API.json,45.998046875
+Organization Policy API.json,54.8681640625
+OrgHunter.json,9.1005859375
+Orthanc API.json,723.6943359375
+OS Config API.json,138.6103515625
+OSDB REST API v1.json,61.16796875
+OSF APIv2 Documentation.json,2057.603515625
+Otoroshi Admin API.json,387.6171875
+Owler.json,50.224609375
+Oxford Dictionaries.json,157.0361328125
+PAC Control REST API.json,127.7177734375
+paccurate.io.json,38.5927734375
+PageSpeed Insights API.json,46.24609375
+Palabras aleatorias.json,3.572265625
+"Panchayati Raj Department, Himachal Pradesh, Himachal Pradesh.json",59.171875
+PandaScore REST API for All Videogames.json,1957.990234375
+Pandorabots AIaaS.json,32.205078125
+papiNet API.json,12.5947265625
+"Paramedical Council, Madhya Pradesh.json",60.513671875
+Partial Graph API.json,31188.814453125
+PasswordUtility.Web.json,3.28515625
+Patchman-engine API.json,106.8134765625
+PatientView.json,80.962890625
+Paylocity API.json,316.1552734375
+Payment Account Reference Inquiry API.json,9.55078125
+Payment Initiation API.json,774.068359375
+Payments Reseller Subscription API.json,78.5673828125
+PAYONE Link API.json,48.708984375
+PayRun.IO.json,1768.3232421875
+PDF Blocks API.json,37.646484375
+PDF Generator API.json,126.82421875
+PdfBroker.io API.json,50.744140625
+Peel Tune-in API.json,6.880859375
+PeeringManagementClient.json,241.212890625
+PeerTube.json,427.169921875
+Pendo Feedback API.json,59.0712890625
+People API.json,218.1484375
+Personalized Offers.json,56.1552734375
+Personalizer Client.json,67.2998046875
+Personnel Data.json,134.251953125
+Perspective Comment Analyzer API.json,28.28125
+"PGIMER, Chandigarh.json",60.30078125
+PhantAuth.json,188.060546875
+PI Web API 2018 SP1 Swagger Spec.json,1388.2646484375
+Pims.json,129.251953125
+Pirates API.json,13.8408203125
+Platform API.json,85.212890625
+Playable Locations API.json,34.4755859375
+PocketSmith.json,142.4501953125
+Poemist API.json,1.1943359375
+Policy Analyzer API.json,13.5810546875
+Policy Simulator API.json,71.578125
+Policy Troubleshooter API.json,36.43359375
+PolicyClient.json,29.302734375
+PolicyEventsClient.json,145.5478515625
+PolicyMetadataClient.json,16.7099609375
+PolicyStatesClient.json,391.970703125
+PolicyTrackedResourcesClient.json,59.40234375
+Polling Places API.json,4.9755859375
+Poly API.json,45.1181640625
+Polygon.json,36.22265625
+portal.json,57.134765625
+Portfolio Optimizer.json,445.5400390625
+POS API.json,489.1630859375
+PostgreSQLManagementClient.json,300.5107421875
+Postman API.json,424.5947265625
+Postmark Account-level API.json,54.6103515625
+Postmark API.json,140.6962890625
+posty_API.json,23.3466796875
+Power BI Embedded Management Client.json,35.4541015625
+PowerBIDedicated.json,59.3408203125
+PowerDNS Authoritative HTTP API.json,69.3974609375
+PowerTools Developer.json,313.4814453125
+Pramerica Life Insurance Ltd..json,59.7451171875
+Price Management.json,72.6923828125
+Pricing API.json,17.2451171875
+Prime ReportStream.json,60.2744140625
+PrivateDnsManagementClient.json,203.228515625
+Probely Developers.json,317.84765625
+Product Finder API.json,1673.0712890625
+Profile.json,10.9677734375
+Progress to Rate Limit API.json,20.763671875
+Provider API Client.json,473.0107421875
+Proximity Beacon API.json,101.8427734375
+Proxy API.json,43.0087890625
+Psycholinguistic Text Analytics.json,24.97265625
+PTV Timetable API - Version 3.json,298.6982421875
+Public Api.json,242.1689453125
+"Public Health Engineering Department, Haryana, Haryana.json",67.6796875
+PubSub Lite API.json,99.1474609375
+"Punjab School Education Board, Punjab.json",81.1943359375
+"Punjab State eGovernance Society, Punjab.json",90.232421875
+Qakka.json,17.345703125
+QnAMaker Client.json,122.515625
+QnAMaker Runtime Client.json,22.916015625
+Qualpay Payment Gateway API.json,174.1591796875
+Qualtrics API.json,28.8984375
+Quick start - Telematics SDK.json,308.833984375
+Quicksold REST API.json,3.5927734375
+Radio & Music Services.json,309.2265625
+Rail Station Information.json,120.8740234375
+Rajasthan Board of Secondary Education.json,64.7978515625
+Random Lottery Number generator API.json,6.77734375
+Random Lovecraft.json,7.9775390625
+Randommer API.json,24.0341796875
+Rat Genome Database REST API.json,222.69921875
+RAWG Video Games Database API.json,136.7646484375
+Real-time Bidding API.json,21.3955078125
+Real-Time Bus Predictions.json,10.5888671875
+Real-Time Rail Predictions.json,14.53515625
+Rebilly REST API.json,1530.2978515625
+reCAPTCHA Enterprise API.json,75.83203125
+Recommendation API.json,24.060546875
+Recommendations AI (Beta).json,140.197265625
+Recommendations API Client.json,101.6201171875
+Recommender API.json,73.28515625
+RecoveryServicesBackupClient.json,14.2685546875
+RecoveryServicesClient.json,18.8095703125
+Redact API.json,16.00390625
+Redeal Analytics API.json,12.0224609375
+redirection.io.json,187.3427734375
+RedisManagementClient.json,131.181640625
+Redshift Data API Service.json,134.14453125
+Refuge Restrooms API.json,12.513671875
+Registry.json,83.7333984375
+Regulations.gov.json,19.2861328125
+Reimbursements API.json,13.4599609375
+Reisezentren-API.json,12.2021484375
+Relay.json,153.0625
+Reliance General Insurance Company Ltd.json,89.244140625
+RemediationsClient.json,131.51953125
+Remote Build Execution API.json,144.2265625
+Remote Diagnostic Support.json,31.2978515625
+Remote Settings.json,201.095703125
+Replica Pool.json,76.435546875
+Reports API.json,152.0673828125
+rePower.json,38.8701171875
+Request Baskets API.json,53.1591796875
+Resource Settings API.json,25.2724609375
+ResourceHealthMetadata API Client.json,46.107421875
+ResourceManagementClient.json,321.572265625
+REST API Version 2.json,465.7451171875
+RESTful4Up.json,17.681640625
+Retail API.json,442.708984375
+"Revenue & Disaster Management Department, Assam, Assam.json",59.0595703125
+"Revenue Department - Land Records, Karnataka.json",63.8193359375
+"Revenue Department, Odisha.json",65.4375
+"Revenue, Registration & Land Reforms Department, Jharkhand.json",70.5625
+reverb.json,292.01171875
+Ritc.json,146.6875
+RiteKit API.json,69.830078125
+Rocket Services.json,748.0712890625
+Rotten Tomatoes.json,27.212890625
+Route53 Recovery Cluster.json,33.14453125
+Routing.json,65.57421875
+Rudder API.json,648.9658203125
+Rumble API.json,211.3271484375
+Run History APIs.json,104.455078125
+RunCommandsClient.json,27.87890625
+Runscope API.json,67.333984375
+rv API.json,3.1435546875
+Safe Browsing API.json,64.0732421875
+"Sailu Municipal Council, Maharashtra.json",58.994140625
+Sakari.json,123.76171875
+SalesLoft Platform.json,245.095703125
+Sandbox API.json,33.7939453125
+SAS Portal API (Testing).json,101.80078125
+SAS Portal API.json,101.619140625
+SBI General Insurance Company Ltd.json,78.091796875
+SchedulerManagementClient.json,62.8271484375
+Schemas.json,227.884765625
+SchoolDigger API V1.json,83.8447265625
+SCIM.json,55.5400390625
+Scrape Website Email API.json,5.388671875
+SeaBreezeManagementClient.json,258.11328125
+Search Ads 360 API.json,77.02734375
+Search Console API.json,37.4384765625
+Search Services.json,12.1728515625
+Search.json,88.3955078125
+SearchIndexClient.json,90.146484375
+SearchLy API v1.json,22.140625
+SearchManagementClient.json,106.8134765625
+SearchServiceClient.json,461.3974609375
+Secret Manager API.json,82.619140625
+Security Center.json,152.638671875
+Security Command Center API.json,118.2587890625
+Security Insights.json,159.5625
+Security Token Service API.json,32.5302734375
+SEDRA IV API.json,19.3671875
+Seldon External API.json,35.54296875
+SelectPdf HTML To PDF API.json,6.0791015625
+Self Service Developer API.json,30.298828125
+Semantic API.json,23.451171875
+Semantic Tile API.json,48.9775390625
+Semantria.json,214.7646484375
+Send Person to Merchant.json,460.552734375
+ServerManagement.json,96.7626953125
+Service Broker.json,96.4951171875
+Service Consumer Management API.json,177.6884765625
+Service Control API.json,76.025390625
+Service Directory API.json,84.3623046875
+Service Fabric Client APIs.json,1731.234375
+Service Management API.json,241.642578125
+Service Map.json,629.2578125
+Service Networking API.json,174.4775390625
+Service Quotas.json,180.6416015625
+Service Usage API.json,231.103515625
+ServiceBusManagementClient.json,435.71484375
+ServiceFabricManagementClient.json,153.001953125
+Sessions API.json,27.09765625
+setlist.fm API.json,141.8408203125
+Shakespeare API.json,17.6982421875
+SharedImageGalleryServiceClient.json,199.5439453125
+SheerSEO API.json,33.5009765625
+shinobiapi.json,113.08984375
+ShipEngine API.json,564.0810546875
+shipstation.json,6.9658203125
+Shorten.REST API Documentation.json,27.1240234375
+Shotstack.json,87.8271484375
+Shutterstock API Explorer.json,1018.6259765625
+SignalRManagementClient.json,81.4287109375
+SIGNL4 API.json,596.7294921875
+SimplyRETS.json,73.22265625
+SiriKit Cloud Media.json,120.5732421875
+SiteRecoveryManagementClient.json,1170.1708984375
+Slack Web API.json,1483.2470703125
+Slicebox API.json,182.998046875
+SlideRoom API V2.json,33.4580078125
+Smart Device Management API.json,31.509765625
+smart-me.json,201.1015625
+Smartphone Test Farm.json,17.6611328125
+SMS API.json,116.58984375
+sms77.io API.json,61.26171875
+Snyk API.json,1738.6728515625
+Soccer v3 Projections.json,38.20703125
+Soccer v3 Scores.json,94.884765625
+Soccer v3 Stats.json,154.1865234375
+"Social Justice and Empowerment Department, Rajasthan.json",59.51953125
+Socio-demo API.json,10.6103515625
+Software Plan RP.json,36.0185546875
+Solar VPS.json,23.373046875
+Sonar Trading.json,7.3583984375
+SoundCloud Public API Specification.json,205.6650390625
+Space Radiation API.json,29.0693359375
+SpectroCoin Merchant.json,8.130859375
+Spell Check Client.json,32.5546875
+Spending Pulse.json,61.75
+Spinitron v2 API.json,57.9287109375
+spoonacular API.json,319.7158203125
+SportsData API.json,109.5087890625
+Spotify Web API.json,543.6787109375
+SqlManagementClient.json,34.845703125
+SqlVirtualMachineManagementClient.json,206.43359375
+Square Connect API.json,2113.19140625
+Stackdriver Profiler API.json,25.4912109375
+StackExchange.json,1304.708984375
+Starwars Translations API.json,13.001953125
+"State Transport Department, Telangana.json",123.8564453125
+Stationsdatenbereitstellung.json,31.3935546875
+Stats.json,415.78125
+StatSocial Platform API.json,94.3115234375
+Statutory Instruments API.json,33.4052734375
+Stoplight.json,26.140625
+Storage Cache Mgmt Client.json,110.38671875
+Storage Transfer API.json,119.5673828125
+StorageImportExport.json,95.0205078125
+StorageManagementClient.json,93.7421875
+Storecove API.json,272.8447265625
+Storm Glass Marine Weather.json,14.12890625
+StorSimple8000SeriesManagementClient.json,770.4404296875
+StorSimpleManagementClient.json,713.1962890625
+Story.json,95.3134765625
+StreamAnalyticsManagementClient.json,74.3583984375
+Street View Publish API.json,93.822265625
+Stripe API.json,5274.48828125
+Subaccounts API.json,50.1396484375
+SubscriptionClient.json,15.3974609375
+SubscriptionDefinitionsClient.json,25.4658203125
+Subscriptions.json,30.1484375
+SubscriptionsManagementClient.json,11.04296875
+Superset.json,574.6455078125
+Swagger API-REST for Patrowl Engines.json,22.1474609375
+Swagger API2Cart.json,823.99609375
+Swagger Generator.json,19.5830078125
+Swagger2OpenAPI Converter.json,11.7470703125
+SwaggerHub Registry API.json,55.2998046875
+Swiss NextGen Banking API-Framework.json,712.3046875
+SYNQ Video.json,19.81640625
+Synthetics.json,177.140625
+Tafqit.json,4.7294921875
+Tag Manager API.json,300.4599609375
+TAGGUN Receipt OCR Scanning API.json,123.1572265625
+"Tamil Nadu State Board (Tamil Nadu Directorate of Government Examinations), Tamil Nadu.json",67.0556640625
+Tasks API.json,51.7646484375
+Tata AIA Life Insurance Co. Ltd..json,65.2998046875
+Tata AIG General Insurance Company Ltd..json,59.4375
+Taunt as a service.json,7.82421875
+Taxamo.json,196.1708984375
+Taxonomy API.json,71.8671875
+Taxrates.io API.json,46.9521484375
+TechPort.json,21.8916015625
+Telegram Bot API.json,822.2890625
+Telnyx API.json,2039.376953125
+Text Analytics & Sentiment Analysis API  api.text2data.com.json,18.849609375
+Text Analytics Client.json,71.033203125
+The Blue Alliance API v3.json,310.2666015625
+The Consumer Financial Protection Bureau.json,8.8896484375
+The Jira Cloud platform REST API.json,2488.306640625
+The Mercure protocol.json,14.33984375
+The Noun Project.json,18.4013671875
+The Oriental Insurance Co. Ltd..json,103.8876953125
+The Plaid API.json,902.0693359375
+The Punjab State Board of Technical Education & Industrial Training.json,59.455078125
+The SMS Works API.json,46.4814453125
+The SureVoIP RESTful API.json,47.447265625
+The Water Linked Underwater GPS API.json,116.4208984375
+TheTVDB API v3.json,87.361328125
+They Said So Quotes API.json,170.478515625
+ticketmaster publish api.json,91.1171875
+Times Newswire API.json,15.7265625
+TimeSeriesInsightsClient.json,347.71484375
+TimesTags API.json,4.0732421875
+TinyUID.com.json,2.3720703125
+Tisane API Documentation.json,75.5888671875
+Top Stories.json,9.7451171875
+TopLevelDomains API Client.json,142.732421875
+topupsapi.json,7.0234375
+Traccar.json,124.5166015625
+Tradematic Cloud API.json,140.0341796875
+Tradeworks.json,10.0
+Traffic Director API.json,52.6298828125
+TrafficManagerManagementClient.json,162.0498046875
+Transcoder API.json,92.583984375
+Transform.json,2.908203125
+TransitFeeds API.json,33.7275390625
+Translation API.json,10.9921875
+"Transport Department, Andaman & Nicobar.json",123.8544921875
+"Transport Department, Andhra  Pradesh.json",123.93359375
+"Transport Department, Arunachal Pradesh.json",123.935546875
+"Transport Department, Assam.json",123.923828125
+"Transport Department, Bihar.json",123.923828125
+"Transport Department, Chhattisgarh.json",123.8896484375
+"Transport Department, Dadra & Nagar Haveli.json",123.861328125
+"Transport Department, Daman & Diu.json",123.9296875
+"Transport Department, Delhi.json",123.923828125
+"Transport Department, Goa.json",123.884765625
+"Transport Department, Gujarat.json",123.8447265625
+"Transport Department, Haryana.json",123.8857421875
+"Transport Department, Himachal Pradesh.json",123.853515625
+"Transport Department, Jammu & Kashmir.json",123.8525390625
+"Transport Department, Jharkhand.json",123.8505859375
+"Transport Department, Lakshadweep.json",123.9296875
+"Transport Department, Madhya Pradesh.json",123.85546875
+"Transport Department, Manipur.json",123.92578125
+"Transport Department, Meghalaya.json",123.8876953125
+"Transport Department, Mizoram.json",123.8486328125
+"Transport Department, Puducherry.json",123.888671875
+"Transport Department, Punjab.json",123.84375
+"Transport Department, Rajasthan.json",123.8505859375
+"Transport Department, Sikkim.json",123.884765625
+"Transport Department, Tamil Nadu.json",123.888671875
+"Transport Department, Tripura.json",123.8486328125
+"Transport Department, Uttar Pradesh.json",123.89453125
+"Transport Department, Uttarakhand.json",123.8486328125
+"Transport Department, West Bengal.json",123.8525390625
+Transport for London Unified API.json,417.3271484375
+Transportation Laws and Incentives.json,33.732421875
+TrapStreet API.json,2.12109375
+trash nothing.json,330.94140625
+Travel Impact Model API.json,16.4990234375
+Treaties API.json,21.9521484375
+Trello.json,1048.873046875
+"Tripura State Board of Secondary Education, Tripura.json",59.8173828125
+TruAnon Private API.json,4.6328125
+TSAPI.json,22.251953125
+Turbine Labs API.json,142.138671875
+TV API.json,75.4453125
+TVmaze user API.json,61.8671875
+Tweets and Users.json,90.0068359375
+Twilio - Accounts.json,37.7138671875
+Twilio - Api.json,1507.115234375
+Twilio - Autopilot.json,197.0126953125
+Twilio - Bulkexports.json,40.1806640625
+Twilio - Chat.json,194.107421875
+Twilio - Conversations.json,476.1357421875
+Twilio - Events.json,73.478515625
+Twilio - Fax.json,27.419921875
+Twilio - Flex.json,118.751953125
+Twilio - Frontline.json,8.6962890625
+Twilio - Insights.json,125.0673828125
+Twilio - Ip_messaging.json,163.677734375
+Twilio - Lookups.json,7.8310546875
+Twilio - Media.json,59.1982421875
+Twilio - Messaging.json,164.427734375
+Twilio - Microvisor.json,21.2509765625
+Twilio - Monitor.json,32.296875
+Twilio - Notify.json,85.0498046875
+Twilio - Numbers.json,124.4775390625
+Twilio - Oauth.json,17.3603515625
+Twilio - Preview.json,572.384765625
+Twilio - Pricing.json,39.6982421875
+Twilio - Proxy.json,144.9775390625
+Twilio - Routes.json,20.013671875
+Twilio - Serverless.json,160.8017578125
+Twilio - Studio.json,89.357421875
+Twilio - Supersim.json,153.8447265625
+Twilio - Sync.json,189.548828125
+Twilio - Taskrouter.json,377.25
+Twilio - Trunking.json,101.056640625
+Twilio - Trusthub.json,175.6611328125
+Twilio - Verify.json,262.0859375
+Twilio - Video.json,187.025390625
+Twilio - Voice.json,121.5556640625
+Twilio - Wireless.json,92.4912109375
+Twitter API v2.json,242.9287109375
+Twitter API.json,163.359375
+U.S. EPA Enforcement and Compliance History Online (ECHO) - All Data.json,390.7490234375
+U.S. EPA Enforcement and Compliance History Online (ECHO) - Clean Air Act.json,368.470703125
+U.S. EPA Enforcement and Compliance History Online (ECHO) - Clean Water Act (CWA) Rest Services.json,648.048828125
+U.S. EPA Enforcement and Compliance History Online (ECHO) - Detailed Facility Report (DFR).json,908.5556640625
+U.S. EPA Enforcement and Compliance History Online (ECHO) - Effluent Charting and Reporting.json,72.1298828125
+U.S. EPA Enforcement and Compliance History Online (ECHO) - Enforcement Case Search.json,269.0361328125
+U.S. EPA Enforcement and Compliance History Online (ECHO) - Resource Conservation and Recovery Act .json,294.4248046875
+U.S. EPA Enforcement and Compliance History Online (ECHO) - Safe Drinking Water Act.json,113.994140625
+UCO Bank.json,59.75390625
+uebermaps API endpoints.json,89.16796875
+UGC.json,26.8837890625
+UK Parliament Search Service.json,6.6591796875
+United India Insurance Company Limited.json,67.240234375
+University Of Delhi.json,59.8203125
+Up API.json,158.4462890625
+"UP State Board of High School and Intermediate Education, Uttar Pradesh.json",64.806640625
+"UP State Council of Vocational Training, Uttar Pradesh, Uttar Pradesh.json",66.0166015625
+Update Management.json,31.1982421875
+UpdateAdminClient.json,160.150390625
+UsageManagementClient.json,24.044921875
+Use a [New Version](https,0.0
+User API.json,17.62890625
+Users (Okta API).json,26.9658203125
+"Uttarakhand State Board of School Education, Uttarakhand.json",71.90234375
+UUID Generation API.json,10.6826171875
+VA Facilities.json,86.43359375
+VA Forms.json,29.2939453125
+VAT API.json,43.8642578125
+Vault API.json,186.3994140625
+Veer Surendra Sai University Of Technology.json,59.9365234375
+Vehicle Enquiry API.json,12.6015625
+Vehicle Image.json,40.2099609375
+Velo Payments APIs.json,1183.095703125
+Verify API.json,86.6142578125
+versionhistory.googleapis.com API.json,31.5732421875
+Vestorly API.json,142.3974609375
+Veteran Confirmation.json,11.9287109375
+Viator API Documentation &amp.json,1458.109375
+VictorOps.json,210.076171875
+Video Search Client.json,471.2822265625
+Vimeo.json,1426.927734375
+VirtualMachineImageTemplate.json,96.8662109375
+VirtualWANAsAServiceManagementClient.json,545.05859375
+VisageCloud.json,156.2783203125
+VisibleThread API.json,42.087890625
+Visitor Identification.json,11.32421875
+Visual Crossing Weather API.json,9.6689453125
+Visual Search Client.json,74.935546875
+Visual Studio Projects Resource Provider Client.json,10.1884765625
+Visual Studio Resource Provider Client.json,88.2197265625
+VM Insights Onboarding.json,20.8779296875
+VMwareCloudSimple.json,261.2939453125
+VocaDB.json,636.2802734375
+Voice API.json,57.30078125
+Vonage Integration Suite.json,89.4130859375
+Voodoo Manufacturing 3D Print API.json,45.0439453125
+vRealize Network Insight API Reference.json,533.369140625
+vs API.json,2.72265625
+VSOnline.json,373.37890625
+watchful.li.json,125.421875
+Wavecell.Sms.Api.json,13.802734375
+Wayback API.json,16.9921875
+Wealthport API.json,52.3271484375
+Weatherbit.io - Swagger UI Weather API documentation.json,253.7060546875
+Web Fonts Developer API.json,10.490234375
+Web Risk API.json,59.146484375
+Web Search Client.json,160.9541015625
+Web Security Scanner API.json,75.623046875
+WebApplicationFirewallManagement.json,97.015625
+WebApps API Client.json,4284.80859375
+Webhook API.json,99.3232421875
+Webhooks API.json,42.466796875
+WebScraping.AI.json,20.5185546875
+WebSite Management Client.json,863.203125
+Wedpax.json,128.6767578125
+WeGA API.json,27.3798828125
+WhatsApp Business API.json,184.111328125
+Where to Credit API.json,13.55859375
+Who Hosts This API.json,2.6201171875
+Wikimedia.json,183.369140625
+WikiPathways Webservices.json,53.4443359375
+windowsesu.json,44.203125
+WINSMS.json,143.20703125
+WireMock.json,418.126953125
+Word Associations API.json,15.416015625
+Wordnik.json,121.4423828125
+WorkBC Job Posting API.json,21.0341796875
+WorkbookClient.json,5.5615234375
+Workflow Executions API.json,28.94140625
+Workflows API.json,42.8505859375
+Workload Monitor.json,763.162109375
+World Time API.json,17.873046875
+Wowza Streaming Cloud REST API Reference Documentation.json,845.8115234375
+Written Questions Service API.json,60.208984375
+www.zoomconnect.com.json,119.8857421875
+Xero Accounting API.json,1229.4306640625
+Xero Assets API.json,45.37109375
+Xero Bank Feeds API.json,67.46484375
+Xero Files API.json,47.076171875
+Xero OAuth 2 Identity Service API.json,12.783203125
+Xero Payroll AU API.json,197.552734375
+XKCD.json,3.693359375
+YNAB API Endpoints.json,160.607421875
+Yodlee Core APIs.json,656.5537109375
+YouTube Analytics API.json,4.9580078125
+YouTube Data API v3.json,711.1845703125
+YouTube Reporting API.json,58.7578125
+Yunbi.json,42.3603515625
+Zalando Shop.json,148.337890625
+Zappiti Player API.json,15.7109375
+ZEIT API.json,73.96484375
+Zenoti API.json,0.9404296875
+Zettle Product Library API.json,111.16015625
+Zoom API.json,8636.0947265625
+カラーミーショップアプリストア API.json,137.7080078125
