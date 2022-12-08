@@ -1,0 +1,13 @@
+,File name,Path,Rule,false-positive,true-positive
+0,Postman API,/apis,GET must be used to retrieve a representation of a resource,0,1
+1,Amazon Neptune,/#Action=DeleteDBParameterGroup,GET must be used to retrieve a representation of a resource,0,1
+2,OnSched API Utility,/{planId},GET must be used to retrieve a representation of a resource,0,1
+3,BioLink API,/bioentity/function/{id}/taxons,GET must be used to retrieve a representation of a resource,0,1
+4,BioLink API,/bioentity/genotype/{id}/variants,GET must be used to retrieve a representation of a resource,1,0
+5,BioLink API,/bioentity/publication/{id}/genotypes,GET must be used to retrieve a representation of a resource,1,0
+6,BioLink API,/cam/activity,GET must be used to retrieve a representation of a resource,0,1
+7,BioLink API,/ontol/information_content/{subject_category}/{object_category}/{subject_taxon},GET must be used to retrieve a representation of a resource,0,1
+8,BioLink API,/search/entity/hpo-pl/{term},GET must be used to retrieve a representation of a resource,1,0
+9,,,,,
+10,,,Total violations,Total false positives,Total true positives
+11,,,9,3,6

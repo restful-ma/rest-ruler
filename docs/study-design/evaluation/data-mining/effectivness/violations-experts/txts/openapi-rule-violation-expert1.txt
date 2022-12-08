@@ -1,0 +1,191 @@
+1. Content-Type must be used
+
+A resource that uses `text/plain` even though it clearly has some complex data that needs a representation.
+
+/customers:
+    get:
+      description: Returns a list of all customers
+      summary: Get all customers
+      responses:
+        200:
+          description: Array of customer objects
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Customer"
+
+
+2. CRUD function names should not be used in URIs
+
+DELETE /delete-order/{id}
+POST /remove-order/{id}
+PUT /update-order/{id}
+PUT /edit-order/{id}
+POST /change-order/{id}
+POST /create-order
+POST /new-order
+GET /retrieve-order/{id}
+GET /get-order/{id}
+GET /fetch-orders
+
+
+3. File extensions should not be included in URIs
+
+GET /customers/{id}/orders.xml
+GET /customers/{id}/orders.json
+GET /customers/{id}/orders.html
+GET /customers/{id}/orders.pdf
+
+
+
+4. GET must be used to retrieve a representation of a resource
+
+A common antipattern is using POST for search queries to have more convenient search parameters in the body instead of as (GET) request parameters.
+
+POST /search-publications
+{
+    "category": "science",
+    "publishedAfter": "2020-10-10"
+}
+
+POST /events-query
+{
+    "category": "music",
+    "publishedAfter": "2020-10-10"
+}
+
+5. Hyphens (-) should be used to improve the readability of URIs
+
+GET /videogames/{id}
+
+GET /weatherstations
+
+DELETE /databaseservers/{id}
+
+6. Lowercase letters should be preferred in URI paths
+
+GET /ToDos/{id}
+
+POST /gameStores/{sid}/videoGames/{gid}
+
+7. A plural noun should be used for collection/store names
+
+POST /customer
+
+DELETE /message/{id}
+
+PUT /article/{id}
+
+8. Forward slash separator (/) must be used to indicate a hierarchical relationship
+
+example for inverted hierarchy (right to left) --> intended purpose is to return all employees from a specific department:
+GET /employees/departments/{id}
+
+example with backslashes:
+GET /departments\{did}\employees\{eid}
+
+
+9. A singular noun should be used for document names
+
+GET /departments/human-resources/employees
+
+GET /animals/geese/species
+
+
+10. A trailing forward slash (/) should not be included in URIs
+
+POST /customers/
+
+GET /orders/
+
+
+11. GET and POST must not be used to tunnel other request methods
+
+POST /customers/{id}
+{
+	"method": "update",
+	"customerName": "newName"
+}
+
+POST /customers/{id}
+{
+	"operation": "change",
+	"customerName": "newName"
+}
+
+POST /customers/{id}
+{
+	"function": "update",
+	"customerName": "newName"
+}
+
+GET /employees/{id}?method=delete
+
+GET /employees/{id}?operation=remove
+
+GET /employees/{id}?function=delete
+
+12. 401 (Unauthorized) must be used when there is a problem with the client credentials
+
+example where security scheme with basic auth is specified but no 401 response is defined
+
+paths:
+  /users:
+    get:
+      tags:
+        - user management
+      description: Returns a list of all users
+      summary: Get all users
+      responses:
+        200:
+          description: Array of user objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+components:
+  schemas:
+    User:
+      description: A user of the system
+      type: object
+      properties:
+        userId:
+          type: number
+        userName:
+          type: string
+        email:
+          type: string
+    GenericResponse:
+      description: A generic response object with a message attribute
+      type: object
+      properties:
+        message:
+          type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+security:
+  - BasicAuth: []
+
+13. Underscores (_) should not be used in URIs
+
+GET /concert_tickets
+
+DELETE /archived_orders/{id}
+
+14. A verb or verb phrase should be used for controller names
+
+POST /backups/{id}/restoration
+
+POST /customers/{id}/notification

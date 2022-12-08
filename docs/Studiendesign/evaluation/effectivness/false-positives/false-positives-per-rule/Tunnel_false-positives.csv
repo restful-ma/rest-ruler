@@ -1,6 +1,0 @@
-,File name,Path,Rule,false-positive,true-positive
-0,Handwrytten API,/profile/deleteRecipient,GET and POST must not be used to tunnel other request methods,0,1
-1,Amazon Honeycode,/workbooks/{workbookId}/tables/{tableId}/rows/batchdelete,GET and POST must not be used to tunnel other request methods,0,1
-2,,,,,
-3,,,Total violations,Total false positives,Total true positives
-4,,,2,0,2

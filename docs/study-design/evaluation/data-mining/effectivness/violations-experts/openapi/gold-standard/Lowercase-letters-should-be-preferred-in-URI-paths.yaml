@@ -1,0 +1,298 @@
+openapi: 3.0.3
+info:
+  description: This is an OpenAPI definition file which contains violations of the rule 'Underscores (_) should not be used in URIs' created by experts.
+  version: 0.1.0
+  title: Example OpenAPI Definition File
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: https://api.example.com/v1
+    description: Production server (uses live data)
+  - url: https://sandbox-api.example.com:8443/v1
+    description: Sandbox server (uses test data)
+paths:
+  # Justus (+1 violation)
+  /ToDos/{id}:
+    get:
+      tags:
+        - todo
+      description: Returns a todo identified via ID
+      summary: Return todo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the todo
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: Todo object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Todo"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  # Justus (+1 violation)
+  /gameStores/{storeId}/videoGames/{gameId}:
+    post:
+      tags:
+        - game store
+      description: Creates a video game with an ID in a game store identified via ID
+      summary: Create mail address
+      parameters:
+        - name: storeId
+          in: path
+          required: true
+          description: The ID of the store
+          schema:
+            type: string
+            minimum: 1
+        - name: gameId
+          in: path
+          required: true
+          description: The ID of the video game
+          schema:
+            type: string
+            minimum: 1
+      requestBody:
+        description: A video game object
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VideoGame"
+      responses:
+        200:
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  # Sebastian (+1 violation)
+  /Users/{userId}/CVs:
+    get:
+      tags:
+        - user management
+      description: Returns a CV for an user identified via ID
+      summary: Return CV
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The ID of the user
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: CV object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CV"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  # Ana Franco da Silva (+1 violation)
+  /users/1/myIssues/13:
+    get:
+      tags:
+        - user management
+      description: Returns issue 13 from user 1
+      summary: Return issue
+      responses:
+        200:
+          description: Issue object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Issue"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  # Lukas Mohs (+1 violation)
+  /ENTITIES/{Id}:
+    get:
+      tags:
+        - entity
+      description: Returns entity identified via ID
+      summary: Return entity
+      parameters:
+        - name: Id
+          in: path
+          required: true
+          description: The Id of the entity
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: Entity object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Entity"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  # Oliver Kopp (+1 violation)
+  /PremiumUsers/{userId}:
+    get:
+      tags:
+        - user management
+      description: Returns the details of a user identified via ID
+      summary: Get a specific user
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The ID of the user
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: User object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+components:
+  schemas:
+    User:
+      description: A user of the system
+      type: object
+      properties:
+        userId:
+          type: number
+        userName:
+          type: string
+        email:
+          type: string
+    Todo:
+      description: A Todo
+      type: object
+      properties:
+        number:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+    VideoGame:
+      description: A video game
+      type: object
+      properties:
+        articleNumber:
+          type: integer
+        name:
+          type: string
+        price:
+          type: number
+    CV:
+      description: A CV
+      type: object
+      properties:
+        name:
+          type: string
+        address:
+          type: string
+        titele:
+          type: string
+    Issue:
+      description: A issue from a user
+      type: object
+      properties:
+        number:
+          type: integer
+        title:
+          type: string
+        comment:
+          type: string
+    Entity:
+      description: A Entity
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+    GenericResponse:
+      description: A generic response object with a message attribute
+      type: object
+      properties:
+        message:
+          type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
+security:
+  - BasicAuth: []

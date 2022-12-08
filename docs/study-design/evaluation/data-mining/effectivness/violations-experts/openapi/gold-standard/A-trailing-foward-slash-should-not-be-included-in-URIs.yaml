@@ -1,0 +1,113 @@
+openapi: 3.0.3
+info:
+  description: This is an example OpenAPI definition file.
+  version: 0.1.0
+  title: Example OpenAPI Definition File
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: https://api.example.com/v1
+    description: Production server (uses live data)
+  - url: https://sandbox-api.example.com:8443/v1
+    description: Sandbox server (uses test data)
+paths:
+  /users/:
+    get:
+      tags:
+        - kotstein
+        - silva
+        - bogner
+        - betka
+        - kopp
+        - pfaff
+      description: Returns a list of all users
+      summary: Get all users
+      responses:
+        200:
+          description: Array of user objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  /users/{userId}/:
+    get:
+      tags:
+        - kotstein
+        - mohs
+      description: Returns the details of a user identified via ID
+      summary: Get a specific user
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The ID of the user
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: User object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        404:
+          description: A user with the specified ID was not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+components:
+  schemas:
+    User:
+      description: A user of the system
+      type: object
+      properties:
+        userId:
+          type: number
+        userName:
+          type: string
+        email:
+          type: string
+    GenericResponse:
+      description: A generic response object with a message attribute
+      type: object
+      properties:
+        message:
+          type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
+security:
+  - BasicAuth: []

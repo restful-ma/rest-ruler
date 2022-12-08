@@ -1,0 +1,44 @@
+,File name,Path,Rule,false-positive,true-positive
+0,ShipEngine API,/v1/environment/webhooks/{webhook_id},A singular noun should be used for document names,1,0
+1,ShipEngine API,/v1/labels/external_shipment_id/{external_shipment_id},A singular noun should be used for document names,1,0
+2,Buy Marketing API,/merchandised_product/get_also_bought_products,A singular noun should be used for document names,1,0
+3,Buy Marketing API,/merchandised_product/get_also_viewed_products,A singular noun should be used for document names,0,1
+4,TAGGUN Receipt OCR Scanning API,/api/receipt/v1/verbose/encoded,A singular noun should be used for document names,1,0
+5,TAGGUN Receipt OCR Scanning API,/api/receipt/v1/verbose/file,A singular noun should be used for document names,1,0
+6,TAGGUN Receipt OCR Scanning API,/api/receipt/v1/verbose/storage,A singular noun should be used for document names,1,0
+7,TAGGUN Receipt OCR Scanning API,/api/receipt/v1/verbose/url,A singular noun should be used for document names,1,0
+8,ApiManagementClient43,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/tenant/{accessName}/git/listSecrets,A singular noun should be used for document names,1,0
+9,ApplicationInsightsManagementClient42,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.insights/components/{resourceName}/{scopePath},A singular noun should be used for document names,0,1
+10,ApplicationInsightsManagementClient42,/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.insights/components/{resourceName}/{scopePath}/item,A singular noun should be used for document names,0,1
+11,Postman API,/collections/merge,A singular noun should be used for document names,0,1
+12,ApplicationInsightsManagementClient54,/subscriptions/{subscriptionId}/resourceGroup/{resourceGroupName}/providers/microsoft.insights/workbooktemplates,A singular noun should be used for document names,0,1
+13,ApplicationInsightsManagementClient54,	/subscriptions/{subscriptionId}/resourceGroup/{resourceGroupName}/providers/microsoft.insights/workbooktemplates/{resourceName},A singular noun should be used for document names,0,1
+14,BioLink API,/cam/model/contributors,A singular noun should be used for document names,0,1
+15,CallFire API Documentation,/calls/broadcasts/{id}/archive,A singular noun should be used for document names,0,1
+16,CallFire API Documentation,/calls/recordings/{id},A singular noun should be used for document names,0,1
+17,CallFire API Documentation,/campaigns/sounds/calls,A singular noun should be used for document names,0,1
+18,CallFire API Documentation,/campaigns/sounds/{id}.wav,A singular noun should be used for document names,0,1
+19,CallFire API Documentation,/contacts/dncs/sources/{source},A singular noun should be used for document names,0,1
+20,CallFire API Documentation,/contacts/dncs/universals/{toNumber},A singular noun should be used for document names,0,1
+21,CallFire API Documentation,/contacts/lists,A singular noun should be used for document names,0,1
+22,CallFire API Documentation,/contacts/lists/{id}/items,A singular noun should be used for document names,0,1
+23,CallFire API Documentation,/numbers/regions,A singular noun should be used for document names,0,1
+24,CallFire API Documentation,/orders/numbers,A singular noun should be used for document names,0,1
+25,CallFire API Documentation,/texts/broadcasts/{id},A singular noun should be used for document names,0,1
+26,CallFire API Documentation,/texts/broadcasts/{id}/archive,A singular noun should be used for document names,0,1
+27,CallFire API Documentation,/texts/broadcasts/{id}/start,A singular noun should be used for document names,0,1
+28,Google OAuth2 API,/oauth2/v2/userinfo,A singular noun should be used for document names,0,1
+29,TimeSeriesInsightsClient,/timeseries/hierarchies/$batch,A singular noun should be used for document names,0,1
+30,TimeSeriesInsightsClient,/timeseries/instances/$batch,A singular noun should be used for document names,0,1
+31,TimeSeriesInsightsClient,/timeseries/instances/search,A singular noun should be used for document names,0,1
+32,TimeSeriesInsightsClient,/timeseries/instances/suggest,A singular noun should be used for document names,0,1
+33,TimeSeriesInsightsClient,/timeseries/modelSettings,A singular noun should be used for document names,0,1
+34,TimeSeriesInsightsClient,/timeseries/types,A singular noun should be used for document names,0,1
+35,TimeSeriesInsightsClient,/timeseries/types/$batch,A singular noun should be used for document names,0,1
+36,Twilio - Insights,/v1/Video/Rooms/{RoomSid}/Participants,A singular noun should be used for document names,1,0
+37,Twilio - Insights,/v1/Voice/Settings,A singular noun should be used for document names,1,0
+38,Twilio - Insights,/v1/Voice/Summaries,A singular noun should be used for document names,1,0
+39,Visual Studio Projects Resource Provider Client,/providers/microsoft.visualstudio/pipelineTemplates,A singular noun should be used for document names,1,0
+40,,,,,
+41,,,Total violations,Total false positives,Total true positives
+42,,,40,12,28
