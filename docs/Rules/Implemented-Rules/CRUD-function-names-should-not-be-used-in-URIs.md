@@ -49,8 +49,7 @@ The following anti-patterns exemplify what not to do:
 
 ### What is not checked
 
-* The parameters in curly brackets are excluded from the path and are therefore currently not checked in a dynamic
-  fashion
+* The parameters in curly brackets are excluded from the path and are therefore currently not checked in a dynamic fashion
 * If more than these previously defined words are to be considered CRUD violations, perform the following steps:
    1. Add the appropriate words to the attribute `CRUD_OPERATIONS` in the `Projektarbeit-Master\rest-studentproject\src\main\java\rest\studentproject\rule\rules\CRUDRule.java` 
    2. Mine the words that have the appropriate words as substring from `Projektarbeit-Master\rest-studentproject\src\main\java\rest\studentproject\docs\wordninja_words.txt` and add them to the list `Projektarbeit-Master\rest-studentproject\src\main\java\rest\studentproject\docs\CRUD_words.txt` (Exclude similar words to still detect the violation; e.g. "gets" from "get")
