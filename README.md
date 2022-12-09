@@ -2,6 +2,7 @@
 
 The Tool_Name_TBD CLI is a tool that can evaluate RESTful APIs on the basis of RESTful Design Rules. These Rules are based on the Design Rules from Mark Massé's book ["REST API Design Rulebook"](https://www.oreilly.com/library/view/rest-api-design/9781449317904/)
 Currently, Tool_Name_TBD can parse the following RESTful API description languages:
+
 * [OpenAPI v2](https://swagger.io/specification/v2/)
 * [OpenAPI v3](https://github.com/OAI/OpenAPI-Specification)
 
@@ -10,10 +11,17 @@ Tool_Name_TBD has been developed in research projects at the [Software Engineeri
 
 
 ## Design Rules
-Descriptions of the implemented Design Rules can be found in our [Rule documentation](docs/Rles/README.md).
+
+Descriptions of the implemented Design Rules can be found in our [Rule documentation](docs/Rules/README.md).
+
+## Project Architecture
+
+A detailed description of the project and implemented components can be found at [Architecture](./rest-studentproject/README.md)
 
 ## General Usage Instructions
+
 Run these commands in the root folder to build and start the tool
+
 ```bash
 cd rest-studentproject
 # build tool
