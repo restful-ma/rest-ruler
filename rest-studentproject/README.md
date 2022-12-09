@@ -13,7 +13,7 @@ This component serves as an interface to the user. It asks for user input, such 
 
 ### Parser
 
-This component is responsible for parsing the input. As the core of this component we have the Swagger parser library, which can read URLs or JSON/YAML files directly and facilitates access to thedata through already defined methods. After the parsing process is complete, a cleanup process is also performed on the resulting data. Since we do not need all the data, we filter out the data that is not needed for the violations.
+This component is responsible for parsing the input. As the core of this component we have the Swagger parser library, which can read OpenAPI definition via URLs or JSON/YAML files directly and facilitates access to the data through already defined methods. It does not matter if the OpenAPI definition is in version 2.0, because it is first converted to a comparable OpenAPI 3.0 definition. After the parsing process is complete, a cleanup process is also performed on the resulting data. Since we do not need all the data, we filter out the data that is not needed for the violations.
 
 This component is used in each rule implementation to parse the input file. Take a look, for example, to the [Hyphens Rule](./src/main/java/rest/studentproject/rule/rules/HyphensRule.java) to have a better overview.
 
@@ -58,11 +58,11 @@ The following diagram is used to explain the overflow of the entire tool.
 
 ![Workflow](../docs/img/workflow.png)
 
-We have four components that are run through during an analysis. First we have the user input component, which displays text to the user through the CLI and where the user enters a path to an OpenAPI document. In the next step, this document is passed on to the analysis component, where the file is processed against the implemented logic and the document is examined against the implemented design rules. We have implemented a total of 14 rules, which we will look at in more detail later. Each rule can return violations, which are passed on to the next component after the rules have been analysed. In this report component, a Markdown report is created from the information of the rule violations, which in the next step is displayed by the output component directly in the CLI in an shortened form. Thereby, it displays the path and the line in the OpenAPI document that contains a violation and which rule was violated. A longer version can be saved locally, with additional properties about the violated rule, as well as a suggestion for improvement. Especially the improvement suggestion is good for the developer to fix the violations and to ensure a better quality of the OpenAPI definition.
+We have four components that are run through during an analysis. First we have the user input component, which displays text to the user through the CLI and where the user enters a path to an OpenAPI document. In the next step, this document is passed on to the analysis component, where the file is processed and the document is examined against the implemented design rules. Currently, we have implemented a total of 14 rules (see [Rules Implementation](#rules-implementation)). Each rule can return violations, which are passed on to the next component after the rules have been analysed. In this report component, a Markdown report is created from the information of the rule violations, which in the next step is displayed by the output component directly in the CLI in an shortened form. Thereby, it displays the path and the line in the OpenAPI document that contains a violation and which rule was violated. A longer version can be saved locally, with additional properties about the violated rule, as well as a suggestion for improvement.
 
 ## Rules Implementation
 
-A good overview of how and which rules was implemented can be found at [Rules Implemented](../docs/Rules/readme.md). At [Rules Description](../docs/Rules/Implemented-Rules/) we can found each rule with information about how the rule was implemented, what was checked and what can be done to further improve this rule.
+A good overview of which and how rules were implemented can be found at [Rules Implemented](../docs/Rules/readme.md). At [Rules Description](../docs/Rules/Implemented-Rules/) we can found each rule with information about how the rule was implemented, what was checked and what can be done to further improve this rule.
 ## Libraries
 
 ### Micronaut 3.5.2 Documentation
