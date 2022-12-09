@@ -27,7 +27,7 @@ cd rest-studentproject
 # build tool
 ./gradlew assemble
 # execute program
-java -jar build/libs/rest-studentproject-0.1-all.jar
+java -jar build/libs/rest-studentproject-0.1-all.jar -h
 ```
 
 ## Example:
