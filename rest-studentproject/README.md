@@ -85,3 +85,12 @@ A good overview of which and how rules were implemented can be found at [Rules I
 
 - [Picocli](https://picocli.info)
 - [Picocli Repository](https://github.com/remkop/picocli)
+
+## Apache OpenNLP
+- [Apache OpenNLP](https://opennlp.apache.org)
+- [Model](models/en-pos-maxent.bin)
+
+## Weka
+
+- [Weka](https://www.cs.waikato.ac.nz/ml/weka/)
+- [Model](models/request_model.dat)
