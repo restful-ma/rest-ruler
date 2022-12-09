@@ -12,7 +12,7 @@ Tool_Name_TBD has been developed in research projects at the [Software Engineeri
 
 ## Design Rules
 
-Descriptions of the implemented Design Rules can be found in our [Rule documentation](docs/Rules/README.md).
+Descriptions of the implemented Design Rules can be found in our [Rule documentation](./docs/Rules/README.md).
 
 ## Project Architecture
 
