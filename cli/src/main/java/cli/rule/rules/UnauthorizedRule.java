@@ -11,7 +11,6 @@ import io.swagger.v3.oas.models.Paths;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.servers.Server;
 import cli.rule.Utility;
-import cli.rule.constants.*;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;

@@ -1,6 +1,4 @@
-import os
 import pandas as pd
-import matplotlib.pyplot as plt
 
 file_titles = {
     '401 ("Unauthorized") must be used when there is a problem with the client\'s credentials': "Unauthorized",

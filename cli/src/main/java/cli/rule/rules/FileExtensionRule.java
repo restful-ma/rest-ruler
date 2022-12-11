@@ -5,7 +5,6 @@ import cli.rule.IRestRule;
 import cli.rule.Violation;
 import cli.rule.constants.*;
 import cli.utility.Output;
-import cli.rule.constants.*;
 
 import io.swagger.v3.oas.models.OpenAPI;
 
