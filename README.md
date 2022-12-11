@@ -1,13 +1,12 @@
-# Tool_Name_TBD
+# RESTRuler
 
-The Tool_Name_TBD CLI is a tool that can evaluate RESTful APIs on the basis of RESTful Design Rules. These Rules are based on the Design Rules from Mark Massé's book ["REST API Design Rulebook"](https://www.oreilly.com/library/view/rest-api-design/9781449317904/)
-Currently, Tool_Name_TBD can parse the following RESTful API description languages:
+The RESTRuler CLI is a tool that can evaluate RESTful APIs on the basis of RESTful Design Rules. These Rules are based on the Design Rules from Mark Massé's book ["REST API Design Rulebook"](https://www.oreilly.com/library/view/rest-api-design/9781449317904/)
+Currently, RESTRuler can parse the following RESTful API description languages:
 
 * [OpenAPI v2](https://swagger.io/specification/v2/)
 * [OpenAPI v3](https://github.com/OAI/OpenAPI-Specification)
 
-
-Tool_Name_TBD has been developed in research projects at the [Software Engineering Group](https://www.iste.uni-stuttgart.de/se) of the University of Stuttgart as a Java command-line tool. It takes the path or URL to a OpenAPI definition file as input and displays a listing of design rule violations. Optionally a markdown report file can be generated with a listing of all rule violations with additonal details and improvement suggestions.
+RESTRuler has been developed in research projects at the [Software Engineering Group](https://www.iste.uni-stuttgart.de/se) of the University of Stuttgart as a Java command-line tool. It takes the path or URL to a OpenAPI definition file as input and displays a listing of design rule violations. Optionally a markdown report file can be generated with a listing of all rule violations with additonal details and improvement suggestions.
 
 
 ## Design Rules
@@ -28,6 +27,10 @@ cd cli
 ./gradlew assemble
 # execute program
 java -jar build/libs/cli-0.1-all.jar -h
+# run tests
+./gradlew test
+# test coverage (output: RESTRuler/cli/build/reports/jacoco/test/html/cli.rule.rules/index.html)
+./gradlew jacocoTestReport
 ```
 
 ## Example:
