@@ -7,7 +7,6 @@ import cli.utility.Output;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.PathItem;
 import io.swagger.v3.oas.models.Paths;
-import cli.rule.constants.*;
 
 import java.util.ArrayList;
 import java.util.List;

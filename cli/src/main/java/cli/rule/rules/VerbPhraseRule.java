@@ -8,7 +8,6 @@ import cli.utility.Output;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.Paths;
-import cli.rule.constants.*;
 
 import java.io.IOException;
 import java.util.*;

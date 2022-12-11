@@ -6,7 +6,6 @@ import cli.rule.Violation;
 import cli.rule.constants.*;
 import cli.utility.Output;
 import io.swagger.v3.oas.models.OpenAPI;
-import cli.rule.constants.*;
 
 import java.util.ArrayList;
 import java.util.List;

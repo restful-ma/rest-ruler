@@ -6,7 +6,6 @@ import cli.rule.Utility;
 import cli.rule.Violation;
 import cli.rule.constants.*;
 import cli.utility.Output;
-import cli.rule.constants.*;
 import com.google.common.collect.Lists;
 import io.swagger.v3.oas.models.OpenAPI;
 import org.apache.commons.lang3.tuple.ImmutablePair;

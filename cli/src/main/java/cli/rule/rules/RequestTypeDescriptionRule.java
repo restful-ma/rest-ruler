@@ -7,7 +7,6 @@ import cli.rule.constants.*;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Paths;
 import org.apache.commons.lang3.tuple.ImmutablePair;
-import cli.rule.constants.*;
 import cli.weka.RequestMethodsWekaClassifier;
 
 import java.util.ArrayList;

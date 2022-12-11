@@ -6,7 +6,6 @@ import cli.rule.rules.LowercaseRule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.net.MalformedURLException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
