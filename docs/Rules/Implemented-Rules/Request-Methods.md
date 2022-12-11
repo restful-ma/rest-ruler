@@ -34,7 +34,7 @@ by the rules in this section.
 ## Implementation Details (Issue #44)
 
 ### What is checked
-* For each request based on the description we check if the description meaning correspond to request type
+* For each request based on the description or the summary we check if the description or summary meaning correspond to request type
 * In order to make this assumption we use weka and a model we trained to predict the request type
 * If the request type doesn't match with the given request type, throw a violation
 

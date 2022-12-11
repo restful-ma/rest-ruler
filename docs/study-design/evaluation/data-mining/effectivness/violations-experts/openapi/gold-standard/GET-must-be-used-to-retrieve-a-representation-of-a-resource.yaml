@@ -1,0 +1,386 @@
+openapi: 3.0.3
+info:
+  description: This is an example OpenAPI definition file.
+  version: 0.1.0
+  title: Example OpenAPI Definition File
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: https://api.example.com/v1
+    description: Production server (uses live data)
+  - url: https://sandbox-api.example.com:8443/v1
+    description: Sandbox server (uses test data)
+paths: 
+  /users/{user-id}/fetch:
+    post:
+      tags:
+        - kotstein
+      description: Get a user with details
+      summary: Get a user
+      parameters: 
+        - name: user-id
+          in: path
+          required: true
+          description: The ID of the user who should be retrieved
+          schema:
+            type: number
+            minimum: 1
+      requestBody:
+        description: Details of the new user
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        200:
+          description: Successful request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        400:
+          description: The specified user details are invalid
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  /users/{userId}/names/search:
+    post:
+      tags:
+        - kotstein
+      description: Search for a user with given user ID
+      summary: Get user by ID
+      parameters: 
+        - name: userId
+          in: path
+          required: true
+          description: The ID of the user who should be retrieved
+          schema:
+            type: number
+            minimum: 1
+      requestBody:
+        description: Details of the user
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        200:
+          description: Successful request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        400:
+          description: The specified user details are invalid
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  /users/register:
+    get:
+      tags:
+        - kotstein
+      description: Create a new user with name and surname defined by query
+      summary: Create an user
+      parameters: 
+        - name: name
+          in: query
+          required: true
+          description: The ID of the user who should be created
+          schema:
+            type: string
+            minimum: 1
+        - name: surname
+          in: query
+          required: true
+          description: The ID of the user who should be created
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: registered user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  /get-user/{userId}:
+   post:
+      tags:
+        - silva
+      description: Retrieves a user with given user ID
+      summary: Retrieve user by ID
+      parameters: 
+        - name: userId
+          in: path
+          required: true
+          description: The ID of the user who should be retrieved
+          schema:
+            type: number
+            minimum: 1
+      requestBody:
+        description: Details of the new user
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        200:
+          description: Successful request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        400:
+          description: The specified user details are invalid
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  /retrieve-user:
+   post:
+      tags:
+        - silva
+      description: Retrieves a user with given user ID
+      summary: Retrieve user by ID
+      parameters: 
+        - name: id
+          in: query
+          required: true
+          description: The ID of the user who should be retrieved
+          schema:
+            type: number
+            minimum: 1
+      requestBody:
+        description: Details of the user
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        200:
+          description: Successful request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        400:
+          description: The specified user details are invalid
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  /activities/{Id}:
+    get:
+      tags:
+        - mohs
+      description: Creates a new user with details
+      summary: Create a new user
+      parameters:
+        - name: Id
+          in: path
+          required: true
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: Array of user objects
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  /orders/{orderId}:            
+    put:
+      tags:
+        - pfaff
+      description: Get a specific order
+      summary: Get a specific order
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          description: The ID of the Order
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: Successful request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        404:
+          description: A order with the specified ID was not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+  /search-publications:
+    post:
+      tags:
+        - bogner
+      description: Search for publications
+      summary: Get publications
+      requestBody:
+        description: Details of an publication
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Publication"
+      responses:
+        200:
+          description: Successful request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Publication"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+components:
+  schemas:
+    User:
+      description: A user of the system
+      type: object
+      properties:
+        userId:
+          type: number
+        userName:
+          type: string
+        email:
+          type: string
+    Order:
+      description: An order
+      type: object
+      properties:
+        orderId:
+          type: number
+        paymentMethod:
+          type: string
+        item:
+          type: string  
+    Publication:
+      description: a Publication
+      type: object
+      properties:
+        title:
+          type: string
+        id:
+          type: number
+        category:
+          type: string
+        published:
+          type: string
+    GenericResponse:
+      description: A generic response object with a message attribute
+      type: object
+      properties:
+        message:
+          type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
+security:
+  - BasicAuth: []

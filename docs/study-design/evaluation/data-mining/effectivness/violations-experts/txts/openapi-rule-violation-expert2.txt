@@ -1,0 +1,87 @@
+1. Content-Type must be used
+
+Possible violations:
+Case A: A type identifier is omitted at all (i.e. the content-type is neither specified as header, nor as URI-property or payload property)
+Case B: The type identifier is part of the URI as path or query parameter, e.g. /users/1?type=json or /users/1/json
+Case C: The type identifier is part of the payload, e.g. embedded into a JSON structure, example:
+{
+	"type":"application/vnd.mycompany.myapi.users.v1+json",
+	"users": [...]
+}
+
+2. CRUD function names should not be used in URIs
+Possible violations:
+Case A: POST /addUser
+Case B: DELETE /delete-user
+Case C: POST /{user-id}/fetch
+
+3. File extensions should not be included in URIs
+Possible violations:
+Case A: /users/{userid}.{type} ,e.g.: /users/1.json or /users/1.html
+Case B: Type as sub-resource /users/{userid}/{type} ,e.g.: /users/1/json or /users/1/html
+
+4. GET must be used to retrieve a representation of a resource
+Possible violations:
+Case A: POST /users/{user-id}/fetch
+Case B: POST /users/{user-id}/search
+Case C: GET /users/register?name=john&surname=doe
+
+5. Hyphens (-) should be used to improve the readability of URIs
+Possible violations:
+Case A: /users/{userId}/contactdetails
+Case B: /users/johndoe (where "john_doe" is the value of a path parameter {userId})
+
+6. Lowercase letters should be preferred in URI paths
+Possible violations:
+Case A: http://myapi.mycompany.com/V1/users/{userId}/CV (Note: Only static path segments "V1" and "CV" violate the rule. {userId} however is a path parameter that will be substituted at runtime and therefore does not violate the rule).
+
+7. A plural noun should be used for collection/store names
+Possible violations:
+Case A: /user/{userId}
+Special case: Entites without a singular or plural form, e.g. "information" (no plural) or "trousers" (no singular). 
+In this case, I would suggest to violate grammer rules instead of API design rule number 7 and try to create an artifical plural or singular form of a noun to maintain understandability, e.g.:  
+/informations/{informationId} is correct, while /information/{informationId} violates rule #7 (possible workaround: use "information-items" instead of "informations").
+
+Howerver, this is a very special case and should be treated with caution. A tool might warn a developer of using ambigous nouns rather than classifying this as an error.
+
+8. Forward slash separator (/) must be used to indicate a hierarchical relationship
+Possible violations:
+Case A: Inverted order of path segments, e.g. /{userId}/users
+Case B: User of other characters to indicate a hierarchy, for instance a dot (XPath style), e.g.: http://myapi.mycompany.com/users.{userId}.cv.place-of-birth
+
+9. A singular noun should be used for document names
+Possible violations:
+Case A: Every entity name that has a plural form but should represent a single document, e.g. http://myshop.com/products/trousers
+See also special case of rule #7
+
+10. A trailing forward slash (/) should not be included in URIs
+Possible violations:
+Case A: http://myapi.mycompany.com/users/
+Case B: http://myapi.mycompany.com/users/{userId}/
+
+Exception: Entry point URIs in the form of http://myapi.mycompany.com/ are valid in my point of view as some web servers do not support base endpoints without any path segment (e.g. http://myapi.mycompany.com)
+
+11. GET and POST must not be used to tunnel other request methods
+Possible violations:
+Case A: GET /users/{userId}?operation={operation}, e.g. /users/1?operation=put
+Case B: POST /users/{userId} with operation specified in payload
+
+12. 401 (Unauthorized) must be used when there is a problem with the client credentials
+Possible violations:
+Case A: There is often confusion regarding the proper use of 401 and 403. Therefore, sometimes 403 is used instead of 401 (and vice versa)
+Case B: Status code 400 for every kind of client error (including problems with client credentials)
+Case C: Status code 500 for every kind of error
+
+13. Underscores (_) should not be used in URIs
+Possible violations:
+Case A: /information_items
+Case B: /users/{userId}/cv/place_of_birth
+
+14: A verb or verb phrase should be used for controller names
+Possible violations:
+Case A: POST /event/{eventId}/registrations (has the semantics of a collection, not a controller)
+Case B: POST /event/{eventId}/registration (has the semantics of a document, not a controller)
+
+
+
+ 

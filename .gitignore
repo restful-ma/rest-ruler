@@ -1,4 +1,4 @@
 .vscode
 .gradle
 .idea
-./rest-studentproject/bin
+./cli/bin

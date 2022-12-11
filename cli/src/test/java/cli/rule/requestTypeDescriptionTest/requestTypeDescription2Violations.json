@@ -1,0 +1,389 @@
+{
+  "swagger": "2.0",
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "host": "1forge.com",
+  "basePath": "/forex-quotes",
+  "info": {
+    "contact": {
+      "email": "contact@1forge.com",
+      "name": "1Forge",
+      "url": "http://1forge.com"
+    },
+    "description": "Stock and Forex Data and Realtime Quotes",
+    "title": "1Forge Finance APIs",
+    "version": "0.0.1",
+    "x-apisguru-categories": [
+      "financial"
+    ],
+    "x-logo": {
+      "backgroundColor": "#24292e",
+      "url": "https://api.apis.guru/v2/cache/logo/https_1forge.com_assets_images_f-blue.svg"
+    },
+    "x-origin": [
+      {
+        "format": "swagger",
+        "url": "http://1forge.com/openapi.json",
+        "version": "2.0"
+      }
+    ],
+    "x-providerName": "1forge.com"
+  },
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/quotes": {
+      "get": {
+        "description": "Delete quotes",
+        "externalDocs": {
+          "description": "Find out more",
+          "url": "http://1forge.com/forex-data-api"
+        },
+        "responses": {
+          "200": {
+            "description": "A list of quotes"
+          }
+        },
+        "summary": "Delete quotes for all symbols",
+        "tags": [
+          "forex",
+          "finance",
+          "quotes"
+        ]
+      }
+    },
+    "/symbols": {
+      "put": {
+        "description": "Create new symbol list",
+        "externalDocs": {
+          "description": "Find out more",
+          "url": "http://1forge.com/forex-data-api"
+        },
+        "responses": {
+          "200": {
+            "description": "A list of symbols",
+            "schema": {
+              "example": [
+                "EURUSD",
+                "GBPJPY",
+                "AUDUSD"
+              ],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "summary": "Create new list of symbols for which we provide real-time quotes",
+        "tags": [
+          "forex",
+          "finance",
+          "quotes"
+        ]
+      }
+    },
+    "/letters": {
+      "delete": {
+        "description": "Create a new symbol list",
+        "externalDocs": {
+          "description": "Find out more",
+          "url": "http://1forge.com/forex-data-api"
+        },
+        "responses": {
+          "200": {
+            "description": "A list of symbols",
+            "schema": {
+              "example": [
+                "EURUSD",
+                "GBPJPY",
+                "AUDUSD"
+              ],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "summary": "Create new list of symbols for which we provide real-time quotes",
+        "tags": [
+          "forex",
+          "finance",
+          "quotes"
+        ]
+      }
+    },
+    "/food": {
+      "post": {
+        "description": "Update a collection of symbols",
+        "externalDocs": {
+          "description": "Find out more",
+          "url": "http://1forge.com/forex-data-api"
+        },
+        "responses": {
+          "200": {
+            "description": "A list of symbols",
+            "schema": {
+              "example": [
+                "EURUSD",
+                "GBPJPY",
+                "AUDUSD"
+              ],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "summary": "Update a list of symbols for which we provide real-time quotes",
+        "tags": [
+          "forex",
+          "finance",
+          "quotes"
+        ]
+      }
+    },
+    "/food/truck": {
+      "post": {
+        "description": "Update a collection and then create the symbol List",
+        "externalDocs": {
+          "description": "Find out more",
+          "url": "http://1forge.com/forex-data-api"
+        },
+        "responses": {
+          "200": {
+            "description": "A list of symbols",
+            "schema": {
+              "example": [
+                "EURUSD",
+                "GBPJPY",
+                "AUDUSD"
+              ],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "summary": "Update a collection and then create the symbol List",
+        "tags": [
+          "forex",
+          "finance",
+          "quotes"
+        ]
+      }
+    },
+    "/food/dim": {
+      "get": {
+        "description": "Get and delete a symbol list referring to one item.",
+        "externalDocs": {
+          "description": "Find out more",
+          "url": "http://1forge.com/forex-data-api"
+        },
+        "responses": {
+          "200": {
+            "description": "A list of symbols",
+            "schema": {
+              "example": [
+                "EURUSD",
+                "GBPJPY",
+                "AUDUSD"
+              ],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "summary": "Get and delete a symbol list referring to one item.",
+        "tags": [
+          "forex",
+          "finance",
+          "quotes"
+        ]
+      }
+    },
+    "/quotes1": {
+      "get": {
+        "description": "Delete quotes for all symbols",
+        "externalDocs": {
+          "description": "Find out more",
+          "url": "http://1forge.com/forex-data-api"
+        },
+        "responses": {
+          "200": {
+            "description": "A list of quotes"
+          }
+        },
+        "summary": "",
+        "tags": [
+          "forex",
+          "finance",
+          "quotes"
+        ]
+      }
+    },
+    "/symbols1": {
+      "put": {
+        "description": "Create new list of symbols for which we provide real-time quotes",
+        "externalDocs": {
+          "description": "Find out more",
+          "url": "http://1forge.com/forex-data-api"
+        },
+        "responses": {
+          "200": {
+            "description": "A list of symbols",
+            "schema": {
+              "example": [
+                "EURUSD",
+                "GBPJPY",
+                "AUDUSD"
+              ],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "forex",
+          "finance",
+          "quotes"
+        ]
+      }
+    },
+    "/letters1": {
+      "delete": {
+        "description": "Create new list of symbols for which we provide real-time quotes",
+        "externalDocs": {
+          "description": "Find out more",
+          "url": "http://1forge.com/forex-data-api"
+        },
+        "responses": {
+          "200": {
+            "description": "A list of symbols",
+            "schema": {
+              "example": [
+                "EURUSD",
+                "GBPJPY",
+                "AUDUSD"
+              ],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "forex",
+          "finance",
+          "quotes"
+        ]
+      }
+    },
+    "/food1": {
+      "post": {
+        "description": "Update a list of symbols for which we provide real-time quotes",
+        "externalDocs": {
+          "description": "Find out more",
+          "url": "http://1forge.com/forex-data-api"
+        },
+        "responses": {
+          "200": {
+            "description": "A list of symbols",
+            "schema": {
+              "example": [
+                "EURUSD",
+                "GBPJPY",
+                "AUDUSD"
+              ],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "forex",
+          "finance",
+          "quotes"
+        ]
+      }
+    },
+    "/food/truck1": {
+      "post": {
+        "description": "Update a collection and then create the symbol List",
+        "externalDocs": {
+          "description": "Find out more",
+          "url": "http://1forge.com/forex-data-api"
+        },
+        "responses": {
+          "200": {
+            "description": "A list of symbols",
+            "schema": {
+              "example": [
+                "EURUSD",
+                "GBPJPY",
+                "AUDUSD"
+              ],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "forex",
+          "finance",
+          "quotes"
+        ]
+      }
+    },
+    "/food/dim1": {
+      "get": {
+        "description": "Get and delete a symbol list referring to one item.",
+        "externalDocs": {
+          "description": "Find out more",
+          "url": "http://1forge.com/forex-data-api"
+        },
+        "responses": {
+          "200": {
+            "description": "A list of symbols",
+            "schema": {
+              "example": [
+                "EURUSD",
+                "GBPJPY",
+                "AUDUSD"
+              ],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "forex",
+          "finance",
+          "quotes"
+        ]
+      }
+    }
+  }
+}

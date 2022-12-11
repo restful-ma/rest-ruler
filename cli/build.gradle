@@ -1,0 +1,53 @@
+plugins {
+    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("io.micronaut.application") version "3.4.1"
+    id "org.barfuin.gradle.jacocolog" version "3.0.0-RC2"
+}
+
+version = "0.1"
+group = "cli"
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    annotationProcessor("info.picocli:picocli-codegen")
+    implementation("info.picocli:picocli")
+    implementation("io.micronaut:micronaut-jackson-databind")
+    implementation("io.micronaut.picocli:micronaut-picocli")
+    implementation("jakarta.annotation:jakarta.annotation-api")
+    runtimeOnly("ch.qos.logback:logback-classic")
+    implementation("io.micronaut:micronaut-validation")
+    implementation('io.swagger.parser.v3:swagger-parser-v3:2.1.2')
+    implementation('io.swagger.parser.v3:swagger-parser:2.1.1')
+    implementation('com.github.Steppschuh:Java-Markdown-Generator:master-SNAPSHOT')
+    implementation 'org.fusesource.jansi:jansi:2.4.0'
+    implementation 'org.reflections:reflections:0.10.2'
+    testImplementation("io.micronaut:micronaut-http-client")
+    implementation("org.apache.directory.studio:org.apache.commons.io:2.4")
+    implementation ("org.atteo:evo-inflector:1.2.2")
+    implementation ("org.apache.opennlp:opennlp-tools:1.9.1")
+    implementation group: 'nz.ac.waikato.cms.weka', name: 'weka-stable', version: '3.8.0'
+}
+
+
+application {
+    mainClass.set("cli.RestParserCommand")
+}
+java {
+    sourceCompatibility = JavaVersion.toVersion("11")
+    targetCompatibility = JavaVersion.toVersion("11")
+}
+
+micronaut {
+    testRuntime("junit5")
+    processing {
+        incremental(true)
+        annotations("cli.*")
+    }
+}
+
+
+
