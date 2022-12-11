@@ -16,31 +16,31 @@ Descriptions of the implemented Design Rules can be found in our [Rule documenta
 
 ## Project Architecture
 
-A detailed description of the project and implemented components can be found at [Architecture](./rest-studentproject/README.md)
+A detailed description of the project and implemented components can be found at [Architecture](./cli/README.md)
 
 ## General Usage Instructions
 
 Run these commands in the root folder to build and start the tool
 
 ```bash
-cd rest-studentproject
+cd cli
 # build tool
 ./gradlew assemble
 # execute program
-java -jar build/libs/rest-studentproject-0.1-all.jar -h
+java -jar build/libs/cli-0.1-all.jar -h
 ```
 
 ## Example:
 
 ```bash
 # Run with an example API from api.guru https://apis.guru
-java -jar build/libs/rest-studentproject-0.1-all.jar -r https://api.apis.guru/v2/specs/1forge.com/0.0.1/swagger.json
+java -jar build/libs/cli-0.1-all.jar -r https://api.apis.guru/v2/specs/1forge.com/0.0.1/swagger.json
 ```
 
 This produces the following output:
 
 ```cli
-java -jar build/libs/rest-studentproject-0.1-all.jar -r https://api.apis.guru/v2/specs/1forge.com/0.0.1/swagger.json
+java -jar build/libs/cli-0.1-all.jar -r https://api.apis.guru/v2/specs/1forge.com/0.0.1/swagger.json
 
 -----------------INFO ANALYSIS----------------
 -----------------------------------------------
@@ -54,63 +54,63 @@ no
 Begin with the analysis of the file from: https://api.apis.guru/v2/specs/1forge.com/0.0.1/swagger.json
 
 ----------------------------------------------
-Dec 09, 2022 9:41:42 AM rest.studentproject.analyzer.RestAnalyzer runRuleViolationChecks
+Dec 09, 2022 9:41:42 AM RestAnalyzer runRuleViolationChecks
 INFO: Rule 1 of 15 is now checked:
 Forward slash separator (/) must be used to indicate a hierarchical relationship
 [==========] 100%
-Dec 09, 2022 9:41:42 AM rest.studentproject.analyzer.RestAnalyzer runRuleViolationChecks
+Dec 09, 2022 9:41:42 AM RestAnalyzer runRuleViolationChecks
 INFO: Rule 2 of 15 is now checked:
 401 ("Unauthorized") must be used when there is a problem with the client's credentials
 [==========] 100%
-Dec 09, 2022 9:41:42 AM rest.studentproject.analyzer.RestAnalyzer runRuleViolationChecks
+Dec 09, 2022 9:41:42 AM RestAnalyzer runRuleViolationChecks
 INFO: Rule 3 of 15 is now checked:
 Lowercase letters should be preferred in URI paths
 [==========] 100%
-Dec 09, 2022 9:41:42 AM rest.studentproject.analyzer.RestAnalyzer runRuleViolationChecks
+Dec 09, 2022 9:41:42 AM RestAnalyzer runRuleViolationChecks
 INFO: Rule 4 of 15 is now checked:
 Underscores (_) should not be used in URI
 [==========] 100%
-Dec 09, 2022 9:41:42 AM rest.studentproject.analyzer.RestAnalyzer runRuleViolationChecks
+Dec 09, 2022 9:41:42 AM RestAnalyzer runRuleViolationChecks
 INFO: Rule 5 of 15 is now checked:
 Content-Type must be used
 [==========] 100%
-Dec 09, 2022 9:41:42 AM rest.studentproject.analyzer.RestAnalyzer runRuleViolationChecks
+Dec 09, 2022 9:41:42 AM RestAnalyzer runRuleViolationChecks
 INFO: Rule 6 of 15 is now checked:
 A plural noun should be used for collection or store names
 [==========] 100%
-Dec 09, 2022 9:41:42 AM rest.studentproject.analyzer.RestAnalyzer runRuleViolationChecks
+Dec 09, 2022 9:41:42 AM RestAnalyzer runRuleViolationChecks
 INFO: Rule 7 of 15 is now checked:
 A trailing forward slash (/) should not be included in URIs
 [==========] 100%
-Dec 09, 2022 9:41:42 AM rest.studentproject.analyzer.RestAnalyzer runRuleViolationChecks
+Dec 09, 2022 9:41:42 AM RestAnalyzer runRuleViolationChecks
 INFO: Rule 8 of 15 is now checked:
 A singular noun should be used for document names
 [==========] 100%
-Dec 09, 2022 9:41:43 AM rest.studentproject.analyzer.RestAnalyzer runRuleViolationChecks
+Dec 09, 2022 9:41:43 AM RestAnalyzer runRuleViolationChecks
 INFO: Rule 9 of 15 is now checked:
 A verb or verb phrase should be used for controller names
 [==========] 100%
-Dec 09, 2022 9:41:44 AM rest.studentproject.analyzer.RestAnalyzer runRuleViolationChecks
+Dec 09, 2022 9:41:44 AM RestAnalyzer runRuleViolationChecks
 INFO: Rule 10 of 15 is now checked:
 Hyphens (-) should be used to improve the readability of URIs
 [==========] 100%
-Dec 09, 2022 9:41:44 AM rest.studentproject.analyzer.RestAnalyzer runRuleViolationChecks
+Dec 09, 2022 9:41:44 AM RestAnalyzer runRuleViolationChecks
 INFO: Rule 11 of 15 is now checked:
 File extensions should not be included in URIs
 [==========] 100%
-Dec 09, 2022 9:41:44 AM rest.studentproject.analyzer.RestAnalyzer runRuleViolationChecks
+Dec 09, 2022 9:41:44 AM RestAnalyzer runRuleViolationChecks
 INFO: Rule 12 of 15 is now checked:
 CRUD function names should not be used in URIs
 [==========] 100%
-Dec 09, 2022 9:41:44 AM rest.studentproject.analyzer.RestAnalyzer runRuleViolationChecks
+Dec 09, 2022 9:41:44 AM RestAnalyzer runRuleViolationChecks
 INFO: Rule 13 of 15 is now checked:
 GET and POST must not be used to tunnel other request methods
 [==========] 100%
-Dec 09, 2022 9:41:44 AM rest.studentproject.analyzer.RestAnalyzer runRuleViolationChecks
+Dec 09, 2022 9:41:44 AM RestAnalyzer runRuleViolationChecks
 INFO: Rule 14 of 15 is now checked:
 GET must be used to retrieve a representation of a resource
 [==========] 100%
-Dec 09, 2022 9:41:44 AM rest.studentproject.analyzer.RestAnalyzer runRuleViolationChecks
+Dec 09, 2022 9:41:44 AM RestAnalyzer runRuleViolationChecks
 INFO: Rule 15 of 15 is now checked:
 Description of request should match with the type of the request.
 REST API Specification Report
@@ -138,17 +138,17 @@ In total 2 rule violations were found
 
 ```bash
 # Run with no output file:
-java -jar build/libs/rest-studentproject-0.1-all.jar -r path/to/openapi/definiton.json
+java -jar build/libs/cli-0.1-all.jar -r path/to/openapi/definiton.json
 
 # Run with url:
-java -jar build/libs/rest-studentproject-0.1-all.jar -r https://www.custom.domain.com/path/to/openapi-definiton.yaml
+java -jar build/libs/cli-0.1-all.jar -r https://www.custom.domain.com/path/to/openapi-definiton.yaml
 
 # Run with custom output file name:
-java -jar build/libs/rest-studentproject-0.1-all.jar -r path/to/openapi/definiton.yaml -t custom-file-name
+java -jar build/libs/cli-0.1-all.jar -r path/to/openapi/definiton.yaml -t custom-file-name
 
 # Run with generated output file name:
-java -jar build/libs/rest-studentproject-0.1-all.jar -r path/to/openapi/definiton.yaml --out
+java -jar build/libs/cli-0.1-all.jar -r path/to/openapi/definiton.yaml --out
 
 # Run in expert mode:
-java -jar build/libs/rest-studentproject-0.1-all.jar -r path/to/openapi/definiton.json -e
+java -jar build/libs/cli-0.1-all.jar -r path/to/openapi/definiton.json -e
 ```

@@ -30,4 +30,4 @@ jobs:
       with:
         gradle-version: 7.4.2
     - run: gradle build --info
-      working-directory: ./rest-studentproject
+      working-directory: ./cli

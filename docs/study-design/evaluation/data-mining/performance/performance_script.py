@@ -85,10 +85,10 @@ def execute_java1(json_file, file_name):
     pattern = re.compile(r'In total \d+ rule violations were found')
     title = json_file.strip(".json")
     #define path to jar here
-    path_to_jar = './java/rest-studentproject-0.1-all.jar'
+    path_to_jar = './java/cli-0.1-all.jar'
     counter = 0
-    # '~/Projektarbeit-Master/rest-studentproject/'
-    process_cwd = './rest-studentproject/'
+    # '~/RESTRuler/cli/'
+    process_cwd = './cli/'
     # print("In method execute: " + str(pathlib.Path().resolve()) + "and the file is : " + json_file)
     print("In methos the file is : " + json_file)
     pfad_file = "C:\\Users\\abaji\\OneDrive\\Desktop\\DataMiningREST\\apis-json\\" + json_file

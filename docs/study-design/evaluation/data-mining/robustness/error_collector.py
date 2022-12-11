@@ -12,9 +12,9 @@ skipped_lines = []
 pattern = re.compile(r'In total \d+ rule violations were found')
 
 #define path to jar here
-path_to_jar = '~/rest-studentproject/build/libs/rest-studentproject-0.1-all.jar'
+path_to_jar = '~/cli/build/libs/cli-0.1-all.jar'
 
-# '~/Projektarbeit-Master/rest-studentproject/'
+# '~/RESTRuler/cli/'
 process_cwd = ''
 
 # specify input filename here
