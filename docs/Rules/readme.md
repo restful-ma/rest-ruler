@@ -35,6 +35,8 @@ with *"https"* being the scheme, *"example.com:8080"* the authority, *"shelter/a
 For the implementation of rules related to the URI, we work on the *"path"*-portion of the URI. In an OpenAPI definition of an API, the path portion can be found in the *"paths"*-segment. Each path in the *"paths"* segment may optionally contain a list of parameter definitions for both path variables as also query parameters next to the required definition of the path. It may also contain request bodies and response definitions for numerous HTTP response codes. In these responses, a detailed description of what kind of response object, such as their data type, will be received for each HTTP response code.
 
 ### List of implemented rules
+Documentation about the rules can be found in the [folder](./Implemented-Rules).
+
 * [Forward slash separator (/) must be used to indicate a hierarchical relationship](./Implemented-Rules/Forward-slash-separator-must-be-used-to-indicate-a-hierarchical-relationship.md)
 * [A trailing forward slash (/) should not be included in URIs](./Implemented-Rules/A-trailing-foward-slash-should-not-be-included-in-URIs.md)
 * [GET and POST must not be used to tunnel other request methods](./Implemented-Rules/GET-and-POST-must-not-be-used-to-tunnel-other-request-methods.md) 
@@ -49,8 +51,6 @@ For the implementation of rules related to the URI, we work on the *"path"*-port
 * [A plural noun should be used for collection or store names](./Implemented-Rules/A-plural-noun-should-be-used-for-collection-or-store-names.md)
 * [A singular noun should be used for document names](./Implemented-Rules/A-singular-noun-should-be-used-for-document-names.md)
 * [A verb or verb phrase should be used for controller names](./Implemented-Rules/A-verb-or-verb-phrase-should-be-used-for-controller-names.md)
-
-More documentation about the rules can be found in the [folder](./Implemented-Rules).
 
 ### Rule implementation and extension
 For each rule, a single Java class is created, which can be found in in this [dir](../../cli/src/main/java/cli/rule/rules). It is just as easy to implement a new rule. For implementing a new rule, it is merely necessary to create a Java class in the folder just mentioned, which implements the [`IRestRule`](../../cli/src/main/java/cli/rule/IRestRule.java) interface. Then, a constructor with an `isActive` boolean is needed. Now the rule is automatically recognized and listed in the CLI. This is the minimum that needs to be done to implement a new static rule. However, for a dynamic analysis, it must first be checked whether it is requested by the user. Therefore, it is necessary to check the attributes `dynamicAnalysis` (boolean) and `securitySchemas` of the [calling class](../../cli/src/main/java/cli/analyzer/RestAnalyzer.java). This is possible because they are `public static` in the Java class. The latter attribute is a list of user-specified security schemes for the API, either a `bearer` token, `basic` authentication, or an `api-key`. Based on this, the necessary information for a dynamic analysis is available and requests can be sent to the API.
