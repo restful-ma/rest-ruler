@@ -14,7 +14,7 @@ pattern = re.compile(r'In total \d+ rule violations were found')
 #define path to jar here
 path_to_jar = '~/cli/build/libs/cli-0.1-all.jar'
 
-# '~/RESTRuler/cli/'
+# '~/rest-ruler/cli/'
 process_cwd = ''
 
 # specify input filename here

@@ -40,7 +40,8 @@ df_total = pd.DataFrame(
     index=[0],
 )
 
-file_prefix = "C:\\Users\\manue\\Documents\\Studium\\Master\\2.Semester\\Forschungsprojekt\\RESTRuler\\docs\\Studiendesign\\evaluation\\effectivness\\false-positives\\"
+# add file prefix
+file_prefix = "C:\\usr\\rest-ruler\\docs\\Studiendesign\\evaluation\\effectivness\\false-positives\\"
 
 data = pd.read_excel(
     file_prefix + "false-positives.xlsx",

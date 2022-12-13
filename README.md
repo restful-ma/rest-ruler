@@ -29,7 +29,7 @@ cd cli
 java -jar build/libs/cli-0.1-all.jar -h
 # run tests
 ./gradlew test
-# test coverage (output: RESTRuler/cli/build/reports/jacoco/test/html/cli.rule.rules/index.html)
+# test coverage (output: rest-ruler/cli/build/reports/jacoco/test/html/cli.rule.rules/index.html)
 ./gradlew jacocoTestReport
 ```
 

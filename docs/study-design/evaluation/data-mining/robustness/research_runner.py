@@ -39,9 +39,9 @@ skip_files = 0
 
 
 # define path to jar here
-path_to_jar = "~/RESTRuler/cli/build/libs/cli-0.1-all.jar"
+path_to_jar = "~/rest-ruler/cli/build/libs/cli-0.1-all.jar"
 
-# '~/RESTRuler/cli/'
+# '~/rest-ruler/cli/'
 process_cwd = ""
 
 with open("apis.csv", "r", encoding="utf8") as f:
