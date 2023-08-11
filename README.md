@@ -169,7 +169,7 @@ In total 40 rule violations were found
 ## Command-Line Options
 | Option                                   | Description                                                                                                                      | Required |
 | :--------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------- | :------- |
-| `-r $URI_PATH` `--runAnalysis $URI_PATH` | Run the analysis. Required: Path to Openapi definition (2.0 or higher; JSON or YAML)                                             | YES*     |
+| `-r $URI_PATH` `--runAnalysis $URI_PATH` | Run the analysis. Required: path to OpenAPI definition (2.0 or higher; JSON or YAML)                                             | YES*     |
 | `-e` `--expertMode`                      | Enables custom selection of design rules to be used for analysis                                                                 | NO       |
 | `-o` `--out`                             | Generates a report file in Markdown format                                                                                       | NO**     |
 | `-t $FILENAME` `--title $FILENAME`       | Generates a report file in Markdown with custom filename. If this option is selected, the above option for output is not needed. | NO**     |
