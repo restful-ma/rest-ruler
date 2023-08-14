@@ -1,7 +1,7 @@
 # RESTRuler
 
-The RESTRuler CLI is a tool that can evaluate RESTful APIs on the basis of design rule violations. These violations are based on the design rules from Mark Massé's book ["REST API Design Rulebook"](https://www.oreilly.com/library/view/rest-api-design/9781449317904/)
-Currently, RESTRuler can parse the following RESTful API description languages:
+The RESTRuler CLI is a tool that can evaluate RESTful APIs on the basis of design rule violations. These violations are based on the design rules from Mark Massé's book [REST API Design Rulebook](https://www.oreilly.com/library/view/rest-api-design/9781449317904/).
+Currently, RESTRuler can parse the following Web API description languages:
 
 * [OpenAPI v2](https://swagger.io/specification/v2/)
 * [OpenAPI v3](https://github.com/OAI/OpenAPI-Specification)
@@ -12,11 +12,11 @@ Optionally, a Markdown report file can be generated with additional details and 
 
 ## Design Rules
 
-Descriptions of the implemented design rules can be found in our [rule documentation](./docs/rules/readme.md).
+Descriptions of the implemented design rules can be found in our [rule documentation](./docs/rules/README.md).
 
 ## Project Architecture
 
-A detailed description of the project and implemented components can be found in [Architecture](./cli/README.md).
+A detailed description of the project and implemented components can be found in the [architecture documentation](./docs/architecture.md).
 
 ## General Usage Instructions
 
