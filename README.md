@@ -24,17 +24,17 @@ Run these commands in the root folder to build and start the tool:
 
 ```bash
 cd cli
-# build tool
+# create JAR file
 ./gradlew assemble
-# execute program
+# execute JAR file to display CLI parameters
 java -jar build/libs/cli-0.1-all.jar -h
 # run tests
 ./gradlew test
-# test coverage (output: rest-ruler/cli/build/reports/jacoco/test/html/cli.rule.rules/index.html)
+# test coverage (output: ./build/reports/jacoco/test/html/index.html)
 ./gradlew jacocoTestReport
 ```
 
-## Example:
+## Usage Example
 
 ```bash
 # Run with an example API from https://apis.guru
@@ -166,7 +166,7 @@ REST API Specification Report
 In total 40 rule violations were found
 ```
 
-## Command-Line Options
+## Command Line Options
 | Option                                   | Description                                                                                                                      | Required |
 | :--------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------- | :------- |
 | `-r $URI_PATH` `--runAnalysis $URI_PATH` | Run the analysis. Required: path to OpenAPI definition (2.0 or higher; JSON or YAML)                                             | YES*     |
@@ -178,18 +178,18 @@ In total 40 rule violations were found
 **If no additional output was specified, the report will only be outputted to the console.
 
 ```bash
-# Run with no output file:
+# Run with no output file
 java -jar build/libs/cli-0.1-all.jar -r path/to/openapi/definiton.json
 
-# Run with url:
+# Run with url
 java -jar build/libs/cli-0.1-all.jar -r https://www.custom.domain.com/path/to/openapi-definiton.yaml
 
-# Run with custom output file name:
+# Run with custom output file name
 java -jar build/libs/cli-0.1-all.jar -r path/to/openapi/definiton.yaml -t custom-file-name
 
-# Run with generated output file name:
+# Run with generated output file name
 java -jar build/libs/cli-0.1-all.jar -r path/to/openapi/definiton.yaml --out
 
-# Run in expert mode:
+# Run in expert mode
 java -jar build/libs/cli-0.1-all.jar -r path/to/openapi/definiton.json -e
 ```
