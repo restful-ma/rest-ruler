@@ -26,20 +26,21 @@ import static java.util.Map.entry;
  */
 public class Output {
     private static final String UNDERLINE = "----------------------------------------------";
-    private static final Map<SecuritySchema, String> secToNumbAuthMapping = Map.ofEntries(
-            entry(SecuritySchema.APIKEY, "1"), entry(SecuritySchema.BASIC, "2"), entry(SecuritySchema.BEARER, "3"));
-    private static final Map<String, SecuritySchema> numbToSecAuthMapping = Map.ofEntries(entry("1",
-            SecuritySchema.APIKEY), entry("2", SecuritySchema.BASIC), entry("3", SecuritySchema.BEARER));
-    private static final String YES_NO = "[yes/no]";
+    private static final Map<SecuritySchema, String> secToNumbAuthMapping =
+            Map.ofEntries(entry(SecuritySchema.APIKEY, "1"), entry(SecuritySchema.BASIC, "2"),
+                    entry(SecuritySchema.BEARER, "3"));
+    private static final Map<String, SecuritySchema> numbToSecAuthMapping =
+            Map.ofEntries(entry("1", SecuritySchema.APIKEY), entry("2", SecuritySchema.BASIC),
+                    entry("3", SecuritySchema.BEARER));
+    private static final String YES_NO = "[yes/NO]";
     private String pathToFile = "";
     private final Scanner scanner = new Scanner(System.in);
     private final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private String choice;
 
     /**
-     * Method for the expert mode. User will be asked to enable or disable each
-     * rule. The input will be saved in the
-     * config file.
+     * Method for the expert mode. User will be asked to enable or disable each rule. The input will
+     * be saved in the config file.
      */
     public void askActiveRules() {
         ActiveRules activeRules = new ActiveRules();
@@ -47,8 +48,8 @@ public class Output {
 
         System.out.println("\n------------------EXPERT MODE------------------");
         System.out.println(UNDERLINE);
-        System.out.println(activeRuleList.size() + " " + "rules are currently implemented. To customize the rule " +
-                "list" + " " + "start configuration by entering " + "y/yes. To skip the configuration press any key");
+        System.out.println(activeRuleList.size()
+                + " rules are currently implemented. To customize the rule list, start configuration by entering y/yes. Press any other key to skip the configuration.");
 
         String startConfig = this.scanner.next().trim();
 
@@ -58,36 +59,38 @@ public class Output {
 
             System.out.println("\n---------------------INFO---------------------");
             System.out.println(UNDERLINE);
-            System.out.println("For every rule enable it with y/yes and disable it with n/no. For further " +
-                    "information" + " to the rule press" + " i/info. To cancel the configuration and discard the " +
-                    "input press q/quit. To " + "skip the rest of the " + "rules without discarding the input press "
-                    + "s/skip.");
+            System.out.println(
+                    "For every rule, enable it with y/yes and disable it with n/no. For further information on the rule, press i/info. To cancel the configuration and discard the input, press q/quit. To skip the rest of the rules without discarding the input, press s/skip.");
             System.out.println("\n-----------------SELECT RULES-----------------");
             System.out.println(UNDERLINE);
 
             while (currentRuleIndex <= activeRuleList.size()) {
                 IRestRule currentRule = activeRuleList.get(currentRuleIndex - 1);
 
-                System.out.println("--> Enable Rule " + currentRuleIndex + " of " + activeRuleList.size() + ": "
-                        + currentRule.getTitle() + " [y/n]");
+                System.out.println("--> Enable Rule " + currentRuleIndex + " of "
+                        + activeRuleList.size() + ": " + currentRule.getTitle() + " [y/n]");
 
                 String userRuleInput = this.scanner.next().trim().toLowerCase();
                 switch (userRuleInput) {
                     case "y":
                     case "yes":
-                        Objects.requireNonNull(config).put(currentRule.getTitle().replaceAll("\\s+", ""), "true");
+                        Objects.requireNonNull(config)
+                                .put(currentRule.getTitle().replaceAll("\\s+", ""), "true");
                         currentRuleIndex++;
                         break;
                     case "n":
                     case "no":
-                        Objects.requireNonNull(config).put(currentRule.getTitle().replaceAll("\\s+", ""), "false");
+                        Objects.requireNonNull(config)
+                                .put(currentRule.getTitle().replaceAll("\\s+", ""), "false");
                         currentRuleIndex++;
                         break;
                     case "i":
                     case "info":
-                        System.out.println("Rule: '" + currentRule.getTitle() + ".' is from the category: '"
-                                + currentRule.getCategory() + "' with severity type: '" + currentRule.getSeverityType()
-                                + "' and has an influence on: '" + currentRule.getRuleSoftwareQualityAttribute()
+                        System.out.println("Rule: '" + currentRule.getTitle()
+                                + ".' is from the category: '" + currentRule.getCategory()
+                                + "' with severity type: '" + currentRule.getSeverityType()
+                                + "' and has an influence on: '"
+                                + currentRule.getRuleSoftwareQualityAttribute()
                                 + "'. The rule will be checked: " + currentRule.getRuleType());
                         break;
                     case "s":
@@ -116,16 +119,17 @@ public class Output {
     /**
      * This method starts the analysis with the given path from the user.
      *
-     * @param pathToFile     path to the OpenAPI definition to be examined
+     * @param pathToFile path to the OpenAPI definition to be examined
      * @param generateReport if true, a report will be generated
      */
     public void startAnalysis(String pathToFile, boolean generateReport) {
 
         if (pathToFile.toLowerCase().startsWith("http") && !checkURL(pathToFile)) {
-            System.err.println("The URL is not reachable. Please check the URL and try again.");
+            System.err.println("The URL was not reachable. Please check the URL and try again.");
             return;
         } else if (!pathToFile.toLowerCase().startsWith("http") && !checkFileLocation(pathToFile)) {
-            System.err.println("The file is not found. Please check the path to the file and try again.");
+            System.err.println(
+                    "The file was not found. Please check the path to the file and try again.");
             return;
         }
 
@@ -141,15 +145,16 @@ public class Output {
      * This method starts the analysis with the given path from the user.
      *
      * @param pathToFile path to the OpenAPI definition to be examined
-     * @param title      title of the report that will be generated
+     * @param title title of the report that will be generated
      */
     public void startAnalysis(String pathToFile, String title) {
 
         if (pathToFile.toLowerCase().startsWith("http") && !checkURL(pathToFile)) {
-            System.err.println("The URL is not reachable. Please check the URL and try again.");
+            System.err.println("The URL was not reachable. Please check the URL and try again.");
             return;
         } else if (!pathToFile.toLowerCase().startsWith("http") && !checkFileLocation(pathToFile)) {
-            System.err.println("The file is not found. Please check the path to the file and try again.");
+            System.err.println(
+                    "The file was not found. Please check the path to the file and try again.");
             return;
         }
 
@@ -172,7 +177,8 @@ public class Output {
                 System.out.println("Ping server: " + server.getUrl());
                 if (!pingURL(url)) {
                     System.out.println("Server is not responding: " + url);
-                    System.out.println("Make sure the server is running or delete it from the openAPI definition.");
+                    System.out.println(
+                            "Make sure the server is running or delete it from the openAPI definition.");
                 } else
                     foundRunningServer = true;
             }
@@ -198,14 +204,13 @@ public class Output {
     public boolean checkDynamicAnalysis() {
         System.out.println("\n-----------------INFO ANALYSIS----------------");
         System.out.println("-----------------------------------------------\n");
-        System.out.println("Besides the static analysis there is the dynamic analysis for which the credentials for "
-                + "the openapi definition need to be provided. These are not stored unless you allow it. No changes will be"
-                + " made to resources nor are they saved.");
-        System.out.println("If you want to do the dynamic analysis, enter yes or y, if you do not want to do it, " +
-                "enter any other key.");
+        System.out.println(
+                "RESTRuler always performs static analysis. For additional dynamic analysis, credentials for authenticating with the API need to be provided. These are not stored unless you allow it. No changes will be made to resources nor are they saved.");
+        System.out.println(
+                "If you want to perform dynamic analysis, enter yes or y. Otherwise, enter any other key.");
         System.out.println(YES_NO);
 
-        String dynamicAnalysis = this.scanner.next();
+        String dynamicAnalysis = this.scanner.nextLine();
 
         return dynamicAnalysis.equals("y") || dynamicAnalysis.equals("yes");
     }
@@ -215,8 +220,8 @@ public class Output {
      * <p>
      * Currently implemented auth schemas: bearer, api key and basic authentication
      *
-     * @param openAPI the openAPI definition that will be checked --> Needed the get
-     *                the defined sec schemas
+     * @param openAPI the openAPI definition that will be checked --> Needed the get the defined sec
+     *        schemas
      * @return a map with the security schemas and the passwords
      */
     public Map<SecuritySchema, String> askAuth(OpenAPI openAPI) {
@@ -245,8 +250,9 @@ public class Output {
             Map<String, String> secSchemeMap = new HashMap<>();
 
             if (!secDefined) {
-                System.out.println("\nChoose the authentication method (number) to get/set the credentials or enter "
-                        + "any " + "other key to 'save' and skip:");
+                System.out.println(
+                        "\nChoose the authentication method (number) to get/set the credentials or enter "
+                                + "any " + "other key to 'save' and skip:");
                 System.out.println("1 - API Key");
                 System.out.println("2 - Basic Authentication");
                 System.out.println("3 - Bearer");
@@ -259,8 +265,10 @@ public class Output {
             } else {
                 System.out.println("Found " + secSchemaNames.size()
                         + " security schemas for given openAPI definition.");
-                System.out.println("\nChoose the authentication method (number) to get/set the credentials or enter"
-                        + " " + "any " + "other " + "key to select other security methods:");
+                System.out.println(
+                        "\nChoose the authentication method (number) to get/set the credentials or enter"
+                                + " " + "any " + "other "
+                                + "key to select other security methods:");
 
                 int selectionNumber = 0;
                 for (String secSchema : secSchemaNames) {
@@ -278,13 +286,15 @@ public class Output {
                 boolean secSchemaSupported = EnumUtils.isValidEnum(SecuritySchema.class,
                         secSchemeMap.get(choice).toUpperCase());
 
-                if (!secSchemaSupported || !secToNumbAuthMapping
-                        .containsKey(SecuritySchema.valueOf(secSchemeMap.get(choice).toUpperCase()))) {
-                    System.out.println("We currently do not support this kind of authentication. Please select " +
-                            "another method.");
+                if (!secSchemaSupported || !secToNumbAuthMapping.containsKey(
+                        SecuritySchema.valueOf(secSchemeMap.get(choice).toUpperCase()))) {
+                    System.out.println(
+                            "We currently do not support this kind of authentication. Please select "
+                                    + "another method.");
                     continue;
                 }
-                this.choice = secToNumbAuthMapping.get(SecuritySchema.valueOf(secSchemeMap.get(choice).toUpperCase()));
+                this.choice = secToNumbAuthMapping
+                        .get(SecuritySchema.valueOf(secSchemeMap.get(choice).toUpperCase()));
             }
 
             String token = "";
@@ -298,13 +308,15 @@ public class Output {
             String keyTokenProps = prefixProps + "token";
 
             if (properties != null && properties.containsKey(keyTokenProps)) {
-                System.out.println("\nFound credentials for this security method in config. Do you want to use them "
-                        + "(yes or y) or enter new credentials (no or n)?");
+                System.out.println(
+                        "\nFound credentials for this security method in config. Do you want to use them "
+                                + "(yes or y) or enter new credentials (no or n)?");
                 System.out.println(YES_NO);
-                String input = this.scanner.next();
+                String input = this.scanner.nextLine();
                 if (input.equals("y") || input.equals("yes")) {
                     secInProps = true;
-                    secTokens.put(numbToSecAuthMapping.get(this.choice), properties.getProperty(keyTokenProps));
+                    secTokens.put(numbToSecAuthMapping.get(this.choice),
+                            properties.getProperty(keyTokenProps));
                 }
             } else if (properties == null) {
                 logger.severe("Path to config file is not set correctly --> Contact devs");
@@ -324,8 +336,9 @@ public class Output {
                     // Basic
                     case "2":
                         // username and pw
-                        System.out.println("Enter token consisting of username and password or type 0 (zero) to " +
-                                "skip:" + " ");
+                        System.out.println(
+                                "Enter token consisting of username and password or type 0 (zero) to "
+                                        + "skip:" + " ");
                         token = this.scanner.next();
                         if (token.equals("0")) {
                             System.out.println("No token entered; skipping.");
@@ -353,10 +366,11 @@ public class Output {
                         enterMoreSec = false;
                 }
             }
-            System.out.println("Do you want to enter another security schema? Enter yes or y, enter no or n.");
+            System.out.println(
+                    "Do you want to enter another security schema? Enter yes or y, enter no or n.");
             System.out.println(YES_NO);
 
-            this.choice = this.scanner.next();
+            this.choice = this.scanner.nextLine();
 
             switch (this.choice) {
                 case "y":
@@ -375,23 +389,20 @@ public class Output {
     }
 
     /**
-     * Asks the user if he wants to save the entered security credentials in the
-     * config file.
+     * Asks the user if he wants to save the entered security credentials in the config file.
      *
-     * @param secInProps true if the security credentials are already in the config
-     *                   file
-     * @param secTokens  the security credentials
+     * @param secInProps true if the security credentials are already in the config file
+     * @param secTokens the security credentials
      */
     private void askSafeSec(boolean secInProps, EnumMap<SecuritySchema, String> secTokens) {
         if (!secInProps) {
             System.out.println("\n" + UNDERLINE);
             System.out.println("---------------------Save---------------------");
             System.out.println(
-                    "Do you want to save the credentials local for further analyses enter yes or y or enter any other key to use the input only for the next analysis.");
-            System.out.println(YES_NO
-                    + "\n");
+                    "To save the credentials locally for further analyses, enter yes or y. Enter any other key to use the input only for the next analysis.");
+            System.out.println(YES_NO + "\n");
 
-            this.choice = this.scanner.next();
+            this.choice = this.scanner.nextLine();
 
             if (this.choice.equals("y") || this.choice.equals("yes")) {
                 setSec(secTokens);
@@ -408,7 +419,8 @@ public class Output {
      */
     private void setSec(Map<SecuritySchema, String> secTokens) {
         for (Map.Entry<SecuritySchema, String> secToken : secTokens.entrySet()) {
-            String prefix = secToken.getKey().name() + this.pathToFile.trim().replaceAll("\\s+", "");
+            String prefix =
+                    secToken.getKey().name() + this.pathToFile.trim().replaceAll("\\s+", "");
 
             // authTypPathToFileToken
             String token = prefix + "token";
@@ -421,8 +433,7 @@ public class Output {
      * Check if the URL to the openAPI definition is reachable.
      * 
      * @param url URL to the openAPI definition
-     * @return <code>true</code> if the URL is reachable, <code>false</code>
-     *         otherwise
+     * @return <code>true</code> if the URL is reachable, <code>false</code> otherwise
      */
     private boolean checkURL(String url) {
         HttpURLConnection huc;
@@ -452,17 +463,17 @@ public class Output {
     }
 
     /**
-     * Pings HTTP URL. This effectively sends a HEAD request and returns
-     * <code>true</code> if the server responded.
+     * Pings HTTP URL. This effectively sends a HEAD request and returns <code>true</code> if the
+     * server responded.
      *
      * @param url The HTTP URL to be pinged.
-     * @return <code>true</code> if the given HTTP URL is reachable on a HEAD
-     *         request within the
+     * @return <code>true</code> if the given HTTP URL is reachable on a HEAD request within the
      *         given timeout, otherwise <code>false</code>.
      */
     private boolean pingURL(String url) {
         if (!url.isEmpty() && !url.equals("")) {
-            url = url.replaceFirst("^https", "http"); // Otherwise, an exception may be thrown on invalid SSL
+            url = url.replaceFirst("^https", "http"); // Otherwise, an exception may be thrown on
+                                                      // invalid SSL
                                                       // certificates.
             return doUrlCall(url);
         }

@@ -27,7 +27,7 @@ cd cli
 # create JAR file
 ./gradlew assemble
 # execute JAR file to display CLI parameters
-java -jar build/libs/cli-0.1-all.jar -h
+java -jar build/libs/rest-ruler.jar -h
 # run tests
 ./gradlew test
 # test coverage (output: ./build/reports/jacoco/test/html/index.html)
@@ -38,13 +38,13 @@ java -jar build/libs/cli-0.1-all.jar -h
 
 ```bash
 # Run with an example API from https://apis.guru
-java -jar build/libs/cli-0.1-all.jar -r https://api.apis.guru/v2/specs/circleci.com/v1/openapi.yaml
+java -jar build/libs/rest-ruler.jar -p https://api.apis.guru/v2/specs/circleci.com/v1/openapi.yaml
 ```
 
 This produces the following output:
 
 ```cli
-java -jar build/libs/cli-0.1-all.jar -r https://api.apis.guru/v2/specs/circleci.com/v1/openapi.yaml
+java -jar build/libs/rest-ruler.jar -p https://api.apis.guru/v2/specs/circleci.com/v1/openapi.yaml
 
 -----------------INFO ANALYSIS----------------
 -----------------------------------------------
@@ -167,29 +167,28 @@ In total 40 rule violations were found
 ```
 
 ## Command Line Options
-| Option                                   | Description                                                                                                                      | Required |
-| :--------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------- | :------- |
-| `-r $URI_PATH` `--runAnalysis $URI_PATH` | Run the analysis. Required: path to OpenAPI definition (2.0 or higher; JSON or YAML)                                             | YES*     |
-| `-e` `--expertMode`                      | Enables custom selection of design rules to be used for analysis                                                                 | NO       |
-| `-o` `--out`                             | Generates a report file in Markdown format                                                                                       | NO**     |
-| `-t $FILENAME` `--title $FILENAME`       | Generates a report file in Markdown with custom filename. If this option is selected, the above option for output is not needed. | NO**     |
+| Option                                       | Description                                                                                                               | Required |
+| :------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------ | :------- |
+| `-p $URI_PATH`,<br>`--path $URI_PATH`        | Local path or public URL to OpenAPI definition (2.0 or higher; JSON or YAML)                                              | YES      |
+| `-e`,<br>`--expertMode`                      | Interactively select the rules for the analysis                                                                           | NO       |
+| `-r`,<br>`--report`                          | Generate a Markdown report file with the analysis results                                                                 | NO*      |
+| `-rn $FILENAME`,<br>`--reportName $FILENAME` | Specify a custom filename for the Markdown report. If this option is selected, the above option for output is not needed. | NO*      |
 
-*Either a file or a URI has to be specified as input.<br>
-**If no additional output was specified, the report will only be outputted to the console.
+*If no additional output was specified, the results will only be printed to the console.
 
 ```bash
-# Run with no output file
-java -jar build/libs/cli-0.1-all.jar -r path/to/openapi/definiton.json
+# Run with local file and no output file
+java -jar build/libs/rest-ruler.jar -p path/to/openapi/definiton.json
 
-# Run with url
-java -jar build/libs/cli-0.1-all.jar -r https://www.custom.domain.com/path/to/openapi-definiton.yaml
+# Run with public URL and no output file
+java -jar build/libs/rest-ruler.jar -p https://www.custom.domain.com/path/to/openapi-definiton.yaml
 
-# Run with custom output file name
-java -jar build/libs/cli-0.1-all.jar -r path/to/openapi/definiton.yaml -t custom-file-name
+# Run with custom filename for Markdown report
+java -jar build/libs/rest-ruler.jar -p path/to/openapi/definiton.yaml -rn custom-file-name
 
-# Run with generated output file name
-java -jar build/libs/cli-0.1-all.jar -r path/to/openapi/definiton.yaml --out
+# Run with generated filename for Markdown report
+java -jar build/libs/rest-ruler.jar -p path/to/openapi/definiton.yaml -r
 
 # Run in expert mode
-java -jar build/libs/cli-0.1-all.jar -r path/to/openapi/definiton.json -e
+java -jar build/libs/rest-ruler.jar -p path/to/openapi/definiton.json -e
 ```

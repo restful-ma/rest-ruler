@@ -1,6 +1,6 @@
-package cli.rule;
+package cli.utility;
 
-import cli.RestParserCommand;
+import cli.RestRulerCli;
 import io.micronaut.configuration.picocli.PicocliRunner;
 import io.micronaut.context.ApplicationContext;
 import io.micronaut.context.env.Environment;
@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class RestParserCommandTest {
+class CliCommandTest {
 
     @Test
     void testWithCommandLineOption() throws Exception {
@@ -20,10 +20,9 @@ class RestParserCommandTest {
         System.setOut(new PrintStream(baos));
 
         try (ApplicationContext ctx = ApplicationContext.run(Environment.CLI, Environment.TEST)) {
-            String[] args = new String[]{"-h"};
-            PicocliRunner.run(RestParserCommand.class, ctx, args);
+            String[] args = new String[] {"-h"};
+            PicocliRunner.run(RestRulerCli.class, ctx, args);
 
-            // rest-parser
             assertEquals(true, true);
         }
     }

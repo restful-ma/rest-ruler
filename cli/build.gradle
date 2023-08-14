@@ -5,8 +5,8 @@ plugins {
     id "com.adarshr.test-logger" version "3.2.0"
 }
 
-version = "0.1"
-group = "cli"
+version = "0.2.0"
+group = "rest-ruler"
 
 repositories {
     mavenCentral()
@@ -33,13 +33,17 @@ dependencies {
     implementation group: 'nz.ac.waikato.cms.weka', name: 'weka-stable', version: '3.8.0'
 }
 
+shadowJar {
+    archiveFileName = "rest-ruler.jar"
+}
 
 application {
-    mainClass.set("cli.RestParserCommand")
+    mainClass.set("cli.RestRulerCli")
 }
+
 java {
-    sourceCompatibility = JavaVersion.toVersion("11")
-    targetCompatibility = JavaVersion.toVersion("11")
+    sourceCompatibility = JavaVersion.toVersion("18")
+    targetCompatibility = JavaVersion.toVersion("18")
 }
 
 micronaut {
