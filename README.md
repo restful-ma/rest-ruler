@@ -20,7 +20,18 @@ A detailed description of the project and implemented components can be found in
 
 ## General Usage Instructions
 
-Run these commands in the root folder to build and start the tool:
+For a quick start, you can simply download `rest-ruler.jar` for a certain [release](https://github.com/restful-ma/rest-ruler/releases).
+Then execute these commands in the same folder as the JAR file:
+
+```bash
+# execute JAR file to display CLI parameters
+java -jar rest-ruler.jar -h
+
+# run with an example API from https://apis.guru
+java -jar rest-ruler.jar -p https://api.apis.guru/v2/specs/circleci.com/v1/openapi.yaml
+```
+
+If you want to download or clone the full repository, run these commands in the root folder of the repository to build and start the tool:
 
 ```bash
 cd cli
@@ -37,7 +48,7 @@ java -jar build/libs/rest-ruler.jar -h
 ## Usage Example
 
 ```bash
-# Run with an example API from https://apis.guru
+# run with an example API from https://apis.guru
 java -jar build/libs/rest-ruler.jar -p https://api.apis.guru/v2/specs/circleci.com/v1/openapi.yaml
 ```
 
