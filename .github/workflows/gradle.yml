@@ -30,4 +30,4 @@ jobs:
       with:
         gradle-version: 7.6.2
     - run: gradle build --info
-      working-directory: ./cli
+      working-directory: .

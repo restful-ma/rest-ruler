@@ -34,7 +34,6 @@ java -jar rest-ruler.jar -p https://api.apis.guru/v2/specs/circleci.com/v1/opena
 If you want to download or clone the full repository, run these commands in the root folder of the repository to build and start the tool:
 
 ```bash
-cd cli
 # create JAR file
 ./gradlew assemble
 # execute JAR file to display CLI parameters

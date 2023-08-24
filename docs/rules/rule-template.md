@@ -2,7 +2,7 @@
 
 ## Category
 
-## ## Importance, severity, difficulty
+## Importance, severity, difficulty
 
 * High/medium importance
 * Warning/error/critical severity
