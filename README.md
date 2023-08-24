@@ -18,6 +18,10 @@ Descriptions of the implemented design rules can be found in our [rule documenta
 
 A detailed description of the project and implemented components can be found in the [architecture documentation](./docs/architecture.md).
 
+## Evaluation
+
+You will find the artifacts related to the empirical evaluation of RESTRuler in [this repository](https://github.com/restful-ma/rest-ruler-evaluation).
+
 ## General Usage Instructions
 
 For a quick start, you can simply download `rest-ruler.jar` for a certain [release](https://github.com/restful-ma/rest-ruler/releases).
