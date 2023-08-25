@@ -25,7 +25,7 @@ You will find the artifacts related to the empirical evaluation of RESTRuler in 
 ## General Usage Instructions
 
 For a quick start, you can simply download `rest-ruler.jar` for a certain [release](https://github.com/restful-ma/rest-ruler/releases).
-Then execute these commands in the same folder as the JAR file:
+Then execute these commands in the same folder as the JAR file (Java version >=18 needed):
 
 ```bash
 # execute JAR file to display CLI parameters
@@ -35,7 +35,7 @@ java -jar rest-ruler.jar -h
 java -jar rest-ruler.jar -p https://api.apis.guru/v2/specs/circleci.com/v1/openapi.yaml
 ```
 
-If you want to download or clone the full repository, run these commands in the root folder of the repository to build and start the tool:
+If you want to download or clone the full repository, run these commands in the root folder of the repository to build and start the tool (Java version >=18 needed):
 
 ```bash
 # create JAR file
