@@ -19,7 +19,7 @@ class SingularDocumentNameTest {
 
     @Test
     @DisplayName("Detect if a path segment contains a violation regarding the document name")
-    void checkViolationOnInvalidRESTFile2Violations() throws MalformedURLException {
+    void checkViolationOnInvalidRESTFile2Violations() {
 
         String url = "src/test/java/cli/rule/singularDocumentNameTest/singularDocumentName2Violations.json";
 
@@ -31,7 +31,7 @@ class SingularDocumentNameTest {
 
     @Test
     @DisplayName("Test a valid api. No error should be detected.")
-    void checkViolationOnValidRESTFile() throws MalformedURLException {
+    void checkViolationOnValidRESTFile() {
 
         String url = "src/test/java/cli/validopenapi/validOpenAPI.json";
         List<Violation> violationToTest = runMethodUnderTest(url);
@@ -40,7 +40,7 @@ class SingularDocumentNameTest {
                 "Detection of violations should work.");
     }
 
-    private List<Violation> runMethodUnderTest(String url) throws MalformedURLException {
+    private List<Violation> runMethodUnderTest(String url) {
 
         this.restAnalyzer = new RestAnalyzer(url);
         this.singularDocumentNameRuleTest = new SingularDocumentNameRule(true);

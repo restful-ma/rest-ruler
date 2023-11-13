@@ -101,7 +101,7 @@ public class Report {
 
         // Table heading
         Table.Builder mdReport = new Table.Builder().addRow("Line No.", "Line", "Rule Violated", "Category",
-                "Severity", "Rule Type", "Software Quality Attributes", "Improvement Suggestion");
+                "Severity", "Software Quality Attributes", "Improvement Suggestion");
 
         Table.Builder consoleReport = new Table.Builder().addRow("Line No.", "Line", "Rule Violated");
 
@@ -109,8 +109,7 @@ public class Report {
         for (Violation v : violationList) {
             IRestRule rule = v.getRule();
             mdReport.addRow(v.getLineViolation(), v.getKeyViolation(), rule.getTitle(), rule.getCategory(),
-                    rule.getSeverityType(), rule.getRuleType().toString().replace("[", "").replace("]", ""),
-                    rule.getRuleSoftwareQualityAttribute().toString().replace("[", "").replace("]", ""),
+                    rule.getSeverityType(), rule.getRuleSoftwareQualityAttribute().toString().replace("[", "").replace("]", ""),
                     v.getImprovementSuggestion());
             consoleReport.addRow(v.getLineViolation(), v.getKeyViolation(), rule.getTitle());
         }

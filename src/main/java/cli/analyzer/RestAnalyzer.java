@@ -18,9 +18,6 @@ public class RestAnalyzer {
     // Singleton
     private static final Report report = Report.getInstance();
     public static LOCMapper locMapper;
-    public static Map<SecuritySchema, String> securitySchemas;
-    public static boolean dynamicAnalysis = true;
-
     private final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     public final OpenAPI openAPI;
 

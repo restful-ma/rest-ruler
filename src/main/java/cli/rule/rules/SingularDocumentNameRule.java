@@ -18,7 +18,6 @@ public class SingularDocumentNameRule implements IRestRule {
     private static final String TITLE = "A singular noun should be used for document names";
     private static final RuleCategory RULE_CATEGORY = RuleCategory.URIS;
     private static final RuleSeverity RULE_SEVERITY = RuleSeverity.ERROR;
-    private static final List<RuleType> RULE_TYPE = List.of(RuleType.STATIC);
     private static final List<RuleSoftwareQualityAttribute> RULE_SOFTWARE_QUALITY_ATTRIBUTE_LIST = List
             .of(RuleSoftwareQualityAttribute.USABILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
     private boolean isActive;
@@ -29,57 +28,30 @@ public class SingularDocumentNameRule implements IRestRule {
         this.isActive = isActive;
     }
 
-    /**
-     *
-     */
-    @Override
     public String getTitle() {
         return TITLE;
     }
 
-    /**
-     *
-     */
     @Override
     public RuleCategory getCategory() {
         return RULE_CATEGORY;
     }
 
-    /**
-     *
-     */
     @Override
     public RuleSeverity getSeverityType() {
         return RULE_SEVERITY;
     }
 
-    /**
-     *
-     */
-    @Override
-    public List<RuleType> getRuleType() {
-        return RULE_TYPE;
-    }
-
-    /**
-     *
-     */
     @Override
     public List<RuleSoftwareQualityAttribute> getRuleSoftwareQualityAttribute() {
         return RULE_SOFTWARE_QUALITY_ATTRIBUTE_LIST;
     }
 
-    /**
-     *
-     */
     @Override
     public boolean getIsActive() {
         return this.isActive;
     }
 
-    /**
-     *
-     */
     @Override
     public void setIsActive(boolean isActive) {
         this.isActive = isActive;

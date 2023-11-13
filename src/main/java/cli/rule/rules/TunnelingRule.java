@@ -17,7 +17,6 @@ public class TunnelingRule implements IRestRule {
     private static final String TITLE = "GET and POST must not be used to tunnel other request methods";
     private static final RuleCategory RULE_CATEGORY = RuleCategory.HTTP;
     private static final RuleSeverity RULE_SEVERITY = RuleSeverity.CRITICAL;
-    private static final List<RuleType> RULE_TYPE = List.of(RuleType.STATIC);
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List.of(
             RuleSoftwareQualityAttribute.MAINTAINABILITY, RuleSoftwareQualityAttribute.COMPATIBILITY,
             RuleSoftwareQualityAttribute.FUNCTIONAL_SUITABILITY, RuleSoftwareQualityAttribute.USABILITY);
@@ -40,11 +39,6 @@ public class TunnelingRule implements IRestRule {
     @Override
     public RuleSeverity getSeverityType() {
         return RULE_SEVERITY;
-    }
-
-    @Override
-    public List<RuleType> getRuleType() {
-        return RULE_TYPE;
     }
 
     @Override

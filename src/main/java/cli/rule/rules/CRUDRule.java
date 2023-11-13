@@ -17,7 +17,6 @@ import java.util.*;
 public class CRUDRule implements IRestRule {
     private static final String TITLE = "CRUD function names should not be used in URIs";
     private static final RuleCategory CATEGORY = RuleCategory.URIS;
-    private static final List<RuleType> TYPE = Arrays.asList(RuleType.STATIC);
     private static final RuleSeverity SEVERITY = RuleSeverity.ERROR;
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTE = Arrays
             .asList(RuleSoftwareQualityAttribute.USABILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
@@ -44,11 +43,6 @@ public class CRUDRule implements IRestRule {
     @Override
     public RuleSeverity getSeverityType() {
         return SEVERITY;
-    }
-
-    @Override
-    public List<RuleType> getRuleType() {
-        return TYPE;
     }
 
     @Override
