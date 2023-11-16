@@ -1,16 +1,14 @@
 package cli.analyzer;
 
+import cli.report.Report;
 import cli.rule.IRestRule;
 import cli.rule.Violation;
 import io.swagger.parser.OpenAPIParser;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.parser.core.models.SwaggerParseResult;
-import cli.report.Report;
-import cli.rule.constants.SecuritySchema;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

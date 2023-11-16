@@ -12,7 +12,6 @@ import io.swagger.v3.oas.models.security.SecurityRequirement;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.net.HttpURLConnection;
 import java.util.*;
 import java.util.logging.Logger;
 
