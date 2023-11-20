@@ -18,10 +18,7 @@ URIs
 
 Description from Massé [1].
 
-Text viewer applications (browsers, editors, etc.) often underline URIs to provide a visual cue that they are clickable.
-Depending on the application’s font, the underscore (_) character can either get partially obscured or completely hidden
-by this underlining. To avoid this confusion, use hyphens (-) instead of underscores (as described in “Rule: Hyphens (-)
-should be used to improve the readability of URIs” --> Link to GitHub file follows).
+"Text viewer applications (browsers, editors, etc.) often underline URIs to provide a visual cue that they are clickable. Depending on the application's font, the underscore (_) character can either get partially obscured or completely hidden by this underlining. To avoid this confusion, use hyphens (-) instead of underscores (as described in “Rule: Hyphens (-) should be used to improve the readability of URIs” --> Link to GitHub file follows)."
 
 ## Implemented
 
@@ -29,17 +26,17 @@ should be used to improve the readability of URIs” --> Link to GitHub file fol
 
 ## Implementation Details (Issue #9)
 
-### What is checked
-* Currently, static implementation only
+### What is checked:
+
 * Checks every path (server paths included) if it contains an underscore (_) and returns a list of violations
 
-### What is not checked
+### What is not checked:
 
-* The parameters in curly brackets are excluded from the path and are therefore currently not checked in a dynamic fashion.
+* The parameters in curly brackets are excluded from the path and are therefore currently not checked.
 
 ### Future work
 
-* Dynamic analysis will check the parameter input if it contains an underscore
+* --
 
 ## Source
 

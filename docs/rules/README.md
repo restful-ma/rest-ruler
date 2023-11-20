@@ -44,7 +44,7 @@ Documentation about the rules can be found in the [folder](./implemented-rules).
 * [Content-Type must be used](./implemented-rules/Content-Type-must-be-used.md)
 * [CRUD function names should not be used in URIs](./implemented-rules/CRUD-function-names-should-not-be-used-in-URIs.md)
 * [Underscores (_) should not be used in URI](./implemented-rules/Underscores-(_)-should-not-be-used-in-URI.md)
-* [401 (Unauthorized) must be used when there is a problem with the client’s credentials](./implemented-rules/401-(Unauthorized)-must-be-used-when-there-is-a-problem-with-the-client's-credentials.md)
+* [401 (Unauthorized) must be used when there is a problem with the client's credentials](./implemented-rules/401-(Unauthorized)-must-be-used-when-there-is-a-problem-with-the-client's-credentials.md)
 * [Hyphens (-) should be used to improve the readability of URIs](./implemented-rules/Hyphens-(-)-should-be-used-to-improve-the-readability-of-URIs.md)
 * [Lowercase letters should be preferred in URI paths](./implemented-rules/Lowercase-letters-should-be-preferred-in-URI-paths.md)
 * [A plural noun should be used for collection or store names](./implemented-rules/A-plural-noun-should-be-used-for-collection-or-store-names.md)
@@ -52,7 +52,7 @@ Documentation about the rules can be found in the [folder](./implemented-rules).
 * [A verb or verb phrase should be used for controller names](./implemented-rules/A-verb-or-verb-phrase-should-be-used-for-controller-names.md)
 
 ### Rule implementation and extension
-For each rule, a single Java class is created, which can be found in in this [dir](../../src/main/java/cli/rule/rules). It is just as easy to implement a new rule. For implementing a new rule, it is merely necessary to create a Java class in the folder just mentioned, which implements the [`IRestRule`](../../src/main/java/cli/rule/IRestRule.java) interface. Then, a constructor with an `isActive` boolean is needed. Now the rule is automatically recognized and listed in the CLI. This is the minimum that needs to be done to implement a new static rule. 
+For each rule, a single Java class is created, which can be found in in this [dir](../../src/main/java/cli/rule/rules). It is just as easy to implement a new rule. For implementing a new rule, it is merely necessary to create a Java class in the folder just mentioned, which implements the [`IRestRule`](../../src/main/java/cli/rule/IRestRule.java) interface. Then, a constructor with an `isActive` boolean is needed. Now the rule is automatically recognized and listed in the CLI. This is the minimum that needs to be done to implement a new rule. 
 
 For a better user experience, the progress bar can be called from the [output class](../../src/main/java/cli/utility/Output.java).
 

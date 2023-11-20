@@ -19,9 +19,7 @@ URIs
 
 Description from Massé [1].
 
-"URIs should not be used to indicate that a CRUD§ function is performed. URIs should
-be used to uniquely identify resources [...]" and the "[...] HTTP request methods
-should be used to indicate which CRUD function is performed."
+"URIs should not be used to indicate that a CRUD§ function is performed. URIs should be used to uniquely identify resources [...]" and the "[...] HTTP request methods should be used to indicate which CRUD function is performed."
 
 "For example, this API interaction design is preferred:
 
@@ -32,7 +30,7 @@ The following anti-patterns exemplify what not to do:
 * GET /deleteUser?id=1234
 * GET /deleteUser/1234
 * DELETE /deleteUser/1234
-* POST /users/1234/delete
+* POST /users/1234/delete"
 
 ## Implemented
 
@@ -42,21 +40,20 @@ The following anti-patterns exemplify what not to do:
 
 ### What is checked
 
-* Currently, static implementation only
 * Checks every path (server paths included) if it contains CRUD operation keywords and returns a list of violations
 * Individual segments are checked if they have a crud operation as substring (target includes get) --> there is no violation
 * Keywords that are currently checked: "get", "post", "delete", "put", "create", "read", "update", "patch", "insert", "select", "fetch", "purge", "retrieve", "add"
 
 ### What is not checked
 
-* The parameters in curly brackets are excluded from the path and are therefore currently not checked in a dynamic fashion
+* The parameters in curly brackets are excluded from the path and are therefore currently not checked
 * If more than these previously defined words are to be considered CRUD violations, perform the following steps:
    1. Add the appropriate words to the attribute `CRUD_OPERATIONS` in the `./src/main/java/cli/rule/rules/CRUDRule.java` 
    2. Mine the words that have the appropriate words as substring from `./src/main/java/cli/docs/wordninja_words.txt` and add them to the list `./src/main/java/cli/docs/CRUD_words.txt` (Exclude similar words to still detect the violation; e.g. "gets" from "get")
 
 ### Future work
 
-* Dynamic analysis will check the parameter input if it contains CRUD operation keywords
+* --
 
 ## Source
 

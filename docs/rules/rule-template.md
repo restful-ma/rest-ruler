@@ -1,4 +1,4 @@
-# Rule
+# Rule Name
 
 ## Category
 
@@ -12,7 +12,7 @@
 
 ## Rule Description
 
-* Massé/own desciption
+* Massé/own description
 
 ## Implemented
 
