@@ -60,14 +60,8 @@ This produces the following output:
 ```cli
 java -jar build/libs/rest-ruler.jar -p https://api.apis.guru/v2/specs/circleci.com/v1/openapi.yaml
 
------------------INFO ANALYSIS----------------
+----------------START ANALYSIS----------------
 -----------------------------------------------
-
-Besides the static analysis there is the dynamic analysis for which the credentials for the openapi definition need to be provided. These are not stored unless you allow it. No changes will be made to resources nor are they saved. 
-If you want to do the dynamic analysis, enter yes or y, if you do not want to do it, enter any other key.
-[yes/no]
-n
-----------------------------------------------
 
 Begin with the analysis of the file from: https://api.apis.guru/v2/specs/circleci.com/v1/openapi.yaml
 

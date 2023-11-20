@@ -22,7 +22,6 @@
 
 ### What is checked
 
-* Static/Dynamic
 * Notes, difficulties
 
 ### What is not checked

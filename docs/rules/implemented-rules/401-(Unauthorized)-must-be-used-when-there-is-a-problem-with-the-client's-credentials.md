@@ -26,16 +26,8 @@ Description from Massé [1].
 * When the security is globally defined all operations for the path need the 401 response
 * When the security is locally defined all local operations for the path need the 401 response
 
-#### Dynamic analysis
-For GET operations that statically had no violation and no 401 response defined, a request is made with manipulated pw. If no 401 is received as a response, there is a rule violation.
-
-### What is not checked
-* POST, PUT, DELETE, ... are not checked *<sup>1</sup>
-* If a wrong status code (not the 401 response) is used even though an auth is required *<sup>2</sup>
-
-*<sup>1</sup> Problems: e.g. POST request does not have an auth --> resources are updated
-
-*<sup>2</sup> Implementation ideas: Use the response messages and train an ai if the message contains something like: unauthorized, wrong auth, not auth, ...
+### Future work
+* Dynamic analysis
 
 ## Source
 

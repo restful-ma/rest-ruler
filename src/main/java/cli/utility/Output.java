@@ -112,6 +112,7 @@ public class Output {
         }
 
         RestAnalyzer restAnalyzer = new RestAnalyzer(pathToFile);
+        printStartAnalysis(pathToFile);
         restAnalyzer.runAnalyse(new ActiveRules().getAllRuleObjects(), generateReport);
     }
 
@@ -133,6 +134,7 @@ public class Output {
         }
 
         RestAnalyzer restAnalyzer = new RestAnalyzer(pathToFile);
+        printStartAnalysis(pathToFile);
         restAnalyzer.runAnalyse(new ActiveRules().getAllRuleObjects(), title);
     }
 
@@ -189,4 +191,10 @@ public class Output {
         }
     }
 
+    private void printStartAnalysis(final String path) {
+        System.out.println("\n----------------START ANALYSIS----------------");
+        System.out.println(UNDERLINE);
+        System.out.println("\nBegin with the analysis of the file from: " + path + "\n");
+        System.out.println(UNDERLINE);
+    }
 }
