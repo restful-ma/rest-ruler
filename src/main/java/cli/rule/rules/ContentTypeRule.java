@@ -27,7 +27,6 @@ public class ContentTypeRule implements IRestRule {
 
     private static final String TITLE = "Content-Type must be used";
     private static final RuleCategory CATEGORY = RuleCategory.META;
-    private static final List<RuleType> TYPE = Arrays.asList(RuleType.STATIC);
     private static final RuleSeverity SEVERITY = RuleSeverity.CRITICAL;
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTE = Arrays
             .asList(RuleSoftwareQualityAttribute.USABILITY, RuleSoftwareQualityAttribute.COMPATIBILITY);
@@ -61,11 +60,6 @@ public class ContentTypeRule implements IRestRule {
     @Override
     public RuleSeverity getSeverityType() {
         return SEVERITY;
-    }
-
-    @Override
-    public List<RuleType> getRuleType() {
-        return TYPE;
     }
 
     @Override
@@ -303,7 +297,7 @@ public class ContentTypeRule implements IRestRule {
      * @param component        ApiResponse or RequestBody component of openAPI
      *                         definition
      * @param refLastIndex     the last index of the ref (../xyz)
-     * @param violationContent the violation that is added if no content type is
+     * @param violation        the violation that is added if no content type is
      *                         defined
      */
     private void checkContentTypeInRefs(Map<String, ?> component, String refLastIndex, Violation violation) {
@@ -344,7 +338,7 @@ public class ContentTypeRule implements IRestRule {
      * @param component        ApiResponse or RequestBody component of openAPI
      *                         definition
      * @param refLastIndex     the last index of the ref (../xyz)
-     * @param violationContent the violation that is added if no content type is
+     * @param violation        the violation that is added if no content type is
      *                         defined
      */
     private void checkSchemaInRefs(Map<String, ?> component, String refLastIndex, Violation violation) {

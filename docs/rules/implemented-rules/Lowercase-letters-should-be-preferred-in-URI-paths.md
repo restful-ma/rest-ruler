@@ -18,9 +18,7 @@ URIs
 
 Description from Massé [1].
 
-When convenient, lowercase letters are preferred in URI paths since capital letters can
-sometimes cause problems. RFC 3986 defines URIs as case-sensitive except for the
-scheme and host components.
+"When convenient, lowercase letters are preferred in URI paths since capital letters can sometimes cause problems. RFC 3986 defines URIs as case-sensitive except for the scheme and host components."
 
 ## Implemented
 
@@ -28,21 +26,22 @@ scheme and host components.
 
 ## Implementation Details (Issue #10)
 
-* Static implementation
 * Check path if it contains an uppercase letter, if so give a warning
 * Give the hint to use lowercase letters instead of uppercase
 
 ### What is checked:
+
 * check if the path contains an uppercase letter
 * check if the path is empty or there are no paths
 
 ### What is not checked:
+
 * presence of invalid delimiters
 * check of dynamic parameters
 
 ### Future work
 
-* None
+* --
 
 ## Source
 

@@ -1,22 +1,10 @@
 package cli.rule;
 
-import cli.rule.constants.RequestType;
-import cli.rule.constants.SecuritySchema;
 import cli.rule.rules.SingularDocumentNameRule;
+import com.google.common.collect.Lists;
 import io.swagger.parser.OpenAPIParser;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.parser.core.models.SwaggerParseResult;
-
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
-import com.google.common.collect.Lists;
 import opennlp.tools.postag.POSModel;
 import opennlp.tools.postag.POSTaggerME;
 import opennlp.tools.tokenize.SimpleTokenizer;
@@ -227,33 +215,5 @@ public class Utility {
             }
         }
         return minPair;
-    }
-
-    public static HttpURLConnection createHttpConnection(URL url, RequestType requestMethod) {
-        HttpURLConnection con = null;
-        try {
-            con = (HttpURLConnection) url.openConnection();
-            con.setRequestMethod(requestMethod.name());
-            con.setConnectTimeout(5000);
-            con.setReadTimeout(5000);
-            con.setDoOutput(true);
-            con.setInstanceFollowRedirects(false);
-
-        } catch (IOException e) {
-            logger.log(Level.SEVERE, "Exception occurred when creating the http url connection: {e}", e);
-        }
-        return con;
-    }
-
-    public static URL getURL(SecuritySchema securitySchema, String pw, String serverURL, String path) {
-        URL url = null;
-        try {
-            if (securitySchema == SecuritySchema.APIKEY) {
-                url = new URL(serverURL + path + "?api_key=" + pw.substring(0, pw.length() - 1));
-            } else url = new URL(serverURL + path);
-        } catch (MalformedURLException e) {
-            logger.log(Level.SEVERE, "Exception on trying to request: {0}", e.getMessage());
-        }
-        return url;
     }
 }

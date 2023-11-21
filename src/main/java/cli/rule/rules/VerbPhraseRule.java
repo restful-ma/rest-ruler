@@ -22,7 +22,6 @@ public class VerbPhraseRule implements IRestRule {
     private static final String TITLE = "A verb or verb phrase should be used for controller names";
     private static final RuleCategory RULE_CATEGORY = RuleCategory.URIS;
     private static final RuleSeverity RULE_SEVERITY = RuleSeverity.ERROR;
-    private static final List<RuleType> RULE_TYPE = List.of(RuleType.STATIC);
     private static final List<RuleSoftwareQualityAttribute> RULE_SOFTWARE_QUALITY_ATTRIBUTE_LIST = List
             .of(RuleSoftwareQualityAttribute.USABILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
     public static final String MODELS_EN_POS_MAXENT_BIN = "models/en-pos-maxent.bin";
@@ -47,11 +46,6 @@ public class VerbPhraseRule implements IRestRule {
     @Override
     public RuleSeverity getSeverityType() {
         return RULE_SEVERITY;
-    }
-
-    @Override
-    public List<RuleType> getRuleType() {
-        return RULE_TYPE;
     }
 
     @Override

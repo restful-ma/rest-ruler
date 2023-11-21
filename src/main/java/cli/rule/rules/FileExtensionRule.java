@@ -19,7 +19,6 @@ public class FileExtensionRule implements IRestRule {
     private static final String TITLE = "File extensions should not be included in URIs";
     private static final RuleCategory CATEGORY = RuleCategory.URIS;
     private static final RuleSeverity SEVERITY = RuleSeverity.ERROR;
-    private static final List<RuleType> TYPE = List.of(RuleType.STATIC);
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List
             .of(RuleSoftwareQualityAttribute.MAINTAINABILITY);
     private static final List<Violation> violationList = new ArrayList<>();
@@ -44,11 +43,6 @@ public class FileExtensionRule implements IRestRule {
     @Override
     public RuleSeverity getSeverityType() {
         return SEVERITY;
-    }
-
-    @Override
-    public List<RuleType> getRuleType() {
-        return TYPE;
     }
 
     @Override

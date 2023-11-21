@@ -21,11 +21,7 @@ HTTP
 
 Description from Massé [1].
 
-Tunneling refers to any abuse of HTTP that masks or misrepresents a message’s intent
-and undermines the protocol’s transparency. A REST API must not compromise its
-design by misusing HTTP’s request methods in an effort to accommodate clients with
-limited HTTP vocabulary. Always make proper use of the HTTP methods as specified
-by the rules in this section.
+"Tunneling refers to any abuse of HTTP that masks or misrepresents a message's intent and undermines the protocol's transparency. A REST API must not compromise its design by misusing HTTP's request methods in an effort to accommodate clients with limited HTTP vocabulary. Always make proper use of the HTTP methods as specified by the rules in this section."
 
 ## Implemented
 
@@ -33,17 +29,19 @@ by the rules in this section.
 
 ## Implementation Details (Issue #44)
 
-### What is checked
+### What is checked:
+
 * For each request based on the description or the summary we check if the description or summary meaning correspond to request type
 * In order to make this assumption we use weka and a model we trained to predict the request type
 * If the request type doesn't match with the given request type, throw a violation
 
-### What is not checked
+### What is not checked:
 
 * If the percentage of the predicted value is bellow 75% then we don't consider the prediction as reliable
 
 ### Future work
 
+* --
 
 ## Source
 

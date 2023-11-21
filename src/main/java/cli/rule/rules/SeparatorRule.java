@@ -21,7 +21,6 @@ public class SeparatorRule implements IRestRule {
     static final String TITLE = "Forward slash separator (/) must be used to indicate a hierarchical relationship";
     static final RuleCategory RULE_CATEGORY = RuleCategory.URIS;
     static final RuleSeverity RULE_SEVERITY = RuleSeverity.CRITICAL;
-    static final List<RuleType> RULE_TYPE = List.of(RuleType.STATIC);
     static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List
             .of(RuleSoftwareQualityAttribute.MAINTAINABILITY);
 
@@ -45,11 +44,6 @@ public class SeparatorRule implements IRestRule {
     @Override
     public RuleSeverity getSeverityType() {
         return RULE_SEVERITY;
-    }
-
-    @Override
-    public List<RuleType> getRuleType() {
-        return RULE_TYPE;
     }
 
     @Override

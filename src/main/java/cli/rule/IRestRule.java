@@ -3,7 +3,6 @@ package cli.rule;
 import cli.rule.constants.RuleCategory;
 import cli.rule.constants.RuleSeverity;
 import cli.rule.constants.RuleSoftwareQualityAttribute;
-import cli.rule.constants.RuleType;
 import io.swagger.v3.oas.models.OpenAPI;
 
 import java.util.List;
@@ -15,8 +14,6 @@ public interface IRestRule {
     RuleCategory getCategory();
 
     RuleSeverity getSeverityType();
-
-    List<RuleType> getRuleType();
 
     List<RuleSoftwareQualityAttribute> getRuleSoftwareQualityAttribute();
 

@@ -1,4 +1,4 @@
-# Rule
+# Rule Name
 
 ## Category
 
@@ -12,7 +12,7 @@
 
 ## Rule Description
 
-* Massé/own desciption
+* Massé/own description
 
 ## Implemented
 
@@ -22,7 +22,6 @@
 
 ### What is checked
 
-* Static/Dynamic
 * Notes, difficulties
 
 ### What is not checked

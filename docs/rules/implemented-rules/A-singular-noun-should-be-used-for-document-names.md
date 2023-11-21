@@ -19,8 +19,7 @@ URIs
 
 Description from Massé [1].
 
-"A URI representing a document resource should be named with a singular noun or
-noun phrase path segment."
+"A URI representing a document resource should be named with a singular noun or noun phrase path segment."
 
 ## Implemented
 
@@ -30,18 +29,19 @@ noun phrase path segment."
 
 ### What is checked
 
-* Currently, static implementation only
 * Check every pathSegment which are generated from the split of the path using the "/" as delimiter. If the pathSegment is a
   document name, it should be singular. If it is not singular, it is a violation. 
 * The structure of a path is normally as follows: singular/plural/singular.. or plural/singular/plural.. . If we have a path with plural/plural then we have a violation.
-* For each pathSegment is being checked if the word is singular or plural. For this taks we are using OpenNLP, an Apache library, which is able to detect if a word is singular or plural.
+* For each pathSegment is being checked if the word is singular or plural. For this tak, we are using OpenNLP, an Apache library, which is able to detect if a word is singular or plural.
+
 ### What is not checked
 
-* * The semantic of rule is not checked, only the syntax following the defined schema.
+* The semantic of rule is not checked, only the syntax following the defined schema.
+
 ### Future work
 
-* Dynamic analysis will check the parameter input if it is plural or singular
 * If a path segment is composed of more than one word, then we need to only take the last one into consideration
+
 ## Source
 
 [1] https://www.oreilly.com/library/view/rest-api-design/9781449317904/

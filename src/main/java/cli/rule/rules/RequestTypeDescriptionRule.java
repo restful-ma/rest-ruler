@@ -17,7 +17,6 @@ public class RequestTypeDescriptionRule implements IRestRule {
     static final String TITLE = "Description of request should match with the type of the request.";
     static final RuleCategory RULE_CATEGORY = RuleCategory.META;
     static final RuleSeverity RULE_SEVERITY = RuleSeverity.WARNING;
-    static final List<RuleType> RULE_TYPE = List.of(RuleType.STATIC);
     static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List.of(RuleSoftwareQualityAttribute.MAINTAINABILITY);
     private static final String IMPROVEMNT_SUB_STRING = " The request should be of type: ";
     private boolean isActive;
@@ -40,11 +39,6 @@ public class RequestTypeDescriptionRule implements IRestRule {
     @Override
     public RuleSeverity getSeverityType() {
         return RULE_SEVERITY;
-    }
-
-    @Override
-    public List<RuleType> getRuleType() {
-        return RULE_TYPE;
     }
 
     @Override

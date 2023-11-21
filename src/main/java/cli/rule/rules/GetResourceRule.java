@@ -26,7 +26,6 @@ public class GetResourceRule implements IRestRule {
     private static final String TITLE = "GET must be used to retrieve a representation of a resource";
     private static final RuleCategory RULE_CATEGORY = RuleCategory.HTTP;
     private static final RuleSeverity RULE_SEVERITY = RuleSeverity.CRITICAL;
-    private static final List<RuleType> RULE_TYPE = List.of(RuleType.STATIC);
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES =
             List.of(RuleSoftwareQualityAttribute.MAINTAINABILITY, RuleSoftwareQualityAttribute.COMPATIBILITY,
                     RuleSoftwareQualityAttribute.FUNCTIONAL_SUITABILITY, RuleSoftwareQualityAttribute.USABILITY);
@@ -51,11 +50,6 @@ public class GetResourceRule implements IRestRule {
     @Override
     public RuleSeverity getSeverityType() {
         return RULE_SEVERITY;
-    }
-
-    @Override
-    public List<RuleType> getRuleType() {
-        return RULE_TYPE;
     }
 
     @Override
