@@ -31,13 +31,13 @@ Description from Massé [1].
 
 ### What is checked:
 
-* For each request based on the description or the summary we check if the description or summary meaning correspond to request type
-* In order to make this assumption we use weka and a model we trained to predict the request type
-* If the request type doesn't match with the given request type, throw a violation
+* For each request, we check if the description or summary attribute corresponds to the request type.
+* To implement this, we used Weka [2] to train a Naive Bayes Multinomial classifier (`models/request_model.dat`) that predicts the request type based on the description or the summary. We curated a dataset of over 3k instances for this (`models/request-model-training-data.txt`).
+* If the prediction doesn't match with the given request type, we throw a violation.
 
 ### What is not checked:
 
-* If the percentage of the predicted value is bellow 75% then we don't consider the prediction as reliable
+* If the percentage of the predicted value is below 75%, then we don't consider the prediction as reliable.
 
 ### Future work
 
@@ -45,5 +45,5 @@ Description from Massé [1].
 
 ## Source
 
-[1] https://www.oreilly.com/library/view/rest-api-design/9781449317904/
-[2] https://www.cs.waikato.ac.nz/ml/weka/
+- [1] https://www.oreilly.com/library/view/rest-api-design/9781449317904/
+- [2] https://www.cs.waikato.ac.nz/ml/weka/

@@ -40,5 +40,5 @@ The Path is divided into the individual segments. Then, to check if a segment en
 
 ## Source
 
-[1] https://www.oreilly.com/library/view/rest-api-design/9781449317904/
-[2] https://en.wikipedia.org/wiki/List_of_filename_extensions
+- [1] https://www.oreilly.com/library/view/rest-api-design/9781449317904/
+- [2] https://en.wikipedia.org/wiki/List_of_filename_extensions

@@ -43,4 +43,3 @@ Description from Massé [1].
 ## Source
 
 [1] https://www.oreilly.com/library/view/rest-api-design/9781449317904/
-[2] https://restapilinks.com/controller/#:~:text=Like%20a%20traditional%20web%20application%27s,%2C%20also%20known%20as%20CRUD).&text=A%20controller%20resource%20name%20is%20a%20verb%20instead%20of%20a%20noun.
