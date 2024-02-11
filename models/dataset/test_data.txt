@@ -1,0 +1,842 @@
+get   List rides
+post   Request a Lyft
+get   Get the ride detail of a given ride ID
+post   Cancel a ongoing requested ride
+put   Update the destination of the ride
+post   Add the passenger's rating, feedback, and tip
+get   Get the receipt of the rides.
+post   Preset Prime Time percentage
+post   Propagate ride through ride status
+post   Preset types of rides for sandbox
+get   Get all available markets.
+get   Returns associations connecting two entities
+post   Fetches popular hashtags or marks tagged with specified hashtag
+post   Fetches marks
+get   Retrieve Advisors
+get   Retrieve Advisors for a Client
+get   Retrieve an Advisor
+get   Retrieve plan assumptions
+get   Retrieve business entities
+get   Retrieve a business entity
+get   Retrieve Monte Carlo results from standalone calc service
+get   Retrieve defined benefit pensions
+get   Retrieve a definedBenefitPension
+get   Retrieve family
+get   Retrieve the adjustments
+post   Perform calculations
+get   Returns a list of goals with their relevant success rates.
+get   Retrieve the adjustments
+post   Perform calculations
+get   Returns a list of goal adjustment restrictions.
+get   Retrieve the adjustments
+post   Perform calculations
+get   Returns WAMO values for current goal
+get   Retrieve goals
+get   Retrieve goals
+get   Retrieve holding companies
+get   Retrieve a holding company
+get   Retrieve all Households associated with the user
+get   Retrieve liabilities
+get   Retrieve a liability
+get   Retrieve lifestyle assets
+get   Retrieve lifestyle assets
+get   Retrieves all goals from the live plan
+get   Retrieve a list of funding accounts
+get   Retrieve WAMO values for a given goal
+get   Retrieves accounts for a given plan
+get   Retrieves liabilities for a given plan
+get   Retrieves lifestyle assets for a given plan
+get   Retrieves real estate accounts for a given plan
+get   Retrieves net worth projections
+get   Retrieves needs vs abilities projections
+get   Retrieve net worth
+post   Determines if the currently logged in user has set their own password
+get   Gets the password complexity requirements
+post   Resets the password for the supplied user name
+put   Sets the password for the currently logged in user
+get   Retrieve plan information
+get   Retrieve plan data statuses
+get   Retrieve portfolio accounts
+get   Retrieve a portfolio account
+get   Retrieve projected annual summaries
+get   Retrieve projected annual summary by id
+get   Retrieve projected cash flow
+get   Retrieve projected cash flow by id
+get   Retrieve assets funding goals over time
+get   Retrieve needs vs abilities data
+get   Retrieve projected net worth
+get   Retrieve projected net worth by id
+get   Retrieve restricted stocks
+get   Retrieve a restricted stock
+get   This resource can be used to check the status of the service.
+get   Retrieve stock options
+get   Retrieve a stock option
+post   Start a session with the DomainProviders user store
+get   Gets the login rules
+post   Validate and extend the duration of a session
+post   Create Account Access Consents
+delete   Delete Account Access Consents
+get   Get Account Access Consents
+get   Get Accounts
+get   Get Accounts
+get   Get Balances
+get   Get Beneficiaries
+get   Get Parties
+get   Get Party
+get   Get Scheduled Payments
+get   Get Standing Orders
+get   Get Statements
+get   Get Statements
+get   Get Statements
+get   Get Transactions
+get   Get Transactions
+get   Get Party
+post   Create Sandbox
+post   Import Sandbox
+delete   Delete Sandbox
+post   Export Sandbox
+get   List Licenses
+post   Create License
+delete   Delete License
+get   Get License
+put   Update License
+get   List Licensees
+post   Create Licensee
+delete   Delete Licensee
+get   Get Licensee
+put   Update Licensee
+post   Transfer Licenses
+post   Validate Licensee
+get   List License Templates
+post   Create License Template
+delete   Delete License Template
+get   Get License Template
+put   Update License Template
+get   List Payment Methods
+get   Get Payment Method
+put   Update Payment Method
+get   List Products
+post   Create Product
+delete   Delete Product
+get   Get Product
+put   Update Product
+get   List Product Modules
+post   Create Product Module
+delete   Delete Product Module
+get   Get Product Module
+put   Update Product Module
+get   List Tokens
+post   Create token
+delete   Delete token
+get   Get token
+get   List Transactions
+post   Create Transaction
+get   Get Transaction
+put   Update Transaction
+get   List License Types
+get   List Licensing Models
+get   Get Account Balance
+get   List Tags from Workgroup and Project.
+get   List Files from Project.  Works for Regular and Remote Files
+post   Upload File to Project.  A multipart/form-data request with a name "file"
+get   Get File from Project.  Works for Regular and Remote Files
+get   List a specific spec of project Level
+put   Update a specific Spec
+post   Invite a team member or all the members of team template for the specific project.
+get   Get Spec Type Fields
+get   List all countries
+get   List the workgroups
+get   List current user's automatic invitations info
+get   List Billing Recipients
+get   List the buy orders of workgroup
+get   Get a specific buy order of workgroup
+get   List client workgroups
+get   Get a specific client workgroups
+get   List the project categories of client side
+get   List projec home user fields of client workgroup
+get   List the project status of client
+get   List the contacts
+get   Get custom task status of workgroup level
+get   Get custom task types of workgroup level
+get   List all deactivation reasons
+get   Get default task priority list
+get   Get default task status list
+get   Detail workgroup info
+put   Update a specific Workgroup
+get   Get Exchange Rate List
+post   Create Exchange Rates
+get   List my time cards
+get   Get a specific my time cards
+get   Get product type of workgroup level
+get   Get product type of spec level by workgroupId
+post   Register product types for spec types
+post   Upload Profile Image.  A multipart/form-data request with a name "file"
+get   List the project categories
+get   List projec home user fields
+get   List the project status
+get   List the projects
+post   Create a Project
+post   Archieve a specific Project
+get   Get a specific Project
+post   Patch a specific Project
+put   Update a specific Project
+get   List the buy orders
+post   Create a quick buy order
+get   Get a specific buy order
+put   Update a specific buy order
+post   Attach children projects to specific Project
+get   List the Estimates
+post   Create a Estimate
+get   Get a specific estimate of project
+get   List invoices by a specific order
+get   List a specific invoice of project Level
+get   List files of invoice Level
+get   List all the role options for the user
+get   Get a specific buy/sell order
+get   List the quotes
+get   Get a specific quote of project
+get   List the RFES
+post   Create a RFE
+get   Get a specific Rfe
+get   List the rfqs
+get   Get a specific Rfq
+get   List the sell orders
+get   Get a specific sell order
+put   Update / Accept or Reject a specific sell order
+get   List shipments of project
+post   Create a shipment
+get   Get a specific shipment.
+put   Update a specific shipment location
+get   List specs of project Level
+post   Create a Spec
+get   List a specific spec of project Level
+put   Update a specific Spec
+get   Get task list of project level
+post   Create a new task
+get   Get a sepcific task of project level
+get   List team member of client project side.
+get   List team member of project.
+delete   Delete a team member for the specific project.
+get   List the quote states
+get   List the quotes of workgroup level
+get   List received time cards
+get   List a specific received time cards
+get   List the sell orders of workgrop
+get   Get a specific sell order
+get   List Spec Templates of Workgroup Level
+get   Get a specific Spec Template
+get   Get Spec Type Fields
+get   List supplier workgroups
+get   Get the specific supplier of My Group
+get   Get task types of workgroup level
+get   Get task list of workgroup level
+get   Get a sepcific task of workgroup level
+get   List current user's team templates info
+get   Get current user's team template detal info
+get   List the workgroup members
+get   Retrieve a block
+post   Show a web-based login/signup form to a user
+post   Initiate an OAuth2 login flow for limited input devices
+post   Create a new OAuth2 access token
+post   Revoke an existing OAuth2 access token
+get   Retrieves a list of currently defined APIs in API meta list format.
+get   Retrieves an API meta listing of all APIs defined for this owner
+delete   Deletes the specified API
+get   Retrieves an API meta listing for all API versions for this owner and API
+post   Saves the provided Swagger definition
+delete   Deletes a particular version of the specified API
+post   Publish a particular version of the specified API
+get   Retrieves the Swagger definition for the specified API and version in JSON format
+get   Retrieves the Swagger definition for the specified API and version in YAML format
+post   Log in to OpenAPI space
+post   Log in to OpenAPI space using an APInf account
+post   Log in to OpenAPI space using an APInf authentication token
+post   Log out from OpenAPI space
+post   Check whether or not you are authenticated
+post   Register to OpenAPI space
+get   Get Competitor information by Id
+get   Get Competitor information by URL
+get   Get Competitor information by Id
+get   Get Competitor information by Url
+get   Fuzzy Search Company by Name or Address or Phone
+get   Get Company by Id
+get   Search Company by Ticker or Website or Name or PermID
+get   Get Company by URL
+get   Get Complete Company Info by Id
+get   Get Basic Company Info by Url
+get   Get Feeds for given Company Ids
+get   Get Feeds for given Company Websites
+get   Search mandates
+post   Create a new mandate
+get   Find mandate by ID
+get   Search Direct Debit payments
+post   Create new Direct Debit payment
+get   Find Direct Debit payment by ID
+get   Search payments
+post   Create new payment
+get   Find payment by ID
+post   Cancel payment
+post   Capture payment
+get   Return payment events by ID
+get   Get all refunds for a payment
+post   Submit a refund for a payment
+get   Find payment refund by ID
+get   Search refunds
+get   Get templates
+post   Create template
+post   Generate document (multiple templates)
+delete   Delete template
+get   Get template
+put   Update template
+post   Copy template
+post   Open editor
+post   Generate document
+delete   Delete workspace
+get   Get workspace
+get   Retrieve billing information
+put   Partial update billing information
+put   Update billing information
+post   Action that should be taken to enable the selected targets
+post   Estimate costs of updating a subscription
+put   Update a subscription
+post   Check validity of password reset token
+get   List account events
+get   Retrieve account event
+get   List frameworks
+get   Retrieve framework
+get   List Jira Projects
+get   Retrieve project issue types
+get   Retrieve issue priorities
+get   Retrieve issue statuses
+get   List Jira Projects
+get   Retrieve project issue types
+get   Retrieve issue priorities
+get   Retrieve issue statuses
+get   List API keys allowed to operate on account
+post   Create account API key
+delete   Delete account API key
+get   Retrieve account API key
+get   List labels
+post   Create label
+delete   Delete label
+get   Retrieve framework
+put   Partial update
+put   Update label
+post   Change user password
+post   Send reset password email
+post   Reset password after asking for a reset (with the token sent by email).
+post   Available actions for the selected targets
+get   List targets
+post   Create target
+post   Activate targets
+get   List scans for all targets
+get   List scheduled scans for all targets expanding recurrence
+post   Archive targets
+get   List archived targets
+delete   Delete target
+get   Retrieve target
+put   Partial update target
+put   Update target
+get   List target's assets
+post   Create new asset
+delete   Delete asset
+get   Retrieve asset
+put   Partial update assets
+put   Update asset
+post   Verify asset ownership
+get   List target events
+get   Retrieve target event
+get   List target findings
+get   Finding report
+post   Bulk retest findings
+put   Bulk update findings
+get   Retrieve finding report PDF format
+get   Retrieve finding
+put   Partial update finding
+put   Update finding
+get   Retrieve Jira Cloud finding configuration
+put   Update Jira Cloud finding configuration
+put   Update Jira Cloud finding configuration
+get   Retrieve Jira Server finding configuration
+put   Update Jira Server finding configuration
+put   Update Jira Server finding configuration
+get   Finding activity log.
+post   Retest finding
+get   Retrieve Jira Cloud Target configuration
+put   Update Jira Cloud target configuration
+put   Update Jira Cloud target configuration
+get   Retrieve Jira Server Target configuration
+put   Update Jira Server target configuration
+put   Update Jira Server target configuration
+get   Retrieve slack integration data
+put   Update slack integration data
+put   Update slack integration data
+get   List target specific API keys
+post   Create target API key
+delete   Delete target API key
+get   Retrieve target API key
+post   Start a scan on the target
+get   List scans
+get   Retrieve scan
+post   Cancel running scan
+get   List scheduled scans
+post   Create new scheduled scan
+get   List scheduled scans expanding recurrence
+delete   Delete
+get   Retrieve a scheduled scan
+put   Partial update
+put   Update a scheduled scan
+get   Retrieve target's site
+put   Partial update target's site
+put   Update target's site
+post   Verify site ownership
+get   List target webhooks
+post   Create new target webhook
+delete   Delete target webhook
+get   Retrieve target webhook
+put   Partial update target webhook
+put   Update target webhook
+get   List users
+post   Create/Reactivate a user.
+post   Deactivate a user
+get   Retrieve user
+put   Partial update user
+put   Update user
+get   List vulnerability definitions
+get   Retrieve vulnerability definition
+get   List account webhooks
+post   Create new account webhook
+delete   Delete account webhook
+get   Retrieve account webhook
+put   Partial update account webhook
+put   Update account webhook
+get   Get quotes for all symbols
+get   Get a list of symbols for which we provide real-time quotes
+post   Performs introspection of the provided Bearer JWT token
+get   Retrieves item usages
+get   Retrieves sign-in attempts
+get   Retrieve a list of API Requests that have been made.
+get   Get state of the server and its dependencies.
+post   Ping the server for liveness
+get   Query server for exposed Prometheus metrics
+get   Get all Vaults
+get   Get Vault details and metadata
+get   Get all items for inside a Vault
+post   Create a new Item
+delete   Delete an Item
+get   Get the details of an Item
+put   Update a subset of Item attributes
+put   Update an Item
+get   Get all the files inside an Item
+get   Get the details of a File
+get   Get the content of a File
+get   Enumerate all active channels of the application
+get   Lists apps
+post   Creates an app
+get   Lists app keys
+post   Creates a key
+put   Updates a key
+post   Revokes a key
+get   Lists namespaces
+post   Creates a namespace
+delete   Deletes a namespace
+put   Updates a namespace
+get   Lists queues
+post   Creates a queue
+delete   Deletes a queue
+get   Lists Reactor rules
+post   Creates a Reactor rule
+delete   Deletes a Reactor rule
+get   Gets a reactor rule by rule ID
+put   Updates a Reactor rule
+delete   Deletes an app
+put   Updates an app
+put   Updates app's APNs info from a `.p12` file
+get   Get token details
+get   Get information about the current user
+post   Send data to a feed via webhook URL.
+post   Send arbitrary data to a feed via webhook URL.
+get   Get activities by type for current user
+post   Create a new Dashboard
+post   Create a new Block
+delete   Delete an existing Block
+get   Returns Block based on ID
+put   Update properties of an existing Block
+put   Replace an existing Block
+delete   Delete an existing Dashboard
+get   Returns Dashboard based on ID
+put   Update properties of an existing Dashboard
+put   Replace an existing Dashboard
+post   Create a new Feed
+delete   Delete an existing Feed
+get   Get feed by feed key
+put   Update properties of an existing Feed
+put   Replace an existing Feed
+get   Get all data for the given feed
+post   Create new Data
+post   Create multiple new Data records
+delete   Delete existing Data
+get   Returns data based on feed key
+put   Update properties of existing Data
+put   Replace existing Data
+get   Get detailed feed by feed key
+post   Create a new Group
+delete   Delete an existing Group
+get   Returns Group based on ID
+put   Update properties of an existing Group
+put   Replace an existing Group
+post   Add an existing Feed to a Group
+post   Create new data for multiple feeds in a group
+post   Create a new Feed in a Group
+post   Create new Data in a feed belonging to a particular group
+post   Create multiple new Data records in a feed belonging to a particular group
+delete   Remove a Feed from a Group
+get   Get the user's data rate limit and current activity level.
+post   Create a new Token
+delete   Delete an existing Token
+get   Returns Token based on ID
+put   Update properties of an existing Token
+put   Replace an existing Token
+post   Create a new Trigger
+delete   Delete an existing Trigger
+get   Returns Trigger based on ID
+put   Update properties of an existing Trigger
+put   Replace an existing Trigger
+post   Create a new Permission
+delete   Delete an existing Permission
+get   Returns Permission based on ID
+put   Update properties of an existing Permission
+put   Replace an existing Permission
+post   Trigger verification.
+post   Close an account.
+post   Close an account holder.
+post   Close stores.
+post   Create a new account.
+post   Create a new account holder.
+delete   Delete bank accounts.
+delete   Delete payout methods.
+delete   Delete shareholders.
+delete   Delete signatories.
+get   Get an account holder.
+get   Get a tax form.
+get   Get documents.
+post   Suspend an account holder.
+post   Unsuspend an account holder.
+put   Update an account.
+put   Update an account holder.
+put   Update payout or processing state.
+put   Upload a document.
+post   Create an account holder.
+get   Retrieve an account holder.
+put   Update an account holder.
+get   Retrieve all balance accounts of a specific account holder.
+post   Create a balance account.
+get   Retrieve a balance account.
+put   Update a balance account.
+get   Retrieve all payment instruments for a specific balance account.
+get   Retrieve a balance platform.
+get   Retrieve all account holders under a specific balance platform.
+post   Upload a document for verification checks.
+delete   Delete a document.
+get   Retrieve a document.
+put   Update a document.
+post   Create a legal entity.
+get   Retrieve a legal entity.
+put   Update a legal entity.
+post   Create a payment instrument group.
+get   Retrieve a payment instrument group.
+get   Retrieve all transaction rules for a specific payment instruments group.
+post   Create a payment instrument.
+get   Retrieve a payment instrument.
+put   Update a payment instrument.
+get   Retrieve all transaction rules for a specific payment instrument.
+post   Create a transaction rule.
+delete   Delete a transaction rule.
+get   Retrieve a transaction rule.
+put   Update a transaction rule.
+post   Create a transfer instrument.
+delete   Delete a transfer instrument
+get   Retrieve a transfer instrument.
+put   Update a transfer instrument.
+post   Checks 3D Secure availability.
+get   Gets a cost estimate.
+post   Create originKey values for one or more merchant domains.
+get   Retrieve the balance(s) of an account holder.
+get   Retrieve a list of transactions.
+post   Disburse a specified amount from an account to the account holder.
+post   Make a refund of the existing transfer funds transfer.
+post   Refund all transactions of an account since the most recent payout.
+post   Designate an account to be the beneficiary of a separate account and transfer the benefactor's current balance to the beneficiary.
+post   Transfer funds from one platform account to another.
+get   Get a link to a Adyen-hosted onboarding page.
+get   Get a link to a PCI compliance questionnaire.
+post   Disables stored payment details.
+get   Retrieves stored payment details for a shopper.
+post   Notify the shopper for upcoming recurring payment
+post   Schedules running of the Account Updater.
+post   Creates one or more test card ranges.
+get   Get all transactions.
+get   Get a transaction.
+post   Transfer funds.
+post   Activate or Deactivate an ECU, or Report an ECU as Damaged.
+get   Get injector codes given engine.
+post   Report the IQA codes used by an engine
+get   Get production calibration data for given engine.
+post   Check whether there is connectivity to AGCO Power Web Services
+get   Retrieve the status of an EDT Kit Registration with AGCO Power Web Services
+put   Update the status of an EDT Kit Registration with AGCO Power Web Services
+put   Manage API tokens.
+post   Authenticate a user.
+post   Request a password reset.
+post   Reset a password
+get   Get authorization categories.
+post   Add an authorization category.
+get   Returns a report of access that users have to Authorization Categories.
+delete   Remove an authorization category.
+put   Update an authorization category.
+delete   Deletes a category a user could see.
+post   Add a category that a user can see.
+get   Get authorization code definitions.
+post   Add an authorization code definition.
+delete   Deletes the category from the authorization code definition.
+post   Add a category to an authorizationCodeDefintion.
+post   Disable an authorization code definition
+get   Get an authorization code definition by its ID
+put   Update an authorization code definition
+get   Get authorization codes.
+post   Generates an authorization code using the provided definition and parameters.
+post   Hide an authorization code.
+get   Get an authorization code by its ID.
+put   Update an authorization code.
+get   Get contact information for an authorization code.
+get   Get contact information for authorization codes.
+post   Add contact information for authorization code.
+get   Gets a list of Brands.
+get   Get the list of bundles.
+post   Add a Bundle to the Update System.
+delete   Delete a Bundle.
+get   Get a specific Bundle by ID.
+put   Modify a Bundle in the Update System.
+get   Get a List of Clients in the Update System.
+get   Get a list of Cached Files installed on the client Machine.
+get   Get the package reports for a client.
+post   Submit a package report
+post   Submit a batch of package reports
+get   Get a Client in the Update System.
+put   Update a Client.
+get   Get a Client's Available Update Group Subscriptions
+get   Get a Client's Current Update Group Subscriptions
+delete   Remove an Attribute from a ContentDefinition
+put   Update an Attribute for a ContentDefinition
+get   Get ContentDefinitions
+post   Create a ContentDefinition
+delete   Delete a ContentDefinition
+get   Get a ContentDefinition by ID
+put   Update a ContentDefinition
+get   Get Attributes for a ContentDefinition
+post   Add an Attribute to a ContentDefinition
+get   Get ContentReleaseVersion
+post   Create a ContentReleaseVersion
+delete   Delete a ContentReleaseVersion
+get   Get a Content Release Version by ID
+put   Update a ContentReleaseVersion
+delete   Remove an Attribute from a ContentSubmission
+put   Update an Attribute for a ContentSubmission
+get   Returns available Content Submission Types.
+post   Add a Content Submission Type
+delete   Remove a Content Submission Type
+get   Retrieves a Content Submission Type by its ID.
+put   Update a Content Submission Type
+get   Get ContentSubmissions
+post   Create a ContentSubmission
+delete   Delete a ContentSubmission
+get   Get a ContentSubmission by ID
+put   Update a ContentSubmission
+get   Get Attributes for a ContentSubmission
+post   Add an Attribute to a ContentSubmission
+get   Get a total count of dealers per country
+get   Get a list of dealers.
+get   Get a paged response of file metadata.
+post   Create the metadata for a file before uploading. The State of the File should be 'Created'.
+invalid   Mark a file as 'Removed'. Disables download of the file and hides metadata from GET all method
+get   Gets a file's metadata.
+put   Update the metadata for a file. Size may not be modified by the client.
+post   Download the contents of a file. The current State of the File should be 'Available'.
+post   Upload the contents of a file. The current State of the File should be 'Created'.
+get   Get a paged response of file metadata.
+post   Create the metadata for a file before uploading. The State should be 'Created'.
+get   Gets a file's metadata.
+get   Get a paged response of GlobalImage.
+post   Create the metadata for a GlobalImage before uploading. The State should be 'Created'.
+invalid   Mark a file as 'Removed'. Disables download of the image and hides metadata from GET all method
+get   Gets a GlobalImage's metadata.
+put   Update the metadata for an image.
+post   Download the contents of a GlobalImage. The current State of the GlobalImage should be 'Available'.
+post   Upload the contents of a GlobalImage. The current State of the File for the GlobalImage should be 'Created'.
+get   Get a list of the languages for which translations are supported. Returns a PagedResponse of Language objects.
+post   Add a Language to support for translations. Accepts a Language object. Returns the Id of the created object.
+invalid   Remove a Language from those supported for translations. Marks language as deleted.
+get   Get a language by its id. Returns a Language object
+put   Update a language’s description. Accepts a Language object.
+post   Create a license activation.
+post   Register an EDT Lite with the Server
+put   Update a license activiation.
+post   Confirm that the client has applied the updated license.
+get   Gets a list of licenses with the specified criteria.
+get   Get a license.
+get   Get the API System logs, most recent first.
+post   Add a Log entry
+get   Get a log by ID
+post   Sends an email message.
+get   Get all of the Package Types.
+post   Add a Package Type.
+delete   Delete a Package Type.
+get   Get a specific Package Type.
+put   Modify a Package Type.
+delete   Deletes a package type a user could see.
+post   Add a package type that a user can see.
+delete   Delete a Package Type to Bundle Relationship.
+get   Get all of the Package Type to Bundle Relationships.
+post   Add a new Package Type ID to Bundle Relationship.
+put   Update a Package Type ID to Bundle Relationship.
+get   List Packages.
+post   Add a Package to the Update System.
+delete   Delete a Package.
+post   Find a Package.
+put   Modify a Packge to the Update System.
+get   List Permissions
+post   Adds a Permission
+delete   Deletes a Permission
+get   Gets a Permission
+put   Updates a Permission
+get   Get a list of Priority Packages by Client.
+post   Add a Priority Package for a Client.
+delete   Delete a Priority Package for a Client.
+get   Get a Priority Packages for a Client.
+get   Get Release
+post   Create a Release
+get   Get a  Release by ID
+delete   Deletes the association between a release and a bundle.
+post   Associates the release with a bundle.
+put   Update a Release
+get   Get a summary of all Packages in a Bundle
+get   Get a list of bundles for UpdateGroup.
+get   Get Client Information
+get   Get the current packages for an update group.
+get   Get a Client in the Update System.
+get   Get a list of current Client Subscriptions.
+get   Get a summary report for a Specific Package
+get   Get a list of subscribed clients
+get   Get a list of Update Groups.  Update Groups are used by the client to register for a specific type of update.
+get   Get data for pie charts in UpdateMetrics.
+get   List Roles
+post   Adds a User Role
+delete   Deletes a User Role
+get   Gets a User Role
+put   Updates a User Role
+get   Get the Permissions for a Role
+put   Manage the Permissions for a Role
+get   Get all user's in a role
+put   Update a Role's users
+get   Get a paged response of Global String Definitions.
+post   Create StringDefinition object. The originating translation must be provided. Accepts an array of StringDefinition objects. Returns nothing.
+put   Update StringDefinition objects. Accepts an array of StringDefinition objects. This endpoint will add StringDefinitionChange objects to the database. The DescriptionForTranslator may not be modified after a String is submitted for translation.
+get   Get a paged response of Global String Definitions.
+get   Get a paged response of Global String Translations.
+put   Update corrections to string translations
+get   Get a single translation based upon stringId and languageId
+put   Update a string value or a state for a string translation.
+get   Get a paged response of TranslationKeys.
+post   Create a translationKey object.
+get   Get TranslationKey by ID
+put   Update the StringID of the translationKey object.
+get   Get all TranslationRequest objects. Returns a PagedResponse of TranslationRequest objects with their language ids and string ids.
+invalid   Create a translation request. Accepts a TranslationRequest object. Returns the Id of the created object. The state of the TranslationRequest must be ‘NotSubmitted’.
+get   Get a TranslationRequest object by id. Returns TranslationRequest object with its language ids and string ids.
+put   Update a TranslationRequest object by id. Accepts a TranslationRequest object.
+delete   Delete a set of TranslationSetAttribute object
+put   Update a TranslationSetAttribute object
+get   Get a PagedResponse of TranslationSet objects. Related TranslationSetStrings are NOT returned
+get   Get a TranslationSet object by its id. Related TranslationSetStrings are NOT returned.
+put   Update a Translation Set. Accepts a TranslationSet object. Only the state property may be updated.
+get   Get a PagedResponse of TranslationSetAttribute objects
+post   Create a TranslationSetAttribute object
+get   Gets the information needed to translate a string in a translation set
+get   Gets the statistics for translation sets such as the language ids and count of string definitions.
+get   Get a PagedResponse of TranslationSetString objects
+get   Get a list of current Client Subscriptions.
+post   Add a subscription
+put   DEPRECATED. Set client subscription status for an update group.
+get   Get a subscription by RelationshipID
+put   Updates a Subscription
+get   Get Update Group Subscriptions
+post   Add an Update Group Subscription
+delete   Delete an Update Group Subscription
+get   Get an Update Group Subscription
+put   Update an Update Group Subscription
+get   Get a list of Update Groups.  Update Groups are used by the client to register for a specific type of update.
+post   Add a new Update Group.  The report field is a string that has a dot based request for a specific piece of submitted data.
+delete   Delete an Update Group.
+get   Get a specific Update Group by ID.
+put   Modify an Update Group.
+get   Get a list of bundles for UpdateGroup.
+delete   Deletes an update group a user could see.
+post   Add an updateGroup that a user can see.
+post   Checks the Client ID into the Update System.
+get   Get UserContentDefinitions
+post   Create a UserContentDefinition
+delete   Delete a UserContentDefinition
+get   Get a UserContentDefinition by ID
+get   Get users
+post   Create a user
+get   Gets the current user
+put   Update a user
+get   Get a user's permissions
+get   Gets the current user's roles
+delete   Delete a user
+get   Get a specific user
+put   Update a user
+get   Get a user's permissions
+get   Get a user's roles
+put   Update a user's roles
+get   Gets voucher history data
+get   Gets a list of vouchers
+post   Create a voucher
+delete   Delete a voucher
+get   Get a voucher
+put   Update a voucher
+get   Get a voucher's history.
+get   Get Activities
+post   Create an Activity
+put   Mark the delete flag for the Activity
+get   Get an Activity by ID
+put   Update an Activity
+get   Get ActivityRuns
+get   Get an ActivityRun by ID
+put   Update an ActivityRun
+get   Get the ActivityRunStatus of an ActivityRun
+put   Update the ActivityRunStatus of an ActivityRun
+get   Get Agents
+post   Create an Agent
+get   Get Agent associated with the current user
+get   Get the ActivityRun of Agent associated with the current user
+delete   Delete an Agent
+get   Get Agent
+put   Update an Agent
+get   Get an Agent's ActivityRun
+put   Update the ActivityRun assigned to the Agent.
+put   Update an Agent
+get   Get JobRuns
+post   Create a JobRun
+delete   Delete a JobRun
+get   Get a JobRun by ID
+put   Update a JobRun
+get   Get Jobs
+post   Create a Job
+put   Mark the delete flag for the Job
+get   Get a Job by ID
+put   Update a Job
+get   Get Steps
+post   Create a Step
+get   Get a Step by ID
+put   Update a Step
