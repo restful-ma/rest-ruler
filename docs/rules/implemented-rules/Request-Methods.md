@@ -32,7 +32,7 @@ Description from Massé [1].
 ### What is checked:
 
 * For each request, we check if the description or summary attribute corresponds to the request type.
-* To implement this, we used Weka [2] to train a Naive Bayes Multinomial classifier (`models/request_model.dat`) that predicts the request type based on the description or the summary. We curated a dataset of over 3k instances for this (`models/request-model-training-data.txt`).
+* To implement this, we used Weka [2] to train a Naive Bayes Multinomial classifier (`src/main/resources/models/request_model.dat`) that predicts the request type based on the description or the summary. We curated a dataset of over 3k instances for this (`model-training/request-model-training-data.txt`).
 * If the prediction doesn't match with the given request type, we throw a violation.
 
 ### What is not checked:

@@ -20,7 +20,7 @@ public class RequestTypeDescriptionRule implements IRestRule {
     static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List.of(RuleSoftwareQualityAttribute.MAINTAINABILITY);
     private static final String IMPROVEMNT_SUB_STRING = " The request should be of type: ";
     private boolean isActive;
-    final String MODEL = "models/request_model.dat";
+    final String MODEL = "/models/request_model.dat";
 
     public RequestTypeDescriptionRule(boolean isActive) {
         this.isActive = isActive;

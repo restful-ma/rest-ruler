@@ -1,30 +1,35 @@
 package cli.rule;
 
-import cli.rule.rules.SingularDocumentNameRule;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import com.google.common.collect.Lists;
+import cli.rule.rules.SingularDocumentNameRule;
 import io.swagger.parser.OpenAPIParser;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.parser.core.models.SwaggerParseResult;
 import opennlp.tools.postag.POSModel;
 import opennlp.tools.postag.POSTaggerME;
 import opennlp.tools.tokenize.SimpleTokenizer;
-import org.apache.commons.lang3.tuple.ImmutablePair;
-
-import java.io.*;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Utility {
     private static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-    private static final String PATH_TO_ENGLISH_DICTIONARY =
-            "src/main/java/cli/docs/wordninja_words.txt";
-    public static final String MODELS_EN_POS_MAXENT_BIN = "models/en-pos-maxent.bin";
+    private static final String PATH_TO_ENGLISH_DICTIONARY = "/wordninja_words.txt";
+
+    public static final String MODELS_EN_POS_MAXENT_BIN = "/models/en-pos-maxent.bin";
 
     private Utility() {
         throw new IllegalStateException("Utility class");
@@ -32,18 +37,18 @@ public class Utility {
 
     public static boolean getPathSegmentContained(String word, String filePath) {
         boolean isWordInDictionary = false;
-        try (FileReader fileReader = new FileReader(filePath)) {
-            try (Scanner scanner = new Scanner(fileReader)) {
-                while (scanner.hasNext()) {
-                    String wordFromDictionary = scanner.next();
-                    if (word.toLowerCase().contains(wordFromDictionary)) {
-                        isWordInDictionary = true;
-                        break;
-                    }
+        try (InputStream is = Utility.class.getResourceAsStream(filePath);
+                BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
+            String wordFromDictionary;
+            while ((wordFromDictionary = br.readLine()) != null) {
+                if (word.toLowerCase().contains(wordFromDictionary)) {
+                    isWordInDictionary = true;
+                    break;
                 }
             }
         } catch (Exception e) {
-            logger.severe("Error on checking if a word is contained in a dictionary: " + e.getMessage());
+            logger.severe(
+                    "Error on checking if a word is contained in a dictionary: " + e.getMessage());
         }
         return isWordInDictionary;
     }
@@ -51,9 +56,11 @@ public class Utility {
     public static boolean getPathSegmentMatch(String word, String filePath) {
         boolean isWordInDictionary = false;
         try (Scanner scanner = new Scanner(new File(filePath))) {
-            if (scanner.useDelimiter("\\Z").next().matches(word)) isWordInDictionary = true;
+            if (scanner.useDelimiter("\\Z").next().matches(word))
+                isWordInDictionary = true;
         } catch (Exception e) {
-            logger.severe("Error on checking if a word is contained in a dictionary: " + e.getMessage());
+            logger.severe(
+                    "Error on checking if a word is contained in a dictionary: " + e.getMessage());
         }
         return isWordInDictionary;
     }
@@ -65,6 +72,7 @@ public class Utility {
 
     /**
      * Method to change the switchPathSegment from plural to singular a vice versa.
+     * 
      * @param equals
      * @return
      */
@@ -78,17 +86,17 @@ public class Utility {
 
     /**
      * Get a token from a word using the nlp apache pos tagger library.
+     * 
      * @param pathSegment
      * @return
      */
-    public static String getTokenNLP(String pathSegment){
-        if(pathSegment.equals("")){
+    public static String getTokenNLP(String pathSegment) {
+        if (pathSegment.equals("")) {
             return null;
         }
         SimpleTokenizer tokenizer = SimpleTokenizer.INSTANCE;
         String[] tokens = tokenizer.tokenize(pathSegment);
-        try(InputStream modelIn = new FileInputStream(
-                MODELS_EN_POS_MAXENT_BIN);) {
+        try (InputStream modelIn = Utility.class.getResourceAsStream(MODELS_EN_POS_MAXENT_BIN);) {
             POSModel posModel = new POSModel(modelIn);
             POSTaggerME posTagger = new POSTaggerME(posModel);
             String tags[] = posTagger.tag(tokens);
@@ -102,6 +110,7 @@ public class Utility {
 
     /**
      * Given a word check if it is plural or singular based on token.
+     * 
      * @param token
      * @return
      */
@@ -119,6 +128,7 @@ public class Utility {
 
     /**
      * Split a string into words if possible using an english dictionary to match the words.
+     * 
      * @param sentence
      * @return
      * @throws IOException
@@ -127,14 +137,18 @@ public class Utility {
         String splitRegex = "[^a-zA-Z0-9']+";
         Map<String, Number> wordCost = new HashMap<>();
         List<String> dictionaryWords = new ArrayList<>();
-        Stream<String> stringLines = null;
+        InputStream is = null;
+
         try {
-            stringLines = Files.lines(Paths.get(PATH_TO_ENGLISH_DICTIONARY), Charset.defaultCharset());
-            dictionaryWords = stringLines.collect(Collectors.toList());
+            is = Utility.class.getResourceAsStream(PATH_TO_ENGLISH_DICTIONARY);
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            dictionaryWords = br.lines().collect(Collectors.toList());
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Error on getting the english dictionary file {e}", e);
         } finally {
-            if (stringLines != null) stringLines.close();
+            if (is != null) {
+                is.close();
+            }
         }
 
         double naturalLogDictionaryWordsCount = Math.log(dictionaryWords.size());
@@ -142,7 +156,8 @@ public class Utility {
         for (String word : dictionaryWords) {
             wordCost.put(word, Math.log(++wordIdx * naturalLogDictionaryWordsCount));
         }
-        int maxWordLength = Collections.max(dictionaryWords, Comparator.comparing(String::length)).length();
+        int maxWordLength =
+                Collections.max(dictionaryWords, Comparator.comparing(String::length)).length();
         List<String> splitWords = new ArrayList<>();
         for (String partSentence : sentence.split(splitRegex)) {
             splitWords.add(split(partSentence, wordCost, maxWordLength));
@@ -152,12 +167,14 @@ public class Utility {
 
     /**
      * Split a string into sub strings.
+     * 
      * @param partSentence
      * @param wordCost
      * @param maxWordLength
      * @return
      */
-    public static String split(String partSentence, Map<String, Number> wordCost, int maxWordLength) {
+    public static String split(String partSentence, Map<String, Number> wordCost,
+            int maxWordLength) {
         List<ImmutablePair<Number, Number>> cost = new ArrayList<>();
         cost.add(new ImmutablePair<>(0, 0));
         for (int index = 1; index < partSentence.length() + 1; index++) {
@@ -166,7 +183,8 @@ public class Utility {
         int idx = partSentence.length();
         List<String> output = new ArrayList<>();
         while (idx > 0) {
-            ImmutablePair<Number, Number> candidate = bestMatch(partSentence, cost, idx, wordCost, maxWordLength);
+            ImmutablePair<Number, Number> candidate =
+                    bestMatch(partSentence, cost, idx, wordCost, maxWordLength);
             Number candidateCost = candidate.getKey();
             Number candidateIndexValue = candidate.getValue();
             if (candidateCost.doubleValue() != cost.get(idx).getKey().doubleValue())
@@ -175,7 +193,9 @@ public class Utility {
             String token = partSentence.substring(idx - candidateIndexValue.intValue(), idx);
             if (token.equals("'") && !output.isEmpty()) {
                 String lastWord = output.get(output.size() - 1);
-                if (lastWord.equalsIgnoreCase("'s") || (Character.isDigit(partSentence.charAt(idx - 1)) && Character.isDigit(lastWord.charAt(0)))) {
+                if (lastWord.equalsIgnoreCase("'s")
+                        || (Character.isDigit(partSentence.charAt(idx - 1))
+                                && Character.isDigit(lastWord.charAt(0)))) {
                     output.set(output.size() - 1, token + lastWord);
                     newToken = false;
                 }
@@ -190,6 +210,7 @@ public class Utility {
 
     /**
      * Get the best match for a word.
+     * 
      * @param partSentence
      * @param cost
      * @param index
@@ -197,12 +218,14 @@ public class Utility {
      * @param maxWordLength
      * @return
      */
-    public static ImmutablePair<Number, Number> bestMatch(String partSentence, List<ImmutablePair<Number, Number>> cost,
-                                                    int index, Map<String, Number> wordCost, int maxWordLength) {
-        List<ImmutablePair<Number, Number>> candidates = Lists.reverse(cost.subList(Math.max(0,
-                index - maxWordLength), index));
+    public static ImmutablePair<Number, Number> bestMatch(String partSentence,
+            List<ImmutablePair<Number, Number>> cost, int index, Map<String, Number> wordCost,
+            int maxWordLength) {
+        List<ImmutablePair<Number, Number>> candidates =
+                Lists.reverse(cost.subList(Math.max(0, index - maxWordLength), index));
         int enumerateIdx = 0;
-        ImmutablePair<Number, Number> minPair = new ImmutablePair<>(Integer.MAX_VALUE, enumerateIdx);
+        ImmutablePair<Number, Number> minPair =
+                new ImmutablePair<>(Integer.MAX_VALUE, enumerateIdx);
         for (ImmutablePair<Number, Number> pair : candidates) {
             ++enumerateIdx;
             String subsequence = partSentence.substring(index - enumerateIdx, index).toLowerCase();

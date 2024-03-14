@@ -1,16 +1,17 @@
 package cli.weka;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import weka.classifiers.bayes.NaiveBayesMultinomial;
 import weka.classifiers.meta.FilteredClassifier;
 import weka.core.Attribute;
 import weka.core.DenseInstance;
 import weka.core.Instances;
-
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Logger;
 
 // import java.net.URL;
 
@@ -29,26 +30,22 @@ public class RequestMethodsWekaClassifier {
     public RequestMethodsWekaClassifier() {
 
         /*
-         * Class for running an arbitrary classifier on data that has been passed
-         * through an arbitrary filter.
-         * Like the classifier, the structure of the filter is based exclusively on the
-         * training data and test
-         * instances will be processed by the filter without changing their structure.
-         * If unequal instance weights or attribute weights are present,
-         * and the filter or the classifier are unable to deal with them,
-         * the instances and/or attributes are resampled with replacement
-         * based on the weights before they are passed to the filter or the classifier
-         * (as appropriate).
+         * Class for running an arbitrary classifier on data that has been passed through an
+         * arbitrary filter. Like the classifier, the structure of the filter is based exclusively
+         * on the training data and test instances will be processed by the filter without changing
+         * their structure. If unequal instance weights or attribute weights are present, and the
+         * filter or the classifier are unable to deal with them, the instances and/or attributes
+         * are resampled with replacement based on the weights before they are passed to the filter
+         * or the classifier (as appropriate).
          */
         classifier = new FilteredClassifier();
 
         /**
-         * Class for building and using a multinomial Naive Bayes classifier. For more
-         * information see,
+         * Class for building and using a multinomial Naive Bayes classifier. For more information
+         * see,
          *
-         * Andrew Mccallum, Kamal Nigam: A Comparison of Event Models for Naive Bayes
-         * Text Classification.
-         * In: AAAI-98 Workshop on 'Learning for Text Categorization', 1998.
+         * Andrew Mccallum, Kamal Nigam: A Comparison of Event Models for Naive Bayes Text
+         * Classification. In: AAAI-98 Workshop on 'Learning for Text Categorization', 1998.
          * https://weka.sourceforge.io/doc.dev/weka/classifiers/bayes/NaiveBayesMultinomial.html
          */
         classifier.setClassifier(new NaiveBayesMultinomial());
@@ -105,8 +102,8 @@ public class RequestMethodsWekaClassifier {
             double percentageOfPredictedValue = percentage[(int) prediction];
 
             // Create pair containing the prediction value and the percentage of accuracy
-            ImmutablePair<String, Double> predictionValues = new ImmutablePair<>(predictionValue,
-                    percentageOfPredictedValue);
+            ImmutablePair<String, Double> predictionValues =
+                    new ImmutablePair<>(predictionValue, percentageOfPredictedValue);
 
             // return original label
             return predictionValues;
@@ -123,7 +120,8 @@ public class RequestMethodsWekaClassifier {
      */
     public void loadModel(String filename) {
         try {
-            ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename));
+            ObjectInputStream in =
+                    new ObjectInputStream(this.getClass().getResourceAsStream(filename));
             Object tmp = in.readObject();
             classifier = (FilteredClassifier) tmp;
             in.close();

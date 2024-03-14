@@ -89,9 +89,9 @@ A good overview of the implemented rules can be found [here](./rules/README.md).
 
 ## Apache OpenNLP
 - [Apache OpenNLP](https://opennlp.apache.org)
-- [Model](models/en-pos-maxent.bin)
+- [Model](src/main/resources/models/en-pos-maxent.bin)
 
 ## Weka
 
 - [Weka](https://www.cs.waikato.ac.nz/ml/weka/)
-- [Model](models/request_model.dat)
+- [Model](src/main/resources/models/request_model.dat)

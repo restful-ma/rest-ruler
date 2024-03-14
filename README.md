@@ -6,7 +6,7 @@ Currently, RESTRuler can parse the following Web API description languages:
 * [OpenAPI v2](https://swagger.io/specification/v2/)
 * [OpenAPI v3](https://github.com/OAI/OpenAPI-Specification)
 
-RESTRuler has been developed in the [Empirical Software Engineering Group](https://www.iste.uni-stuttgart.de/ese) at the University of Stuttgart, Germany, as a research prototype written in Java.
+RESTRuler has been developed in the [Empirical Software Engineering Group](https://www.iste.uni-stuttgart.de/ese) at the University of Stuttgart, Germany, as a research prototype written in Java (version >=18 needed).
 It is a command-line tool that takes the path or URL to an OpenAPI definition file as input and displays a list of design rule violations as output.
 Optionally, a Markdown report file can be generated with additional details and improvement suggestions.
 

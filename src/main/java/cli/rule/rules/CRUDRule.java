@@ -1,15 +1,20 @@
 package cli.rule.rules;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import cli.analyzer.RestAnalyzer;
 import cli.rule.IRestRule;
 import cli.rule.Utility;
 import cli.rule.Violation;
-import cli.rule.constants.*;
+import cli.rule.constants.ErrorMessage;
+import cli.rule.constants.RuleCategory;
+import cli.rule.constants.RuleSeverity;
+import cli.rule.constants.RuleSoftwareQualityAttribute;
 import cli.utility.Output;
-
 import io.swagger.v3.oas.models.OpenAPI;
-
-import java.util.*;
 
 /**
  * Implementation of the rule: Underscores (_) should not be used in URI.
@@ -18,11 +23,12 @@ public class CRUDRule implements IRestRule {
     private static final String TITLE = "CRUD function names should not be used in URIs";
     private static final RuleCategory CATEGORY = RuleCategory.URIS;
     private static final RuleSeverity SEVERITY = RuleSeverity.ERROR;
-    private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTE = Arrays
-            .asList(RuleSoftwareQualityAttribute.USABILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
-    private static final String[] CRUD_OPERATIONS = { "get", "post", "delete", "put", "create", "read", "update",
-            "patch", "insert", "select", "fetch", "purge", "retrieve", "add" };
-    private static final String PATH_TO_CRUD_DICTIONARY = "src/main/java/cli/docs/CRUD_words.txt";
+    private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTE =
+            Arrays.asList(RuleSoftwareQualityAttribute.USABILITY,
+                    RuleSoftwareQualityAttribute.MAINTAINABILITY);
+    private static final String[] CRUD_OPERATIONS = {"get", "post", "delete", "put", "create",
+            "read", "update", "patch", "insert", "select", "fetch", "purge", "retrieve", "add"};
+    private static final String PATH_TO_CRUD_DICTIONARY = "/CRUD_words.txt";
     private final List<Violation> violationList = new ArrayList<>();
     private boolean isActive;
 
@@ -61,8 +67,7 @@ public class CRUDRule implements IRestRule {
     }
 
     /**
-     * Checks if there is a violation against the CRUD rule. All paths and base URLs
-     * are checked.
+     * Checks if there is a violation against the CRUD rule. All paths and base URLs are checked.
      *
      * @param openAPI the definition that will be checked against the rule.
      * @return the list of violations.
@@ -101,15 +106,17 @@ public class CRUDRule implements IRestRule {
      * Checks if the segment contains a CRUD operation
      *
      * @param segment the currently examined segment
-     * @param path    the whole request path
+     * @param path the whole request path
      */
     private void checkCRUDInSegment(String segment, String path) {
         for (String crudOperation : CRUD_OPERATIONS) {
             if (segment.toLowerCase().contains(crudOperation)) {
-                this.violationList.add(new Violation(this, RestAnalyzer.locMapper.getLOCOfPath(path), "URIS should not be " +
-                        "used " + "to " + "indicate that a CRUD function (" + crudOperation.toUpperCase() + ") is "
-                        + "performed, " + "instead HTTP request methods should be used for this.", path,
-                        ErrorMessage.CRUD));
+                this.violationList.add(new Violation(this,
+                        RestAnalyzer.locMapper.getLOCOfPath(path),
+                        "URIS should not be " + "used " + "to " + "indicate that a CRUD function ("
+                                + crudOperation.toUpperCase() + ") is " + "performed, "
+                                + "instead HTTP request methods should be used for this.",
+                        path, ErrorMessage.CRUD));
             }
         }
     }

@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class Config {
 
-    private String configFilePath = "src\\main\\java\\cli\\docs\\config.properties";
+    private String configFilePath = "src\\main\\resources\\config.properties";
     private final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private boolean isConfigFileCreated = false;
 

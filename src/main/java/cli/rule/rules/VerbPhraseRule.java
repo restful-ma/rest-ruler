@@ -1,30 +1,35 @@
 package cli.rule.rules;
 
+import static cli.rule.Utility.getTokenNLP;
+import static cli.rule.Utility.splitContiguousWords;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import cli.analyzer.RestAnalyzer;
 import cli.rule.IRestRule;
 import cli.rule.Violation;
-import cli.rule.constants.*;
+import cli.rule.constants.ErrorMessage;
+import cli.rule.constants.ImprovementSuggestion;
+import cli.rule.constants.RuleCategory;
+import cli.rule.constants.RuleSeverity;
+import cli.rule.constants.RuleSoftwareQualityAttribute;
 import cli.utility.Output;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.Paths;
-
-import java.io.IOException;
-import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import static cli.rule.Utility.getTokenNLP;
-import static cli.rule.Utility.splitContiguousWords;
 
 public class VerbPhraseRule implements IRestRule {
 
     private static final String TITLE = "A verb or verb phrase should be used for controller names";
     private static final RuleCategory RULE_CATEGORY = RuleCategory.URIS;
     private static final RuleSeverity RULE_SEVERITY = RuleSeverity.ERROR;
-    private static final List<RuleSoftwareQualityAttribute> RULE_SOFTWARE_QUALITY_ATTRIBUTE_LIST = List
-            .of(RuleSoftwareQualityAttribute.USABILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
-    public static final String MODELS_EN_POS_MAXENT_BIN = "models/en-pos-maxent.bin";
+    private static final List<RuleSoftwareQualityAttribute> RULE_SOFTWARE_QUALITY_ATTRIBUTE_LIST =
+            List.of(RuleSoftwareQualityAttribute.USABILITY,
+                    RuleSoftwareQualityAttribute.MAINTAINABILITY);
     private boolean isActive;
     private final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private int curPath = 1;
@@ -97,7 +102,8 @@ public class VerbPhraseRule implements IRestRule {
                 String pathWithoutVariables = path.replaceAll("\\{" + ".*" + "\\}/", "");
                 String[] pathSegments = pathWithoutVariables.split("/");
                 // Extract path segments based on / char and check if there are violations
-                Violation violation = getLstViolationsFromPathSegments(path, pathSegments, getOperation, postOperation);
+                Violation violation = getLstViolationsFromPathSegments(path, pathSegments,
+                        getOperation, postOperation);
                 if (violation != null)
                     violations.add(violation);
             }
@@ -106,9 +112,8 @@ public class VerbPhraseRule implements IRestRule {
     }
 
     /**
-     * Get a violation based on the last path segment of a path. If the last part
-     * segment is a verb and the request
-     * is not of type GET or POST, then there is a violation.
+     * Get a violation based on the last path segment of a path. If the last part segment is a verb
+     * and the request is not of type GET or POST, then there is a violation.
      * 
      * @param path
      * @param pathSegments
@@ -116,8 +121,8 @@ public class VerbPhraseRule implements IRestRule {
      * @param postOperation
      * @return
      */
-    private Violation getLstViolationsFromPathSegments(String path, String[] pathSegments, Operation getOperation,
-            Operation postOperation) {
+    private Violation getLstViolationsFromPathSegments(String path, String[] pathSegments,
+            Operation getOperation, Operation postOperation) {
         // Get the last pathSegment which we need to analyze
         if (pathSegments.length < 1)
             return null;
@@ -125,7 +130,8 @@ public class VerbPhraseRule implements IRestRule {
         try {
             // Get the words forming the pathSegment
             List<String> subStringFromPath = splitContiguousWords(lastPathSegment);
-            List<String> pathWithoutParameterDictionaryMatching = Arrays.asList(subStringFromPath.get(0).split(" "));
+            List<String> pathWithoutParameterDictionaryMatching =
+                    Arrays.asList(subStringFromPath.get(0).split(" "));
             // Check if the first word is a verb
             if (pathWithoutParameterDictionaryMatching.get(0).equals(""))
                 return null;
@@ -135,8 +141,8 @@ public class VerbPhraseRule implements IRestRule {
             // we have a violation.
             boolean isTokenVerb = token.equals("VBZ") || token.equals("VBP") || token.equals("VB");
             if (isTokenVerb && (getOperation == null && postOperation == null)) {
-                return new Violation(this, RestAnalyzer.locMapper.getLOCOfPath(path), ImprovementSuggestion.VERB_PHRASE, path,
-                        ErrorMessage.VERBPHRASE);
+                return new Violation(this, RestAnalyzer.locMapper.getLOCOfPath(path),
+                        ImprovementSuggestion.VERB_PHRASE, path, ErrorMessage.VERBPHRASE);
             }
 
         } catch (IOException e) {

@@ -49,7 +49,7 @@ The following anti-patterns exemplify what not to do:
 * The parameters in curly brackets are excluded from the path and are therefore currently not checked
 * If more than these previously defined words are to be considered CRUD violations, perform the following steps:
    1. Add the appropriate words to the attribute `CRUD_OPERATIONS` in the `./src/main/java/cli/rule/rules/CRUDRule.java` 
-   2. Mine the words that have the appropriate words as substring from `./src/main/java/cli/docs/wordninja_words.txt` and add them to the list `./src/main/java/cli/docs/CRUD_words.txt` (Exclude similar words to still detect the violation; e.g. "gets" from "get")
+   2. Mine the words that have the appropriate words as substring from `./src/main/resources/wordninja_words.txt` and add them to the list `./src/main/resources/CRUD_words.txt` (Exclude similar words to still detect the violation; e.g. "gets" from "get")
 
 ### Future work
 

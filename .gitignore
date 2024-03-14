@@ -16,4 +16,4 @@ production/
 .factorypath
 .class
 bin/
-src/main/java/cli/docs/config.properties
+src/main/resources/config.properties
