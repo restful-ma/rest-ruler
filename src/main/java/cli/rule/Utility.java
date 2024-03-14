@@ -55,7 +55,7 @@ public class Utility {
 
     public static boolean getPathSegmentMatch(String word, String filePath) {
         boolean isWordInDictionary = false;
-        try (Scanner scanner = new Scanner(new File(filePath))) {
+        try (Scanner scanner = new Scanner(Utility.class.getResourceAsStream(filePath))) {
             if (scanner.useDelimiter("\\Z").next().matches(word))
                 isWordInDictionary = true;
         } catch (Exception e) {

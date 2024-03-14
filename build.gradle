@@ -5,7 +5,7 @@ plugins {
     id "com.adarshr.test-logger" version "4.0.0"
 }
 
-version = "2.1.0"
+version = "2.1.1"
 group = "rest-ruler"
 
 repositories {
