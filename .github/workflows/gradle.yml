@@ -23,11 +23,11 @@ jobs:
     - name: Set up JDK
       uses: actions/setup-java@v3
       with:
-        java-version: '18'
+        java-version: '24'
         distribution: 'temurin'
     - name: Setup Gradle
       uses: gradle/gradle-build-action@v2
       with:
-        gradle-version: 7.6.2
+        gradle-version: 8.14
     - run: gradle build --info
       working-directory: .
