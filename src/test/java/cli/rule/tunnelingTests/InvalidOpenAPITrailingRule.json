@@ -60,6 +60,16 @@
     }
   ],
   "paths": {
+    "/": {
+      "get": {
+        "description": "Root endpoint",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/getadult/": {
       "post": {
         "consumes": [

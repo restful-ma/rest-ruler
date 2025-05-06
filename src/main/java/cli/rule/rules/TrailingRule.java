@@ -74,8 +74,14 @@ public class TrailingRule implements IRestRule {
         for (String path : paths) {
             Output.progressPercentage(curPath, totalPaths);
             curPath++;
+            // if the path is the root path, skip it
+            // see https://github.com/restful-ma/rest-ruler/issues/52 for more information
+            if (path.equals("/")) {
+                continue;
+            }
             if (path.endsWith("/")) {
-                violations.add(new Violation(this, RestAnalyzer.locMapper.getLOCOfPath(path), ImprovementSuggestion.TRAILING_SLASH,
+                violations.add(new Violation(this, RestAnalyzer.locMapper.getLOCOfPath(path),
+                        ImprovementSuggestion.TRAILING_SLASH,
                         path, ErrorMessage.TRAILINGSLASH));
             }
         }
