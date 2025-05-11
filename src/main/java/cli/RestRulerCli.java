@@ -28,6 +28,10 @@ public class RestRulerCli implements Runnable {
             description = "Specify the naming convention to use (camelcase or kebabcase). Default is kebabcase.")
     private String namingConvention;
 
+    @Option(names = {"-ai", "--enableAI"},
+        description = "Enable the usage of AI for the evaluation of some rules.")
+    private boolean enableAI;
+
     public static void main(String[] args) {
         PicocliRunner.run(RestRulerCli.class, args);
     }
@@ -46,7 +50,7 @@ public class RestRulerCli implements Runnable {
             } else {
                 output.setNamingConventionRules(false);
             }
-
+            output.setEnableAI(this.enableAI);
             if (filename != null)
                 output.startAnalysis(this.openApiPath, this.filename);
             else
