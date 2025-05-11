@@ -36,6 +36,7 @@ dependencies {
     implementation("org.atteo:evo-inflector:1.3")
     implementation("org.apache.opennlp:opennlp-tools:2.3.0")
     implementation("nz.ac.waikato.cms.weka:weka-stable:3.8.6")
+    implementation("com.openai:openai-java:1.6.1")
 }
 
 shadowJar {

@@ -17,6 +17,7 @@ public class Output {
     private static final String UNDERLINE = "----------------------------------------------";
     private final Scanner scanner = new Scanner(System.in);
     private boolean useCamelCase = false;
+    private boolean enableLLM = false;
 
     /**
      * Sets which naming convention rules should be active
@@ -24,6 +25,14 @@ public class Output {
      */
     public void setNamingConventionRules(boolean useCamelCase) {
         this.useCamelCase = useCamelCase;
+    }
+
+    /**
+     * Toggles flag to enable the usage of LLMs in some rules
+     * @param enableLLM if true, enables the usage of LLMs
+     */
+    public void setEnableLLM(boolean enableLLM) {
+        this.enableLLM = enableLLM;
     }
 
     /**
@@ -128,6 +137,11 @@ public class Output {
         List<IRestRule> ruleList = activeRules.getAllRuleObjects();
         for (IRestRule rule : ruleList) {
             RuleIdentifier ruleIdentifier = rule.getIdentifier();
+
+            if (ruleIdentifier == RuleIdentifier.REQUEST_TYPE_DESCRIPTION) {
+                rule.setEnableLLM(this.enableLLM);
+            }
+
             if (useCamelCase) {
                 if (ruleIdentifier == RuleIdentifier.CAMEL_CASE) {
                     rule.setIsActive(true);
@@ -173,6 +187,11 @@ public class Output {
         List<IRestRule> ruleList = activeRules.getAllRuleObjects();
         for (IRestRule rule : ruleList) {
             RuleIdentifier ruleIdentifier = rule.getIdentifier();
+
+            if (ruleIdentifier == RuleIdentifier.REQUEST_TYPE_DESCRIPTION) {
+                rule.setEnableLLM(this.enableLLM);
+            }
+
             if (useCamelCase) {
                 if (ruleIdentifier == RuleIdentifier.CAMEL_CASE) {
                     rule.setIsActive(true);
