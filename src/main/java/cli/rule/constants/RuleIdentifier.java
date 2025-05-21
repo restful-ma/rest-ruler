@@ -16,5 +16,6 @@ public enum RuleIdentifier {
     TUNNELING,
     UNAUTHORIZED,
     UNDERSCORE,
-    VERB_PHRASE
+    VERB_PHRASE,
+    OFFICIAL_HTTP_STATUS_CODES,
 }
