@@ -1,0 +1,49 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Test API with non-normalized paths",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/valid/path": {
+      "get": {
+        "summary": "Valid path",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/invalid//path": {
+      "get": {
+        "summary": "Invalid path with empty segment",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/another//invalid//path": {
+      "get": {
+        "summary": "Invalid path with multiple empty segments",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/invalid/path//with//empty/segments": {
+      "get": {
+        "summary": "Invalid path with empty segments in the middle",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+} 
