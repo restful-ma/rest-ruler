@@ -22,6 +22,8 @@ public class ErrorMessage {
     public static final String REQUESTTYPE = "Type of the request does not match with the description of the request";
     public static final String REQUESTTYPETUNNELINGGET = "This request is performing more than one action. GET request should not be used to tunnel other request";
     public static final String REQUESTTYPETUNNELINGPOST = "This request is performing more than one action. POST request should not be used to tunnel other request";
+    public static final String HTTP_STATUS_CODE_NOT_OFFICIAL = "HTTP status code %d is not an official HTTP status code";
+    public static final String HTTP_STATUS_CODE_NOT_NUMERIC = "HTTP status code '%s' is not a numeric value";
 
 
     private ErrorMessage() {
