@@ -19,4 +19,5 @@ public enum RuleIdentifier {
     VERB_PHRASE,
     OFFICIAL_HTTP_STATUS_CODES,
     NORMALIZED_PATHS,
+    META_INFO,
 }
