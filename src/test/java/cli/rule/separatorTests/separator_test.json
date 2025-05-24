@@ -89,6 +89,16 @@
     }
   ],
   "paths": {
+    "/": {
+      "get": {
+        "description": "Root endpoint",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/v1/connections/create": {
       "post": {
         "operationId": "createConnection",
@@ -2406,5 +2416,4 @@
       }
     }
   }
-}
 }
