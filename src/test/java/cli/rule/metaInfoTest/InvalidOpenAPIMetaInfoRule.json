@@ -1,0 +1,56 @@
+{
+  "swagger": "2.0",
+  "schemes": ["https", "http"],
+  "host": "1forge.com",
+  "basePath": "/forex-quotes",
+  "info": {
+    "contact": {
+      "name": "",
+      "url": ""
+    },
+    "description": "",
+    "title": "",
+    "version": "1.0"
+  },
+  "produces": ["application/json"],
+  "paths": {
+    "/quotes": {
+      "get": {
+        "description": "Get quotes",
+        "externalDocs": {
+          "description": "Find out more",
+          "url": "http://1forge.com/forex-data-api"
+        },
+        "security": [
+          {
+            "OAuth2": ["read"]
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "example": ["EURUSD", "GBPJPY", "AUDUSD"],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "description": "A list of quotes"
+          },
+          "401": {
+            "schema": {
+              "example": ["EURUSD", "GBPJPY", "AUDUSD"],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "summary": "Get quotes for all symbols",
+        "tags": ["forex", "finance", "quotes"]
+      }
+    }
+  }
+} 
