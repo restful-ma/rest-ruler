@@ -18,6 +18,7 @@ import static cli.analyzer.RestAnalyzer.locMapper;
  */
 public class UnderscoreRule implements IRestRule {
     private static final String TITLE = "Underscores (_) should not be used in URI";
+    private static final RuleIdentifier RULE_IDENTIFIER = RuleIdentifier.UNDERSCORE;
     private static final RuleCategory CATEGORY = RuleCategory.URIS;
     private static final RuleSeverity SEVERITY = RuleSeverity.ERROR;
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List
@@ -33,6 +34,11 @@ public class UnderscoreRule implements IRestRule {
     @Override
     public String getTitle() {
         return TITLE;
+    }
+
+    @Override
+    public RuleIdentifier getIdentifier() {
+        return RULE_IDENTIFIER;
     }
 
     @Override

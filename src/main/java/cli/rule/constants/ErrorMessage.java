@@ -22,6 +22,7 @@ public class ErrorMessage {
     public static final String REQUESTTYPE = "Type of the request does not match with the description of the request";
     public static final String REQUESTTYPETUNNELINGGET = "This request is performing more than one action. GET request should not be used to tunnel other request";
     public static final String REQUESTTYPETUNNELINGPOST = "This request is performing more than one action. POST request should not be used to tunnel other request";
+    public static final String CAMELCASE = "Multi-word URI segment does not follow camelCase convention";
 
 
     private ErrorMessage() {

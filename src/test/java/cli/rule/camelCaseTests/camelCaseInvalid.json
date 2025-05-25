@@ -1,0 +1,89 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Test API with camelCase violations",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/user-profile": {
+      "get": {
+        "summary": "Get user profile",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/user_profile": {
+      "get": {
+        "summary": "Get user profile",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/UserProfile": {
+      "get": {
+        "summary": "Get user profile",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/userprofile": {
+      "get": {
+        "summary": "Get user profile",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/userProfile": {
+      "get": {
+        "summary": "Get user profile",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/bookAuthor": {
+      "get": {
+        "summary": "Get book author",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/book-author": {
+      "get": {
+        "summary": "Get book author",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/book_author": {
+      "get": {
+        "summary": "Get book author",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+} 

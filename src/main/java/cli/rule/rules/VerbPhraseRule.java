@@ -15,6 +15,7 @@ import cli.rule.Violation;
 import cli.rule.constants.ErrorMessage;
 import cli.rule.constants.ImprovementSuggestion;
 import cli.rule.constants.RuleCategory;
+import cli.rule.constants.RuleIdentifier;
 import cli.rule.constants.RuleSeverity;
 import cli.rule.constants.RuleSoftwareQualityAttribute;
 import cli.utility.Output;
@@ -25,6 +26,7 @@ import io.swagger.v3.oas.models.Paths;
 public class VerbPhraseRule implements IRestRule {
 
     private static final String TITLE = "A verb or verb phrase should be used for controller names";
+    private static final RuleIdentifier RULE_IDENTIFIER = RuleIdentifier.VERB_PHRASE;
     private static final RuleCategory RULE_CATEGORY = RuleCategory.URIS;
     private static final RuleSeverity RULE_SEVERITY = RuleSeverity.ERROR;
     private static final List<RuleSoftwareQualityAttribute> RULE_SOFTWARE_QUALITY_ATTRIBUTE_LIST =
@@ -41,6 +43,11 @@ public class VerbPhraseRule implements IRestRule {
     @Override
     public String getTitle() {
         return TITLE;
+    }
+
+    @Override
+    public RuleIdentifier getIdentifier() {
+        return RULE_IDENTIFIER;
     }
 
     @Override

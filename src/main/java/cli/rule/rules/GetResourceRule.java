@@ -24,6 +24,7 @@ public class GetResourceRule implements IRestRule {
 
     //Rule Attribute Definitions
     private static final String TITLE = "GET must be used to retrieve a representation of a resource";
+    private static final RuleIdentifier RULE_IDENTIFIER = RuleIdentifier.GET_RESOURCE;
     private static final RuleCategory RULE_CATEGORY = RuleCategory.HTTP;
     private static final RuleSeverity RULE_SEVERITY = RuleSeverity.CRITICAL;
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES =
@@ -40,6 +41,11 @@ public class GetResourceRule implements IRestRule {
     @Override
     public String getTitle() {
         return TITLE;
+    }
+
+    @Override
+    public RuleIdentifier getIdentifier() {
+        return RULE_IDENTIFIER;
     }
 
     @Override

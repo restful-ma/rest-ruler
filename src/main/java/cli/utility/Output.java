@@ -3,6 +3,7 @@ package cli.utility;
 import cli.rule.ActiveRules;
 import cli.analyzer.RestAnalyzer;
 import cli.rule.IRestRule;
+import cli.rule.constants.*;
 
 import java.io.File;
 import java.net.HttpURLConnection;
@@ -15,6 +16,15 @@ import java.util.*;
 public class Output {
     private static final String UNDERLINE = "----------------------------------------------";
     private final Scanner scanner = new Scanner(System.in);
+    private boolean useCamelCase = false;
+
+    /**
+     * Sets which naming convention rules should be active
+     * @param useCamelCase if true, enables camelCase rule and disables kebab-case rules
+     */
+    public void setNamingConventionRules(boolean useCamelCase) {
+        this.useCamelCase = useCamelCase;
+    }
 
     /**
      * Method for the expert mode. User will be asked to enable or disable each rule. The input will
@@ -101,7 +111,6 @@ public class Output {
      * @param generateReport if true, a report will be generated
      */
     public void startAnalysis(String pathToFile, boolean generateReport) {
-
         if (pathToFile.toLowerCase().startsWith("http") && !checkURL(pathToFile)) {
             System.err.println("The URL was not reachable. Please check the URL and try again.");
             return;
@@ -113,7 +122,30 @@ public class Output {
 
         RestAnalyzer restAnalyzer = new RestAnalyzer(pathToFile);
         printStartAnalysis(pathToFile);
-        restAnalyzer.runAnalyse(new ActiveRules().getAllRuleObjects(), generateReport);
+        
+        // Get rules and apply naming convention
+        ActiveRules activeRules = new ActiveRules();
+        List<IRestRule> ruleList = activeRules.getAllRuleObjects();
+        for (IRestRule rule : ruleList) {
+            RuleIdentifier ruleIdentifier = rule.getIdentifier();
+            if (useCamelCase) {
+                if (ruleIdentifier == RuleIdentifier.CAMEL_CASE) {
+                    rule.setIsActive(true);
+                } 
+                if (ruleIdentifier == RuleIdentifier.HYPHENS || ruleIdentifier == RuleIdentifier.LOWERCASE) {
+                    rule.setIsActive(false);
+                }
+            } else {
+                if (ruleIdentifier == RuleIdentifier.CAMEL_CASE) {
+                    rule.setIsActive(false);
+                } 
+                if (ruleIdentifier == RuleIdentifier.HYPHENS || ruleIdentifier == RuleIdentifier.LOWERCASE) {
+                    rule.setIsActive(true);
+                }
+            }
+        }
+        
+        restAnalyzer.runAnalyse(ruleList, generateReport);
     }
 
     /**
@@ -135,7 +167,30 @@ public class Output {
 
         RestAnalyzer restAnalyzer = new RestAnalyzer(pathToFile);
         printStartAnalysis(pathToFile);
-        restAnalyzer.runAnalyse(new ActiveRules().getAllRuleObjects(), title);
+        
+        // Get rules and apply naming convention
+        ActiveRules activeRules = new ActiveRules();
+        List<IRestRule> ruleList = activeRules.getAllRuleObjects();
+        for (IRestRule rule : ruleList) {
+            RuleIdentifier ruleIdentifier = rule.getIdentifier();
+            if (useCamelCase) {
+                if (ruleIdentifier == RuleIdentifier.CAMEL_CASE) {
+                    rule.setIsActive(true);
+                } 
+                if (ruleIdentifier == RuleIdentifier.HYPHENS || ruleIdentifier == RuleIdentifier.LOWERCASE) {
+                    rule.setIsActive(false);
+                }
+            } else {
+                if (ruleIdentifier == RuleIdentifier.CAMEL_CASE) {
+                    rule.setIsActive(false);
+                } 
+                if (ruleIdentifier == RuleIdentifier.HYPHENS || ruleIdentifier == RuleIdentifier.LOWERCASE) {
+                    rule.setIsActive(true);
+                }
+            }
+        }
+        
+        restAnalyzer.runAnalyse(ruleList, title);
     }
 
     /**

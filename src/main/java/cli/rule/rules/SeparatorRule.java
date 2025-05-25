@@ -19,6 +19,7 @@ import static cli.analyzer.RestAnalyzer.locMapper;
 public class SeparatorRule implements IRestRule {
 
     static final String TITLE = "Forward slash separator (/) must be used to indicate a hierarchical relationship";
+    private static final RuleIdentifier RULE_IDENTIFIER = RuleIdentifier.SEPARATOR;
     static final RuleCategory RULE_CATEGORY = RuleCategory.URIS;
     static final RuleSeverity RULE_SEVERITY = RuleSeverity.CRITICAL;
     static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List
@@ -34,6 +35,11 @@ public class SeparatorRule implements IRestRule {
     @Override
     public String getTitle() {
         return TITLE;
+    }
+
+    @Override
+    public RuleIdentifier getIdentifier() {
+        return RULE_IDENTIFIER;
     }
 
     @Override

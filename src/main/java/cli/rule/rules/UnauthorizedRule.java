@@ -24,6 +24,7 @@ import static cli.analyzer.RestAnalyzer.*;
 public class UnauthorizedRule implements IRestRule {
 
     private static final String TITLE = "401 (\"Unauthorized\") must be used when there is a problem with the client's credentials";
+    private static final RuleIdentifier RULE_IDENTIFIER = RuleIdentifier.UNAUTHORIZED;
     private static final RuleCategory CATEGORY = RuleCategory.HTTP;
     private static final RuleSeverity SEVERITY = RuleSeverity.CRITICAL;
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTE = Arrays.asList(
@@ -43,6 +44,11 @@ public class UnauthorizedRule implements IRestRule {
     @Override
     public String getTitle() {
         return TITLE;
+    }
+
+    @Override
+    public RuleIdentifier getIdentifier() {
+        return RULE_IDENTIFIER;
     }
 
     @Override

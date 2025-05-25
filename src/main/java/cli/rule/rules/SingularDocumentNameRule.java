@@ -15,6 +15,7 @@ import static cli.rule.Utility.*;
 public class SingularDocumentNameRule implements IRestRule {
 
     public static final String WITH_PATH_SEGMENT = " With pathSegment: ";
+    private static final RuleIdentifier RULE_IDENTIFIER = RuleIdentifier.SINGULAR_DOCUMENT_NAME;
     private static final String TITLE = "A singular noun should be used for document names";
     private static final RuleCategory RULE_CATEGORY = RuleCategory.URIS;
     private static final RuleSeverity RULE_SEVERITY = RuleSeverity.ERROR;
@@ -30,6 +31,11 @@ public class SingularDocumentNameRule implements IRestRule {
 
     public String getTitle() {
         return TITLE;
+    }
+
+    @Override
+    public RuleIdentifier getIdentifier() {
+        return RULE_IDENTIFIER;
     }
 
     @Override
