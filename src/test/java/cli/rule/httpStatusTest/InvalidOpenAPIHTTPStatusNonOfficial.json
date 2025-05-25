@@ -1,0 +1,46 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Test API with non-official status codes",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/users": {
+      "get": {
+        "operationId": "getUsers",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "999": {
+            "description": "Non-official status code"
+          }
+        }
+      },
+      "post": {
+        "operationId": "createUser",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "888": {
+            "description": "Another non-official status code"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "operationId": "getUserById",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "777": {
+            "description": "Yet another non-official status code"
+          }
+        }
+      }
+    }
+  }
+} 

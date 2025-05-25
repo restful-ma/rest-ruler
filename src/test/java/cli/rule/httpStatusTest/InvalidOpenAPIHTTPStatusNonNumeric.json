@@ -1,0 +1,87 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Test API with non-numeric status codes",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/users": {
+      "get": {
+        "operationId": "getUsers",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "success": {
+            "description": "Non-numeric status code"
+          },
+          "default": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "operationId": "createUser",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "error": {
+            "description": "Another non-numeric status code"
+          }
+        }
+      }
+    },
+    "/movies": {
+        "post": {
+          "description": "Update a list of movies.",
+          "consumes": ["application/json"],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "user",
+              "description": "The user to create.",
+              "schema": {
+                "type": "object",
+                "required": ["userName"],
+                "properties": {
+                  "userName": {
+                    "type": "string"
+                  },
+                  "firstName": {
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "schema": {
+                "example": ["EURUSD", "GBPJPY", "AUDUSD"],
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "description": "OK"
+            },
+            "default": {
+              "schema": {
+                "example": ["EURUSD", "GBPJPY", "AUDUSD"],
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            }
+          },
+          "summary": "Publish a message to a channel",
+          "tags": ["Publishing"]
+        }
+      }
+  }
+} 
