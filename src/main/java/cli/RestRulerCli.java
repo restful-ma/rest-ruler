@@ -24,6 +24,10 @@ public class RestRulerCli implements Runnable {
             description = "Specify a custom filename for the Markdown report")
     private String filename;
 
+    @Option(names = {"-n", "--naming"}, 
+            description = "Specify the naming convention to use (camelcase or kebabcase). Default is kebabcase.")
+    private String namingConvention;
+
     public static void main(String[] args) {
         PicocliRunner.run(RestRulerCli.class, args);
     }
@@ -36,6 +40,12 @@ public class RestRulerCli implements Runnable {
         if (this.expertMode)
             output.askActiveRules();
         if (this.openApiPath != null) {
+            // Set naming convention rules based on the flag
+            if (namingConvention != null && namingConvention.equalsIgnoreCase("camelcase")) {
+                output.setNamingConventionRules(true);
+            } else {
+                output.setNamingConventionRules(false);
+            }
 
             if (filename != null)
                 output.startAnalysis(this.openApiPath, this.filename);

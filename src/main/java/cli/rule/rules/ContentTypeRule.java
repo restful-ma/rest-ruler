@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 public class ContentTypeRule implements IRestRule {
 
     private static final String TITLE = "Content-Type must be used";
+    private static final RuleIdentifier RULE_IDENTIFIER = RuleIdentifier.CONTENT_TYPE;
     private static final RuleCategory CATEGORY = RuleCategory.META;
     private static final RuleSeverity SEVERITY = RuleSeverity.CRITICAL;
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTE = Arrays
@@ -50,6 +51,11 @@ public class ContentTypeRule implements IRestRule {
     @Override
     public String getTitle() {
         return TITLE;
+    }
+
+    @Override
+    public RuleIdentifier getIdentifier() {
+        return RULE_IDENTIFIER;
     }
 
     @Override

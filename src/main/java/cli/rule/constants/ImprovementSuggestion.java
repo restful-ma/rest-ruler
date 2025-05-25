@@ -21,6 +21,7 @@ public class ImprovementSuggestion {
     public static final String REQUESTTYPETUNELING = " GET and POST must not be used to tunnel other request methods";
     public static final String VERB_PHRASE = "Use a verb or verb phrase for controller names";
     public static final String TRAILING_SLASH = "remove trailing forward slash '/' from URI";
+    public static final String CAMELCASE = "Use camelCase to separate words in URI segments";
 
     private ImprovementSuggestion() {
         throw new IllegalStateException("Utility class");

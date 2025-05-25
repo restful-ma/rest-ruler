@@ -14,6 +14,7 @@ import java.util.Set;
 public class TrailingRule implements IRestRule {
 
     private static final String TITLE = "A trailing forward slash (/) should not be included in URIs";
+    private static final RuleIdentifier RULE_IDENTIFIER = RuleIdentifier.TRAILING;
     private static final RuleCategory RULE_CATEGORY = RuleCategory.URIS;
     private static final RuleSeverity RULE_SEVERITY = RuleSeverity.ERROR;
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List
@@ -27,6 +28,11 @@ public class TrailingRule implements IRestRule {
     @Override
     public String getTitle() {
         return TITLE;
+    }
+
+    @Override
+    public RuleIdentifier getIdentifier() {
+        return RULE_IDENTIFIER;
     }
 
     @Override
