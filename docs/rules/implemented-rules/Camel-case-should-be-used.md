@@ -1,4 +1,4 @@
-# Hyphens should be used to improve the readability of URIs
+# Camel case should be used to improve the readability of URIs
 
 ## Category
 
@@ -32,7 +32,7 @@ This rule is implemented to allow users to have a choice in selecting which nami
 
 * extract path segments from path using "/" as delimiter
 * based on an English dictionary, the extracted path is checked for substrings. If one or more substrings are found, and each word except the first is not capitalized, a violation is reported
-* pathSegment can be camelCase, kebabCase, snakeCase, all lowercase, all uppercase, or just a mixture of these
+* pathSegment can be camelCase, kebab-case, snake_case, all lowercase, all uppercase, or just a mixture of these
 
 ### What is not checked:
 
