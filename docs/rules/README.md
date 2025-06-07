@@ -52,6 +52,7 @@ Documentation about the rules can be found in the [folder](./implemented-rules).
 * [A verb or verb phrase should be used for controller names](./implemented-rules/A-verb-or-verb-phrase-should-be-used-for-controller-names.md)
 * [Camel case should be used (optional)](./implemented-rules/Camel-case-should-be-used.md)
 * [Must use official HTTP status codes](./implemented-rules/Must-use-official-HTTP-status-codes.md)
+* [Must use normalized paths without empty path segments](./implemented-rules/Must-use-normalized-paths.md)
 
 ### Rule implementation and extension
 For each rule, a single Java class is created, which can be found in in this [dir](../../src/main/java/cli/rule/rules). It is just as easy to implement a new rule. For implementing a new rule, it is merely necessary to create a Java class in the folder just mentioned, which implements the [`IRestRule`](../../src/main/java/cli/rule/IRestRule.java) interface. Then, a constructor with an `isActive` boolean is needed. Now the rule is automatically recognized and listed in the CLI. This is the minimum that needs to be done to implement a new rule. 

@@ -18,4 +18,5 @@ public enum RuleIdentifier {
     UNDERSCORE,
     VERB_PHRASE,
     OFFICIAL_HTTP_STATUS_CODES,
+    NORMALIZED_PATHS,
 }
