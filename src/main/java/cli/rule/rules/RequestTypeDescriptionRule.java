@@ -15,6 +15,7 @@ import java.util.Set;
 
 public class RequestTypeDescriptionRule implements IRestRule {
     static final String TITLE = "Description of request should match with the type of the request.";
+    private static final RuleIdentifier RULE_IDENTIFIER = RuleIdentifier.REQUEST_TYPE_DESCRIPTION;
     static final RuleCategory RULE_CATEGORY = RuleCategory.META;
     static final RuleSeverity RULE_SEVERITY = RuleSeverity.WARNING;
     static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List.of(RuleSoftwareQualityAttribute.MAINTAINABILITY);
@@ -29,6 +30,11 @@ public class RequestTypeDescriptionRule implements IRestRule {
     @Override
     public String getTitle() {
         return TITLE;
+    }
+
+    @Override
+    public RuleIdentifier getIdentifier() {
+        return RULE_IDENTIFIER;
     }
 
     @Override

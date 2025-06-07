@@ -1,0 +1,20 @@
+package cli.rule.constants;
+
+public enum RuleIdentifier {
+    CAMEL_CASE, 
+    CONTENT_TYPE, 
+    CRUD, 
+    FILE_EXTENSION, 
+    GET_RESOURCE, 
+    HYPHENS, 
+    LOWERCASE, 
+    PLURAL_NAME,
+    REQUEST_TYPE_DESCRIPTION,
+    SEPARATOR,
+    SINGULAR_DOCUMENT_NAME,
+    TRAILING,
+    TUNNELING,
+    UNAUTHORIZED,
+    UNDERSCORE,
+    VERB_PHRASE
+}

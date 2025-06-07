@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import cli.analyzer.RestAnalyzer;
 import cli.rule.IRestRule;
 import cli.rule.Violation;
+import cli.rule.constants.*;
 import cli.rule.constants.ErrorMessage;
 import cli.rule.constants.RuleCategory;
 import cli.rule.constants.RuleSeverity;
@@ -22,6 +23,7 @@ import io.swagger.v3.oas.models.OpenAPI;
 public class FileExtensionRule implements IRestRule {
     private static final String PATH_TO_FILE_EXTENSIONS = "/file_extensions.txt";
     private static final String TITLE = "File extensions should not be included in URIs";
+    private static final RuleIdentifier RULE_IDENTIFIER = RuleIdentifier.FILE_EXTENSION;
     private static final RuleCategory CATEGORY = RuleCategory.URIS;
     private static final RuleSeverity SEVERITY = RuleSeverity.ERROR;
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES =
@@ -39,6 +41,12 @@ public class FileExtensionRule implements IRestRule {
     public String getTitle() {
         return TITLE;
     }
+
+    @Override
+    public RuleIdentifier getIdentifier() {
+        return RULE_IDENTIFIER;
+    }
+
 
     @Override
     public RuleCategory getCategory() {

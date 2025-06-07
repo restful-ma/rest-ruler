@@ -14,6 +14,7 @@ import static cli.rule.Utility.*;
 public class PluralNameRule implements IRestRule {
 
     public static final String WITH_PATH_SEGMENT = " With pathSegment: ";
+    private static final RuleIdentifier RULE_IDENTIFIER = RuleIdentifier.PLURAL_NAME;
     private static final String TITLE = "A plural noun should be used for collection or store names";
     private static final RuleCategory RULE_CATEGORY = RuleCategory.URIS;
     private static final RuleSeverity RULE_SEVERITY = RuleSeverity.ERROR;
@@ -28,6 +29,11 @@ public class PluralNameRule implements IRestRule {
     @Override
     public String getTitle() {
         return TITLE;
+    }
+
+    @Override
+    public RuleIdentifier getIdentifier() {
+        return RULE_IDENTIFIER;
     }
 
     @Override

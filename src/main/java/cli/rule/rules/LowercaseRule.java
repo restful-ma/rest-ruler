@@ -15,6 +15,7 @@ import static cli.analyzer.RestAnalyzer.locMapper;
 public class LowercaseRule implements IRestRule {
 
     private static final String TITLE = "Lowercase letters should be preferred in URI paths";
+    private static final RuleIdentifier RULE_IDENTIFIER = RuleIdentifier.LOWERCASE;
     private static final RuleCategory RULE_CATEGORY = RuleCategory.URIS;
     private static final RuleSeverity RULE_SEVERITY = RuleSeverity.ERROR;
     private static final List<RuleSoftwareQualityAttribute> RULE_SOFTWARE_QUALITY_ATTRIBUTE_LIST = List
@@ -23,6 +24,11 @@ public class LowercaseRule implements IRestRule {
 
     public LowercaseRule(boolean isActive) {
         this.isActive = isActive;
+    }
+
+    @Override
+    public RuleIdentifier getIdentifier() {
+        return RULE_IDENTIFIER;
     }
 
     @Override

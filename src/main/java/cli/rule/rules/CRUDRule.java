@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import cli.rule.constants.*;
 import java.util.Set;
 import cli.analyzer.RestAnalyzer;
 import cli.rule.IRestRule;
@@ -21,6 +22,7 @@ import io.swagger.v3.oas.models.OpenAPI;
  */
 public class CRUDRule implements IRestRule {
     private static final String TITLE = "CRUD function names should not be used in URIs";
+    private static final RuleIdentifier RULE_IDENTIFIER = RuleIdentifier.CRUD;
     private static final RuleCategory CATEGORY = RuleCategory.URIS;
     private static final RuleSeverity SEVERITY = RuleSeverity.ERROR;
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTE =
@@ -39,6 +41,11 @@ public class CRUDRule implements IRestRule {
     @Override
     public String getTitle() {
         return TITLE;
+    }
+
+    @Override
+    public RuleIdentifier getIdentifier() {
+        return RULE_IDENTIFIER;
     }
 
     @Override

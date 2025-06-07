@@ -15,6 +15,7 @@ import java.util.Map;
 public class TunnelingRule implements IRestRule {
 
     private static final String TITLE = "GET and POST must not be used to tunnel other request methods";
+    private static final RuleIdentifier RULE_IDENTIFIER = RuleIdentifier.TUNNELING;
     private static final RuleCategory RULE_CATEGORY = RuleCategory.HTTP;
     private static final RuleSeverity RULE_SEVERITY = RuleSeverity.CRITICAL;
     private static final List<RuleSoftwareQualityAttribute> SOFTWARE_QUALITY_ATTRIBUTES = List.of(
@@ -29,6 +30,11 @@ public class TunnelingRule implements IRestRule {
     @Override
     public String getTitle() {
         return TITLE;
+    }
+
+    @Override
+    public RuleIdentifier getIdentifier() {
+        return RULE_IDENTIFIER;
     }
 
     @Override
