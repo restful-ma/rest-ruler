@@ -90,6 +90,11 @@ public class SeparatorRule implements IRestRule {
         for (String path : pathList) {
             Output.progressPercentage(curPath, totalPaths);
             curPath++;
+            // if the path is the root path, skip it
+            // see https://github.com/restful-ma/rest-ruler/issues/54 for more information
+            if (path.equals("/")) {
+                continue;
+            }
 
             Matcher matcher = expectedPattern.matcher(path);
 
