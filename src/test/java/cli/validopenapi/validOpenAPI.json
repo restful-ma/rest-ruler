@@ -207,7 +207,7 @@
           }
         ],
         "responses": {
-          "2XX": {
+          "200": {
             "schema": {
               "example": ["EURUSD", "GBPJPY", "AUDUSD"],
               "items": {
