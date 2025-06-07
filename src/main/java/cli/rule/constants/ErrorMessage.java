@@ -26,6 +26,7 @@ public class ErrorMessage {
     public static final String HTTP_STATUS_CODE_NOT_OFFICIAL = "HTTP status code %d is not an official HTTP status code";
     public static final String HTTP_STATUS_CODE_NOT_NUMERIC = "HTTP status code '%s' is not a numeric value";
     public static final String EMPTYPATHSEGMENT = "Path contains empty segments (//) which violates the path normalization rule.";
+    public static final String METAINFO = "Make sure to include title, version, description, name, URL, and email in the information field of the API";
 
 
     private ErrorMessage() {
