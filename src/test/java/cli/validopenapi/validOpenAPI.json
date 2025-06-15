@@ -181,7 +181,7 @@
       }
     },
     "/movies": {
-      "post": {
+      "put": {
         "description": "Update a list of movies.",
         "consumes": ["application/json"],
         "parameters": [
@@ -227,7 +227,6 @@
             }
           }
         },
-        "summary": "Publish a message to a channel",
         "tags": ["Publishing"]
       }
     }

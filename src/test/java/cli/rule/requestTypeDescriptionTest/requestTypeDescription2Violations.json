@@ -53,6 +53,24 @@
           "finance",
           "quotes"
         ]
+      },
+      "post": {
+        "description": "Delete quotes",
+        "externalDocs": {
+          "description": "Find out more",
+          "url": "http://1forge.com/forex-data-api"
+        },
+        "responses": {
+          "200": {
+            "description": "A list of quotes"
+          }
+        },
+        "summary": "Delete quotes for all symbols",
+        "tags": [
+          "forex",
+          "finance",
+          "quotes"
+        ]
       }
     },
     "/symbols": {

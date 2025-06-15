@@ -21,9 +21,21 @@ public class RequestTypeDescriptionTest {
 
         String url = "src/test/java/cli/rule/requestTypeDescriptionTest/requestTypeDescription2Violations.json";
 
-        List<Violation> violationToTest = runMethodUnderTest(url);
+        List<Violation> violationToTest = runMethodUnderTest(url, false);
 
-        assertEquals(8, violationToTest.size(),
+        assertEquals(9, violationToTest.size(),
+                "Detection of violations should work.");
+    }
+
+    @Test
+    @DisplayName("Detect if a path segment contains a violation regarding the store or collection name using AI")
+    void checkViolationOnInvalidRESTFile2ViolationsAI() throws MalformedURLException {
+
+        String url = "src/test/java/cli/rule/requestTypeDescriptionTest/requestTypeDescription2Violations.json";
+
+        List<Violation> violationToTest = runMethodUnderTest(url, true);
+
+        assertEquals(13, violationToTest.size(),
                 "Detection of violations should work.");
     }
 
@@ -32,16 +44,31 @@ public class RequestTypeDescriptionTest {
     void checkViolationOnValidRESTFile() throws MalformedURLException {
 
         String url = "src/test/java/cli/validopenapi/validOpenAPI.json";
-        List<Violation> violationToTest = runMethodUnderTest(url);
+        List<Violation> violationToTest = runMethodUnderTest(url, false);
 
         assertEquals(0, violationToTest.size(),
                 "Detection of violations should work.");
     }
 
-    private List<Violation> runMethodUnderTest(String url) throws MalformedURLException {
+    @Test
+    @DisplayName("Test a valid api with AI. No error should be detected.")
+    void checkViolationOnValidRESTFileAI() throws MalformedURLException {
+
+        String url = "src/test/java/cli/validopenapi/validOpenAPI.json";
+        List<Violation> violationToTest = runMethodUnderTest(url, true);
+
+        assertEquals(0, violationToTest.size(),
+                "Detection of violations should work.");
+    }
+
+    private List<Violation> runMethodUnderTest(String url, boolean enableAI) throws MalformedURLException {
 
         this.restAnalyzer = new RestAnalyzer(url);
         this.requestTypeDescriptionRuleTest = new RequestTypeDescriptionRule(true);
+
+        if (enableAI) {
+            this.requestTypeDescriptionRuleTest.setEnableAI(enableAI);
+        }
 
         return this.restAnalyzer.runAnalyse(List.of(this.requestTypeDescriptionRuleTest), false);
     }

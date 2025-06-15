@@ -23,6 +23,14 @@ public interface IRestRule {
     boolean getIsActive();
 
     void setIsActive(boolean isActive);
+    
+    /**
+     * Method used to determine whether the rule will use an AI-based approach during evaluation.
+     * This method is only used by rules that actually have an AI component, so not every rule needs to implement a body for this.
+     *
+     * @param enableAI determines whether AI is enabled or not
+     */
+    default void setEnableAI(boolean enableAI) {}
 
     /**
      * Method used to check for any violations of the implemented rule
