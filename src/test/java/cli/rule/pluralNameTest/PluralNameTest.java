@@ -23,7 +23,19 @@ public class PluralNameTest {
 
         String url = "src/test/java/cli/rule/pluralNameTest/pluralName4Violations.json";
 
-        List<Violation> violationToTest = runMethodUnderTest(url);
+        List<Violation> violationToTest = runMethodUnderTest(url, false);
+
+        assertEquals(4, violationToTest.size(),
+                "Detection of violations should work.");
+    }
+
+    @Test
+    @DisplayName("Detect if a path segment contains a violation regarding the store or collection name using an LLM")
+    void checkViolationOnInvalidRESTFile2ViolationsLLM() throws MalformedURLException {
+
+        String url = "src/test/java/cli/rule/pluralNameTest/pluralName4Violations.json";
+
+        List<Violation> violationToTest = runMethodUnderTest(url, true);
 
         assertEquals(4, violationToTest.size(),
                 "Detection of violations should work.");
@@ -34,16 +46,31 @@ public class PluralNameTest {
     void checkViolationOnValidRESTFile() throws MalformedURLException {
 
         String url = "src/test/java/cli/validopenapi/validOpenAPI.json";
-        List<Violation> violationToTest = runMethodUnderTest(url);
+        List<Violation> violationToTest = runMethodUnderTest(url, false);
 
         assertEquals(0, violationToTest.size(),
                 "Detection of violations should work.");
     }
 
-    private List<Violation> runMethodUnderTest(String url) throws MalformedURLException {
+    @Test
+    @DisplayName("Test a valid api with an LLM. No error should be detected.")
+    void checkViolationOnValidRESTFileLLM() throws MalformedURLException {
+
+        String url = "src/test/java/cli/validopenapi/validOpenAPI.json";
+        List<Violation> violationToTest = runMethodUnderTest(url, true);
+
+        assertEquals(0, violationToTest.size(),
+                "Detection of violations should work.");
+    }
+
+    private List<Violation> runMethodUnderTest(String url, boolean enableLLM) throws MalformedURLException {
 
         this.restAnalyzer = new RestAnalyzer(url);
         this.pluralNameRuleTest = new PluralNameRule(true);
+
+        if (enableLLM) {
+            this.pluralNameRuleTest.setEnableLLM(enableLLM);
+        }
 
         return this.restAnalyzer.runAnalyse(List.of(this.pluralNameRuleTest), false);
     }

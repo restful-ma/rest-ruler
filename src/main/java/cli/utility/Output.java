@@ -141,6 +141,9 @@ public class Output {
             if (ruleIdentifier == RuleIdentifier.REQUEST_TYPE_DESCRIPTION) {
                 rule.setEnableLLM(this.enableLLM);
             }
+            if (ruleIdentifier == RuleIdentifier.PLURAL_NAME) {
+                rule.setEnableLLM(this.enableLLM);
+            }
 
             if (useCamelCase) {
                 if (ruleIdentifier == RuleIdentifier.CAMEL_CASE) {
@@ -189,6 +192,9 @@ public class Output {
             RuleIdentifier ruleIdentifier = rule.getIdentifier();
 
             if (ruleIdentifier == RuleIdentifier.REQUEST_TYPE_DESCRIPTION) {
+                rule.setEnableLLM(this.enableLLM);
+            }
+            if (ruleIdentifier == RuleIdentifier.PLURAL_NAME) {
                 rule.setEnableLLM(this.enableLLM);
             }
 
