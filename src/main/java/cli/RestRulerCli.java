@@ -28,6 +28,10 @@ public class RestRulerCli implements Runnable {
             description = "Specify the naming convention to use (camelcase or kebabcase). Default is kebabcase.")
     private String namingConvention;
 
+    @Option(names = {"-llm", "--enableExternalLLM"},
+        description = "Enable the usage of LLMs for the evaluation of some rules.")
+    private boolean enableLLM;
+
     public static void main(String[] args) {
         PicocliRunner.run(RestRulerCli.class, args);
     }
@@ -46,7 +50,7 @@ public class RestRulerCli implements Runnable {
             } else {
                 output.setNamingConventionRules(false);
             }
-
+            output.setEnableLLM(this.enableLLM);
             if (filename != null)
                 output.startAnalysis(this.openApiPath, this.filename);
             else
