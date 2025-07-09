@@ -5,6 +5,7 @@ import io.swagger.v3.oas.models.OpenAPI;
 import cli.rule.IRestRule;
 import cli.rule.Violation;
 import cli.utility.Output;
+import cli.ai.gpt;
 
 import java.util.*;
 
@@ -21,9 +22,12 @@ public class PluralNameRule implements IRestRule {
     private static final List<RuleSoftwareQualityAttribute> RULE_SOFTWARE_QUALITY_ATTRIBUTE_LIST = List
             .of(RuleSoftwareQualityAttribute.USABILITY, RuleSoftwareQualityAttribute.MAINTAINABILITY);
     private boolean isActive;
+    private gpt gptClient;
+    private boolean enableLLM = false;
 
     public PluralNameRule(boolean isActive) {
         this.isActive = isActive;
+        this.gptClient = new gpt();
     }
 
     @Override
@@ -57,6 +61,11 @@ public class PluralNameRule implements IRestRule {
     }
 
     @Override
+    public void setEnableLLM(boolean enableLLM) {
+        this.enableLLM = enableLLM;
+    }
+
+    @Override
     public void setIsActive(boolean isActive) {
         this.isActive = isActive;
     }
@@ -71,6 +80,9 @@ public class PluralNameRule implements IRestRule {
         if (paths.isEmpty())
             return violations;
         // Loop through the paths
+        if (this.enableLLM) {
+            return this.gptClient.pluralNameAI(this, violations, paths);
+        }
         return getLstViolations(violations, paths);
     }
 
